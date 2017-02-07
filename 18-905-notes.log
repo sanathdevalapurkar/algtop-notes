@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.2.5)  7 FEB 2017 00:04
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.2.5)  7 FEB 2017 00:21
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -453,10 +453,25 @@ Package: eucal 2009/06/22 v3.00 Euler Script fonts
 LaTeX Font Info:    Overwriting math alphabet `\EuScript' in version `bold'
 (Font)                  U/eus/m/n --> U/eus/b/n on input line 33.
 )
+(/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
+Package: geometry 2010/09/12 v5.6 Page Geometry
+\Gm@cnth=\count128
+\Gm@cntv=\count129
+\c@Gm@tempcnt=\count130
+\Gm@bindingoffset=\dimen159
+\Gm@wd@mp=\dimen160
+\Gm@odd@mp=\dimen161
+\Gm@even@mp=\dimen162
+\Gm@layoutwidth=\dimen163
+\Gm@layoutheight=\dimen164
+\Gm@layouthoffset=\dimen165
+\Gm@layoutvoffset=\dimen166
+\Gm@dimlist=\toks39
+)
 
 Package amsthm Warning: Unknown theoremstyle `theorem' on input line 66.
 
-\c@theorem=\count128
+\c@theorem=\count131
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty
 \fancy@headwidth=\skip54
 \f@ncyO@elh=\skip55
@@ -509,7 +524,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count129
+\c@section@level=\count132
 )
 LaTeX Info: Redefining \ref on input line 189.
 LaTeX Info: Redefining \pageref on input line 189.
@@ -520,100 +535,82 @@ LaTeX Info: Redefining \nameref on input line 189.
 \openout6 = `18-905-notes.out'.
 
 
-
-Package hyperref Warning: Rerun to get /PageLabels entry.
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+*geometry* verbose mode - [ preamble ] result:
+* driver: xetex
+* paper: <default>
+* layout: <same size as paper>
+* layoutoffset:(h,v)=(0.0pt,0.0pt)
+* modes: twoside 
+* h-part:(L,W,R)=(72.26999pt, 469.75502pt, 72.26999pt)
+* v-part:(T,H,B)=(72.26999pt, 650.43001pt, 72.26999pt)
+* \paperwidth=614.295pt
+* \paperheight=794.96999pt
+* \textwidth=469.75502pt
+* \textheight=650.43001pt
+* \oddsidemargin=0.0pt
+* \evensidemargin=0.0pt
+* \topmargin=-22.0pt
+* \headheight=8.0pt
+* \headsep=14.0pt
+* \topskip=10.0pt
+* \footskip=12.0pt
+* \marginparwidth=90.0pt
+* \marginparsep=11.0pt
+* \columnsep=10.0pt
+* \skip\footins=7.0pt plus 11.0pt
+* \hoffset=0.0pt
+* \voffset=0.0pt
+* \mag=1000
+* \@twocolumnfalse
+* \@twosidetrue
+* \@mparswitchtrue
+* \@reversemarginfalse
+* (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 
 Class amsart Warning: Abstract should precede \maketitle in AMS document classe
 s; reported on input line 194.
 
-
-Package hyperref Warning: old toc file detected, not used; run LaTeX again.
-
-\tf@toc=\write7
-\openout7 = `18-905-notes.toc'.
-
+(./18-905-notes.toc
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/se-ascii-print.def
 File: se-ascii-print.def 2011/12/02 v1.10 stringenc: Printable ASCII characters
 
 )
-[1]
+[1])
+\tf@toc=\write7
+\openout7 = `18-905-notes.toc'.
+
+
 
 Package Fancyhdr Warning: \headheight is too small (8.0pt): 
  Make it at least 12.0pt.
  We now make it that large for the rest of the document.
  This may cause the page layout to be inconsistent, however.
 
-[2] <xymatrix 3x3 249>
-Overfull \hbox (11.30612pt too wide) detected at line 250
-[]
- []
-
-[3]
-Overfull \hbox (26.11131pt too wide) in paragraph at lines 262--264
-\OT1/cmr/m/n/10 bound-aries are the same as the cy-cles ex-cept for di-men-sion
- zero, namely as $0\OML/cmm/m/it/10 ; \OT1/cmr/bx/n/10 Z\OML/cmm/m/it/10 ; \OT1
-/cmr/m/n/10 0\OML/cmm/m/it/10 ; \OT1/cmr/bx/n/10 Z\OML/cmm/m/it/10 ; \OT1/cmr/m
-/n/10 0\OML/cmm/m/it/10 ; [] $\OT1/cmr/m/n/10 .
- []
-
-<xymatrix 2x2 182> [4] <xymatrix 2x2 182> [5] [6] <xymatrix 2x2 154> [7]
-<xymatrix 2x3 395> [8] [9]
-Overfull \hbox (73.08904pt too wide) detected at line 457
-\OML/cmm/m/it/10 @\OT1/cmr/m/n/10 ((\OML/cmm/m/it/10 @^^S[]\OT1/cmr/m/n/10 ) \O
-MS/cmsy/m/n/10 ^^B \OML/cmm/m/it/10 ^^S[] \OT1/cmr/m/n/10 + (\OMS/cmsy/m/n/10 ^
-^@\OT1/cmr/m/n/10 1)[]\OML/cmm/m/it/10 ^^S[] \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/it
-/10 @^^S[]\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 @[]\OT1/cmr/m/n/10 (\OML/cmm/m/i
-t/10 ^^S[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/it/10 ^^S[] \OT1/cm
-r/m/n/10 + (\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 1)[](\OML/cmm/m/it/10 @^^S[]\OT
-1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^B \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 @^^S[]\OT
-1/cmr/m/n/10 ) + (\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 1)[](\OML/cmm/m/it/10 @^^
-S[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^B \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 @^^
-S[]\OT1/cmr/m/n/10 ) + (\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 1)[]\OML/cmm/m/it/1
-0 ^^S[] \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/it/10 @[]^^S[] \OT1/cmr/m/n/10 = 0
- []
-
-[10] [11] <xymatrix 2x3 231>
-Underfull \vbox (badness 1910) has occurred while \output is active []
-
- [12]
-[13] <xymatrix 3x3 256> [14] <xymatrix 5x2 484> <xymatrix 5x2 575> [15]
-<xymatrix 5x3 758> <xymatrix 4x4 313>
-Underfull \vbox (badness 5563) has occurred while \output is active []
-
- [16]
-<xymatrix 5x3 758>
+[2] [3] <xymatrix 3x3 249> <xymatrix 2x2 182> [4] <xymatrix 2x2 182> [5]
+[6] <xymatrix 2x2 154> [7] <xymatrix 2x3 395> [8] [9] [10] <xymatrix 2x3 231>
+[11] <xymatrix 3x3 256> <xymatrix 5x2 484> [12] <xymatrix 5x2 575> <xymatrix
+5x3 758> [13] <xymatrix 4x4 313> <xymatrix 5x3 758>
 File: math-family.jpg Graphic file (type QTm)
  <use  "math-family.jpg" >
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [17]
-[18] <xymatrix 4x4 313>
-Overfull \hbox (13.1382pt too wide) in paragraph at lines 693--694
-\OT1/cmr/m/n/10 Then $\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 D[]
-; S[]\OT1/cmr/m/n/10 ) [] \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10
- S[]\OT1/cmr/m/n/10 )$. The propo-si-tion says that $\OML/cmm/m/it/10 H[]\OT1/c
-mr/m/n/10 (\OML/cmm/m/it/10 S[]\OT1/cmr/m/n/10 ) [] \OML/cmm/m/it/10 H[]\OT1/cm
-r/m/n/10 (\OML/cmm/m/it/10 S[]\OT1/cmr/m/n/10 )$.
+ [14]
+[15] <xymatrix 4x4 313>
+Overfull \hbox (9.37062pt too wide) in paragraph at lines 684--686
+\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]\OT1/cmr/m/n/10 )$ for
+ $\OML/cmm/m/it/10 q > \OT1/cmr/m/n/10 1$, but when $\OML/cmm/m/it/10 q \OT1/cm
+r/m/n/10 = 1$, we get $0 \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10
+ (\OML/cmm/m/it/10 D[]; S[]\OT1/cmr/m/n/10 ) [] \OML/cmm/m/it/10 H[]\OT1/cmr/m/
+n/10 (\OML/cmm/m/it/10 S[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10
+ H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 D[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \
+OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 D[]; S[]\OT1/cmr/m/n/10 ) 
+\OMS/cmsy/m/n/10 !
  []
 
-
-Overfull \hbox (31.28455pt too wide) in paragraph at lines 693--694
-\OT1/cmr/m/n/10 But we also have the bound-ary map $\OML/cmm/m/it/10 @ \OT1/cmr
-/m/n/10 : \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 D[]; S[]\OT1/cm
-r/m/n/10 ) [] \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 S[]\OT1/cmr
-/m/n/10 )$, i.e., $\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 D[]; S
-[]\OT1/cmr/m/n/10 ) []
- []
-
-
-Overfull \hbox (6.36302pt too wide) in paragraph at lines 697--698
-[]\OT1/cmr/m/n/10 We want to com-pare $\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OM
-L/cmm/m/it/10 D[]; S[]\OT1/cmr/m/n/10 )$ and $\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/
-10 (\OML/cmm/m/it/10 D[]=S[]; \OMS/cmsy/m/n/10 ^^C\OT1/cmr/m/n/10 )$. We'll
- []
-
-[19]
+[16]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 738.
@@ -634,64 +631,21 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 738.
 
-
-Overfull \hbox (2.73517pt too wide) in paragraph at lines 740--741
-[][]\OT1/cmr/bx/n/10 Theorem 11.1. []\OT1/cmr/m/it/10 Let $\OML/cmm/m/it/10 n \
-OMS/cmsy/m/n/10 ^^U \OT1/cmr/m/n/10 1$\OT1/cmr/m/it/10 . There is a sur-jec-tiv
-e monoid ho-mo-mor-phism $\OT1/cmr/m/n/10 [\OML/cmm/m/it/10 S[]; S[]\OT1/cmr/m/
-n/10 ] \OMS/cmsy/m/n/10 !
- []
-
-[20] <xymatrix 3x2 271> <xymatrix 5x2 423> <xymatrix 5x4 809> [21]
+<xymatrix 3x2 271> <xymatrix 5x2 423> <xymatrix 5x4 809> [17]
 LaTeX Font Info:    Try loading font information for U+eus on input line 781.
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/ueus.fd
 File: ueus.fd 2013/01/14 v3.01 Euler Script
 ) <xymatrix 5x2 423>
-Overfull \hbox (73.64445pt too wide) detected at line 796
-[]
- []
-
-<xymatrix 2x2 182> [22] <xymatrix 5x3 518> <xymatrix 3x3 290> [23] [24]
-[25] [26] [27] <xymatrix 2x2 168> <xymatrix 3x3 311> <xymatrix 2x2 100>
-<xymatrix 2x2 168> [28] <xymatrix 2x2 168> <xymatrix 2x2 168> <xymatrix 2x2
-168> <xymatrix 2x2 168> <xymatrix 2x2 168> <xymatrix 2x2 168> [29] <xymatrix
-2x2 168> <xymatrix 2x2 168> [30] <xymatrix 2x2 168>
-Overfull \hbox (6.01462pt too wide) in paragraph at lines 1093--1094
-[][]\OT1/cmr/bx/n/10 Example 15.3. []\OT1/cmr/m/n/10 The $\OML/cmm/m/it/10 n$\O
-T1/cmr/m/n/10 -sphere $\OML/cmm/m/it/10 S[]$\OT1/cmr/m/n/10 . Let $[][](\OML/cm
-m/m/it/10 S[]\OT1/cmr/m/n/10 ) = \OMS/cmsy/m/n/10 ^^C \OT1/cmr/m/n/10 = [][](\O
-ML/cmm/m/it/10 S[]\OT1/cmr/m/n/10 ) = [] = [][](\OML/cmm/m/it/10 S[]\OT1/cmr/m/
-n/10 ) \OMS/cmsy/m/n/10 ^^R
- []
-
-<xymatrix 2x2 154> <xymatrix 2x2 154> [31] <xymatrix 5x2 416> <xymatrix 4x2
-237> <xymatrix 3x2 271> <xymatrix 3x2 271> [32] <xymatrix 3x3 242> <xymatrix
-2x2 154> [33] <xymatrix 4x3 420> <xymatrix 6x3 432>
-Overfull \hbox (101.01717pt too wide) detected at line 1200
-[]
- []
-
-
-Overfull \hbox (7.69325pt too wide) in paragraph at lines 1200--1202
-\OT1/cmr/m/n/10 So the first maps ($\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/c
-mm/m/it/10 X[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 H[]\OT1/cmr
-/m/n/10 (\OML/cmm/m/it/10 X[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! [] $\OT1/cmr/
-m/n/10 ) are iso-mor-phisms, the map $\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML
-/cmm/m/it/10 X[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 !
- []
-
-<xymatrix 3x4 390>
-Overfull \hbox (76.17131pt too wide) detected at line 1214
-[]
- []
-
-[34] <xymatrix 2x2 154> <xymatrix 6x2 427> <xymatrix 3x2 299>
-Overfull \hbox (12.63701pt too wide) detected at line 1240
-[]
- []
-
-<xymatrix 3x2 172> [35] <xymatrix 8x1 300>
+<xymatrix 2x2 182> [18] <xymatrix 5x3 518> <xymatrix 3x3 290> [19] [20]
+[21] [22] <xymatrix 2x2 168> <xymatrix 3x3 311> <xymatrix 2x2 100> <xymatrix
+2x2 168> [23] <xymatrix 2x2 168> <xymatrix 2x2 168> <xymatrix 2x2 168>
+<xymatrix 2x2 168> <xymatrix 2x2 168> <xymatrix 2x2 168> <xymatrix 2x2 168>
+[24] <xymatrix 2x2 168> <xymatrix 2x2 168> <xymatrix 2x2 154> [25] <xymatrix
+2x2 154> <xymatrix 5x2 416> <xymatrix 4x2 237> <xymatrix 3x2 271> <xymatrix
+3x2 271> [26] <xymatrix 3x3 242> <xymatrix 2x2 154> [27] <xymatrix 4x3 420>
+<xymatrix 6x3 432> <xymatrix 3x4 390> [28] <xymatrix 2x2 154> <xymatrix 6x2
+427> <xymatrix 3x2 299> <xymatrix 3x2 172> <xymatrix 8x1 300>
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1252.
@@ -704,17 +658,8 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1252.
 
-<xymatrix 2x2 175> <xymatrix 2x2 120> [36] <xymatrix 2x3 244>
-Overfull \hbox (21.19002pt too wide) detected at line 1288
-[]
- []
-
-<xymatrix 6x4 549>
-Overfull \hbox (55.78487pt too wide) detected at line 1299
-[]
- []
-
-[37] <xymatrix 2x2 154>
+<xymatrix 2x2 175> [29] <xymatrix 2x2 120> <xymatrix 2x3 244> <xymatrix 6x4
+549> [30] <xymatrix 2x2 154>
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1340.
@@ -727,21 +672,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1340.
 
-<xymatrix 4x3 538>
-Overfull \hbox (106.8215pt too wide) detected at line 1346
-[]
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [38]
-<xymatrix 3x2 131>
-Overfull \hbox (20.33038pt too wide) in paragraph at lines 1354--1355
-[]\OT1/cmr/m/n/10 Before, I coyly said be-fore that there is a monoid ho-mo-mor
--phism $[] : [\OML/cmm/m/it/10 S[]; S[]\OT1/cmr/m/n/10 ] \OMS/cmsy/m/n/10 !
- []
-
+<xymatrix 4x3 538> [31] <xymatrix 3x2 131>
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1356.
@@ -754,31 +685,8 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1356.
 
-<xymatrix 2x2 161> <xymatrix 9x1 310>
-Overfull \hbox (94.56523pt too wide) detected at line 1364
-[]
- []
-
-<xymatrix 3x2 210> [39] <xymatrix 8x1 307>
-Overfull \hbox (49.78865pt too wide) detected at line 1377
-[]
- []
-
-<xymatrix 8x1 307>
-Overfull \hbox (49.78865pt too wide) detected at line 1381
-[]
- []
-
-[40] [41] <xymatrix 2x2 161> <xymatrix 2x2 161> [42]
-Overfull \hbox (7.13437pt too wide) in paragraph at lines 1463--1464
-\OT1/cmr/m/n/10 tion by $2$, how-ever, is an iso-mor-phism. So, $\OML/cmm/m/it/
-10 H[]\OT1/cmr/m/n/10 ([][]; \OT1/cmr/bx/n/10 Z\OT1/cmr/m/n/10 [[]]) = []$.
- []
-
-
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
- [43]
+<xymatrix 2x2 161> <xymatrix 9x1 310> <xymatrix 3x2 210> <xymatrix 8x1 307>
+[32] <xymatrix 8x1 307> [33] <xymatrix 2x2 161> <xymatrix 2x2 161> [34]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1477.
@@ -795,13 +703,9 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1477.
 
-<xymatrix 2x2 141> <xymatrix 3x2 149> [44] <xymatrix 2x3 142> <xymatrix 2x3
-190>
-Underfull \vbox (badness 1755) has occurred while \output is active []
-
- [45]
-<xymatrix 2x3 190> <xymatrix 2x3 190> <xymatrix 2x2 209> <xymatrix 2x3 347>
-[46] [47]
+[35] <xymatrix 2x2 141> <xymatrix 3x2 149> [36] <xymatrix 2x3 142> <xymatrix
+2x3 190> <xymatrix 2x3 190> <xymatrix 2x3 190> <xymatrix 2x2 209> [37]
+<xymatrix 2x3 347>
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1577.
@@ -818,15 +722,10 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1577.
 
-<xymatrix 2x2 182> <xymatrix 3x2 231> <xymatrix 2x2 182> <xymatrix 2x2 123>
-<xymatrix 2x2 216> [48] <xymatrix 3x2 172> <xymatrix 2x2 130> [49] <xymatrix
-3x2 196> <xymatrix 4x2 241>
-Overfull \hbox (43.59276pt too wide) detected at line 1651
-[]
- []
-
-<xymatrix 3x2 196> <xymatrix 4x2 234> [50] <xymatrix 9x3 690> <xymatrix 5x2
-212>
+<xymatrix 2x2 182> [38] <xymatrix 3x2 231> <xymatrix 2x2 182> <xymatrix 2x2
+123> <xymatrix 2x2 216> <xymatrix 3x2 172> [39] <xymatrix 2x2 130> <xymatrix
+3x2 196> <xymatrix 4x2 241> [40] <xymatrix 3x2 196> <xymatrix 4x2 234>
+<xymatrix 9x3 690> <xymatrix 5x2 212>
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1679.
@@ -892,10 +791,10 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1679.
 
-<xymatrix 9x3 690> [51] <xymatrix 5x2 219> <xymatrix 6x2 568> <xymatrix 2x2
-120> [52] <xymatrix 5x2 417> <xymatrix 5x2 410> <xymatrix 6x2 568> <xymatrix
-3x2 145> <xymatrix 4x2 207> <xymatrix 5x2 338> [53] <xymatrix 5x4 422>
-<xymatrix 5x4 620> <xymatrix 5x4 661> [54] <xymatrix 5x5 987>
+<xymatrix 9x3 690> [41] <xymatrix 5x2 219> <xymatrix 6x2 568> <xymatrix 2x2
+120> [42] <xymatrix 5x2 417> <xymatrix 5x2 410> <xymatrix 6x2 568> <xymatrix
+3x2 145> <xymatrix 4x2 207> <xymatrix 5x2 338> [43] <xymatrix 5x4 422>
+<xymatrix 5x4 620> <xymatrix 5x4 661> <xymatrix 5x5 987> [44]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1804.
@@ -961,7 +860,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1804.
 
-[55] [56] <xymatrix 2x2 168> [57]
+[45] <xymatrix 2x2 168> [46]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1871.
@@ -1027,123 +926,33 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 1871.
 
-
-Overfull \hbox (24.02292pt too wide) in paragraph at lines 1874--1875
-[][]\OT1/cmr/bx/n/10 Remark 24.1. []\OT1/cmr/m/n/10 You're sup-posed to tech-ni
--cally write $[][](\OML/cmm/m/it/10 M; N\OT1/cmr/m/n/10 )$ to mean $[][](\OML/c
-mm/m/it/10 M; N\OT1/cmr/m/n/10 )$
- []
-
-[58] <xymatrix 2x5 505> [59]
-Overfull \hbox (14.97166pt too wide) in paragraph at lines 1919--1920
-[][]\OT1/cmr/bx/n/10 Example 24.5. []\OT1/cmr/m/n/10 Con-sider $\OML/cmm/m/it/1
-0 H[]\OT1/cmr/m/n/10 ([][]; \OT1/cmr/bx/n/10 Z\OML/cmm/m/it/10 =\OT1/cmr/m/n/10
- 2\OT1/cmr/bx/n/10 Z\OT1/cmr/m/n/10 ) [] \OT1/cmr/bx/n/10 Z\OML/cmm/m/it/10 =\O
-T1/cmr/m/n/10 2\OT1/cmr/bx/n/10 Z$\OT1/cmr/m/n/10 , and we can con-sider $\OML/
-cmm/m/it/10 H[]\OT1/cmr/m/n/10 ([][]; \OT1/cmr/bx/n/10 Z\OT1/cmr/m/n/10 ) \OMS/
-cmsy/m/n/10 
-
- []
-
-[60]
-Overfull \hbox (75.11453pt too wide) in paragraph at lines 1938--1939
-[][]\OT1/cmr/bx/n/10 Example 25.3. []\OT1/cmr/m/n/10 For ex-am-ple, $\OML/cmm/m
-/it/10 S[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X \OMS/cmsy/m/n/10 ^^B \OML/cmm/m/i
-t/10 Y\OT1/cmr/m/n/10 ) = \OT1/cmr/bx/n/10 Z [][]\OT1/cmr/m/n/10 (^^A[] \OMS/cm
-sy/m/n/10 ^^B \OML/cmm/m/it/10 Y\OT1/cmr/m/n/10 ) = \OT1/cmr/bx/n/10 Z [][]\OT1
-/cmr/m/n/10 ((^^A[]\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 ^^A[])\OML/cmm/m/it/10 ; 
-\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X; Y\OT1/cmr/m/n/10 ))$.
- []
-
-
-Overfull \hbox (47.8428pt too wide) in paragraph at lines 1938--1939
-\OT1/cmr/m/n/10 An-other ex-am-ple is that $[][] \OML/cmm/m/it/10 S[]\OT1/cmr/m
-/n/10 (\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 
+[47] <xymatrix 2x5 505> [48]
+Overfull \hbox (55.71573pt too wide) in paragraph at lines 1938--1939
+\OT1/cmr/m/n/10 other ex-am-ple is that $[][] \OML/cmm/m/it/10 S[]\OT1/cmr/m/n/
+10 (\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 
  \OML/cmm/m/it/10 S[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 Y\OT1/cmr/m/n/10 ) = [] 
 \OT1/cmr/bx/n/10 Z [][]\OT1/cmr/m/n/10 (^^A[]\OML/cmm/m/it/10 ; X\OT1/cmr/m/n/1
 0 ) \OMS/cmsy/m/n/10 
  \OT1/cmr/bx/n/10 Z [][]\OT1/cmr/m/n/10 (^^A[]\OML/cmm/m/it/10 ; Y\OT1/cmr/m/n/
-10 ) =
+10 ) = [][] \OT1/cmr/bx/n/10 Z\OMS/cmsy/m/n/10 h[][]\OT1/cmr/m/n/10 (^^A[]\OML/
+cmm/m/it/10 ; X\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^B
  []
 
-
-Overfull \hbox (41.247pt too wide) in paragraph at lines 1938--1939
-[][] \OT1/cmr/bx/n/10 Z\OMS/cmsy/m/n/10 h[][]\OT1/cmr/m/n/10 (^^A[]\OML/cmm/m/i
-t/10 ; X\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ^^B [][]\OT1/cmr/m/n/10 (^^A[]\OML/c
-mm/m/it/10 ; Y\OT1/cmr/m/n/10 )\OMS/cmsy/m/n/10 i \OT1/cmr/m/n/10 = [][] \OT1/c
-mr/bx/n/10 Z [][]\OT1/cmr/m/n/10 ((^^A[]\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 ^^A[
-])\OML/cmm/m/it/10 ; \OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X; Y\OT1/cmr/m/n/10 ))$.
- 
+<xymatrix 2x2 127> <xymatrix 2x2 134> [49] <xymatrix 2x2 168> <xymatrix 2x2
+168> <xymatrix 3x2 196> <xymatrix 3x2 196> [50] <xymatrix 3x2 210> <xymatrix
+2x2 182> <xymatrix 3x2 149> <xymatrix 2x2 182> [51] <xymatrix 3x3 256> [52]
+Overfull \hbox (22.18141pt too wide) in paragraph at lines 2110--2113
+\OT1/cmr/m/n/10 And $\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X\OT
+1/cmr/m/n/10 ; \OML/cmm/m/it/10 N\OT1/cmr/m/n/10 )$ sits in the cok-er-nel of $
+[]([][](\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; N\OT1/cmr/m/n/10 
+) \OMS/cmsy/m/n/10 ! []\OT1/cmr/m/n/10 ([][](\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 
+)\OML/cmm/m/it/10 ; N\OT1/cmr/m/n/10 )$, so that $\OML/cmm/m/it/10 H[]\OT1/cmr/
+m/n/10 (\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 ; \OML/cmm/m/it/10 N\OT1/cmr/m/n/10 )
+ = [](\OML/cmm/m/it/10 ^^Y[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 
+)\OML/cmm/m/it/10 ; N\OT1/cmr/m/n/10 )$. 
  []
 
-<xymatrix 2x2 127> <xymatrix 2x2 134> [61] <xymatrix 2x2 168> <xymatrix 2x2
-168> <xymatrix 3x2 196> <xymatrix 3x2 196> [62]
-Overfull \hbox (45.10112pt too wide) detected at line 2017
-\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 ([][] \OMS/cmsy/m/n/10 ^^B [][]\OT1/cmr/m/n
-/10 ; \OT1/cmr/bx/n/10 Z\OML/cmm/m/it/10 =\OT1/cmr/m/n/10 2\OT1/cmr/bx/n/10 Z\O
-T1/cmr/m/n/10 ) = [] \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 ([][]; \OT1/cmr/bx/n/1
-0 Z\OML/cmm/m/it/10 =\OT1/cmr/m/n/10 2\OT1/cmr/bx/n/10 Z\OT1/cmr/m/n/10 ) \OMS/
-cmsy/m/n/10 
- \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 ([][]; \OT1/cmr/bx/n/10 Z\OML/cmm/m/it/10 
-=\OT1/cmr/m/n/10 2\OT1/cmr/bx/n/10 Z\OT1/cmr/m/n/10 ) = []
- []
-
-
-Overfull \hbox (81.66872pt too wide) detected at line 2025
-\OML/cmm/m/it/10 H\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C[] \OMS/cmsy/m/n/10 
- \OT1/cmr/bx/n/10 Q\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 H\OT1/cmr/m/n/10 (\OML/
-cmm/m/it/10 C[] \OMS/cmsy/m/n/10 
- [] \OT1/cmr/bx/n/10 Z\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 H\OT1/cmr/m/n/10 ([]
-(\OML/cmm/m/it/10 C[] \OMS/cmsy/m/n/10 
- \OT1/cmr/bx/n/10 Z\OT1/cmr/m/n/10 )) = \OML/cmm/m/it/10 H\OT1/cmr/m/n/10 ([] \
-OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 ) = [] \OML/cmm/m/it/10 H\OT1/cmr/m/n/10 (\O
-ML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 ) = \OML/cmm/m/it/10 H\OT1/cmr/m/n/10 (\OML/c
-mm/m/it/10 C[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 
- [] \OT1/cmr/bx/n/10 Z \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 H\OT1/cmr/m/n/10 (\OM
-L/cmm/m/it/10 C[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 
- \OT1/cmr/bx/n/10 Q
- []
-
-
-Overfull \hbox (3.53104pt too wide) in paragraph at lines 2028--2029
-[][]\OT1/cmr/bx/n/10 Definition 26.1. []\OT1/cmr/m/n/10 The $\OML/cmm/m/it/10 n
-$\OT1/cmr/m/n/10 th Betti num-ber of $\OML/cmm/m/it/10 X$ \OT1/cmr/m/n/10 is de
--fined to be $\OML/cmm/m/it/10 ^^L[] \OT1/cmr/m/n/10 := [][] \OML/cmm/m/it/10 H
-[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 ; \OT1/cmr/bx/n/10 Q\OT1/c
-mr/m/n/10 )$. 
- []
-
-
-Overfull \hbox (15.16017pt too wide) in paragraph at lines 2030--2031
-[]\OT1/cmr/m/n/10 The Eu-ler char-ac-ter-is-tic can just as well have been de-f
-ined as $\OML/cmm/m/it/10 ^^_\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X\OT1/cmr/m/n/10
- ) = [][](\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 1)[]\OML/cmm/m/it/10 ^^L[]$\OT1/c
-mr/m/n/10 . 
- []
-
-[63] <xymatrix 3x2 210> <xymatrix 2x2 182> <xymatrix 3x2 149> <xymatrix 2x2
-182> [64] <xymatrix 3x3 256>
-Underfull \vbox (badness 1762) has occurred while \output is active []
-
- [65]
-Overfull \hbox (5.59186pt too wide) in paragraph at lines 2118--2119
-[]\OT1/cmr/m/n/10 We also talked about the Kro-necker pair-ing. This gave an ev
-al-u-a-tion $\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X\OT1/cmr/m/
-n/10 ; \OML/cmm/m/it/10 N\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 
-[]
- []
-
-
-Overfull \hbox (3.12746pt too wide) in paragraph at lines 2118--2119
-\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 ; \OML/c
-mm/m/it/10 R\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 N$\OT1/cmr/m/
-n/10 . Tak-ing the ad-joint gives a map $\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\
-OML/cmm/m/it/10 X\OT1/cmr/m/n/10 ; \OML/cmm/m/it/10 N\OT1/cmr/m/n/10 ) [] [][](
-\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 ; \OML/c
-mm/m/it/10 R\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; N\OT1/cmr/m/n/10 )$.
- []
-
-[66] <xymatrix 3x4 288> <xymatrix 3x4 288> [67] <xymatrix 3x3 208>
+<xymatrix 3x4 288> [53] <xymatrix 3x4 288> <xymatrix 3x3 208>
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2172.
@@ -1160,47 +969,17 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2172.
 
-<xymatrix 5x5 918> [68]
-Overfull \hbox (35.36609pt too wide) in paragraph at lines 2195--2197
-\OT1/cmr/m/n/10 Thus $0 \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 Z[]\OT1/cmr/m/n/10 
-(\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 =B[]\OT1/cmr/m/n/10 (\OM
-L/cmm/m/it/10 C[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 C[]=B[]\
-OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/c
-mm/m/it/10 C[]=Z[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 ) \OMS/c
-msy/m/n/10 ! \OT1/cmr/m/n/10 0$ splits. But $\OML/cmm/m/it/10 Z[]\OT1/cmr/m/n/1
-0 (\OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 =B[]\OT1/cmr/m/n/10 (\
-OML/cmm/m/it/10 C[]\OT1/cmr/m/n/10 ) =
+[54] <xymatrix 5x5 918> <xymatrix 5x2 416> [55] [56]
+Overfull \hbox (21.74614pt too wide) in paragraph at lines 2261--2262
+[][]\OT1/cmr/bx/n/10 Definition 29.1. []\OT1/cmr/m/n/10 Let $\OML/cmm/m/it/10 R
+$ \OT1/cmr/m/n/10 be a com-mu-ta-tive ring. A \OT1/cmr/m/it/10 graded $\OML/cmm
+/m/it/10 R$\OT1/cmr/m/it/10 -algebra \OT1/cmr/m/n/10 is a graded $\OML/cmm/m/it
+/10 R$\OT1/cmr/m/n/10 -module $[]  \OML/cmm/m/it/10 ; A[]; A[]; A[]; A[]; [] $
  []
 
-
-Overfull \hbox (40.98276pt too wide) in paragraph at lines 2198--2199
-[]\OT1/cmr/m/n/10 Now, we have a sexseq $0 \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 
-B[] [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C[]; N\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n
-/10 ! \OML/cmm/m/it/10 Z[] [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 C[]; N\OT1/cmr
-/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 H[] [][]\OT1/cmr/m/n/10 (\OML/cmm
-/m/it/10 C[]; N\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 !
- []
-
-<xymatrix 5x2 416>
-Overfull \hbox (29.69844pt too wide) detected at line 2204
-[]
- []
-
-[69] [70] <xymatrix 2x2 154> <xymatrix 3x3 181> [71] <xymatrix 2x2 182>
-[72] <xymatrix 2x2 182> <xymatrix 2x2 82> <xymatrix 2x2 154> [73] [74]
-Overfull \hbox (17.80453pt too wide) in paragraph at lines 2393--2394
-\OT1/cmr/m/it/10 sional vec-tor space over $\OT1/cmr/bx/n/10 F[]$ \OT1/cmr/m/it
-/10 is iso-mor-phic to: $[]$
- []
-
-
-Overfull \hbox (10.53302pt too wide) in paragraph at lines 2395--2396
-\OT1/cmr/m/n/10 This is a com-mu-ta-tive monoid un-der $[]$. This $[]$ is $\OMS
-/cmsy/m/n/10 f[]g\OML/cmm/m/it/10 =[]$
- []
-
-[75] [76] <xymatrix 2x2 182> <xymatrix 3x2 231> [77] <xymatrix 2x3 227>
-[78]
+<xymatrix 2x2 154> <xymatrix 3x3 181> [57] <xymatrix 2x2 182> <xymatrix 2x2
+182> <xymatrix 2x2 82> [58] <xymatrix 2x2 154> [59] [60] <xymatrix 2x2 182>
+[61] <xymatrix 3x2 231> <xymatrix 2x3 227> [62]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2564.
@@ -1213,7 +992,7 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2564.
 
-[79] <xymatrix 3x5 498> <xymatrix 2x3 145> [80] <xymatrix 3x2 131>
+<xymatrix 3x5 498> [63] <xymatrix 2x3 145> [64] <xymatrix 3x2 131>
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2630.
@@ -1242,49 +1021,28 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2630.
 
-[81] <xymatrix 2x2 154> <xymatrix 6x2 452>
-Overfull \hbox (122.19234pt too wide) detected at line 2660
+<xymatrix 2x2 154> <xymatrix 6x2 452>
+Overfull \hbox (12.43732pt too wide) detected at line 2660
 []
  []
 
-<xymatrix 6x2 568>
-Overfull \hbox (122.19234pt too wide) detected at line 2669
+[65] <xymatrix 6x2 568>
+Overfull \hbox (12.43732pt too wide) detected at line 2669
 []
  []
 
-<xymatrix 2x2 134> [82] <xymatrix 2x2 154> <xymatrix 2x2 154> <xymatrix 2x2
-154> <xymatrix 2x3 203>
-Underfull \vbox (badness 2846) has occurred while \output is active []
-
- [83]
-<xymatrix 6x3 847>
-Overfull \hbox (122.19234pt too wide) detected at line 2724
+<xymatrix 2x2 134> <xymatrix 2x2 154> <xymatrix 2x2 154> <xymatrix 2x2 154>
+<xymatrix 2x3 203> [66] <xymatrix 6x3 847>
+Overfull \hbox (12.43732pt too wide) detected at line 2724
 []
  []
 
-<xymatrix 2x2 182> <xymatrix 6x2 533> [84] <xymatrix 6x2 526> <xymatrix 5x2
-423>
-Overfull \hbox (64.7968pt too wide) detected at line 2764
-[]
- []
+<xymatrix 2x2 182> <xymatrix 6x2 533> <xymatrix 6x2 526> <xymatrix 5x2 423>
+Overfull \vbox (2.35683pt too high) has occurred while \output is active []
 
 
-Overfull \hbox (93.03244pt too wide) detected at line 2768
-[] \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X; 
-X \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 [ \OML/cmm/m/it/10 B
-\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/
-cmm/m/it/10 X; X \OMS/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 A\OT1/cmr/m/n/10 ) \OMS/
-cmsy/m/n/10 ^^H \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X; X \OMS
-/cmsy/m/n/10 ^^@ \OML/cmm/m/it/10 B\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! \OML/cm
-m/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X; X \OMS/cmsy/m/n/10 ^^@ \OML/c
-mm/m/it/10 A \OMS/cmsy/m/n/10 \ \OML/cmm/m/it/10 B\OT1/cmr/m/n/10 ) \OMS/cmsy/m
-/n/10 ! \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X; X \OMS/cmsy/m/
-n/10 ^^@ \OML/cmm/m/it/10 A \OMS/cmsy/m/n/10 [ \OML/cmm/m/it/10 B\OT1/cmr/m/n/1
-0 ) \OMS/cmsy/m/n/10 ! []
- []
-
-<xymatrix 5x2 464>
-Overfull \hbox (182.36537pt too wide) detected at line 2781
+[67] <xymatrix 5x2 464>
+Overfull \hbox (72.61035pt too wide) detected at line 2781
 []
  []
 
@@ -1305,11 +1063,6 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2793.
 
-[85]
-Overfull \hbox (4.14232pt too wide) in paragraph at lines 2798--2799
-[]\OT1/cmr/m/n/10 PLEASE DRAW A PIC-TURE WHEN READ-ING THIS IF YOU DIDN'T COME
- []
-
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2800.
@@ -1342,15 +1095,8 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2800.
 
-<xymatrix 2x2 89> <xymatrix 2x2 130> [86]
-Overfull \hbox (11.76057pt too wide) in paragraph at lines 2827--2828
-\OT1/cmr/m/n/10 this a ho-mo-mor-phism? Well, $[](\OML/cmm/m/it/10 K\OT1/cmr/m/
-n/10 ) = [][] \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 U\OT1/cmr/m
-/n/10 )$ and $[](\OML/cmm/m/it/10 L\OT1/cmr/m/n/10 ) = [][] \OML/cmm/m/it/10 H[
-]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 V\OT1/cmr/m/n/10 )$.
- []
-
-<xymatrix 2x2 154> <xymatrix 2x2 154> [87]
+[68] <xymatrix 2x2 89> <xymatrix 2x2 130> <xymatrix 2x2 154> [69] <xymatrix
+2x2 154>
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2881.
@@ -1363,61 +1109,55 @@ Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
 (hyperref)                removing `math shift' on input line 2881.
 
-<xymatrix 4x3 309>
-Overfull \hbox (9.1473pt too wide) detected at line 2890
-[]
- []
-
-[88] [89] <xymatrix 4x2 300> <xymatrix 4x2 286> [90] [91] <xymatrix 4x2 382>
-<xymatrix 4x2 382>
-Overfull \hbox (126.50046pt too wide) in paragraph at lines 3007--3007
+<xymatrix 4x3 309> [70] <xymatrix 4x2 300> [71] <xymatrix 4x2 286> [72]
+<xymatrix 4x2 382> <xymatrix 4x2 382>
+Overfull \hbox (16.74544pt too wide) in paragraph at lines 3007--3007
 [] 
  []
 
-<xymatrix 2x2 154> <xymatrix 2x2 154> <xymatrix 2x2 168> [92] [93]
-Overfull \hbox (61.02948pt too wide) in paragraph at lines 3077--3077
-[] 
+<xymatrix 2x2 154> <xymatrix 2x2 154> <xymatrix 2x2 168> [73]
+Overfull \hbox (2.34076pt too wide) in paragraph at lines 3066--3067
+[]\OT1/cmr/m/n/10 We've been in-ter-ested in $^^@(\OML/cmm/m/it/10 E\OT1/cmr/m/
+n/10 ; \OML/cmm/m/it/10 X\OT1/cmr/m/n/10 )$, which is the same thing as $[][](\
+OML/cmm/m/it/10 X \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 X; E \OMS/cmsy/m/n/10 ! \
+OML/cmm/m/it/10 X\OT1/cmr/m/n/10 ) [] [][](\OMS/cmsy/m/n/10 ^^C\OML/cmm/m/it/10
+ ; E[]\OT1/cmr/m/n/10 ) =
+ []
+
+[74]
+Overfull \hbox (23.9107pt too wide) in paragraph at lines 3106--3107
+[][]\OT1/cmr/bx/n/10 Corollary 37.7 \OT1/cmr/m/n/10 (Poincare du-al-ity, corol-
+lary of corol-lary)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/it/10 Let $\OML/cmm/m/it/10 
+M$ \OT1/cmr/m/it/10 be com-pact and $\OML/cmm/m/it/10 R$\OT1/cmr/m/it/10 -orien
+ted, then $\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 M\OT1/cmr/m/n/
+10 ; \OML/cmm/m/it/10 R\OT1/cmr/m/n/10 ) []
+ []
+
+<xymatrix 6x2 568> [75]
+Overfull \hbox (14.8522pt too wide) in paragraph at lines 3147--3148
+[]\OT1/cmr/m/n/10 Consider the UCT, which states that there's a sexseq $0 \OMS/
+cmsy/m/n/10 ! [][]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cm
+m/m/it/10 X\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/bx/n/10 Z\OT1/cmr/m/n/1
+0 ) \OMS/cmsy/m/n/10 ! \OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X\
+OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 ! []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 H[]\OT1
+/cmr/m/n/10 (\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/bx/
+n/10 Z\OT1/cmr/m/n/10 ) \OMS/cmsy/m/n/10 !
  []
 
 
-Overfull \hbox (15.75427pt too wide) in paragraph at lines 3092--3093
-[][]\OT1/cmr/bx/n/10 Theorem 37.5 \OT1/cmr/m/n/10 (Fully rel-a-tive Poincare du
--al-ity)\OT1/cmr/bx/n/10 . []\OT1/cmr/m/it/10 If $\OML/cmm/m/it/10 p \OT1/cmr/m
-/n/10 + \OML/cmm/m/it/10 q \OT1/cmr/m/n/10 = \OML/cmm/m/it/10 n$\OT1/cmr/m/it/1
-0 , then $[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 K; L\OT1/cmr/m/n/10 ; \OML/cmm/m/
-it/10 R\OT1/cmr/m/n/10 ) []
+Overfull \hbox (24.73727pt too wide) in paragraph at lines 3149--3150
+[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X\OT1/
+cmr/m/n/10 )\OML/cmm/m/it/10 ; \OT1/cmr/bx/n/10 Z\OT1/cmr/m/n/10 )$ be-cause $\
+OT1/cmr/bx/n/10 Z$ \OT1/cmr/m/n/10 is torsion-free. There-fore I get an iso-mor
+-phism $\OML/cmm/m/it/10 ^^K \OT1/cmr/m/n/10 : \OML/cmm/m/it/10 H[]\OT1/cmr/m/n
+/10 (\OML/cmm/m/it/10 X\OT1/cmr/m/n/10 )\OML/cmm/m/it/10 =[] \OMS/cmsy/m/n/10 !
+ []\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 X\OT1
+/cmr/m/n/10 )\OML/cmm/m/it/10 =[]; \OT1/cmr/bx/n/10 Z\OT1/cmr/m/n/10 )$.
  []
 
-[94]
-Overfull \hbox (7.55733pt too wide) in paragraph at lines 3109--3110
-[]\OT1/cmr/m/n/10 Follows from the above corol-lary since $[](\OML/cmm/m/it/10 
-M\OT1/cmr/m/n/10 ; \OML/cmm/m/it/10 R\OT1/cmr/m/n/10 )$ is lit-er-ally equal to
- $\OML/cmm/m/it/10 H[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 M\OT1/cmr/m/n/10 ; \OML
-/cmm/m/it/10 R\OT1/cmr/m/n/10 )$
- []
-
-<xymatrix 6x2 568>
-Overfull \hbox (12.80391pt too wide) detected at line 3117
-[]
- []
-
-[95]
-Overfull \hbox (17.6158pt too wide) in paragraph at lines 3138--3139
-[][]\OT1/cmr/bx/n/10 Theorem 38.4 \OT1/cmr/m/n/10 (Alexan-der du-al-ity)\OT1/cm
-r/bx/n/10 . []\OT1/cmr/m/it/10 If $\OMS/cmsy/m/n/10 ; 6\OT1/cmr/m/n/10 = \OML/c
-mm/m/it/10 K \OMS/cmsy/m/n/10 ^^R \OT1/cmr/bx/n/10 R[]$ \OT1/cmr/m/it/10 be com
--pact. Then $[]\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 K\OT1/cmr/m/n/10 ; \OML/cmm/m/
-it/10 R\OT1/cmr/m/n/10 ) []
- []
-
-<xymatrix 5x2 331>
-Overfull \hbox (1.16307pt too wide) detected at line 3155
-[]
- []
-
-<xymatrix 2x2 130> [96] [97]
+<xymatrix 5x2 331> <xymatrix 2x2 130> [76]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 3209.
- [98]
+ [77]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 3209.
  (./18-905-notes.aux)
 Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 3209.
@@ -1429,12 +1169,12 @@ LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 3209.
  ) 
 Here is how much of TeX's memory you used:
- 12525 strings out of 495579
- 164819 string characters out of 6187323
- 294700 words of memory out of 5000000
- 15453 multiletter control sequences out of 15000+600000
+ 12984 strings out of 495579
+ 171388 string characters out of 6187323
+ 314691 words of memory out of 5000000
+ 15906 multiletter control sequences out of 15000+600000
  15618 words of font info for 65 fonts, out of 8000000 for 9000
  175 hyphenation exceptions out of 8191
  34i,26n,45p,1406b,513s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on 18-905-notes.pdf (98 pages).
+Output written on 18-905-notes.pdf (77 pages).
