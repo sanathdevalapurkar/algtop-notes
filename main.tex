@@ -1,4 +1,4 @@
-\documentclass{amsart}
+\documentclass{memoir}
 
 % \headheight=8pt
 % \topmargin=3pt
@@ -35,7 +35,7 @@
 
 %\spacing{1.75}
 \usepackage[margin=1in]{geometry}
-
+\usepackage{tikz-cd}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \usepackage{ifluatex,ifxetex}
 
@@ -144,7 +144,7 @@
 \def\lllarrow{ \hspace{.05cm}\mbox{\,\put(0,-3){$\leftarrow$}\put(0,1){$\leftarrow$}\put(0,5){$\leftarrow$}\hspace{.45cm}}}
 \def\rrrarrow{ \hspace{.05cm}\mbox{\,\put(0,-3){$\rightarrow$}\put(0,1){$\rightarrow$}\put(0,5){$\rightarrow$}\hspace{.45cm}}}
 
-\def\cA{\mathscr A}\def\cB{\mathscr B}\def\cc{\mathbf C}\def\cd{\mathbf D}
+\def\cA{\mathscr A}\def\cB{\mathscr B}\def\cc{\mathscr C}\def\cd{\mathscr D}
 \def\ce{\mathscr E}\def\cf{\mathscr F}\def\cG{\mathscr G}\def\cH{\mathscr H}
 \def\cI{\mathscr I}\def\cJ{\mathscr J}\def\cK{\mathscr K}\def\cL{\mathscr L}
 \def\cM{\mathscr M}\def\cN{\mathscr N}\def\cO{\mathbf O}\def\cP{\mathscr P}
@@ -175,16 +175,17 @@
 \newcommand{\htop}{\mathrm{Ho}(\mathbf{Top})}
 \newcommand{\sca}{\mathscr{A}}
 \DeclareMathOperator{\Spf}{Spf}
+\newcommand{\Top}{\mathbf{Top}}
 %%%%%%%%%%%%%%%%
 
 %\usepackage{ebgaramond}
-\usepackage{fancyhdr}
- 
-\pagestyle{fancy}
-\fancyhf{}
-\lhead{18.905-906 -- Algebraic topology}
-\rhead{Lecture \thesection}
-\cfoot{\thepage}
+%\usepackage{fancyhdr}
+% 
+%\pagestyle{fancy}
+%\fancyhf{}
+%\lhead{18.905-906 -- Algebraic topology}
+%\rhead{Lecture \thesection}
+%\cfoot{\thepage}
 
 \begin{document}
 \title{18.905-906 -- Algebraic Topology}
@@ -192,7 +193,12 @@
 \date{Fall 2016 -- Spring 2017}
 \maketitle
 \begin{abstract}
-18.905/906 is being taught by Professor Haynes Miller in Fall 2016/Spring 2017 (respectively). I am planning on taking notes throughout the semester. I'll add drawings by putting them on a notepad, scanning them as images, and finally inserting them in the appropriate spots. This means that they might be messy. Any mistakes in these notes are only mine, and not Professor Miller's.
+%    \chapter*{What is this?}
+    18.905/906 is being taught by Professor Haynes Miller in Fall 2016/Spring 2017 (respectively). I am planning on taking notes throughout the semester. I'll add drawings by putting them on a notepad, scanning them as images, and finally inserting them in the appropriate spots. This means that they might be messy. Any mistakes in these notes are only mine, and not Professor Miller's.
 \end{abstract}
+%\tableofcontents
+\chapter{18.905 -- introduction}
 \input{18-905-notes.tex}
+\chapter{18.906 -- homotopy theory}
+\input{18-906-notes.tex}
 \end{document}
