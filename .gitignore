@@ -16,6 +16,7 @@
 *.fot
 *.cb
 *.cb2
+*.tex.swp
 
 ## Intermediate documents:
 *.dvi
