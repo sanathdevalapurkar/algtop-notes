@@ -195,3 +195,88 @@ So $\Top_\ast$ is not Cartesian closed, but admits something called the smash pr
 Oh yeah, some more things about basepoints! So there's a canonical forgetful functor $i:\Top_\ast\to \Top$. Let's see. If I have $\Top(X,iY)=\Top_\ast(??,Y)$? This is $X_+=X\sqcup \ast$. Thus we have a left adjoint $(-)_+$. It is clear that $(X\sqcup Y)_\ast = X_+ \vee Y_+$. The unit for the smash product is $\ast_+ = S^0$.
 
 On Friday I'll talk about fibrations and fiber bundles.
+\section{Fiber bundles, fibrations, cofibrations}
+My office hours are Tuesday, 12 - 1:30 and Hood's are Tuesday, 12(next week). It'll probably be Mondays in the future, at 12 as well. Next Monday is a holiday, and next Tuesday is a Monday. Oh, pset 1 is due on Wednesday.
+
+Today's gonna be about fiber bundles and fibrations and possibly cofibrations as well. This is proper homotopy theory.  You have probably seen fiber bundles before. Do you like the yellow chalk? I think it looks good.
+\begin{definition}[Fiber bundles]
+    A fiber (or fibre, if you're British) bundle is a map (of compactly generated spaces, \emph{always} -- although every space in nature is already a weakly Hausdorff $k$-space; it's not a big deal!) $p:E\to B$ such that for every $b\in B$, there exists an open $U\subseteq B$ such that $b\in U$, and a map $p^{-1}(U)\to p^{-1}(b)$ such that $p^{-1}(U)\to U\times p^{-1}(b)$ is a homeomorphism.
+\end{definition}
+So the preimage over every point looks like a product. So it's locally trivial in the base. Of course, there's an alternate way to say this. Equivalently, there is an open cover $\cU$ (called the \emph{trivializing cover}) of $B$ such that for every $U\subseteq \cU$, there is a space $F$ and a homeomorphism $p^{-1}(U)\simeq U\times F$ that's compatible with the projections down to $U$.
+\begin{remark}
+    We say that $E$ is the total space, $B$ is a base space, $p$ is a projection, and $F$ (which can vary) -- actually I'll write $p^{-1}(b)$ -- is called the fiber over $b$.
+\end{remark}
+\begin{example}
+    You know of many examples. A covering space $E\to B$ is a fiber bundle with discrete fibers. Thus fiber bundles generalize covering spaces to more interesting cases.
+\end{example}
+\begin{example}
+    The Hopf fibration. It's a fiber bundle. We have $S^3\subseteq \cc^2$. And, well, we can consider the map $S^3\to \CP^1$ that sends a vector through the complex line through $v$. Now, $\CP^1\simeq S^2$. So you have a non-nullhomotopic map $S^3\to S^2$. Here's a picture of this. (I cannot livetex this)
+
+    The Hopf fibration is a map between smooth manifolds. This is a great way to construct fibrations.
+\end{example}
+\begin{theorem}[Ehresmann]
+    Suppose $E$ and $B$ are smooth manifolds, and let $p:E\to B$ be a smooth (i.e., $C^\infty$) map. Then $p$ is a fiber bundle if:
+    \begin{enumerate}
+	\item It's a submersion (so $dp:T_e E\to T_{p(e)} B$ is a surjection)
+	\item $p$ is proper, so preimages of compact sets are compact.
+    \end{enumerate}
+\end{theorem}
+For example, I can look at the complement of a closed set in $S^3$, and then the restriction of $p$ won't be a fiber again.
+
+The whole course is about fiber bundles, namely about its cohomological and homotopical structure.
+
+\begin{definition}[See Peter May's \emph{Concise Course}]
+   Let $X$ be a space. Say that an open cover $\cU$ is \emph{numerable} if there exists a subordinate partition of unity, i.e., for each $U\in\cU$ we're given $f_U:X\to [0,1]=I$ such that $f^{-1}((0,1]) = U$ and any $x\in X$ belonds to only finitely many $U\in\cU$.
+
+    Say that $X$ is paracompact if any open cover admits a numerable refinement.
+\end{definition}
+\begin{example}
+    CW-complexes are paracompact.
+\end{example}
+The numerable definition is technical, but you're really just restricting the class of coverings you're looking at.
+\begin{definition}
+    A fiber bundle is ``numerable'' if it admits a numerable trivializing cover.
+\end{definition}
+
+Fiber bundles are still too narrow. So I will now tell you what a fibration is.
+
+\begin{definition}
+    A map $p:E\to B$ is called a \emph{Hurewicz fibration} (I'll just say fibration) if it satisfies the homotopy lifting property (HLP). That says this. Suppose I have a homotopy $h:I\times W\to B$. Then there exists a lift:
+    \begin{equation*}
+	\xymatrix{
+	    W\ar[r]^f\ar[d]_{\mathrm{in}_0} & E\ar[d]^p\\
+	    I\times W\ar[r]_h\ar@{-->}[ur]^{\overline{h}} & B
+	    }
+    \end{equation*}
+    Where the outer diagram commutes. It doesn't need to be a unique lift!
+\end{definition}
+This is an extremely alarming definition. This has to be checked for all spaces and all maps and all homotopies! So it took an act of genius to construct something like this. The idea of doing something like this goes back to Serre back in about 1950. It solved a problem (of defining what a fibration was).
+
+But it's not impossible to check! Let me tell you some stuff. Hurewicz was a faculty member here, one of the first algebraic topologists here. I'm going to try to reformulate this diagram here a little bit. Let me try to adjoint the $I$. Then I have:
+\begin{equation*}
+    \xymatrix{
+	E\ar[r]^p & B\\
+	W\ar[u]^f\ar[r]_{\widehat{h}} & B^I\ar[u]_{\mathrm{ev}_0}
+    }
+\end{equation*}
+This is just the adjoint of our diagram. Now, a diagram like this is the same as a map $W\to B^I\times_B E$ (the pullback is the set of paths and points $(\omega, e)$ such that $\omega(0) = p(e)$. But now, if our dotted map exists, we'd have a lifted homotopy $\widehat{\overline{h}}:W\to E^I$. We have a map $\widetilde{p}:E^I\to B^I\times_B E$ given by $\omega\mapsto (p\omega,\omega(0))$. Clearly $p\omega(0) = p\omega(0)$, so this lands in $B^I\times_B E$.
+
+Thus the existence of $\overline{h}$ is the same as a lift:
+\begin{equation*}
+    \xymatrix{
+	& E^I\ar[d]^{\widetilde{p}}\\
+	W\ar[r]\ar@{-->}[ur]^{\widehat{\overline{h}}} & B^I\times_B E
+    }
+\end{equation*}
+Obviously the universal example is $B^I\times_B E$. If $p$ is a fibration, then I can make the lift in the following diagram, and if I can lift for any $W$, I can obviously construct the lift in the following diagram:
+\begin{equation*}
+    \xymatrix{
+	& E^I\ar[d]^{\widetilde{p}}\\
+	B^I\times_B E\ar@{-->}[ur]^\lambda\ar[r]^1 & B^I\times_B E
+    }
+\end{equation*}
+We say $\lambda$ is a \emph{lifting function}. Well, if $\omega(0) = p(e)$, then $\lambda(\omega:I\to B, e\in E):I\to E$. And in particular, $p\circ\lambda(\omega, e) = \omega$ and $\lambda(\omega,e)(0) = e$. So $\lambda$ starts with a path $\omega$ in $B$, and some point over the starting point, and produces a path in $E$ which lives over $\omega$. In other words, it's a path lifting. The key thing is that it's a continuous way to lift. So you \emph{can} check the HLP in certain cases.
+\begin{theorem}[Dold]
+    Let $p:E\to B$ be a map. Assume there's a numerable cover of $B$, say $\cU$, such that for every $U\in\cU$, the restriction $p|_{p^{-1}(U)}:p^{-1}U\to U$ is a fibration. (It's locally a fibration over the base). Then $p$ itself is a fibration.
+\end{theorem}
+Check for yourself that at least a product projection $\mathrm{pr}_1:B\times F\to B$ is a product fibration (e.g. using the universal property or something). So in particular, \emph{every numerable fiber bundle is a fibration}. I.e., numerable fiber bundles satisfy the homotopy lifting property. We'll see why this is such a good thing next week. Questions?
