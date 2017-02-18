@@ -1,21 +1,36 @@
 \chapter{Introduction, simplices}
-Topics to be covered: singular homology, CW-complexes, basics of category theory, homological algebra, K\"{u}nneth theorem, UCT, cohomology, cup and cap products, Poincar\'{e} duality.
+Topics to be covered:
+\begin{enumerate}
+    \item Singular homology
+    \item CW-complexes
+    \item Basics of category theory
+    \item Homological algebra
+    \item The K\"{u}nneth theorem
+    \item UCT, cohomology
+    \item Cup and cap products, and
+    \item Poincar\'{e} duality.
+\end{enumerate}
+Examples to keep in mind: $\mathbf{R}^n$. Inside, $S^{n-1}$ being the $(n-1)$-sphere. This is topologized as a subspace of Euclidean space. Taking the quotient by the equivalence relation $x\simeq -x$ gives $\mathbf{RP}^{n-1}$, i.e. the space of lines through the origin in $\mathbf{R}^{n+1}$.
 
-Examples to keep in mind: $\mathbf{R}^n$. Inside, $S^n$ being the $n$-sphere, topologized as a subspace of Euclidean space. Take quotient by $x\simeq -x$ and get $\mathbf{RP}^n$ i.e. space of lines through the origin in $\mathbf{R}^{n+1}$. Also, look at $V_k(\mathbf{R}^n)$, which is the space of orthonormal $k$-frames (ordered collection of $k$ orthonormal vectors) in $\mathbf{R}^n$, called the Stiefel manifold, topologized as a subspace of $(S^{n-1})^k$. The Grassmannian, $\mathrm{Gr}_k(\mathbf{R}^n)$, the space of $k$-dimensional linear subspaces of $\mathbf{R}^n$. It's a quotient space of $V_k(\mathbf{R}^n)$, since a $k$-frame spans a $k$-dimensional subspace. (For example, $\mathbf{Gr}_1(\mathbf{R}^n) = \mathbf{RP}^{n-1}$. These are all manifolds.
+Also, we can look at $V_k(\mathbf{R}^n)$, which is the space of orthonormal $k$-frames (ordered collection of $k$ orthonormal vectors) in $\mathbf{R}^n$, called the Stiefel manifold, topologized as a subspace of $(S^{n-1})^k$. The Grassmannian, $\mathrm{Gr}_k(\mathbf{R}^n)$, the space of $k$-dimensional linear subspaces of $\mathbf{R}^n$. It's a quotient space of $V_k(\mathbf{R}^n)$, since a $k$-frame spans a $k$-dimensional subspace. For example, $\mathbf{Gr}_1(\mathbf{R}^n) = \mathbf{RP}^{n-1}$. These are all \emph{manifolds}.
 \begin{definition}
 A manifold is a Hausdorff space, locally homeomorphic to $\mathbf{R}^n$.
 \end{definition}
-All are compact except for $\mathbf{R}^n$. A ``symmetry'' is exploited in Poincar\'{e} duality. We'll probe general topological spaces through simplices.
+All these manifolds are compact except for $\mathbf{R}^n$. Manifolds exhibit a hidden symmetry, captured by Poincar\'{e} duality.
+
+We'll probe general topological spaces through simplices.
 \begin{definition}
 The standard $n$-simplex $\Delta^n$ is the convex hull of $\{e_0,\cdots,e_n\}$ in $\mathbf{R}^{n+1}$. More explicitly,
-$$\Delta^n = \{\sum t_i e_i = 1 | \sum t_i = 1, t_i\geq 0\}\subseteq\mathbf{R}^{n+1}$$
+$$\Delta^n = \{\sum t_i e_i = 1 : \sum t_i = 1, t_i\geq 0\}\subseteq\mathbf{R}^{n+1}$$
 The $t_i$s are called barycentric coordinates.
 \end{definition}
-Usually just drop the $e_i$s and just write ``$i$''. There are maps between them, namely inclusions of faces. The map $d^2:\Delta^1\to\Delta^2$ that misses the vertex $i$ (where $0\leq i\leq 2$) is denoted $d^i$. They're called ``face inclusions'', and are maps $d^i:\Delta^{n-1}\to\Delta^n$ where $0\leq i\leq n$; they miss the vertex $i$.
+Usually we just drop the $e_i$s and just write ``$i$''. There are maps between them, namely inclusions of faces. The map $d^2:\Delta^1\to\Delta^2$ that misses the vertex $i$ (where $0\leq i\leq 2$) is denoted $d^i$\todo{Insert an image here}. They're called ``face inclusions'', and are maps $d^i:\Delta^{n-1}\to\Delta^n$ where $0\leq i\leq n$; they miss the vertex $i$.
 \begin{definition}
-Let $X$ be any topological space. A singular $n$-simplex in $X$ is a continuous map $\Delta^n\to X$. Denote by $\mathrm{Sin}_n(X)$ as the collection of all $n$-simplices of $X$. This seems like a ``fairly insane'' thing to do.
+Let $X$ be any topological space. A singular $n$-simplex in $X$ is a continuous map $\Delta^n\to X$. Denote by $\mathrm{Sin}_n(X)$ as the collection of all $n$-simplices of $X$.
+    
+    This seems like a ``fairly insane'' thing to do.
 \end{definition}
-See drawing for a torus. The direction of the simplex is like an orientation given by ordering of the indices of $\Delta^n$. The standard notation is $\sigma:\Delta^n\to X$.
+See drawing for a torus\todo{Image me}. The direction of the simplex is like an orientation given by ordering of the indices of $\Delta^n$. The standard notation is $\sigma:\Delta^n\to X$\todo{Depict this whole thing as an image, and remove the sentence when done}.
 
 If $\sigma:\Delta^n\to X$. Find $(n-1)$-simplices by looking faces of simplex; get a map $d_i:\Sin_n(X)\to\Sin_{n-1}(X)$ for $0\leq i\leq n$ by taking $\sigma\mapsto\sigma\circ d^i=: d_i\sigma$, which is the $i$th face of $\sigma$. This carries a lot of information about the space.
 
@@ -23,55 +38,69 @@ Some simplices are particularly interesting. The issue of when boundaries match 
 \begin{definition}
 The abelian group of singular $n$-chains in $X$ is the free abelian group generated by $n$-simplices
 $$S_n(X) = \mathbf{Z}\Sin_n(X)$$
-Finite linear combinations i.e. formal sums of the form $\sum_{i\in\text{finite set}}a_i\sigma_i$ where $a_i\in\mathbf{Z}$. It's a pretty big group. If $n<0$, say that this is zero. Define a map $\partial:\Sin_n(X)\to S_{n-1}(X)$ via:
+    Its elements are finite linear combinations, i.e. formal sums of the form $\sum_{i\in\text{finite set}}a_i\sigma_i$\todo{idk what was meant by ``display'' in the comments} where $a_i\in\mathbf{Z}$. It's a pretty big group. If $n<0$, say that $S_n(X)=0$. Now, define a map $\partial:\Sin_n(X)\to S_{n-1}(X)$ via:
 $$\partial\sigma = \sum_{i=0}^n(-1)^i d_i\sigma$$
-We'll extend this to $S_n(X) \to S_{n-1}(X)$.
+We'll extend this to $S_n(X) \to S_{n-1}(X)$ by additivity.
 \end{definition}
-Cycles are chains whose boundary is zero.
+Cycles are chains whose boundary is zero. These are the interesting chains. A more precise definition is the following:
 \begin{definition}
-An $n$-cycle in $X$ is an $n$-chain $c$ with $\partial c = 0$. Denote $Z_n(C_\bullet)(X) = \ker(S_n(X)\xrightarrow{\partial}S_{n-1}(X))$.
+An $n$-cycle in $X$ is an $n$-chain $c$ with $\partial c = 0$. Denote $Z_n(X) = \ker(S_n(X)\xrightarrow{\partial}S_{n-1}(X))$.
 \end{definition}
 For example, with the $\sigma$ on the torus described before, $\partial c = d_0\sigma - d_1\sigma$ and this is zero.
 \begin{theorem}
-Any boundary is a cycle, i.e., $B_n(X) := \mathrm{Im}(\partial:S_{n+1}(X)\to S_n(X))\subseteq Z_n(C_\bullet)(X)$. This is homework.
+Any boundary is a cycle, i.e., $B_n(X) := \mathrm{Im}(\partial:S_{n+1}(X)\to S_n(X))\subseteq Z_n(X)$.
 \end{theorem}
+\begin{proof}
+    Homework!
+\end{proof}
 \begin{definition}
 The $n$th singular homology group of $X$ is:
-$$ H_n(X) = Z_n(C_\bullet)(X)/B_n(X) = \frac{\ker(S_n(X)\xrightarrow{\partial}S_{n-1}(X))}{\mathrm{Im}(\partial:S_{n+1}(X)\to S_n(X))}$$
-The kernel is a free abelian group, and so is the image because they're both subgroups of free abelian groups; but the quotient isn't necessarily free abelian. The quotient is finitely generated for all the space we are talking about although the kernel and image are uncountable generated.
+    $$ H_n(X) = Z_n(X)/B_n(X) = \frac{\ker(\partial:S_n(X)\to S_{n-1}(X))}{\mathrm{Im}(\partial:S_{n+1}(X)\to S_n(X))}$$
+The kernel is a free abelian group, and so is the image because they're both subgroups of free abelian groups; but the quotient isn't necessarily free abelian. The quotient is finitely generated for all the spaces we are talking about although the kernel and image are uncountably generated.
 \end{definition}
 %\newpage
 \chapter{Simplices, more about homology}
-Recall that $\Delta^n\subseteq\mathbf{R}^{n+1}$. A singular simplex is a map $\sigma:\Delta^n\to X$, which forms $\Sin_n(X)$. For example, $\Sin_0(X)$ consists of points of $X$. You have a huge collection of maps $d^i:\Sin_n(X)\to\Sin_{n-1}(X)$ and $s^i:\Sin_n(X)\to\Sin_{n+1}(X)$, and the collection $\{\Sin_n(X),d^i,s^i\}$ forms a simplicial set. You therefore get a functor $\mathbf{Top}\to\{\text{simplicial sets}\}$. Simplicial sets are really cool, because they're combinatorial models for topological spaces.
+Recall the standard $n$-simplex $\Delta^n\subseteq\mathbf{R}^{n+1}$. A singular simplex is a map $\sigma:\Delta^n\to X$; they are elements of the set $\Sin_n(X)$. For example, $\Sin_0(X)$ consists of points of $X$. You have a huge collection of maps $d^i:\Sin_n(X)\to\Sin_{n-1}(X)$ and $s^i:\Sin_n(X)\to\Sin_{n+1}(X)$, and the collection $\{\Sin_n(X),d^i,s^i\}$ forms a simplicial set. You therefore get a functor $\mathbf{Top}\to\{\text{simplicial sets}\}$. Simplicial sets are really cool, because they're combinatorial models for topological spaces.
 
-Now, you get induced maps on the free abelian groups. This extends the functor from $\mathbf{Top}$ to semi-simplicial sets to the collection of semi-simplicial abelian groups. Using the $d^i$s and $s^i$s, you get a boundary map $\partial$, and therefore a chain complex because $\partial^2=0$ (see homework). In other words, a huge diagram (of categories and functors, which we'll discuss more next week):
+Now, you get induced maps on free abelian groups. This produces for each space a semi-simplicial abelian group. Using the $d^i$s and $s^i$s, you get a boundary map $\partial$, and therefore a chain complex because $\partial^2=0$ (see homework). We capture this process in a diagram:
 \begin{equation*}
-\xymatrix{\mathbf{Top}\ar[d]\ar[r] & \{\text{semi-simplicial sets}\}\ar[dl]\ar[r] & \{\text{semi-simplicial abelian groups}\}\ar[d]\\
- \{\text{simplicial sets}\} & & \{\text{chain complexes}\}\ar[d]^{\text{take homology}}\\
+\xymatrix{\mathbf{Top}\ar[d]\ar[r] & \{\text{semi-simplicial sets}\}\ar[r] & \{\text{semi-simplicial abelian groups}\}\ar[d]\\
+    \{\text{simplicial sets}\}\ar[ur] & & \{\text{chain complexes}\}\ar[d]^{\text{take homology}}\\
  & &\{\text{graded abelian group}\}}
 \end{equation*}
-If you have a chain complex $\partial:A_n\to A_{n-1}$, then $ H_n(A,\partial)=\ker\partial/\img\partial$.
+If you have a chain complex $\partial:A_n\to A_{n-1}$, then you have its homology $H_n(A,\partial)=\ker\partial_n/\img\partial_n$.
 
 Let's practice with simplices. Suppose we have $\sigma:\Delta^1\to X$. Construct a map $\phi:\Delta^1\to\Delta^1$ via $(t,1-t)\mapsto (1-t,t)$. This reverses the orientation of $\sigma$. Composing $\sigma$ with $\phi$ gives another singular simplex $\overline{\sigma}$. It is \textit{not} true that $\overline{\sigma}=-\sigma$ in $S_1(X)$.
 
-Claim: $\overline{\sigma}\equiv -\sigma\bmod B_1(X)=\img(\partial)$, i.e., they define the same homology class. That is, if $d_0\sigma=d_1\sigma$, so $\sigma\in Z_1(X)$, then $[\overline{\sigma}]=-[\sigma]$ in $ H_1(X)$. In other words, $\overline{\sigma}+\sigma$ is a boundary. We have to come up with a $2$-simplex in $X$ whose boundary is $\overline{\sigma}+\sigma$.
+Claim: $\overline{\sigma}\equiv -\sigma\bmod B_1(X)=\img(\partial)$, i.e., they are homologous. That is, if $d_0\sigma=d_1\sigma$, so $\sigma\in Z_1(X)$, then $[\overline{\sigma}]=-[\sigma]$ in $ H_1(X)$. In other words, $\overline{\sigma}+\sigma$ is a boundary. We have to come up with a $2$-simplex in $X$ whose boundary is $\overline{\sigma}+\sigma$.
 
-Let $\pi$ denote the projection map from $[0,1,2]$ to $[0,1]$ (MUST UPLOAD PICTURE HERE). Then, $\partial(\sigma\circ\pi)=\sigma\pi d^0-\sigma\pi d^1 +\sigma\pi d^2=\overline{\sigma}-c^1_{\sigma(0)}+\sigma$ where $c^1_{\sigma(0)}$ is the constant $1$-simplex at $\sigma(0)$ (similarly for $c^n_{\sigma(0)}$). The $c^1_{\sigma(0)}$ is an error term. How do we correct this? Consider the constant $2$-simplex $c^2_{\sigma(0)}$ at $\sigma(0)$; then the boundary is $c^1_{\sigma(0)}-c^1_{\sigma(0)}+c^1_{\sigma(0)}$, which is $c^1_{\sigma(0)}$. So, $\overline{\sigma}+\sigma=\partial(\sigma\circ\pi + c^2_{\sigma(0)})$.
+Let $\pi$ denote the projection map from $[0,1,2]$ to $[0,1]$\todo{MUST UPLOAD PICTURE HERE}. Then, $\partial(\sigma\circ\pi)=\sigma\pi d^0-\sigma\pi d^1 +\sigma\pi d^2=\overline{\sigma}-c^1_{\sigma(0)}+\sigma$ where $c^1_{\sigma(0)}$ is the constant $1$-simplex at $\sigma(0)$ (similarly for $c^n_{\sigma(0)}$). The $c^1_{\sigma(0)}$ is an error term. How do we correct this? Consider the constant $2$-simplex $c^2_{\sigma(0)}$ at $\sigma(0)$; then the boundary is $c^1_{\sigma(0)}-c^1_{\sigma(0)}+c^1_{\sigma(0)}$, which is $c^1_{\sigma(0)}$. So, $\overline{\sigma}+\sigma=\partial(\sigma\circ\pi + c^2_{\sigma(0)})$.
 
 Let's compute the homologies of $\emptyset$ and $\ast$. Well, $\Sin_n(\emptyset)=\emptyset$, so $S_\ast(\emptyset)=0$. So, $\cdots\to S_2\to S_1\to S_0$ is the zero chain complex. This means that $Z_\ast(\emptyset)=0$ and similarly for boundaries. The homology in all dimensions is therefore $0$.
 
-Now for $\ast$. Clearly $\Sin_n(\ast)=\ast$, and this generates $S_n(\ast)$, which is hence $\mathbf{Z}$. The chain complex is $S_0(\ast)\leftarrow S_1(\ast)\leftarrow S_2(\ast)\leftarrow\cdots$. What are the boundary maps? $\partial(c^1_\ast)=0$, but $\partial(c^2_\ast)=c_1^\ast$, but $\partial (c^3_\ast)=0$, because you have two pluses and two minuses. As a chain complex:
+Now for $\ast$. Clearly $\Sin_n(\ast)=\ast$, and this generates $S_n(\ast)$, which is thus $\mathbf{Z}$. The chain complex is $S_0(\ast)\leftarrow S_1(\ast)\leftarrow S_2(\ast)\leftarrow\cdots$. What are the boundary maps? Well, $\partial(c^1_\ast)=d^0c^1_\ast - d^1c^1_\ast = c^0_\ast - c^0_\ast = 0$, $\partial(c^2_\ast)=d^0c_2^\ast - d^1 c^2_\ast + d^2 c^2_\ast = c^1_\ast - c^1_\ast + c^1_\ast = c^1_\ast$, and $\partial (c^3_\ast)=d^0 c^3_\ast - d^1 c^3_\ast + d^2 c^3_\ast - d^3 c^3_\ast = 0$. This means that our chain complex is:
 $$\cdots\to\mathbf{Z}\xrightarrow{0}\mathbf{Z}\xrightarrow{1}\mathbf{Z}\xrightarrow{0}\mathbf{Z}$$
 The cycles therefore alternate between $0$s and $\mathbf{Z}$s, namely as $\mathbf{Z},\mathbf{Z},0,\mathbf{Z},0,\cdots$. The boundaries are the same as the cycles except for dimension zero, namely as $0,\mathbf{Z},0,\mathbf{Z},0,\cdots$. This means that $ H_0(\ast)=\mathbf{Z}$ but $ H_i(\ast)=0$ for $i>0$.
 
-What happens to maps of spaces? Suppose you have $f:X\to Y$. You have a map $f_\ast:\Sin_n(X)\to\Sin_n(Y)$ induced by composition, namely $\sigma\mapsto f\circ \sigma=:f_\ast\sigma$. What about face maps; does the following diagram commute?
+What do these constructions do? Suppose you have $f:X\to Y$. You have a map $f_\ast:\Sin_n(X)\to\Sin_n(Y)$ induced by composition, namely $\sigma\mapsto f\circ \sigma=:f_\ast\sigma$. What about face maps; does the following diagram commute?
 \begin{eqnarray*}
 \xymatrix{\Sin_n(X)\ar[r]^{f_\ast}\ar[d]^{d_i} & \Sin_n(Y)\ar[d]^{d_i}\\
 \Sin_{n-1}(X)\ar[r]^{f_\ast} & \Sin_{n-1}(Y)}
 \end{eqnarray*}
-We see that $d_if_\ast\sigma=(f_\ast\sigma)\circ d^i=f\circ\sigma\circ d^i$, and $f_\ast(d_i\sigma)=f_\ast(\sigma\circ d^i)=f\circ\sigma\circ d^i$. This also holds for the free abelian groups. You therefore get a map of chain complexes.
+We see that $d_if_\ast\sigma=(f_\ast\sigma)\circ d^i=f\circ\sigma\circ d^i$, and $f_\ast(d_i\sigma)=f_\ast(\sigma\circ d^i)=f\circ\sigma\circ d^i$. So the answer is yes! This also holds for the free abelian groups. You therefore get a map of chain complexes.
 
-A chain map $f:C_\ast\to D_\ast$ is a map $C_n\to D_n$ with an appropriate commutative diagram. Does this induce a map in homology $f_\ast: H_n(C)\to H_n(D)$? From diagram chasing, we get a map $Z_n(C_\bullet)(C)\to Z_n(C_\bullet)(D)$ and a map $B_n(C)\to B_n(D)$, which gives a map on homology. Rather simple diagram chasing. This means that we get a map $f_\ast: H_n(X)\to H_n(Y)$.
+A chain map $f:C_\ast\to D_\ast$ is a map $f_n:C_n\to D_n$ such that the following diagram commutes for every $n$:
+\begin{equation*}
+    \xymatrix{
+	C_n\ar[r]^{f_n}\ar[d]^{partial_C} & D_n\ar[d]^{\partial_D}\\
+	C_{n-1}\ar[r]^{f_{n-1}} & D_{n-1}
+    }
+\end{equation*}
+Does a chain map induce a map in homology $f_\ast: H_n(C)\to H_n(D)$? As a preliminary question, do we get a map $Z_n(C)\to Z_n(D)$? Let $c\in Z_n(C)$, so that $\partial_C c = 0$. Then $\partial_D f_n(c) = f_{n-1}\partial_C c = f_{n-1}(0) = 0$, because $f$ is a chain map. This means that $f_n(c)$ is also an $n$-cycle, i.e., $f$ gives a map $Z_n(C)\to Z_n(D)$.
+
+Do we also get a map $B_n(C)\to B_n(D)$? Let $c\in B_n(C)$, so that there exists $c^\prime \in C_{n+1}$ such that $\partial_C c^\prime = c$. Then $f_n(c) = f_n\partial_C c^\prime = \partial_D f_{n+1}(c^\prime)$. Thus $f_n(c)$ is the boundary of $f_{n+1}(c^\prime)$, and $f$ gives a map $B_n(C)\to B_n(D)$.
+
+The two maps $Z_n(C)\to Z_n(D)$ and $B_n(C)\to B_n(D)$ give a map on homology. This means that we get a map $f_\ast: H_n(X)\to H_n(Y)$, as desired!
 %\newpage
 \chapter{Categories, functors, natural transformations}
 Office hours. Hood Chatham's are Mondays, 1:30 - 3:30, in 2-390A. Miller's is Tuesdays, 3:00-5:00 in 2-478.
