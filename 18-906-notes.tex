@@ -730,7 +730,7 @@ You can now \emph{loop back} to get $\Omega^2 Y\xrightarrow{\Omega i} \Omega F\x
     \end{equation*}
     The dotted map exists, but \emph{this map depends on the homotopy} $f^\prime h\simeq gf$. That's an important subtlety.
 \end{remark}
-\section{lexseq of a fiber sequence}
+\section{Lexseq of a fiber sequence}
 Applying $\pi_0 = [S^0,-]_\ast$ to the Barratt-Puppe sequence gives a lexseq:
 \begin{equation*}
     \xymatrix{
@@ -757,3 +757,92 @@ Inside $I^n$ is $\partial I^n$, and also including in it is $\partial I^n\times 
 	\pi_0 A\ar[r] & \pi_0 X\ar[r] & 
     }
 \end{equation*}
+\chapter{Action of $\pi_1$, simple spaces, and the Hurewicz theorem}
+Recall that $\pi_n(X,A,\ast) = [(I^n,\partial I^n,\partial I^{n-1}\times I\cup I^{n-1}\times 0),(X,A,\ast)]$. You have a lexseq of the form:
+\begin{equation*}
+    \xymatrix{
+	& \cdots\ar[r] & \pi_2 (X,a)\ar[dll]\\
+	\pi_1 A\ar[r] & \pi_1 X\ar[r] & \pi_1 (X,A)\ar[dll]\\
+	\pi_0 A\ar[r] & \pi_0 X\ar[r] & 
+    }
+\end{equation*}
+This looks very similar to the lexseq for homology. How does this actually relate?
+\begin{lemma}[Excision]
+    If $A\subseteq X$ is a cofibration, then there is an isomorphism $H_\ast(X,A)\xrightarrow{\simeq}\widetilde{H}_\ast(X/A)$. Under this hypothesis, $X/A\simeq\text{Mapping cone of }i:A\to X$. The mapping cone is the dual to the homotopy fiber, i.e., the homotopy quotient, which is defined by the pushout:
+    \begin{equation*}
+	\xymatrix{
+	    A\ar[r]^i\ar[d]^{in_1} & X\ar[d]\\
+	    CA\ar[r] & X\cup_A CA
+	    }
+    \end{equation*}
+    where $CA$ is the cone on $A$ defined as $CA = A\times I/A\times 0$ (this is a contractible space).
+\end{lemma}
+This is dual to saying that $Ff\simeq f^{-1}(\ast)$ if $f$ is a fibration.
+
+But $\pi_\ast(X,A)$ is definitely not $\pi_\ast(X/A)$! For example, $S^1\to D^2\to S^2$ is a cofibration sequence, but $\pi_\ast S^1$ is just $\Z$ in dimension $1$. We don't know the homotopy groups of $S^2$, though. In fact:
+\begin{theorem}[Now]
+    If $X$ is a simply connected finite complex, and $X\not\simeq \ast$, then we do not know $\pi_\ast(X)$. And we'll probably never be able to know them.
+\end{theorem}
+These groups \emph{are} computable (a theorem by Edgar Brown), but it's super-exponential. This is discouraging. We'll never know what, eg., $\pi_{10000}(S^2)$ is.
+
+Anyway, I said there was $\partial:\pi_n(X,A,\ast)\to \pi_{n-1}(A,\ast)$. How does this look? Well you just look at the restriction of $I^n\to X$ to $1\times I^{n-1}\to A$. And the composite $\pi_n(X,A,\ast)\xrightarrow{\partial}\pi_{n-1}(A,\ast)\to \pi_{n-1}(X,\ast)$ is trivial by definition!
+\section{$\pi_1$-action}
+There's a little more structure about this sequence. That's the following thing: $\pi_1(X)$ acts on $\pi_n(X)$ from the left by group homomorphisms. There was a picture, but I didn't understand it. Let me write this out (as I understand it). Suppose $x,y\in X$, and let $\omega:I\to X$ with $\omega(0) = x$ and $\omega(1) = y$. Then we have a map $f_\omega:\pi_n(X,x)\to \pi_n(X,y)$, so $\pi_1(X,\ast)$ acts on $\pi_n(X,\ast)$.
+
+When $n=1$, $\pi_1(X)$ acts by conjugation. In fact, $\pi_1(A)$ acts on $\pi_n(X,A,\ast)$ as well. It then follows that all maps in the lexseq are equivariant for this action of $\pi_1(A)$. We also have the Peiffer identity:
+\begin{prop}[Peiffer identity]
+    let $\alpha,\beta\in \pi_2(X,A)$. Then $(\partial \alpha)\cdot\beta = \alpha\beta\alpha^{-1}$.
+\end{prop}
+For example, if $j:\pi_2(X)\to \pi_2(X,A)$, and $\alpha = j(\gamma)$, $\partial\alpha = 1$: $\img(k)\subseteq\coker \pi_2(X,A)$. (I did not follow this)
+
+\begin{definition}
+    $X$ is simply connected if it's path connected and $\pi_1(X,\ast) = 1$.
+\end{definition}
+Sometimes you have nontrivial $\pi_1$, and so:
+\begin{definition}
+    $X$ is \emph{simple} if it is path-connected and $\pi_1(X)$ acts trivially on $\pi_n(X)$ for $n\geq 1$.
+\end{definition}
+(In particular, $\pi_1(X)$ is abelian.) What does being simple do for you?
+\begin{itemize}
+    \item Being simple is independent of the choice of basepoint. If $\omega:x\to x^\prime$, then $\omega_\sharp:\pi_n(X,x)\to \pi_n(X,x^\prime)$ is a group isomorphism. I have $\pi_1(X,x)$ acting on $\pi_n(X,x)$ and $\pi_1(X,x^\prime)$ acting on $\pi_n(X,x^\prime)$. These actions are compatible, and if $\pi_1(X,x)$ acts trivially then so does $\pi_1(X,x^\prime)$.
+    \item Say $X$ is path-connected. Then there's a map $\pi_n(X,\ast)\to [S^n,X]$. It's pretty obvious that this map is surjective because I can always choose a basepoint in $X$ as the image of a basepoint in $S^n$. Thus you'd expect a factorization:
+	\begin{equation*}
+	    \xymatrix{
+		\pi_n(X,\ast)\ar@{->>}[r]\ar[dr] & [S^n,X]\\
+		& \pi_1(X,\ast)\backslash \pi_n(X,\ast)\ar[u]_{\cong,\text{homework}}
+		}
+	\end{equation*}
+	If $X$ is simple, then $\pi_1(X,\ast)\backslash \pi_n(X,\ast)$ is trivial, and so $\pi_n(X,\ast)\cong [S^n,X]$ that's independent of the basepoint. I.e., these groups are canonically the same, i.e., two paths $\omega,\omega^\prime:x\to y$ give the same map $\omega_\sharp = \omega^\prime_\sharp:\pi_n(X,x)\to \pi_n(X,y)$.
+\end{itemize}
+\section{Hurewicz theorem}
+I talked about homotopy, and I talked about homology. Now it's time to compare the two. This is the story of the Hurewicz theorem. You should think of homology of being computable, while homotopy is a big mystery.
+\begin{definition}
+The Hurewicz map is a map $h:\pi_n(X,\ast)\to H_n(X)$, where $X$ is a path connected space. How does this map go? An element in $\pi_n(X,\ast)$ is represented by $\alpha:S^n\to X$. Pick a generator $\sigma:H_n(S^n)$; then $\alpha_\ast(\sigma)\in H_n(X)$.
+\end{definition}
+This is a homomorphism, as I'll show in a bit.
+
+What happens when $n=0$? What map $\pi_0(X)\to H_0(X)$ do we have? A point is like a $0$-cycle, and that's the map! In fact, we have an isomorphism $H_0(X)\simeq \Z[\pi_0(X)]$. This is an example of the Hurewicz theorem.
+
+How about $n=1$? Now, we have $h:\pi_1(X,\ast)\to H_1(X)$. This factors as $\pi_1(X,\ast)\to \pi_1(X,\ast)^{ab}\to H_1(X)$. And the Hurewicz theorem says that $\pi_1(X,\ast)^{ab}\xrightarrow{\simeq} H_1(X)$. I'm not going to prove this; it's not very hard but it's annoying. It's pretty clear why it's true: for example, it's onto. $1$-cycles just look like a bunch of circles, so just concatenate loops from the basepoint to these $1$-cycles.
+
+Let me show you that the Hurewicz map is a homomorphism. Before that, here's the Hurewicz theorem.
+\begin{theorem}[Hurewicz]
+    Suppose $\pi_i(X) = 0$ for $i<n$ where $n\geq 2$. Then $\pi_n(X)\xrightarrow{\simeq}H_n(X)$.
+\end{theorem}
+We can't compute homotopy in general, but we can at least make a start.
+
+OK, why is $h$ a homomorphism? Let $\alpha,\beta:S^n\to X$ be pointed maps. What is the product in $\pi_n(X)$? It's just the composite:
+$$\alpha\beta:S^n\xrightarrow{\delta\text{, pinching along the equator}} S^n\vee S^n\xrightarrow{\beta\vee\alpha}X\vee X\xrightarrow{\nabla\text{, the fold map}}X$$
+where $\nabla:X\vee X\to X$ is defined by:
+\begin{equation*}
+    \xymatrix{
+	X\ar[dr]^1\ar[d] & \\
+	X\vee X\ar[r]|\nabla & X\\
+	X\ar[u]\ar[ur]_1 & 
+    }
+\end{equation*}
+We have two inclusions $in_1,in_2$ of $S^n$ to $S^n\vee S^n$. Now, we have:
+$$\sigma\mapsto {in_1}_\ast\sigma + {in_2}_\ast\sigma\mapsto {in_1}_\ast h(\alpha) + {in_2}_\ast h(\beta)\mapsto h(\alpha) + h(\beta)$$
+As desired. It's possible to give an elementary proof of Hurewicz's theorem. But I'll prove this as a consequence of the Serre spectral sequence, which gives a more genral theorem. It'll be an inductive proof that'll use Poincare's result.
+
+One more thing to say is that $\pi_i(S^n) = 0$ if $i<n$. I won't prove this, but it's also kind of obvious, isn't it? By Hurewicz, it follows that $\pi_n(S^n)\simeq H_n(S^n)\simeq \Z$. We actually have one more example: $\pi_3(S^2)\simeq \Z$ generated by the Hopf fibration $S^3\to S^2$. It's not obvious that this isn't nullhomotopic, but it's true. But now, for example, I can suspend $\eta$ (the Hopf fibration) and get $\eta\circ\Sigma\eta$. We thought for a long time that there were the only things we could compute in $\pi_\ast S^n$; but this is not true! It's a lot more chaotic.
