@@ -1,4 +1,4 @@
-\chapter{Introduction, simplices}
+\section{Introduction, simplices}\label{905}
 Topics to be covered:
 \begin{enumerate}
     \item Singular homology
@@ -59,7 +59,7 @@ The $n$th singular homology group of $X$ is:
 The kernel is a free abelian group, and so is the image because they're both subgroups of free abelian groups; but the quotient isn't necessarily free abelian. The quotient is finitely generated for all the spaces we are talking about although the kernel and image are uncountably generated.
 \end{definition}
 %\newpage
-\chapter{Simplices, more about homology}
+\section{Simplices, more about homology}
 Recall the standard $n$-simplex $\Delta^n\subseteq\mathbf{R}^{n+1}$. A singular simplex is a map $\sigma:\Delta^n\to X$; they are elements of the set $\Sin_n(X)$. For example, $\Sin_0(X)$ consists of points of $X$. You have a huge collection of maps $d^i:\Sin_n(X)\to\Sin_{n-1}(X)$ and $s^i:\Sin_n(X)\to\Sin_{n+1}(X)$, and the collection $\{\Sin_n(X),d^i,s^i\}$ forms a simplicial set. You therefore get a functor $\mathbf{Top}\to\{\text{simplicial sets}\}$. Simplicial sets are really cool, because they're combinatorial models for topological spaces.
 
 Now, you get induced maps on free abelian groups. This produces for each space a semi-simplicial abelian group. Using the $d^i$s and $s^i$s, you get a boundary map $\partial$, and therefore a chain complex because $\partial^2=0$ (see homework). We capture this process in a diagram:
@@ -102,7 +102,7 @@ Do we also get a map $B_n(C)\to B_n(D)$? Let $c\in B_n(C)$, so that there exists
 
 The two maps $Z_n(C)\to Z_n(D)$ and $B_n(C)\to B_n(D)$ give a map on homology. This means that we get a map $f_\ast: H_n(X)\to H_n(Y)$, as desired!
 %\newpage
-\chapter{Categories, functors, natural transformations}
+\section{Categories, functors, natural transformations}
 Office hours. Hood Chatham's are Mondays, 1:30 - 3:30, in 2-390A. Miller's is Tuesdays, 3:00-5:00 in 2-478.
 
 The collection of all topological spaces forms a category. Similarly with simplicial sets, denoted $\set_\Deltab$ or $s\set$. You can take $X\mapsto \Sin_\bullet(X)$, and if $X\to Y$ is a map of spaces, this induces $\Sin_\bullet(X)\to\Sin_\bullet(Y)$. This is a functor $\mathbf{Top}\to s\set$.
@@ -130,7 +130,7 @@ F(Y)\ar[r]^{\theta(Y)} & G(Y)}
 The boundary map $\partial:S_n\to S_{n-1}$ is a natural transformation. Let $G$ be a group viewed as a one-point category. Any element $F\in\mathrm{Fun}(G,\mathbf{Ab})$ is simply a group action of $G$ on $F(\ast)=A$, i.e., a representation of $G$ in abelian groups. A natural transformation from $F\to F^\prime$ is just a $G$-equivariant map.
 \end{example}
 %\newpage
-\chapter{More about categories, and computing the homology of a star-shaped region}
+\section{More about categories, and computing the homology of a star-shaped region}
 Let $\mathrm{Vect}_{\mathbf{C}}$ be the category of vector spaces and linear transformations. Given a $\mathbf{C}$-vector space $V$, you can consider the dual $V^\ast=\Hom(V,\cc)$. Is this a functor? If you have a linear transformation $F:V\to W$, you get a map $F^\ast:W^\ast\to V^\ast$, so this is like a functor, but isn't strictly functor. This preserves composition and identities. Taking the dual therefore gives a functor $\mathrm{Vect}_\cc^{op}\to\mathrm{Vect}_\cc$, which is a \textit{contravariant} functor.
 \begin{definition}
 Given $\cc,\cd$. A contravariant functor is a functor from $\cc^{op}\to\cd$ where $\cc^{op}$ has the same objects as the category $\cc$ but with all morphisms reversed. There's a contravariant functor $\cc\to\cc^{op}$ that is the identity on objects and on morphisms.
@@ -189,7 +189,7 @@ The augmentation map $\epsilon: H_\ast(X)\to \mathbf{Z}$ is an isomorphism, i.e.
 \end{theorem}
 The strategy of proof is that $\epsilon$ is induced by sending $X\to \ast$. We'll look at the chain map $S_\ast(x)\to\mathbf{Z}\to S_\ast(X)$. We'll show that this composite induces the same map in homology as the identity map, which means that the identity map factors through $\mathbf{Z}$, so we're done.
 %\newpage
-\chapter{Homotopy, star-shaped regions}
+\section{Homotopy, star-shaped regions}
 The idea of homotopy is the central concept of all of algebraic topology, to put it bluntly. We have a functor $ H_\ast:\mathbf{Top}\to\mathbf{Ab}$, but it's too crude to distinguish between topological spaces. The virtue of this definition is that it's computable, although it can't completely distinguish between two spaces.
 \begin{definition}
 Let $f_0,f_1:X\to Y$ be two maps. A homotopy from $f_0$ to $f_1$ is a map $h:X\times I\to Y$ such that $h(x,0)=f_0(x)$ and $f(x,1)=f_1(x)$. We say that $f_0$ and $f_1$ are homotopic, and this is written $f_0\sim f_1$ because this is an equivalence relation on maps (transitivity follows from the gluing lemma).
@@ -245,7 +245,7 @@ It's a really weird relation, but we'll understand why this is a good thing.
 		\end{proof}
 % Continue indenting like this.
 %\newpage
-\chapter{Homotopy invariance of homology}
+\section{Homotopy invariance of homology}
 As a side product, we'll construct something called the cross product. Here's the theorem.
 	\begin{theorem}
 	If $f_0,f_1:X\to Y$ and $f_0\sim f_1$, then $f_{0,\ast}\sim f_{1,\ast}:S_\ast(X)\to S_\ast(Y)$.
@@ -294,7 +294,7 @@ The subspace $\Delta^p\times\Delta^q\subseteq\mathbf{R}^{p+1}\times\mathbf{R}^{q
 		\end{equation*}
 But now, $\partial\iota = c_1^0 - c_0^0\in S_0(I)$, which means that this becomes $\partial c\times\iota + (-1)^{|c|}(\iota_{1,\ast} - \iota_{0,\ast})$. We'll do a little more next time.
 %\newpage
-\chapter{Basically a recap of what we did last time}
+\section{Basically a recap of what we did last time}
 PSet 1 due today. Last time, we showed:
 \begin{theorem}
 There exists a map $S_p(X)\times S_q(Y)\to S_{p+q}(X\times Y)$ that is:
@@ -363,7 +363,7 @@ I just want to mention that there's an explicit choice of $\iota_p\times\iota_q$
 	\end{equation*}
 We also want $\omega$ to be injective (which requires that it takes $(0,0)$ to $(p,q)$). We can draw out a ``staircase'' in the $p\times q$ grid, and the area under the staircase defined by $\omega$ is denote $A(\omega)$. Define $\iota_p\times\iota_q=\sum(-1)^{A(\omega)}\overline{\omega}$ where $\overline{\omega}$ is the corresponding affine map $\Delta{p+q}\to\Delta^p\times\Delta^q$. It's combinatorially annoying to check that this satisfies the conditions of the theorem, but it's a good exercise to check it out. It's in a paper by Eilenberg-Moore.
 %\newpage
-\chapter{Relative Homology}
+\section{Relative Homology}
 First, let's recall a little about homology. We showed that homology factors as a functor $\mathbf{Top}\to\mathrm{h}\mathbf{Top}\to\mathbf{GrAb}$. As a corollary:
 \begin{corollary}
 If $f:X\to Y$ is a homotopy equivalence (i.e., an isomorphism in the homotopy category), the induced map on homology $ H_\ast(f): H_\ast(X)\to H_\ast(Y)$ is an isomorphism. This is the same thing as saying that if $f:X\to Y$ does not induce an isomorphism on homology, then $f$ can't be a homotopy equivalence. Homology's therefore often used to distinguish spaces.
@@ -371,14 +371,14 @@ If $f:X\to Y$ is a homotopy equivalence (i.e., an isomorphism in the homotopy ca
 \begin{example}
 If $X\times\mathbf{R}^n\to X$ is the projection map, this is a homotopy equivalence because $\mathbf{R}^n$ is contractible. Therefore, $ H_\ast(X\times\mathbf{R}^n)\cong H_\ast(X)$.
 \end{example}
-\section{Towards computing homology}
+\subsection{Towards computing homology}
 Fix a space $W$, and consider the functor $X\mapsto [W,X]$. This is basically uncomputable - if you could, you'll win a Fields medal! But there's something more that homology has going for it is that it's ``local''. What do we mean by this? Homology is a bit like a measure:
 	\begin{enumerate}
 	\item If $A\subseteq X$ is a subspace, then $ H_\ast(X)$ is related to $ H_\ast(A)+ H_\ast(X-A)$. Called the lexseq of a pair.
 	\item The homology $ H_\ast(A\cup B)$ is like $ H_\ast(A)+ H_\ast(B)- H_\ast(A\cap B)$. Called the Mayer-Vietoris sequence.
 	\end{enumerate}
 The thing we use is the notion of exact sequences. Let me tell you about exact sequences.
-\section{Exact sequences}
+\subsection{Exact sequences}
 This is a story about abelian groups.
 \begin{definition}
 Let $A\xrightarrow{i} B\xrightarrow{p} C$ be a sequence of abelian groups and homomorphisms. We say that the sequence is exact (at $B$) if $\ker p=\img i$, i.e., $p\circ i=0$ with no room for error.
@@ -421,9 +421,9 @@ Does the dotted map exist? We can pull $\overline{c}\in S_n(X,A)$ to some $c\in 
 
 Now let's continue. A class $c\in S_n(X)$ gives a relative cycle if and only if $\partial c\in S_{n-1}(A)$ because we want $\partial c$ in $S_n(X,A)$ to be zero. So $\iota_n\in S_n(\Delta^n,\partial\Delta^n)$ is indeed a relative cycle since $\partial\iota_n\in S_{n-1}(\partial\Delta^n)$. Similarly, a class $c\in S_n(X)$ is a relative boundary if and only if there is a $b\in S_{n+1}(X)$ such that $\partial b=c\bmod S_n(A)$, i.e., $\partial b-c\in S_n(A)$. So $\iota_n\in S_n(\Delta^n,\partial\Delta^n)$ isn't a relative boundary. Therefore $ H_n(\Delta^n,\partial\Delta^n)\cong\mathbf{Z}=\langle[\iota_n]\rangle$ where $ H_n(X,A)$ denotes the relative homology. This stuff takes a little bit of time to get used to.
 %\newpage
-\chapter{Long exact homology sequence, Excision, and Genealogy}
+\section{Long exact homology sequence, Excision, and Genealogy}
 WARNING: I've probably messed up typing some indices. Hopefully not.
-\section{5-lemma}
+\subsection{5-lemma}
 Suppose you have two exact sequences of abelian groups.
 \begin{equation*}
 \xymatrix{A_4\ar[r]^d\ar[d]^{f_4} & A_3\ar[r]^d\ar[d]^{f_3} & A_2\ar[r]^d\ar[d]^{f_2} & A_1\ar[r]^r\ar[d]^{f_1} & A_0\ar[d]^{f_0}\\
@@ -434,7 +434,7 @@ When can we guarantee that $f_2$ is an isomorphism? We're going to diagram chase
 Let $b_2\in B_2$. We want to show that there is something in $A_2$ that can be pushed forward to $b_2$, i.e., prove surjectivity of $f_2$. We can consider $db_2\in B_1$. Let's assume that $f_1$ is surjective. Then there's $a_1\in A_1$ such that $f_1(a_1)=db_2$. What is $da_1$? Well, $f_0(da_1)=d(f_1(a_1))=d(db)=0$. So we want $f_0$ to be injective. Then $da_1$ is zero, so by exactness of the top sequence, there is some $a_2\in A_2$ such that $da_2=a_1$. What is $f_2(a_2)$? What is $d(f_2(a_2))$? By commutativity, $d(f_2(a_2))=f_1(d(a_2))=f_1(a_1)=db_2$. Let's consider $b_2-f_2(a_2)$. This maps to zero under $d$. So by exactness, there is $b_3\in B_3$ such that $d(b_3)=b_2-f_2(a_2)$. If we assume that $f_3$ is surjective, then there is $a_3\in A_3$ such that $f_3(a_3)=b_3$. But now, $d(a_3)\in A_2$, and $f_2(d(a_3))=d(f_3(a_3))=b_2-f_2(a_2)$. But this means that $b_2=f(a_2+d(a_3))$, which guarantees surjectivity of $f_2$. This means that if $f_1$ is surjective, $f_0$ is injective, and $f_3$ is surjective, then $f_2$ is surjective.
 
 A similar dual process says that $f_2$ is injective if $f_1$ is injective, $f_3$ is injective, and $f_4$ is surjective. If all of these conditions are satisfied, then $f_2$ is an isomorphism. This is the content of the five-lemma.
-\section{Relative homology}
+\subsection{Relative homology}
 I guess I didn't really define this. Suppose you have a pair of spaces $(X,A)$. Then you have an sexseq of chain complexes $0\to S_\ast(A)\to S_\ast(X)\to S_\ast(X,A)\to 0$. 
 \begin{definition}
 The relative homology of the pair $ H_\ast(X,A):= H(S_\ast(X,A))$.
@@ -442,7 +442,7 @@ The relative homology of the pair $ H_\ast(X,A):= H(S_\ast(X,A))$.
 \begin{example}
 $ H_\ast(X,\emptyset)= H_\ast(X)$ because $S_\ast(\emptyset)=0$. Another case is $ H_\ast(X,X)=0$ because $S_\ast(X,X)=S_\ast(X)/S_\ast(X)=0$.
 \end{example}
-\section{General study of homologies of sexseqs of chain complexes}
+\subsection{General study of homologies of sexseqs of chain complexes}
 Suppose I have three chain complexes $A_\bullet\to B_\bullet\to C_\bullet$. By the way, this is an important announcement. Henceforth, differentials in chain complexes will be denoted $d$, no longer $\partial$. For some reason. (It's so much easier for typing as well.) Assume that this is an exact sequence of chain complexes.
 
 Is $ H_\ast(A)\to H_\ast(B)\to H_\ast(C)$ exact? Let's push this a little further. Suppose I have a sexseq $0\to A_\bullet\to B_\bullet\to C_\bullet\to 0$. We can ask the same question as before. Let's write this out more explicitly.
@@ -473,7 +473,7 @@ Let $c\in C_n$ such that $dc=0$. The map $g$ is surjective, so pick a $b\in B_n$
 
 To make sure that this is well-defined, let's make sure that this choice of homology class $a$ didn't depend on the $b$ that we chose. Pick some other $b^\prime$ such that $g(b^\prime)=c$. Then there is $a^\prime\in A_{n-1}$ such that $f(a^\prime)=db^\prime$. We want $a-a^\prime$ to be a boundary, so that $[a]=[a^\prime]$. We want $\overline{a}\in A_n$ such that $d\overline{a}=a-a^\prime$. Well, $g(b-b^\prime)=0$, so by exactness, there is $\overline{a}\in A_n$ such that $f(\overline{a})=b-b^\prime$. What is $d\overline{a}$? Well, $d\overline{a}=d(b-b^\prime)=db-db^\prime$. But $f(a-a^\prime)=b-b^\prime$, so because $f$ is injective, $d\overline{a}=a-a^\prime$, i.e., $[a]=[a^\prime]$. What else do I have to check? It's an exercise to check that $\partial$ as defined here is a homomorphism. Also, left as an exercise to check that this doesn't depend on $c\in[c]$, and that $\partial$ actually makes the exact sequence above exact.
 \end{proof}
-\section{Mathematical Genealogy}
+\subsection{Mathematical Genealogy}
 I'm not typing in anything here. It's a rather big tree:
 \begin{figure}[H]
 \centering
@@ -481,7 +481,7 @@ I'm not typing in anything here. It's a rather big tree:
 \caption{Mathematical genealogy, growing from Lefschetz, who was initially a chemist. The asterisks are meant to indicate that someone's at MIT.}
 \end{figure}
 %\newpage
-\chapter{Excision, and the Eilenberg-Steenrod axioms}
+\section{Excision, and the Eilenberg-Steenrod axioms}
 We have homotopy invariance and the lexseq of a pair. We claimed that $ H_\ast(X,A)$ ``depends only on $X-A$''. You have to be careful about this. 
 \begin{definition}
 A triple $(X,A,U)$ where $U\subseteq A\subseteq X$ is \emph{excisive} if $\overline{U}\subseteq\mathrm{Int}(A)$. This is a point-set definition. From an excisive triple you can get a pair $(X-U,A-U)\subseteq (X,A)$, and this is called an exision.
@@ -538,7 +538,7 @@ If $m\neq n$, then $\mathbf{R}^m\not\cong \mathbf{R}^n$, because they're not hom
 \begin{proof}
 Let $m,n>0$. Assume we have a homeomorphism $f:\mathbf{R}^m\to \mathbf{R}^n$. This restricts to $\mathbf{R}^m-\{0\}\to \mathbf{R}^n-\{0\}$, but each of these are homotopy equivalent to spheres, but we can't get a homotopy equivalence between two spheres of different dimension by the above corollary.
 \end{proof}
-\section{Eilenberg-Steenrod axioms}
+\subsection{Eilenberg-Steenrod axioms}
 \begin{definition}
 A homology theory (on $\mathbf{Top}$) is:
 \begin{itemize}
@@ -566,7 +566,7 @@ If $f:D^n\to D^n$, then there is some point $x\in D^n$ such that $f(x)=x$.
 Suppose not. Then you can draw a ray from $x$ to $f(x)$ to the boundary $S^{n-1}$, intersecting at a point $g(x)$. Left to you to check that $g$ is continuous. If $x$ was on the boundary, then $x=g(x)$. This is inconsistent by our computation because otherwise the identity on $ H_{n-1}(S^{n-1})$ would be zero, contradiction!
 \end{proof}
 %\newpage
-\chapter{Application of our previous calculation of $ H_\ast(S^n)$ and the ``locality principle''}
+\section{Application of our previous calculation of $ H_\ast(S^n)$ and the ``locality principle''}
 \begin{theorem}
 Let $n\geq 1$. There is a surjective monoid homomorphism $[S^n,S^n]\to \Z_\times$, where $\Z_\times$ is the multiplicative monoid of $\Z$. $[S^n,S^n]$ is a monoid under composition. (This is basically the degree...)
 \end{theorem}
@@ -580,13 +580,13 @@ Construction. If $n=1$, this is just the winding number. Suppose I've constructe
 	\end{equation*}
 So we're basically suspending $f:S^{n-1}\to S^{n-1}$. More explicitly, if you have $f:S^{n-1}\to S^{n-1}$. We can extend to $\overline{f}:D^n\to D^n$ by sending $tx\mapsto tf(x)$ where $tx$ denotes the ray connecting $x\in S^{n-1}$ to the origin, and we can then quotient out by $S^{n-1}$ to get the map $S^n\to S^n$ as required.
 \end{proof}
-\section{Addendum to the ES axioms}
+\subsection{Addendum to the ES axioms}
 There's a further axiom, which isn't due to ES, but rather due to Milnor. It's this.
 \begin{itemize}
 \item Suppose $I$ a set. For each $\alpha\in I$ there's have a space $X_\alpha\in\mathbf{Top}$. I can consider $\coprod_\alpha X_\alpha$. There are inclusion maps $X_\alpha\to\coprod_\alpha X_\alpha$. Then $\bigoplus_\alpha h_n(X_\alpha)\cong h_n\left(\coprod_\alpha X_\alpha\right)$.
 \end{itemize}
 This is known for ordinary singular homology.
-\section{Homological algebra}
+\subsection{Homological algebra}
 \begin{enumerate}
 \item Suppose $A,B\subseteq C$ are abelian groups. Then $A+C\subseteq C$. You have a sexseq $0\to A\cap B\to A\oplus B\to A+C\to 0$ where the map $c\mapsto (c,-c)$ is how the map $A\cap B\to A\oplus B$ is defined.
 \item ``Fundamental isomorphism for abelian groups'' says the following. We have two sexseqs.
@@ -604,7 +604,7 @@ This is known for ordinary singular homology.
 	\end{equation*}
 	Claim is that there's a map $\ker f^{\prime\prime}\to\coker f$ so that $0\to \ker f^\prime\to \ker f\to \ker f^{\prime\prime}\to\coker f^\prime\to\coker f\to \coker f^{\prime\prime}\to 0$. This is basically the lexseq in homology associated to the sexseqs of the following three chain complexes: $0\to A^\prime\to B^\prime\to 0$, $0\to A\to B\to 0$, and $0\to A^{\prime\prime}\to B^{\prime\prime}\to 0$. Work this out yourself.
 \end{enumerate}
-\section{Locality}
+\subsection{Locality}
 \begin{definition}
 The (not necessarily open) cover of a topological space. Won't write this.
 \end{definition}
@@ -628,7 +628,7 @@ If $\mathscr{A}=\{A,B\}$, then $\overline{X-B}=X-\mathrm{Int}(B)\subseteq\mathrm
 But we can consider $S_\ast(X)/S_\ast(A)=S_\ast(X,A)$. By the lexseq + 5 lemma, this thing is isomorphic to $S^\mathscr{A}_n(X)/S_n(A)$, so $S_\ast(B,A\cap B)\cong S_\ast(X,A)$ in homology. This is precisely the excision theorem. QED.
 \end{example}
 %\newpage
-\chapter{Mayer-Vietoris and Subdivision}
+\section{Mayer-Vietoris and Subdivision}
 (Is it Meyer-Vietoris or Mayer-Vietoris?) Today is the lecture with a lot of formulae.
 \begin{theorem}
 Let $\sca$ be a cover of $X$, so that $X=\bigcup_{A\in \sca}\mathrm{Int}(A)$. Then the theorem we're going to prove is this. If $S^\sca_\ast(X)=\sum_{A\in\sca}S_\ast(A)\to S_\ast(X)$ induces an isomorphism in $ H_\ast$. (This is a ``quasi-isomorphism'' of chain complexes.)
@@ -654,7 +654,7 @@ The map $S_\ast(A)+S_\ast(B)\hookrightarrow S_\ast(X)$ is a quasi-isomorphism, t
 \end{equation*}
 Voila, you have Mayer-Vietoris. (I have a different proof of this that I submitted in homework.)
 \end{example}
-\section{The cone construction}
+\subsection{The cone construction}
 Let $X\subseteq \mathbf{R}^N$ be a star-shaped region, and let $b\in\mathbf{R}^N$. Then we showed that the augmentation $S_\ast(X)\xrightarrow{\epsilon}\Z$ is a chain homotopy equivalence. There's another map going backwards $\Z\xrightarrow{\eta_b} S_\ast(X)$ sending $1\mapsto c^0_b$. Clearly the composition $\epsilon\circ\eta_b$ is the identity. We want to show that $\eta_b$ ad $\epsilon$ are chain homotopy inverses to each other. One direction is easy. The other map $S_\ast(X)\xrightarrow{\eta_b\epsilon}S_\ast(X)$ being homotopic to $1_{S_\ast(X)}$ is a little harder. This means that we want to construct a map $b\ast:S_n(X)\to S_{n+1}(X)$ such that $db\ast+b\ast d=1-\eta_b\epsilon$.
 
 Consider some $\sigma:\Delta^1\to X$. Then because $X$ is star shaped, you can send $\sigma$ to $b$. This gives a $2$-simplex $b\ast \sigma$, called the \emph{join}. We'll define this $2$-simplex and label it so that the zero vertex is $b$ itself, the $1$ vertex is $d_1\sigma$, and the $2$ vertex is $d_0\sigma$. Define $b\ast\sigma$ as follows (where $(t_0,\cdots,t_{n+1})\in \Delta^{n+1}$):
@@ -683,14 +683,14 @@ d(b\ast c)& = d_0(b\ast c) - d_1(b\ast c) + \sum_{i>1}(-1)^i d_i(b\ast c)\\
 & = c-\eta_b\epsilon c - b\ast dc
 \end{align*}
 Here $j=i-1$. The equality $\sum_{j=0}^{n-1}(-1)^jb\ast d_jc=b_\ast dc$ holds because $b\ast$ is linear (by definition on $S_n(X)$). This means that $b\ast$ is a chain homotopy, QED. This completes what we've claimed about the star shaped region. We want to use this cone construction to talk about subdivision.
-\section{Subdivide the standard simplex}
+\subsection{Subdivide the standard simplex}
 Let's focus on the standard simplex. This is a nice thing about singular homology. For the $1$-simplex, you just cut in half. For the $2$-simplex, just look at the subdivision of each face, and look at the barycenter\footnote{The barycenter of the $n$-simplex is $b_n:=\frac{(1,\cdots,1)}{n+1}$.}, and join the barycenter to the $1$-simplex between each ``half'' $1$-simplex. We want to formalize this process. Define a natural transformation $\$:S_n(X)\to S_n(X)$ by defining on standard $n$-simplex, namely by specifying what $\$(\iota_n)$ is where $\iota_n:\Delta^n\xrightarrow{\mathrm{id}}\Delta^n$, and then extending by naturality (namely $\$(\sigma)=\sigma_\ast\$(\iota_n)$). Here's the definition. When $n=0$, define $\$=\mathrm{id}$, i.e., $\$(\iota_0)=\iota_0$. For $n>0$, define $\$\iota_n:=b_n\ast\$ d\iota_n$ where $b_n$ is the barycenter of $\Delta^n$. This makes a \emph{lot} of sense if you draw out a picture, and it's a very clever definition that captures the geometry we described. Let me tell you what we'll prove about this, most likely on Wednesday.
 \begin{prop}
 $\$$ is a chain map $S_\ast(X)\to S_\ast(X)$, i.e., $\$d=d\$$. Also, $\$\simeq 1$.
 \end{prop}
 Also, class is cancelled on Friday.
 %\newpage
-\chapter{Locality (almost done!)}
+\section{Locality (almost done!)}
 \begin{theorem}
 We discovered that $S^\sca_\ast(X)\hookrightarrow S_\ast(X)$ is a subcomplex, and this induced an isomorphism in homology.
 \end{theorem}
@@ -794,7 +794,7 @@ We're almost there. We'll finish the proof of locality on Friday.
 \end{proof}
 \end{proof}
 %\newpage
-\chapter{Concluding Locality! and CW-complexes}
+\section{Concluding Locality! and CW-complexes}
 Again recall what $\sca$-small covers, etc. are. We want to prove that:
 \begin{theorem}
 $S^\sca_\ast(X)\hookrightarrow S_\ast(X)$ is a quasi-isomorphism, i.e., an isomorphism on homology.
@@ -813,7 +813,7 @@ Now for injectivity. Suppose $c\in S^\sca_n(X)$ with $dc=0$. Suppose that $c=db$
 Now, $\$^k$ is $\sca$-small. Is $T_kc$ also $\sca$-small? I claim that it is. Why? It is enough to show that $T_k\sigma$ is $\sca$-small if $\sigma$ is. We know that $\sigma=\sigma_\ast\iota_n$. Because $\sigma$ is $\sca$-small, we know that $\sigma:\Delta^n\to X$ is the composition $i_\ast\overline{\sigma}$ where $\overline{\sigma}:\Delta^n\to A$ and $i:A\to X$ is the inclusion for some $A\in\sca$. This means that $T_k\sigma=T_ki_\ast\overline{\sigma}=i_\ast T_k\overline{\sigma}$, which certainly is $\sca$-small.
 \end{proof}
 ``Are you happy? You should be very happy, because we've finished our first portion of this course. We now have a whole package of homology.''
-\section{CW-complexes}
+\subsection{CW-complexes}
 Simplicial complexes are rigid and combinatorial. But manifolds are smooth. In between, you have CW-complexes. (A lot of advertisement for this.) We want to ``glue'' things. This is the pushout construction. Namely, if you have $i:A\hookrightarrow B$ and $f:A\to X$, then you define $X\cup_f B$ (or $X\cup_A B$) via:
 \begin{equation*}
 \xymatrix{A\ar[r]^f\ar@{^(->}[d]_i & X\ar[d]\\
@@ -907,7 +907,7 @@ Not going to do this.
 \end{proof}
 Note that there could be multiple CW-structures on something.
 %\newpage
-\chapter{CW-complexes and cellular homology}
+\section{CW-complexes and cellular homology}
 Recall:
 \begin{definition}
 A \emph{CW-complex} is a space $X$ with a sequence of subspaces $\emptyset=X_{-1}\subseteq X_0\subseteq X_1\subseteq\cdots\subseteq X$ (could be an infinite sequence) such that for all $n$, there is a map $f:\coprod_{\alpha\in A_n}S^{n-1}_\alpha\to X_{n-1}$ (called the \emph{attaching map}), such that there is a pushout diagram like this:
@@ -959,7 +959,7 @@ S^{k-1}\ar[u]^{\text{double cover}}\ar[r] & D^k\ar[u]}
 \end{equation*}
 This is true if you notice that the preimage of any point of $\mathbf{RP}^k$ must be two points, one of which must be in the upper hemisphere, which is a disk, unless both points are on the equatorial sphere.
 \end{example}
-\section{Homology of CW-complexes}
+\subsection{Homology of CW-complexes}
 Consider:
 \begin{equation*}
 \xymatrix{A\ar@{^(->}[r]\ar[d]^f & B\ar[r]\ar[d] & B/A\ar@{-->}[d]\\
@@ -1001,7 +1001,7 @@ And in other dimensions, $ H_q(X_{k-1})\cong H_q(X_k)$ for $q\neq k,k-1$. So:
 \end{enumerate}
 \end{corollary}
 %\newpage
-\chapter{Homology of CW-complexes}
+\section{Homology of CW-complexes}
 \begin{lemma}
 There are isomorphisms:
 \begin{equation*}
@@ -1080,7 +1080,7 @@ One of the maps $S^{n-1}\to S^{n-1}$ from the wedge is the identity, and the oth
 \end{equation*}
 We'll continue next time\footnote{Why don't we work in $\Z/2\Z$ coefficients? This is so much easier then. :P}.
 %\newpage
-\chapter{Missing lemmas, $\mathbf{RP}^n$ again, and even CW-complexes}
+\section{Missing lemmas, $\mathbf{RP}^n$ again, and even CW-complexes}
 \begin{lemma}
 We want to show that $ H_\ast(X_n,X_{n-1})\cong H_\ast(X_n/X_{n-1},\ast)$. We have the characteristic map $\left(\coprod_\alpha D^n,\coprod_\alpha S^{n-1}\right)\to (X_n,X_{n-1})$, where the map $\coprod_\alpha S^{n-1}\to X_{n-1}$ is the attaching map.
 \begin{equation*}
@@ -1168,7 +1168,7 @@ Anyway, if you had $X$ only with even cells, then $C_{\text{odd}}(X)=0$, so $ H_
 \end{equation*}
 \end{remark}
 %\newpage
-\chapter{Relative attaching maps, $\RP^n$, Euler characteristic, and homology approximation}
+\section{Relative attaching maps, $\RP^n$, Euler characteristic, and homology approximation}
 Recall:
 \begin{equation*}
 \xymatrix{ H_n\left(\coprod_\alpha D^n_\alpha\right)\ar[r]^\partial_\cong\ar[d]^\cong_{\text{char. map}} & H_{n-1}\left(\coprod_\alpha S^{n-1}_\alpha\right)\ar[d]_{\text{attaching map}} & H_{n-1}\left(\coprod_\beta D^{n-1}_\beta,\coprod_\beta S^{n-2}_\beta\right) \ar[r]^\cong & \widetilde{ H}_{n-1}\left(\bigvee_\beta D^{n-1}_\beta/S^{n-2}_\beta\right)\ar[d]^\cong\\
@@ -1183,7 +1183,7 @@ This boundary map $d$ is the effect of $ H_{n-1}(-)$ to:
 The composite in the top row of this diagram is called the ``relative attaching map'' because you're working relative to the $(n-2)$-skeleton.
 
 Before, I coyly said before that there is a monoid homomorphism $\deg:[S^{n-1},S^{n-1}]\to\Z_\times$ that sends $f\mapsto ( H_{n-1}(f): H_{n-1}(S^{n-1})\to H_{n-1}(S^{n-1}))$. I said that this was surjective. This is actually an isomorphism. We won't prove injectivity here, but we'll do this in 18.906.
-\section{$\RP^m$}
+\subsection{$\RP^m$}
 Recall the CW-structure $\RP^0\subseteq\RP^1\subseteq\cdots\subseteq\RP^{n-1}\subseteq\RP^n\subseteq \cdots\subseteq\RP^m$, where $\RP^{n-1}$ is the collection of lines in $\RR^n$. The attaching map is the double cover $\pi:S^{n-1}\to\RP^{n-1}$ to get a pushout
 \begin{equation*}
 \xymatrix{S^{n-1}\ar[r]^{\text{double cover}}\ar[d] & \RP^{n-1}\ar[d]\\
@@ -1219,7 +1219,7 @@ Thus:
 \end{cases}
 \end{equation*}
 This means that odd-dimensional real projective space is orientable, and even-dimensional real projective is non-orientable.
-\section{Euler char.}
+\subsection{Euler char.}
 On Friday, I made the comment that things are simpler if you have (?). Here's a lemma.
 \begin{lemma}
 If $X$ is a CW-complex with only even cells (eg. $\CP^n,\mathbb{H}\mathbf{P}^n$), then $ H_\text{odd}(X)=0$, and $ H_\text{even}(X)=C_\text{even}(X)$. Actually, I can just write $ H_\ast(X)\cong C_\ast(X)$. Even homology groups are free abelian groups with rank given by the number of $(2q)$-cells.
@@ -1232,12 +1232,12 @@ Here's a result that'll improve this.
 Let $X$ be a finite CW-complex\footnote{Some alarm starts ringing. ``What are we supposed to do? It's just here to annoy us. It's ringing, but there's nothing to answer. Can we ignore it? (Turns off the light.) Let's just talk over it''.}. (We write $A_n$ to index the $n$-cells.)\footnote{Alarm ends, yay!} Then $\sum^\infty_{n=0}(-1)^n\# A_n=:\chi(X)=\text{Euler characteristic}$ is independent of the CW-structure on $X$. 
 \end{theorem}
 When $n$ is even, the lemma is much stronger than this. I'm going to prove this theorem. Now I want to give a little reminder about the structure of finitely generated abelian groups.
-\section{Finitely generated abelian groups}
+\subsection{Finitely generated abelian groups}
 If you have an abelian group $A$, you have a torsion subgroup $T(A)$, i.e., elements of finite order in $A$, i.e., $\{a\in A|\exists n\in \Z_{>0},na=0\}$. Then $A/T(A)$ is \emph{torsion free}. For a general abelian group, that's all you can say. Assume $A$ is finitely generated. Then $A/T(A)$ is also a finitely generated torsion free abelian group (take the image of the generators of $A$). This is actually a \emph{free abelian group}, and so it's isomorphic to $\Z^r$. We say that $r$ is the \emph{rank} of $A$. It's an invariant of $A$.
 
 Another fact is the following. Recall that any subgroup of $A$ is finitely generated (nontrivial fact). This means that $T(A)$ is finitely generated. It is true that $T(A)=\Z/n_1\oplus\Z/n_2\oplus\cdots\oplus\Z/n_t$ where $n_1|n_2|\cdots|n_t$, where $t$ is well-defined and is ``the number of torsion generators''. What this means for us is that $A\cong T(A)\oplus A/T(A)\cong \Z^r\oplus\Z/n_1\oplus\Z/n_2\oplus\cdots\oplus\Z/n_t$ where $n_1|n_2|\cdots|n_t$. If $0\to A\to B\to C\to 0$ is a sexseq of finitely generated abelian groups, then $\text{rank}(A)+\text{rank}(B)=\text{rank}(C)$.
 %\newpage
-\chapter{``Euler's theorem'', and ``homology approximation'' - CTC Wall. I) Singular homology, II) CW complexes, III) ``homological algebra''}
+\section{``Euler's theorem'', and ``homology approximation'' - CTC Wall. I) Singular homology, II) CW complexes, III) ``homological algebra''}
 \begin{theorem}[``Euler'']
 Let $X$ be a space which admits the structure of a finite CW complex. The sum $\sum_{h=0}^\infty (-1)^k\#(k\text{-cells})$ (generalizes $V-E+F$) is independent of that structure.
 \end{theorem}
@@ -1280,7 +1280,7 @@ For more general abelian groups, you have a free abelian group $F_0$ sitting in 
 \end{equation*}
 Such an $X$ is called a Moore space, and has homology $M$ in dimension $k$ and zero everywhere else. You can't make this into a functor, i.e., this can't be made into a functor $\mathbf{Ab}\to\mathbf{Top}$.
 \end{example}
-\section{Homological algebra}
+\subsection{Homological algebra}
 You can put coefficients into homology. Let $M$ an abelian group. You can talk about homology with coefficients in $M$. For example, $M=\Z,\QQ,\Z/n\Z,\cdots$. The $\Z/n\Z$ case when $n$ is prime is pretty important because it's then a field.
 
 Given $X$, you get a singular simplicial set $\Sin_\ast(X)$. Then we took the free abelian group $S_\ast$ generated by $\Sin_\ast(X)$. I.e., $S_n=\Z[\Sin_n(X)]=\bigoplus_{\Sin_n(X)}\Z$. But I could replace $\Z$ with anything I wanted, and do the \emph{exact} same construction. I can just as well as put any abelian group here.
@@ -1305,7 +1305,7 @@ This means that if $R$ is a commutative ring, then $ H_\ast(X;R)$ is an $R$-modu
 
 I'll admit, this is a little bit scary, because commutative rings are pretty complicated in general. I won't talk about some weirdo rings, though. I'll develop this more on Friday. Let me pass out homework.
 %\newpage
-\chapter{$\bigotimes$}
+\section{$\bigotimes$}
 Welcome to algebraic topology! This is family weekend, so welcome. Today'll be more about algebra, and there'll be very little topology, I'm afraid. Today'll be about tensor products. I got your permission to talk about modules over a commutative ring. We're always going to let $R$ be a commutative ring (they're going to be simple; for example, $\QQ,\FF_p,\Z,\Z/n\Z,\cdots,\text{PIDs}$).
 
 I want to tell you that the category of $R$-modules is what's called a ``categorical ring'', where the addition corresponds to the direct sum, the zero element is the zero module, $1$ is $R$ itself, and multiplication is where you put a circle around a multiplication symbol.
@@ -1402,9 +1402,9 @@ We have not done any computations yet. I guess I should end with the statement t
 How is $ H_\ast(X;M)$ related to $ H_\ast(X)= H_\ast(X;\Z)$? This is a reasonable question.
 \end{question}
 %\newpage
-\chapter{Tensor and Tor}
+\section{Tensor and Tor}
 Office hours are: for Hood, today from 1:30 to 3:30 in 2-390, and for me on Tuesday from 1 to 3 in 2-478. Point-set topology is the hardest part of this course, sorry for messing up the question on this week's pset. I like to emphasize the algebraic part.
-\section{Properties over $\otimes_R$}
+\subsection{Properties over $\otimes_R$}
 \begin{enumerate}
 \setcounter{enumi}{5}
 \item A ring is precisely specified by a map $R\otimes_\Z R\xrightarrow{\mu}R\xleftarrow{\eta}\Z$. You can define a ring purely diagramattically. Associativity is commutativity of the following diagram:
@@ -1507,7 +1507,7 @@ Where $F_{i+1}$ surjects onto $K_i$ and the $F_i$ are free $R$-modules. Splicing
 \end{equation*}
 The $F_0$ are generators of $N$, the $F_1$ are relations, the $F_2$ are relations between relations, and so on. We say that these are syzygies. The singular term is syzygy.
 %\newpage
-\chapter{More about $\Tor$}
+\section{More about $\Tor$}
 Where is everybody? Looks like nobody wants to hear about $\Tor$. You're the select few.
 
 On Monday I gave ``axioms'' for $\Tor$, basically by saying that $\Tor^R_n(M,-):\mathbf{Mod}_R\to\mathbf{Mod}_R$ is like a homology theory. Today I'm going to show a construction of $\Tor$, and verify the axioms. Or at least the lexseq business. I also tried to show that it's a reasonable idea to study free resolutions, namely:
@@ -1629,9 +1629,9 @@ The bottom row is exact by the $3\times 3$-lemma. It's why I gave it to you for 
 
 The key idea in homological algebra is that free modules are good.
 %\newpage
-\chapter{Direct Limits}
+\section{Direct Limits}
 Goals are UCT (universal coefficient theorem), which is about $ H_\ast(X;M)$ for varying $M$, the K\"{u}nneth theorem (which is about $ H_\ast(X\times Y)$), cohomology, and Poincar\'{e} duality.
-\section{Two more things about $\Tor$}
+\subsection{Two more things about $\Tor$}
 If $R$ is a PID, then there's not so much to say about $\Tor$, because any submodule of a free module is free. So that means that any $R$-module has a free resolution $0\to F_1=\ker(f)\to F_0\xrightarrow{f}\to N\to 0$. It follows that $\Tor^R_n(M,N)=0$ for $n>1$. If you have a field, then tensoring is exact, so $\Tor^k_0(M,N)=0$ for $n>0$. That's why it's easy to work with fields. (There's also Prufer rings, where every module is flat.) By the way, this means that if you have a sexseq $0\to A\to B\to C\to 0$, then over a PID $R$, there's a six-term exact sequence $0\to\Tor^R_1(M,A)\to \Tor^R_1(M,B)\to \Tor^R_1(M,C)\to M\otimes_R A\to M\otimes_R B\to M\otimes_R C\to 0$.
 \begin{example}
 I want to give an example when you do have higher $\Tor$. Let $k$ be a field. Let $R=k[e]/(e^2)$. This is sometimes called the ``dual numbers'', or the exterior algebra over $k$. We're going to consider $R$-modules. Let's construct a projective resolution of $k$. Hmm. What is an $R$-module $M$? It's just a $k$-vector space $M$ with an operator $d$ that has action given by multiplication by $e$, and this satisfies $d^2=0$. And this is a chain complex! I guess it's not quite a chain complex because for us chain complexes are graded. So I guess it's an ungraded chain complex. I can consider $ H(M;d):=\ker d/\img d$. Here's an example of an $R$-module. There's the augmentation $R\to k$ sending $e\mapsto 0$. This makes $k$ an $R$-module, where $d=0$. Let's construct a free resolution of $k$.
@@ -1639,7 +1639,7 @@ I want to give an example when you do have higher $\Tor$. Let $k$ be a field. Le
 Here we go. We're going to write $k=\bullet(=1)$ and $R:=(1=)\bullet\xrightarrow{d}\bullet(=e)$. Well, we have $R\to k$ given by $(\bullet\xrightarrow{d}\bullet)\to \bullet$. The kernel is not free, so we get $(\bullet\xrightarrow{d}\bullet)\to (\bullet\xrightarrow{d}\bullet)\to \bullet$. And this continues, so we get a projective resolution $\cdots\xrightarrow{e} R\xrightarrow{e} R\xrightarrow{e} R\to k$. What is $\Tor$? Well, $\Tor^R_\ast(M,k)$ is the homology of the following chain complex $\cdots\xrightarrow{d} M\xrightarrow{d} M\to 0$. What is that homology? Clearly $\Tor^R_0(M,k)=M\otimes_R k=M/dM=M/eM$. This is often called the module of indecomposables. And, $\Tor^R_n(M,k)= H(M;d)$.
 \end{example}
 Last comment about $\Tor$ is that there's a symmetry there. Of course, $M\otimes_R N\cong N\otimes_R M$. This uses the fact that $R$ is commutative. This leads right on to saying that $\Tor^R_n(M,N)\cong \Tor^R_n(N,M)$. We've been computing $\Tor$ by taking a resolution of the second variable. But I could equally have taken a resolution of the first variable. This follows from the fundamental theorem of homological algebra.
-\section{Direct limits}
+\subsection{Direct limits}
 A long time ago, I said what a poset was. Let me tell you a joke about posets. I was at a conference, and Quillen was giving a talk. He was a student of Raoul Bott. Quillen was giving his talk, and he used the term ``poset''. This word was invented by Garrett Birkhoff(?). Then Bott objected and said ``What is this crazy word?'', and Quillen responded ``What are you talking about? Your colleague invented it!''. Anyway, it's not a joke. I guess it's just a piece of MIT and Harvard rivalry.
 
 Anyway, a poset is a small category $\cI$ such that $\#\cI(i,j)\leq 1$ and isomorphism implies identity. I want to talk about a \emph{directed set}.
@@ -1699,7 +1699,7 @@ First of all, $X_\bullet\to Z_\bullet$ is zero. Thus it factors through the cons
 \end{proof}
 This makes the world a nice place to live.
 %\newpage
-\chapter{Universal coefficient theorem (and $\Hom$, adjointness)}
+\section{Universal coefficient theorem (and $\Hom$, adjointness)}
 On Wednesday, we'll talk about the K\"{u}nneth theorem, and later we'll talk about the K\"{u}nneth theorem. We've been talking about tensor products of $R$-modules, but we can do something that's more natural in a way. That's the notion of $\Hom_R(M,N)$, which is the collection of $R$-linear homomorphisms between $R$-modules $M$ and $N$. This is actually itself an $R$-module. It's an abelian group, first of all, because you can add morphisms. How does $r\in R$ act on $f\in \Hom_R(M,N)$? Just define $(rf)(x)=f\cdot f(x)$. You should check that this does actually define an $R$-module homomorphism. (This is trivial.) If $R$ isn't commutative I guess there'd be an action of $Z(R)$ on $\Hom_R(M,N)$. In particular, $\Hom_R(M,-):\mathbf{Mod}_R\to\mathbf{Mod}_R$.
 \begin{remark}
 You're supposed to technically write $\underline{\Hom}_R(M,N)$ to mean $\Hom_R(M,N)$ with the structure of an $R$-module. But in these notes, I will not do this.
@@ -1754,13 +1754,13 @@ Suppose $R$ is not a PID. For example, consider what we worked with before, e.g.
 \end{remark}
 The next step is to consider the homology of products.
 %\newpage
-\chapter{K\"{u}nneth and Eilenberg-Zilber}
+\section{K\"{u}nneth and Eilenberg-Zilber}
 We want to compute the homology of a product. Long ago, we constructed a bilinear map $S_p(X)\times S_q(Y)\to S_{p+q}(X\times Y)$, called the cross product. So we get a linear map $S_p(X)\otimes S_q(Y)\to S_{p+q}(X\times Y)$, and it satisfies the Leibniz formula, i.e., $d(x\times y)=dx\times y+(-1)^px\times dy$. The method we used was really another example of the fundamental theorem of homological algebra.
 \begin{definition}
 Let $C_\bullet,D_\bullet$ be chain complexes that are bounded below (i.e., $C_i=0$ and $D_i=0$ for $i\ll 0$; we'll be looking at the case where they're zero if $i<0$). Define $(C_\bullet\otimes D_\bullet)_n=\bigoplus_{p+q=n}C_p\otimes D_q$. The boundedness says that it's a finite sum. The differential $(C_\bullet\otimes D_\bullet)_n\to (C_\bullet\otimes D_\bullet)_{n-1}$ sends $C_p\otimes D_q\to C_{p-1}\otimes D_q\bigoplus C_p\otimes D_{q-1}$ given by $x\otimes y\mapsto dx\otimes y+(-1)^p x\otimes dy$.
 \end{definition}
 So the cross product is a map of chain complexes $S_\ast(X)\otimes S_\ast(Y)\to S_\ast(X\times Y)$. The K\"{u}nneth theorem in dimension zero is really easy, because $\pi_0(X)\times \pi_0(Y)=\pi_0(X\times Y)$.
-\section{Acyclic models}
+\subsection{Acyclic models}
 Let $\cc$ be a category, and let $F:\cc\to\mathbf{Ab}$ be a functor. Fix a set of object in $\cc$, and let $\MM$ be the ``models''. If $\cc=\mathbf{Top}\times\mathbf{Top}$, then $\MM$ is the set of pairs of simplices.
 \begin{definition}
 We say that $F$ is $\MM$-free if it is a direct sum of the free abelian group of the corepresentable functors, i.e., $F$ is a direct sum of $\Z\Hom_\cc(M,-)$ where $M\in\MM$.
@@ -1847,7 +1847,7 @@ This is rather spectacular. For example, what is $ H_\ast(\RP^2\times\RP^3;\Z/2\
 \end{cases}
 \end{equation*}
 %\newpage
-\chapter{A few more things about coefficients, cohomology}
+\section{A few more things about coefficients, cohomology}
 Problem Set 5 now due Friday! Recall our example where we let $\cI=(\Z_{>0},|)$. You can consider $\cI\to\mathbf{Ab}$, say assigning to each $i$ the integers $\Z$, and $f_{ij}:\Z\xrightarrow{j/i}\Z$. The colimit is $\QQ$, where you send $X_n\to\QQ$ via $1\mapsto \frac{1}{n}$. It's rather natural. But it's not the simplest way to define $\QQ$. You just could have defined $\QQ=\varinjlim(\Z\xrightarrow{2}\Z\xrightarrow{3}\Z\xrightarrow{4}\Z\to\cdots)$.
 
 We saw that $\varinjlim$ is exact, that it commutes with tensor products, and that homology commutes with direct limits. So if I had a chain complex $C_\bullet$ of abelian groups, then the process of computing homology involves exact sequences. If I want to compute:
@@ -1941,7 +1941,7 @@ I can take the homology of this sexseq to get a lexseq:
 \end{equation*}
 And $ H^0(X;N)$ sits in the cokernel of $\Map(\Sin_0(X),N)\to \Map(\Sin_1(X),N)$, so that $ H^0(X;N)=\Map(\pi_0(X),N)$.
 %\newpage
-\chapter{Cohomology, Ext, cup product}
+\section{Cohomology, Ext, cup product}
 Let $R$ be a ring, probably a PID. It's often a field, but it could be $\Z$. Let $N$ be an $R$-module. Define $S^n(X;N)=\Map(\Sin_n(X),N)$. There's a boundary map $d:S^n(X;N)\to S^{n+1}(X;N)$ that takes a cochain $f$ to the map $df$ defined by $df(\sigma)=(-1)^{n+1}f(d\sigma)$ where $\sigma\in \Sin_{n+1}(X)$. Now, $d^2=0$, so $ H^n(X;N):= H^n(S^\ast(X;N))$. This is a contravariant functor from $\mathbf{Top}$ to $\mathbf{Ab}$ and it's covariant in the coefficients. 
 
 When $n=0$, you have $0\to S^0(X;N)\xrightarrow{d} S^1(X;N)$. Thus $ H^0(X;N)=\ker d$. Well, $S^0(X;N)=\Map(X,N)$, and $d$ sends a $0$-cochain $f$ to $\sigma\mapsto\pm f(d\sigma)=\pm(f(\sigma(0))-f(\sigma(1)))$. So a function is in the kernel of $d$ if its values on the ends of any path is the same. Thus $ H^0(X;N)=\Map(\pi_0(X),N)$.
@@ -1988,7 +1988,7 @@ Let $R=\Z$, and look at the sexseq $0\to \Z\xrightarrow{k}\Z\to\Z/k\Z\to 0$. Her
 The map $N\to N$ in this lexseq is multiplication by $k$. Thus $\Hom(\Z/k\Z,N)=\ker(N\xrightarrow{k}N)$. And, well, $\Ext^1_\Z(\Z/k\Z,N)=N/kN$.
 \end{example}
 Let's get some consequences of cohomology from the UCT. Even independent of that, we get some properties.
-\section{Properties of cohomology}
+\subsection{Properties of cohomology}
 \begin{enumerate}
 \item It's homotopy invariant. This means that if $f_0\sim f_1:(X,A)\to (Y,B)$, then $ H^\ast(X,A;N)\xleftarrow{f_0^\ast,f_1^\ast} H^\ast(Y,B;N)$ are equal. I can't use the UCT to address this because the UCT only tells you that things are isomorphic (use the 5-lemma). But we did establish a chain homotopy $f_{0,\ast}\sim f_{1,\ast}:S_\ast(X,A)\to S_\ast(Y,B)$, and applying $\Hom$ still retains this chain homotopy, and hence you get the same map on cohomology.
 \item Excision. If $U\subseteq A\subseteq X$ such that $\overline{U}\subseteq\mathrm{Int}(A)$, then $ H^\ast(X,A;N)\leftarrow H^\ast(X-U,A-U;N)$ is an isomorphism. This follows from the UCT (in the relative form, which is also true).
@@ -2000,7 +2000,7 @@ Let's get some consequences of cohomology from the UCT. Even independent of that
 \end{equation*}
 \end{enumerate}
 %\newpage
-\chapter{Universal coefficient theorem, and products in $ H^\ast$}
+\section{Universal coefficient theorem, and products in $ H^\ast$}
 We talked about cohomology $ H^\ast(X,A;N)$, which was contravariant in $(X,A)$. We can repeat some of the arguments for homology in the cohomological context. We can also relate cohomology to homology. This is the purpose of the universal coefficient theorem for cohomology. I won't actually prove this here, because I've put up notes on the website that covers this.
 \begin{theorem}[Mixed variance UCT]
 Let $R$ be a PID, let $N$ be a $R$-module, and let $C_\bullet$ be a chain complex of free $R$-modules. We've decided that $\Hom_R(C_\bullet,N)$ is a cochain complex. I'm always a little confused on how to write the homology of a cochain complex? Should I write $ H^n$ or $ H_n$? Maybe this is a personal problem, and I should keep it personal? We'll just write $ H^n$. (Some ridiculous notation with the $n$ sitting on the line in $H$ was suggested, but this'd be \emph{impossible} to TeX!)
@@ -2046,7 +2046,7 @@ Another definition of $\Ext^1_R(M,N)$ is the set of extensions like this modulo 
 
 Also, $\Ext$ is contravariant in the first variable, but not in the second variable. If you want to find the Ext groups, you can use an injective resolution of the second variable, or a projective resolution of the first variable. These are what are known as derived functors. $\Tor$ is a left derived functor because it uses a projective resolution that goes off to the left, but $\Ext$ is a right derived functor because it uses an injective resolution that goes off to the right.
 \end{remark}
-\section{Products}
+\subsection{Products}
 We'll talk about the cohomology cross product.
 \begin{construction}
 Define $S^p(X)\otimes S^q(Y)\xrightarrow{\times}S^{p+q}(X\times Y)$ as follows. Let $\sigma$ be a $(p+q)$-simplex in $X\times Y$. Let $f\otimes g\in S^p(X)\otimes S^q(Y)$. We'll define $f\times g\in S^{p+q}(X\times Y)$. Then $f:S_p(X)\to R$ and $g:S_q(Y)\to R$. I can write $\sigma=\begin{pmatrix}\sigma_1 \\ \sigma_2\end{pmatrix}$ where $\sigma_1:\Delta^{p+q}\to X$ and $\sigma_2:\Delta^{p+q}\to Y$. Define:
@@ -2074,7 +2074,7 @@ Therefore, $(\alpha\cup\beta)\cup\gamma=\alpha\cup(\beta\cup\gamma)$.
 
 But this product is obviously not commutative. It treats the two maps completely differently. But we have ways of dealing with this. This comes from the story of acyclic models, where I'll show that $\alpha\cup\beta=(-1)^{|\alpha|\cdot|\beta|}\beta\cup\alpha$. Thus $ H^\ast(X)$ forms a \emph{graded commutative ring}.
 %\newpage
-\chapter{Cup product, continued}
+\section{Cup product, continued}
 We can construct an explicit map $S^p(X)\otimes S^q(Y)\xrightarrow{\times} S^{p+q}(Y)$ via:
 \begin{equation*}
 (f\times g)(\sigma)=f(\sigma_1\circ\alpha_p)g(\sigma_2\circ\omega_q)
@@ -2185,9 +2185,9 @@ It's very interesting to think about what the attaching map is:
 \end{equation*}
 On wednesday we'll have a relaxed talk about surfaces. BTW I might not TeX that.
 %\newpage
-\chapter{Surfaces and symmetric nondegenerate bilinear forms}
+\section{Surfaces and symmetric nondegenerate bilinear forms}
 Never mind, I decided to TeX this.
-\section{Case of Poincar\'{e} duality}
+\subsection{Case of Poincar\'{e} duality}
 Let $M$ be a compact manifold of dimension $n$ (this is the kind of thing most of the world cares about). This whole lecture will be happening with coefficients in $\FF_2$. There is a cup product pairing $ H^p(M)\otimes H^q(M)\to H^{p+q}(M)$.
 \begin{theorem}
 There exists a unique class $[M]\in H_n(M)$, called the fundamental class, such that there's a pairing $ H^p(M)\otimes H^q(M)\xrightarrow{\cup} H^n(M)\xleftarrow{\langle -,[M]\rangle}\FF_2$ when $p+q=n$. This pairing is a nonsingular (aka perfect) pairing, i.e., the map $ H^p(M)\to\Hom( H^q(M),\FF_2)$ defined by $x\mapsto(y\mapsto\langle x\cup y,[M]\rangle)$ is an isomorphism.
@@ -2205,7 +2205,7 @@ Let $M=T^2=S^1\times S^1$. We know that $ H^1(M)=\FF_2\times\FF_2=\langle x,y\ra
 \begin{example}[Especially interesting case]
 If $n=2k$, I get a symmetric bilinear form on $ H_k(M)$ via $ H_k(M)\otimes H_k(M)\to \FF_2$ that is nondegenerate.
 \end{example}
-\section{Symmetric bilinear forms}
+\subsection{Symmetric bilinear forms}
 I've really screwed up when TeXing this.
 
 If $W\subseteq V$ is a subspace, then a bilinear form on $V$ gives a bilinear form on $W$, but this need not be nonsingular even if the bilinear form on $V$ is. Observe though that the induced bilinear form on $W$ is nonsingular if and only if $W\cap W^\perp=0$. This result should be obvious, but I don't want to say why.
@@ -2258,7 +2258,7 @@ So, $\mathbf{Bil}$ is the commutative monoid generated by $(1)$, $\begin{pmatrix
 & 1 & \\
 & & 1
 \end{pmatrix}$.
-\section{Connected surfaces}
+\subsection{Connected surfaces}
 Let's go back to topology. Let $n=2$, $k=1$ (so that $2k=n$). Then you get an intersection pairing on $ H_1(M)$. Suppose I consider $\RP^2$. We know that $ H_1(\RP^2)=\FF_2$. This must be that ``$(1)$''-form. This says that anytime you have a cycle on a projective plane, there's nothing I can do to remove its self interesections. This is also seen on a Mobius band that I will not draw because I don't know how to draw fundamental polygons in LaTeX. But this can be seen by looking at the projection from the Mobius band to the circle.
 
 We also had the notion of connected sums. Let's compute the homology of $\Sigma_1\#\Sigma_2$ using Mayer-Vietoris, like you did in the exercise. You get $ H_2(\Sigma_1\#\Sigma_2)\to H_1(S^1)\to H_1(\Sigma_1-D^2)\oplus H_1(\Sigma_2-D^2)\to H_1(\Sigma_1\#\Sigma_2)$. When you pierce a surface, it collapses down into its $1$-skeleton, so $ H_2(\Sigma_1-D^2)\oplus H_2(\Sigma_2-D^2)\cong 0$. Let's restrict ourselves to connected surfaces. The map $ H_1(S^1)\to H_1(\Sigma_1-D^2)\oplus H_1(\Sigma_2-D^2)$ is the zero map when you think of it as a boundary. Actually, that argument needs to use something, because we know that with integer coefficients, this isn't right -- you need to find an oriented chain in that case -- but this orientation issue goes away in $\FF_2$ because there's no issues with $\pm$. And actually, the map $ H_1(\Sigma_1\#\Sigma_2)\to H_0(S^1)$ is zero as well, so $ H_1(\Sigma_1-D^2)\oplus H_1(\Sigma_2-D^2)\cong H_1(\Sigma_1)\oplus H_1(\Sigma_2)\cong H_1(\Sigma_1\#\Sigma_2)$ that respect the intersection pairing.
@@ -2287,7 +2287,7 @@ There's more to be said about this. You can think of quadratic forms if you're w
 
 Happy Thanksgiving! See you on Monday.
 %\newpage
-\chapter{A plethora of products}
+\section{A plethora of products}
 \begin{remark}
 Please note that these notes might be absolute bullshit, because I came back today from my flight at 8 am.
 \end{remark}
@@ -2371,7 +2371,7 @@ This makes $ H_\ast(X)$ into a module over $ H^\ast(X)$. These are not hard thin
 
 There's also slant products (two of them!). Maybe we won't talk about them. We will check a few things about cap products, and then we'll go into Poincar\'{e} duality. We can prove nice theorems then.
 %\newpage
-\chapter{Cap product and ``\v{C}ech'' cohomology}
+\section{Cap product and ``\v{C}ech'' cohomology}
 Let $R$ be a commutative ring with coefficients. The cap product is a map $\cap: H^p(X)\otimes H_n(X)\to H_{q}(X)$ where $p+q=n$. This comes from a chain level map $S^p(X)\otimes S_n(X)\xrightarrow{1\otimes\alpha} S^p(X)\otimes S_p(X)\otimes S_q(X)\xrightarrow{\langle-,-\rangle\otimes 1}R\otimes S_q(X)\cong S_q(X)$. Using our explicit formula for $\alpha$, we can write:
 \begin{equation*}
 \cap:\beta\otimes\sigma\mapsto\beta\otimes(\sigma\circ\alpha_p)\otimes(\sigma\circ\omega_q)\mapsto\left(\beta(\sigma\circ\alpha_p)\right)\cdot (\sigma\circ\omega_q)
@@ -2391,7 +2391,7 @@ So we're done.
 \item There's a relation between the cap and Kronecker product. Any space has an augmentation $\varepsilon:X\to\ast$, so I get $\varepsilon_\ast: H_\ast(X)\to R$. Maybe we should compute $\varepsilon_\ast(\beta\cap \sigma)$. I will get zero unless $p=n$ and $q=0$. What does our formula say? This just says that $\varepsilon_\ast(b\cap x)=\varepsilon_\ast(\beta(\sigma)\cdot c^0_{\sigma(n)})=\beta(\sigma)\varepsilon_\ast(c^0_{\sigma(n)})=\beta(\sigma)=\langle \beta,\sigma\rangle$ because $\varepsilon_\ast$ counts the number of points, i.e., it's $1$. Hence $\varepsilon_\ast(b\cap x)=\langle b,x\rangle$.
 \item What is $\langle a\cup b,x\rangle$? This is $\varepsilon_\ast((a\cup b)\cap x)=\varepsilon_\ast(a\cap(b\cap x))$ by an assertion in the previous lecture (namely that $(\alpha\cup\beta)\cap x=\alpha\cap(\beta\cap x)$ and $1\cap x=x$), which becomes $\langle a,b\cap x\rangle$. In other words, $\langle a\cup b,x\rangle=\langle a,b\cap x\rangle$. So the cup product is adjoint to the cap product.
 \end{enumerate}
-\section{Relative $\cap$}
+\subsection{Relative $\cap$}
 There's a lot of structure, but we want more. We want to now try to understand the relative cap product. Suppose $A\subseteq X$ is a subspace. We have:
 \begin{equation*}
 \xymatrix{
@@ -2413,7 +2413,7 @@ And:
 \beta\otimes\sigma\xrightarrow{1\otimes i_\ast}\beta\otimes i_\ast\sigma\to \beta\cap i_\ast(\sigma)
 \end{equation*}
 So they're equal by the projection formula. Hence you get $\cap: H^p(X)\otimes H_n(X,A)\to H_q(X,A)$ that makes $ H_\ast(X,A)$ a $ H^\ast(X)$-module.
-\section{A different perspective on excision}
+\subsection{A different perspective on excision}
 Recall what excision is. We know that $ H_\ast(X-U,A-U)\cong H_\ast(X,A)$. There's another perspective on this. Suppose $K\subseteq U\subseteq X$ such that $\overline{K}\subseteq\mathrm{Int}(U)$. To simplify things, suppose $K$ is closed and $U$ is open. Let $A=X-K\supseteq X-U=V$. Then excision says that $ H_\ast(X-V,A-V)= H_\ast(X-(X-U),(X-K)-(X-U))\cong H_\ast(X,A)= H_\ast(X,X-K)$. There's a simpler expression: $ H_\ast(X-(X-U),(X-K)-(X-U))= H_\ast(U,U-K)$, so $ H_\ast(U,U-K)\cong H_\ast(X,X-K)$, i.e., it depends only on an open neighborhood of $K$. A question that we now have is: how does this depend on $ H_\ast(K)$? $ H^\ast(K)$? This is really what Poincar\'{e} duality wants to understand.
 \begin{example}
 We'll eventually be talking, for example, about $X=S^3$ and $K=\text{knot}$.
@@ -2458,7 +2458,7 @@ This is a really strong condition by the way. It is a really stupid way.
 \end{remark}
 This works in the case that $K$ is regular in $X$. Thus, under this condition, $\cHH^p(K)\cong H^p(K)$. One other comment is that more generally, if $X$ is an Euclidean neighborhood retract (a retract of a neighborhood in some $\RR^n$), and $K$ is locally compact, then $\cHH^p(K)$ depends only on $K$, and it is isomorphic to \v{C}ech cohomology (which is a different type of cohomology theory).
 %\newpage
-\chapter{$\cHH^\ast$ as a cohomology theory, and the fully relative $\cap$ product}
+\section{$\cHH^\ast$ as a cohomology theory, and the fully relative $\cap$ product}
 pset 6 is now doe December 7. If you read any book about Poincar\'{e} duality, there'll be an incomprehensible smear of stuff about cap products. I want to give you a cleaner explanation. The motivation is that it's the main step in the proof of Poincar\'{e} duality.
 
 Let $X$ be any space, and let $K\subseteq X$ be a closed subspace. We'll write $\cHH^p(K)=\varinjlim_{U\in\mathcal{U}_K} H^p(U)$ (and call it the \v{C}ech cohomology -- but there's a different definition, although in certain cases they are isomorphic). We should write down a relative version of this as well. Suppose $L\subseteq K$ be closed. Define $\cHH^p(K,L)=\varinjlim_{(U,V)\in\mathcal{U}_{K,L}} H^p(U,V)$ where $K\supseteq L$ and $K\subseteq U$, and $L\subseteq V$ such that $V\subseteq U$. Here $\mathcal{U}_{K,L}$ is the directed set:
@@ -2621,13 +2621,13 @@ where I have four cohomology classes $x_{A \cup B},x_A,x_B,x_{A\cap B}$ that com
 \end{theorem}
 This is the most complicated blackboard for the rest of the course. Also xymatrix is not compiling properly because the diagram is too big!
 %\newpage
-\chapter{$\cHH^\ast$ as a cohomology theory}
+\section{$\cHH^\ast$ as a cohomology theory}
 Office hours: today, Hood in 4-390 from 1:30 to 3:30 and Miller in 4-478 from 1-3 on Tuesday. Note that pset 6 is due Wednesday. Also, Wednesday we'll have a lightning review of $\pi_1$ and covering spaces.
 
 We're coming to the end of the course, and there are going to be oral exams. I have some questions that I'd like to ask you. They won't be super advanced, detailed questions -- they'll be basic things. I'll post a list of examples of questions. I won't select questions from that list, that's cruel and isn't the point. The oral will be 40 minutes. It'll be fun -- better than a written exam. It's much better than grading a written exam!
 
 PLEASE DRAW A PICTURE WHEN READING THIS IF YOU DIDN'T COME TO CLASS!
-\section{$\cHH^\ast$ versus $H^\ast$}
+\subsection{$\cHH^\ast$ versus $H^\ast$}
 Let's come up with an example that distinguishes $\cHH^\ast$ and $H^\ast$. This is a famous example -- the topologist's sine curve. The topologist's sine curve is defined as follows. Consider the graph of $\sin(\pi/x)$ where $0<x\leq 1$, where we draw a continuous curve from $(0,-1)$ to $(1,0)$. This is a counterexample for a lot of things, you've probably seen it in 18.901.
 
 What is $H_\ast$ of the topologist sine curve? Use Mayer-Vietoris! I can choose the bottom half to be some connected portion of the continuous curve from $(0,-1)$ to $(1,0)$, and the top half to be the rest of the space that intersects the bottom half (in two spots). The top is the union of two path components, each contractible.
@@ -2637,7 +2637,7 @@ To see this, suppose I have $\sigma:I\to\mathrm{top}$ such that $\sigma(0)=(0,b)
 Thus, $H_1$ is simple: it fits into $0\to H_1(X)\to H_0(\mathrm{top}\cap\mathrm{bottom})\to H_0(\mathrm{top})\oplus H_0(\mathrm{top})\to H_0(X)\to 0$. This is basically $0\to H_1(X)\xrightarrow{\partial}\to\Z\oplus\Z\hookrightarrow\Z\oplus\Z\oplus\Z\to\Z\to 0$, so $\partial=0$. This means that $H_\ast(X)\cong H_\ast(\ast)$ and this implies that $H^\ast(X)\cong H^\ast(\ast)$.
 
 How about $\cHH^\ast$? Let $X\subset U$ be an open neighborhood. The interval is contained in some $\epsilon$-neighborhood that's contained in $U$. This implies that there exists a neighborhood $X\subseteq V\subseteq U$ such that $V\sim S^1$. Therefore, $\varinjlim_{U\in\mathcal{U}_X}H^\ast(U)\cong H^\ast(S^1)$ by ``cofinality''. So $\cHH^\ast$ and $H^\ast$ differ.
-\section{Cofinality}
+\subsection{Cofinality}
 Let $\cI$ be a directed set. Let $A:\cI\to \mathbf{Ab}$ be a functor. If I have a functor $f:\cK\to\cI$, then I get $Af:\cK\to\mathbf{Ab}$, i.e., $(Af)_j=A_{f(j)}$.
 
 I can form $\varinjlim_{\cK}Af$ and $\varinjlim_{I}A$. I claim you have a map $\varinjlim_{\cK}Af\to\varinjlim_{\cI}A$. All I have to do is the following:
@@ -2709,8 +2709,8 @@ If I give you $(U,V)\in \mathcal{U}_{A\cup B,B}$, define $(W,V)\in\mathcal{U}_A\
 
 Maybe I'll leave this to you. I'll put this on the board on Wednesday. Anyway, I'll use normality to show that $\mathcal{U}_A\times\mathcal{U}_B\to\mathcal{U}_{A,A\cap B}$ is cofinal, and thus this verifies excision -- so you actually have excision.
 \end{proof}
-\chapter{Finish off the proof of $\cHH^p$ excision, topological manifolds, fundamental classes}
-\section{The end of the proof}
+\section{Finish off the proof of $\cHH^p$ excision, topological manifolds, fundamental classes}
+\subsection{The end of the proof}
 Let's finish off the proof from last time. Suppose $A,B$ are closed in normal $X$. \underline{Excision for $\cHH^p$}:
 \begin{equation*}
 \xymatrix{
@@ -2723,7 +2723,7 @@ Let's finish off the proof from last time. Suppose $A,B$ are closed in normal $X
 $\mathcal{U}_A\times\mathcal{U}_B\to\mathcal{U}_{A,A\cap B}$ is cofinal since: start with $(U,V)\supseteq(A,A\cap B)$. Using normality, separate $B\cap(X-V)\subseteq T$ and $A\subseteq S$. Take $W=U\cap S$ and $Y=V\cup T$. Then $A\subseteq W\subseteq U$ and $A\cap B\subseteq W\cap Y=S\cap V\subseteq V$.
 
 This means that $\cHH^p$ satisfies excision, hence Mayer-Vietoris. Let's put this in the drawer for now.
-\section{Topological manifolds + Poincar\'{e} duality}
+\subsection{Topological manifolds + Poincar\'{e} duality}
 yayyyyyyyyyyyyy finally
 \subsubsection{Fundamental class and orientation local system}
 \begin{definition}
@@ -2806,7 +2806,7 @@ If $M$ is compact then $j:H_n(M)\to\Gamma(o_M)$ is an isomorphism, and $H_q(M)=0
 \end{theorem}
 This is case of Poincar\'{e} duality actually because $\Gamma(o_M)$ is somewhat like zero-dimensional cohomology. If this is trivial, like it is for a torus, so if the manifold is connected, then $\Gamma(o_M)$ is just $R$.
 %\newpage
-\chapter{Fundamental class}
+\section{Fundamental class}
 Note that if $M$ is a compact manifold, then $H_q(M;R)=0$ for $q\gg 0$, and if $R$ is a PID, then for all $q$, $H_q(M;R)$ is finitely-generated. This follows from:
 \begin{claim}
 Suppose $X$ admits an open cover $\{U_i\}_{i=1}^n$ such that all intersections are either empty or contractible (this is what you get for a good cover on a manifold). Then $H_q(X;R)=0$ for $q\geq n$, and if $R$ is a PID, then for all $q$, $H_q(X;R)$ is finitely-generated.
@@ -2884,7 +2884,7 @@ If a section $\sigma(x)=0$ for some $x$, then $\sigma=0$.
 Prof. Miller talked with me about this after class. If I recall correctly, one way to think about this is as follows. If you have a local system $p:E\to B$, this can be viewed as a representation of $\pi_1(B)\to R^\times$, and the $\Gamma(B;E)=(E_x)^{\pi_1(B)}$ where $\pi_1(B)$ acts on the fibers by multiplication. Thus $(E_x)^{\pi_1(B)}=R^{\pi_1(B)}$. If $R=\Z$, then $R^\times=\{\pm 1\}$, so $R^{\pi_1(B)}=\{r|ar=r,a\in\pi_1(B)\}$, so that $\Z^{\pi_1(B)}=0$. Hence there are no sections of $o_M$, as desired. For a ring $R$, $o_{M,R}=o_{M,\Z}\otimes R$. Something else for $\Z/2\Z$. A higher homotopy theoretic perspective is that if you have a fibration $E\to B$, then $E=PB\times_{\Omega B}F$ where $F$ is the fiber of the fibration, so that $\Gamma(B;E)=\Map_{\Omega B}(PB,F)=F^{h\Omega B}$. In the case of a covering space you recover what you have above since $\pi_0(\Omega B)=\pi_1(B)$.
 \end{remark}
 %\newpage
-\chapter{Covering spaces and Poincar\'{e} duality}
+\section{Covering spaces and Poincar\'{e} duality}
 Miller's office hours are tomorrow, from 1-3 in 2-478. The first half of this lecture was just explaining the remark above by using less technology.
 
 On the website, there are notes on $\pi_1(X,\ast)$. I'm assuming people have seen this thing. Assume $X$ is path-connected, and let $\ast\in X$. There's another technical assumption: semi-locally simply connected (SLSC), which means that for every $b\in X$ and neighborhood $b\in U$, there exists a smaller neighborhood $b\in V\subseteq U$ such that $\pi_1(V,b)\to\pi_1(X,b)$ is trivial. This is a very very weak condition.
@@ -2915,7 +2915,7 @@ $H_n(M,M-A;R)\xrightarrow{j,\cong}\Gamma_c(A;o_M\otimes R)$ and $H_q(M,M-A;R)=0$
 \begin{corollary}
 If $M$ is connected and $A=M$, and if $M$ is not compact, then $H_n(M;R)=0$. If $M$ is compact, then the work we just did shows that $H_n(M;R)=\begin{cases}R & \text{oriented} \\ \ker(R\xrightarrow{2}R) & \text{nonorientable}\end{cases}$.
 \end{corollary}
-\section{Poincare duality, finally}
+\subsection{Poincare duality, finally}
 Assume $M$ is $R$-oriented. Let $K\subseteq M$ be compact. Then $H_n(M,M-K)\xrightarrow{\cong}\Gamma(K;o_M\otimes R)$. Picking an orientation picks an isomorphism $\Gamma(K;o_M\otimes R)\cong R$. This gives some $[M]_K$, which is called the fundamental class along $K$. If $K=M$, then $[M]_M=:[M]\in H_n(M;R)$.
 
 Suppose $K\subseteq L$ are compact subsets. We now combine all of our results above:
@@ -2947,7 +2947,7 @@ That's the most beautiful form of all. If you do have an $L$, you have this ladd
 }
 \end{equation*}
 This is a consistency statement for Poincare duality. On Wednesday, we'll specialize even further, and prove the Jordan curve theorem as well as study the cohomology rings of things we haven't worked through before.
-\chapter{Applications}
+\section{Applications}
 Please check exam schedule! Also, a sample exam is posted. This is the payoff day. All this stuff about Poincare duality has got to be good for something. Recall:
 \begin{theorem}[Fully relative duality]
 Let $M$ be a $R$-oriented $n$-manifold. Let $L\subseteq K\subseteq M$ be compact ($M$ need not be compact). Then $[M]_K\in H_n(M,M-K)$, and capping gives an isomorphism:
