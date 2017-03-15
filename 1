@@ -1410,19 +1410,4 @@ If $P\downarrow B$ is a principal $G$-bundle, and $F$ is a left $G$-space, we ge
     This gives a new fiber bundle with fiber $F$, for the following reason. Let $x\in B$, and let $y\in P$ over $x$. We get $F\xrightarrow{\simeq} q^{-1}(\ast)$ via $z\mapsto[y,z]$. Define $q^{-1}(\ast)\to F$ via $[y^\prime,z^\prime]=[y,gz^\prime]\mapsto gz^\prime$ where $y^\prime = yg$ for some unique $g$. You can check that these two maps are inverse homeomorphisms.
     This is called an ``associated bundle'', and it's denoted $P\times_G F$.
 \end{construction}
-Let $\xi\downarrow B$ be an $n$-plane bundle (all the fiber dimensions are the same, say $n$). We can construct a principal $\GL_n(\RR)$-bundle $P(\xi)$. Define $P(\xi)_b = \text{set of bases for }E(\xi)_b = \mathrm{Iso}(\RR^n, E(\xi)_b)$. What's the topology?
-Well, $P(B\times \RR^n) = B\times \mathrm{Iso}(\RR^n,\RR^n)$, topologically, where $\mathrm{Iso}(\RR^n,\RR^n) = \GL_n(\RR)$ is given the usual topology as a subspace of $\RR^{n^2}$.
-There's an obvious right action of $\GL_n(\RR)$ on $P(\xi)\downarrow B$, given by precomposition. Obviously the action is free, and it's simply transitive, so you actually have a \emph{principal action} of $\GL_n(\RR)$ on $P(\xi)$. This is called the \emph{principalization} of $\xi$. 
-
-Look at the associated bundle with fiber $F = \RR^n$, where $\GL_n(\RR)$ acts on $\RR^n$ from the left, as it usually does. So I can form $P(\xi)\times_{\GL_n(\RR)}\RR^n$. Because this is a linear action, it's a vector bundle, and $P(\xi)\times_{\GL_n(\RR)}\RR^n\simeq E(\xi)$.
-
-Fix a topological group $G$. Define $\Bun_G(B)$ as the set of isomorphism classes of $G$-bundles over $B$. An isomorphism is a $G$-equivariant homeomorphism over the base.
-We've established that there's a natural isomorphism of functors:
-$$\Bun_{\GL_n(\RR)}(B) \simeq \Vect(B)$$
-The $I$-invariance theorem will follow immediately from:
-\begin{theorem}
-    $\Bun_G$ is $I$-invariant.
-\end{theorem}
-There's a lot more that I wanted to say, but let me say one additional thing.
-
-Principal bundles allow a description of geometric structures on $\xi$. By that I mean: suppose for instance that I have a metric on $\xi$. Then instead of all ordered bases, I can look at all ordered orthonormal bases in each fiber. This give the \emph{frame bundle} $\mathrm{Fr}(B) = \text{ordered orthonormal bases of }E(\xi)_b$, i.e., isometric isomorphisms $\RR^n\to E(\xi)_b$. Again, I have an action of the orthogonal group on $\mathrm{Fr}(B)$, so you have a principal $O(n)$-bundle. More examples: consistent orientations give an $SO(n)$-bundle. Trivializations give principal bundles as well. This is called ``reduction of the structure group''.
+Let $\xi\downarrow B$ be an $n$-plane bundle (all the fiber dimensions are the same, say $n$). We can construct a principal $\GL_n(\RR)$-bundle $P(\xi)$. Define $P(\xi)_b = \text{set of bases for }E(\xi)_b$.
