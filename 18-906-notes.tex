@@ -1625,3 +1625,122 @@ This is a very explicit geometric description of classifying spaces. There's an 
     Let's try $g_0\simeq\alpha\circ g_0$. Suppose $t,v$ are such that $tg_0(v) + (1-t)\alpha g_0(v) = 0$. What's the argument I'll make here? So $\alpha g_0(v)$ has only even coordinates. So I might as well suppose that $0<t<1$. Anyway, since $\alpha g_0(v)$ has only even coordinates, $g_0(v)$ itself must have only even coordinates. But then that means that the nonzero coordinates only for $0\mod 4$. But this equation says that $g_0(v)\neq 0$ only for $i\equiv 0\mod 4$. So I repeat this and find that the coordinates are zero for powers of two.
 \end{proof}
 Maybe that's all I want to say today. I'll just stop today nuless people have questions.
+\section{Simplicial sets}
+pset 3 is now due Friday, corrected on Wednesday.
+
+Simplicial sets arose first in algebraic topology, and now they're everywhere.
+Really I should be saying ``simplicial things'', or actually simplicial objects.
+Folks in 905 know about this, because I forced you through this in the beginning of the course.
+\subsection{Review}
+$[n]$ is the set $\{0,1,\cdots,n\}$ as a totally ordered set.
+I define a category $\Deltab = \{[n]:n\geq 0\}$ with morphisms order preserving maps.
+We can define a functor $\Delta:\Deltab\to\Top$ defined via $[n]\mapsto\Delta^n$ which is the convex hull of $\{e_0,\cdots,e_n\}\subseteq \RR^{n+1}$.
+This is extremely familiar from simplicial homology.
+I have the vertices of these things indexed by elements of $[n]$, so I just extend as an affine map. Namely, $\phi:[m]\to [n]$ gives $\phi:\Delta^m\to\Delta^n$, an affine extension. 
+Sometimes $\Delta^n$ is called the standard simplex.
+
+The next thing we did was to take some space $X$ and think about the set of singular $n$-simplices $\Top(\Delta^n,X)$, which gives a contravariant functor $\Deltab^{op}\to\Set$ via $[n]\mapsto\Top(\Delta^n,X)$. This gives the singular simplicial set $\Sin$.
+\begin{definition}
+    Let $\cc$ be a category. Denote by $s\cc$ the category of simplicial objects in $\cc$, i.e., the category $\Fun(\Deltab^{op},\cc)$.
+    Typically we write $X_n = X([n])$, called the $n$-simplices.
+\end{definition}
+Expanding this out, for all $n\geq 0$, there is $X_n\in\cc$ and maps given by the following. There are maps $d^i:[n]\to [n+1]$ given by omitting $i$ (called coface maps)
+and codegeneracy maps $s^i:[n]\to[n-1]$ that's the surjection which repeats $i$.
+Any order-preserving map can be written as the composite of these maps, and there are famous relations that these things satisfy.
+They generate the category $\Deltab$.
+Hence they give maps $d_i:X_{n+1}\to X_n$ and $s_i:X_{n-1}\to X_n$. These are the face and degeneracy maps.
+They're called that for a good reason, because in $\Sin(X)$, the face map $d_i\sigma = \sigma\circ d^i$, i.e., the simplex composed with the inclusion of a face.
+\begin{example}
+    Suppose $\cc$ is a small category, for instance, a group.
+    Notice that $[n]$ is a small category, with:
+    $$
+    [n](i,j) = \begin{cases}
+	\{\leq\} & \text{if }i\leq j\\
+	\emptyset & \text{else}
+    \end{cases}
+    $$
+    So, I'm entitled to think about $\Fun([n],\cc)$.
+    I thus have a simplicial set $N\cc$ whose $n$-simplices are $(N\cc)_n = \Fun([n],\cc)$.
+    This is called the \emph{nerve} of $\cc$.
+    Interestingly enough $N$ defines a functor $\Cat\to\Set$.
+    Thus an $n$-simplex in the nerve is $(n+1)$-objects in $\cc$ (possibly with repetitions) and a chain of $n$ composable morphisms.
+    The face maps in the nerve are truncating (at the end) or composing.
+    The degeneracy maps just compose with the identity at that vertex.
+
+    For example, $(NG)_n = G^n$ where $G$ is a group regarded as a category.
+\end{example}
+\subsection{Realization}
+We went from spaces to simplicial sets. There's a way to go back.
+This was thanks to Milnor. Lucky guy to be able to spell out this construction.
+
+Suppose I have a simplicial set $X$. I'll define $|X|$ as follows:
+$$
+|X| = \left(\coprod_{n\geq 0}\Delta^n\times X_n\right)/\sim
+$$
+where $\sim$ is defined as:
+$$
+\Delta^m\times X_m\ni (v,\phi^\ast x)\sim (\phi_\ast v, x)\in \Delta^n\times X
+$$
+for all $v\in \Delta^m$ and $x\in X_n$, where $\phi:[m]\to [n]$.
+Let's spell this out a little bit.
+\begin{example}
+    Let's look at $\phi^\ast = d_i:X_{n+1}\to X_n$ and $\phi_\ast = d^i:\Delta^n\to \Delta^{n+1}$.
+    The equivalence relation is then saying that if I have $(v,d_ix)\in \Delta^n\times X_n$, that's supposed to be equivalent to $(d^i v, x)\in \Delta^{n+1}\times X_{n+1}$.
+    So it's saying: I have the copy of $\Delta^{n+1}$ indexed by $x\in X_{n+1}$, and I have a copy of $\Delta^n$ indexed by $d_i x$. I'm taking the $n$-simplex indexed by $d_i x$ and identifying it with the $i$th face of the $(n+1)$-simplex indexed by $x$.
+    It's sticking together simplices as dictated by the simplicial structure on $X$.
+\end{example}
+There's a similar picture for the degeneracies $s^i$.
+For this, $\sim$ is saying that every element of the form $(v,s_ix)$ is already represented by a simplex of lower dimension.
+Maybe we should do an example of this.
+\begin{example}
+    Pick an $n\geq 0$. I'll look at $\Deltab(-,[n])$. This is a simplicial set.
+    It's like the most canonical simplicial set of all.
+    Let's call $\Deltab(-,[n])$ the ``simplicial $n$-simplex'', sorry about that. This is denoted $\Deltab^n$.
+    What's $|\Deltab^n|$?
+    This is gonna be:
+    $$
+    |\Deltab^n| = \coprod_{\text{nondegenerate $k$-simplices in }\Deltab^n}\Delta^k/\sim
+    $$
+    What are these nondegenerate $k$-simplices in $\Deltab^n$? These are exactly injective order preserving maps $[k]\to[n]$.
+    And then these are going to glue them together.
+
+    Suppose $n=3$; what are the injective maps $[k]\to [n]$? First $k\leq 3$. I have the identity.
+    Injective maps $[2]\to[3]$ just omit one vertex, so I can put in a face. There are four of them.
+    We can do the same thing with $1$-simplices.
+    Those are the edges, and same thing for $0$-simplices.
+    
+    What I've tried to prove is that $|\Deltab^n| \simeq \Delta^n$.
+    I've also tried to show that $|X|$ is naturally a CW-complex, with $\mathrm{sk}_n|X| = \left(\coprod_{k\leq n}\Delta^k\times X_k\right)/\sim$.
+    These face maps give you the attaching maps.
+    This is a very combinatorial way to produce CW-complexes.
+\end{example}
+Now, we have two functors going back and forth between spaces and simplicial sets?
+Do they form an adjoint pair?
+Actually this is one of the motivating examples of the theory of adjoint pairs. Namely, I have:
+$$
+|-|:s\Set\stackrel{\rightarrow}{\leftarrow} \Top:\Sin
+$$
+Let $X$ be a space.
+We have a map $\Delta^n\times\Sin_n(X)\to X$ given by $(v,\sigma)\mapsto \sigma(v)$.
+This is a continuous map.
+This equivalence relation defining $|\Sin(X)|$ says that the map factors as:
+\begin{equation*}
+    \xymatrix{
+	|\Sin(X)|\ar@{-->}[r] & X\\
+	\coprod\Delta^n\times\Sin_n(X)\ar[ur]\ar@{->>}[u] &
+    }
+\end{equation*}
+This is the counit of the adjunction.
+
+Suppose $K\in s\Set$. I want to define $K\to\Sin|K|$.
+If I have $x\in K_n$, I want to send it to $\Delta^n\to |K|$ defined via $v\mapsto [(v,x)]$.
+
+This is the beginning of a long story in semi-classical homotopy theory which says that you can take any homotopy theoretic question and reformulate it in simplicial sets.
+For instance, you can define homotopy groups in simplicial sets.
+If you don't like point-set topology, you can work in simplicial sets, and many people prefer that.
+
+The final thing to say for what happens next is this. If I have a category $\cc$, its realization $|N\cc|$ is a CW-complex, called the \emph{classifying space} of $\cc$.
+That's one thing to say.
+The other thing to leave you with is this.
+This construction of realization -- exactly the same formula makes sense more generally, even if I was considering simplicial \emph{spaces}.
+When I take the product, I really mean the product of spaces (in compactly generated spaces).
