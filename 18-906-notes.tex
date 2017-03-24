@@ -1705,7 +1705,7 @@ Maybe we should do an example of this.
     And then these are going to glue them together.
 
     Suppose $n=3$; what are the injective maps $[k]\to [n]$? First $k\leq 3$. I have the identity.
-    Injective maps $[2]\to[3]$ just omit one vertex, so I can put in a face. There are four of them.
+    Injective maps $[2]\to [3]$ just omit one vertex, so I can put in a face. There are four of them.
     We can do the same thing with $1$-simplices.
     Those are the edges, and same thing for $0$-simplices.
     
@@ -1744,3 +1744,82 @@ That's one thing to say.
 The other thing to leave you with is this.
 This construction of realization -- exactly the same formula makes sense more generally, even if I was considering simplicial \emph{spaces}.
 When I take the product, I really mean the product of spaces (in compactly generated spaces).
+\section{Remember what we have}
+We spent the first 25 minutes discussing one of the problems in the pset.
+
+A great reference for simplicial sets is Goerss-Jardine, but it's about 500 pages long.
+Another reference is Weibel's homological algebra.
+And also May's simplicial objects book.
+
+Remember that $\Deltab\ni[n]$ for $n\geq 0$ where $[n] = \{0,\cdots,n\}$.
+A simplicial object is a functor $X:\Deltab^{op}\to\cc$.
+Remember that:
+$$
+|X| = \coprod_{n\geq 0}\Delta^n\times X_n/\sim
+$$
+Remember that $s^i:[n]\to [n+1]$ repeats $i$. Part of this relation $\sim$ is that $(v,s_i x)\sim (s^i v,x)$.
+That means that $x\in X_{n-1}$ and $v\in\Deltab^n$.
+This tells us that $\img(s_i:X_{n-1}\to X_{n})$ indexes cells that lie in the $(n-1)$-skeleton $\mathrm{sk}_{n-1}|X| = \coprod_{k\leq n-1}\Delta^k\times X_k/\sim$.
+
+This gives two functors
+$$
+|-|:s\Set\stackrel{\rightarrow}{\leftarrow} \Top:\Sin
+$$
+and I defined the unit and counit last time.
+\begin{theorem}[Milnor]
+    The map $|\Sin(X)|\to X$ is a weak equivalence.
+\end{theorem}
+This is a functorial CW-approximation, but it's rather large.
+It's not at all minimal.
+It's some uncountable CW-complex.
+\begin{theorem}[You did this]
+    There is a homeomorphism $|X\times Y|\xrightarrow{\simeq} |X|\times |Y|$ (product in $k$-spaces).
+    The product of two simplicial sets is defined as $(X\times Y)_n:=X_n\times Y_n$.
+\end{theorem}
+Let $\Cat$ be the category of small categories and functors. The nerve gives a functor:
+$$
+\Cat\xrightarrow{N}s\Set
+$$
+\begin{definition}
+    In $\Cat$, define $C\times D$ as the category whose objects are pairs of object of $C$ and $D$ and morphisms are pairs of morphisms.
+\end{definition}
+Then $N(\cc\times\cd) = N\cc\times N\cd$.
+This is pretty clear.
+Then, I defined $B\cc:=|N\cc|$.
+\begin{theorem}
+    The natural map $B(\cc\times\cd)\xrightarrow{\simeq}B\cc\times B\cd$ is a homeomorphism.
+\end{theorem}
+I remember trying to explain to you that there's a simplicial simplex $\Deltab^n = \Deltab(-,[n])$, and trying to convince you that $|\Deltab^n| = \Delta^n$.
+
+Here's another observation about $\Cat$: it's Cartesian closed. There's that word again. I mean, it's got products, and it's got ``function objects'' as well.
+If I have $\cd^\cc$, this is a category, and it's the category of functors $\Fun(\cc,\cd)$ and natural transformations.
+I leave it to you to verify that this is really the right adjoint of the product.
+
+For instance, here's a category: $[1]$. A functor $[1]\to\cc$ is just an arrow in $\cc$.
+So, a functor $[1]\to\cd^\cc$ is a natural transformation between two functors $f_0$ and $f_1$.
+This is the same thing as a functor $\cc\times[1]\to\cd$, and in the product category $\cc\times[1]$ is a pair of objects of $\cc$ and a map between them.
+So, we're good.
+
+Now, $B([1]\times \cc)\simeq B[1]\times B\cc\to B\cd$. But $B[1] = \Delta^1$.
+In other words, this is a homotopy of maps $Bf_0,Bf_1:B\cc\to B\cd$!
+\begin{lemma}
+    A natural transformation $\theta:f_0\to f_1$ where $f_0,f_1:\cc\to\cd$ induces a homotopy $Bf_0\sim Bf_1:B\cc\to B\cd$.
+\end{lemma}
+There's something interesting about this.
+This notion of a homotopy is \emph{reversible}, but that's not at all true about natural transformations.
+One of the conclusions is, therefore, that $B$ forgets the ``polarity'' in $\Cat$.
+
+For example, suppose $L\dashv R$ where $L:\cc\to \cd$; then we have a unit $1_\cc\to RL$ and a counit $LR\to 1_\cd$.
+When I apply classifying spaces, I get induced maps $B\cc\to B\cd$ and $B\cd\to B\cc$.
+Thus, $B$ of the unit and counit are homotopy equivalences that are inverse up to homotopy.
+So if you have two categories that are related by any adjoint pair, then they're homotopy equivalence.
+
+Here's another example. We have the category $[0]$. What is an adjoint pair $L\dashv R$ where $L:[0]\to \cd$? Well $L$ determines an object $\ast$ of $\cd$. But the composition $LR(d)\to d$.
+But $L$ of anything is just $\ast$. So this is a unique morphism $\ast\to X$.
+It's unique since $\cd(\ast,X) = \cc(0,0) = 0$.
+An adjoint pair like that therefore specifies an initial object of $\cd$.
+
+The same way, if I had $L\dashv R$ where $L:\cd\to [0]$, we get a terminal object of $\cd$.
+But look, if $\cd$ is any category with a terminal (or initial) object, then $B\cd$ is contractible!
+
+Oh my god, look what time it is! I was just getting warmed up.
