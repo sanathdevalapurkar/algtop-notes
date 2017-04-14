@@ -2288,3 +2288,152 @@ The homology of this chain complex is the $E^2$-page.
 On Friday, I'll try to show you some applications of this.
 
 We'll always be in the case where that local system is trivially (eg if $\pi_1$ acts trivially, like if $B$ is simply connected).
+\section{Exact couples}
+Monday and Tuesday are holidays.
+
+Our starting point is that you have a chain complex $F_\ast C$.
+We have a short exact sequence $0\to F_{s-1} C\to F_s C \to \gr_s C \to 0$, giving a lexseq in homology:
+$$
+\cdots\to H_{s+t}(F_{s-1}) \to H_{s+t}(F_s) \to H_{s+t}(\gr_s) \to H_{s+t-1}(F_{s-1}) \to \cdots
+$$
+We let $A^1_{s,t} = H_{s+t}(F_{s})$ and $E^1_{s,t} = H_{s+t}(\gr_s)$.
+\textbf{Note: }Weibel uses this notation for something else.
+His $D$ is my $A$, but with different indexing.
+
+Anyway, our diagram can now be rewritten as:
+$$
+\cdots\to A^1_{s-1,t+1} \xar{i} A^1_{s,t} \xar{j} E^1_{s,t} \xar{k} A_{s-1, t} \to \cdots
+$$
+Define:
+$$
+A^r_{s,t} := \img(A^1_{s,t} \xar{i^{r-1}} A^1_{s+r - 1, t-r + 1}) = A^1_{s,t}/\ker(i^{r-1})
+$$
+One thing you can do is look at:
+$$
+\cdots \xar{i} \to A_{s-1} \xar{i} A_s \xar{i} A_{s+1} \xar{i} A_{s+2} \xar{i} \cdots
+$$
+We also have a surjection $\img(i^{r-1}) \to \img(i^r)$ and an injection $i:\img(i^r) \to \img(i^{r-1})$, giving a map $\img(i^{r-1}) \to \img(i^{r-1})$, given by $i$.
+There's another thing you can do: you also have a map $\img(i^r) \to \img(i^{r-1}) \to \img(i^r)$, whose composite is $i$ itself.
+Explicitly, we can write:
+\begin{equation*}
+    \xymatrix{
+	& A^r_{s,t} \ar@{->>}[dr]\ar[rr]^i & & A^r_{s+1,t-1}\ar@{->>}[dr] & \\
+	A^{r+1}_{s-1,t+1}\ar@{>->}[ur]\ar[rr]_i & & A^{r+1}_{s,t}\ar@{>->}[ur]\ar[rr]_i & & A^{r+1}_{s+1,t-1}
+    }
+\end{equation*}
+Great, so in our lexseq, we now have:
+\begin{equation*}
+    \xymatrix{
+	\cdots\ar[r] & A^1_{s-1,t+1}\ar@{->>}[d] \ar[r]^i & A^1_{s,t} \ar@{->>}[d] \ar[r]^j & E^1_{s,t} \ar[r]^k & A^1_{s-1,t}\ar[r]^i & A^1_{s,t-1} \ar[r] & \cdots\\
+	& A^2_{s-1,t+1}\ar@{->>}[d]\ar[r]^i & A^2_{s,t}\ar@{->>}[d] & & A^2_{s-2,t+1}\ar[r]^i \ar@{>->}[u] & A^2_{s-1,t}\ar@{>->}[u] & \\
+	& A^3_{s-1,t+1}\ar[r]^i\ar@{->>}[d] & A^3_{s,t}\ar@{->>}[d] & & A^3_{s-3,t+2}\ar@{>->}[u]\ar[r]^i & A^3_{s-2,t+1}\ar@{>->}[u] &\\
+	& \vdots & \vdots & & \vdots \ar@{>->}[u] & \vdots\ar@{>->}[u] &
+    }
+\end{equation*}
+Recall that for a filtered complex, we really have a surjection:
+$$
+A^r_{s,t} = \img(H_{s+t}(F_s) \to H_{s+t}(F_{s+r-1}) \to \img(H_{s+t}(F_s) \to H_{s+1}(C)) = F_s H_{s+t}(C)
+$$
+In particular, all the vertical surjections in our big diagram maps down surjectively to the filtration.
+More precisely:
+\begin{equation*}
+    \xymatrix{
+	\cdots\ar[r] & A^1_{s-1,t+1}\ar@{->>}[d] \ar[r]^i & A^1_{s,t} \ar@{->>}[d] \ar[r]^j & E^1_{s,t} \ar[r]^k & A^1_{s-1,t}\ar[r]^i & A^1_{s,t-1} \ar[r] & \cdots\\
+	& A^2_{s-1,t+1}\ar@{->>}[d]\ar[r]^i & A^2_{s,t}\ar@{->>}[d] & & A^2_{s-2,t+1}\ar[r]^i \ar@{>->}[u] & A^2_{s-1,t}\ar@{>->}[u] & \\
+	& A^3_{s-1,t+1}\ar[r]^i\ar@{->>}[d] & A^3_{s,t}\ar@{->>}[d] & & A^3_{s-3,t+2}\ar@{>->}[u]\ar[r]^i & A^3_{s-2,t+1}\ar@{>->}[u] &\\
+	& \vdots\ar@{->>}[d] & \vdots\ar@{->>}[d] & & \vdots \ar@{>->}[u] & \vdots\ar@{>->}[u] &\\
+	0\ar[r] & F_{s-1} H_{s+t}(C) \ar[r]^i & F_s H_{s+t}(C) \ar[r] & \gr_s H_{s+t}(C)\ar[r] & 0 & & &
+    }
+\end{equation*}
+Note that if $F_\ast C$ is exhaustive, then this filtration on homology is exhaustive, and, well, what it says is that $F_s H_{s+t}(C) = \colim A^r_{s,t}$.
+Also, if $F_\ast C$ is bounded below ($F_{-1}(C) = 0$), then $A^1_{s,t} = 0$ for $s\leq -1$.
+Eventually, the groups in the vertical injections will be $0$, so that's good.
+So, see, all I need to do now is fill in the missing column beneath $E^1_{s,t}$.
+In particular:
+\begin{equation*}
+    \xymatrix{
+	\cdots\ar[r] & A^1_{s-1,t+1}\ar@{->>}[d] \ar[r]^i & A^1_{s,t} \ar@{->>}[d] \ar[r]^j & E^1_{s,t} \ar[r]^k & A^1_{s-1,t}\ar[r]^i & A^1_{s,t-1} \ar[r] & \cdots\\
+	& A^2_{s-1,t+1}\ar@{->>}[d]\ar[r]^i & A^2_{s,t}\ar@{->>}[d]\ar[r] & E^2_{s,t}\ar[r] & A^2_{s-2,t+1}\ar[r]^i \ar@{>->}[u] & A^2_{s-1,t}\ar@{>->}[u] & \\
+	& A^3_{s-1,t+1}\ar[r]^i\ar@{->>}[d] & A^3_{s,t}\ar@{->>}[d] \ar[r] & E^3_{s,t}\ar[r] & A^3_{s-3,t+2}\ar@{>->}[u]\ar[r]^i & A^3_{s-2,t+1}\ar@{>->}[u] &\\
+	& \vdots\ar@{->>}[d] & \vdots\ar@{->>}[d] & \vdots & \vdots \ar@{>->}[u] & \vdots\ar@{>->}[u] &\\
+	0\ar[r] & F_{s-1} H_{s+t}(C) \ar[r]^i & F_s H_{s+t}(C) \ar[r] & \gr_s H_{s+t}(C)\ar[r] & 0 & 0 & 0 &
+    }
+\end{equation*}
+We want to construct in the $E^r$ groups.
+One way to do this is by exact couples, which is the easiest approach.
+This is what I'll do.
+\begin{definition}[Bill Massey]
+    An \emph{exact couple} is a diagram of abelian groups (possibly (bi)graded):
+    \begin{equation*}
+	\xymatrix{
+	    A\ar[rr]^i & & A\ar[dl]_j\\
+	    & E\ar[ul]_k & 
+	    }
+    \end{equation*}
+    that is exact at each joint.
+\end{definition}
+An exact couple determines a ``derived couple'':
+\begin{equation*}
+    \xymatrix{
+	A^\prime\ar[rr]^{i^\prime = i|_{\img i}} & & A^\prime\ar[dl]_{j^\prime}\\
+	& E^\prime\ar[ul]_{k^\prime} & 
+        }
+\end{equation*}
+where $A^\prime = \img(i)$.
+Because this is exact, we note that $E\xar{jk} E$ is a differential, since $jkjk = 0$.
+Let $d = jk$.
+We let $E^\prime = H(E,d)$.
+That produces a spectral sequence, where each one of $E^r$ has a differential on it, and the differential is the next one.
+
+Define $j^\prime(ia) = ja$.
+Is this well-defined? We need $[ja] \in E^\prime$.
+We need to check that $dja = 0$, but $jkja = 0$ so it is a cycle in $E^\prime$.
+I better see that this is well-defined modulo boundaries.
+The way to see is that is to suppose $ia = 0$.
+Then I better know that $ja$ is a boundary.
+If $ia = 0$, then $a = ke$ for some $e$, so $ja = jke = de$.
+
+This is what's so beautiful about this exact couple story.
+It feels like this was made in heaven!
+
+Now, we need $k^\prime:H(E) \to \img i$.
+I'll define $k^\prime:[e]\mapsto ke$.
+I have to check some things.
+I have to check that $ke\in\img i$.
+Well, $de = 0$, but $d = jk$, so $jke = 0$.
+Thus $ke$ is killed by $j$, and therefore is in the image of $i$.
+Isn't that great?
+I better check that it's well-defined, since I picked a representative of the homology class.
+Say $e = de^\prime$.
+Then $kd = kd e^\prime = kjke^\prime = 0$.
+
+So, I've defined a new exact couple.
+It might be an exact couple, but I haven't checked everything yet.
+I'll leave that to you.
+
+That's it!
+I've really completed the story now.
+I've constructed the $E^r$ groups, whose limit gives the associated graded of the homology of the chain complex.
+I guess I should say something about the grading as well.
+
+If all the groups are bigraded, then we say that the exact couple is of ``type $r$'' if:
+$$
+||i|| = (1,-1)\quad ||j|| = (0,0) \quad ||k|| = (-r,r-1)
+$$
+Some people could say ``homology type $r$'', since the notation will be a little different when talking about cohomology.
+
+\subsection{A summary of what's happening here}
+I've defined this inductively.
+The exact couple story is inductive.
+
+We know that $A^r = \img(i^{r-1}|_{A^1}) = i^{r-1} A^1$.
+You can actually write:
+$$
+E^r = \frac{k^{-1}(i^{r-1}A^1)}{j(\ker i^{r-1})}
+$$
+In these terms, what's $d^r$?
+An element of $E^1$ will survive to $E^r$ if its image in $A^1$ can be pulled back under $i^{r-1}$.
+Then the differential is what you get when this preimage is pushed forward via $j$ to $E^1$.
+
+On Wednesday, we'll do examples.
+Today was the guts, and the applications will come next week.
