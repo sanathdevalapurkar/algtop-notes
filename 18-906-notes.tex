@@ -2760,3 +2760,153 @@ What's the Hurewicz theorem say?
 This proof has an enormous advantage, since you can make modifications that modify all primes except for a single prime, or get rational information.
 In other words, it's amenable to localizations.
 On Monday we'll talk about Serre classes and get information about homotopy groups way beyond conductivity of the space, if you do it right.
+\section{Serre classes}
+The whole course was more or less Serre's PhD thesis.
+One thing he did was to explain that you can get qualitative information about $F\to E\to B$ from spectral sequences even if you can't do explicit generators and relations kind of computations.
+He did this by describing what are known as \emph{Serre classes}.
+\begin{definition}
+    A class $\cC$ of abelian groups is a \emph{Serre class} if:
+    \begin{enumerate}
+	\setcounter{enumi}{0}
+	\item $0\in \cC$.
+	\item if I have a short exact sequence $0\to A\to B\to C\to 0$, then $A\& C\in \cC$ if and only if $B\in\cC$.
+    \end{enumerate}
+\end{definition}
+Here are some consequences:
+a Serre class is closed under isomorphisms (easy).
+A Serre class is closed under subobjects and quotients, because for instance $0\to A\hookrightarrow B \to B/A\to 0$ is a short exact sequence.
+If $A\to B\to C$ is exact (without the zeros), then if $A,C\in \cC$, then $B\in \cC$ because:
+$$
+\xymatrix{
+    & & & \coker i\ar[d]\\
+    & A\ar[r]^i\ar[d] & B\ar[r]^p\ar[ur] & C\\
+    0\ar[r] & \ker p\ar[ur] & &
+}
+$$
+\begin{example}
+    \begin{enumerate}
+	\item $\cC = \{0\}$, and $\cc$ the class of all abelian groups.
+	\item $\cC$ being the torsion abelian groups.
+	    If I have $0\to A\xrightarrow{i} B\xrightarrow{p} C$; if $A$ and $C$ are torsion, I claim that $B$ is torsion.
+	    To see this, let $b\in B$.
+	    Then $p(b)$ is killed by $n$, so there exists $a\in A$ such that $i(a) = b$, but $A$ is torsion.
+	\item Let $\cP$ be a set of primes.
+	    Then define:
+	    $$
+	    \cC_{\cP} = \{ A : \text{if }p\not\in\cP,\text{ then }p:A\xrightarrow{\simeq} A\text{, i.e., }A \text{ is a } \Z[1/p]\text{-module}\}
+	    $$
+	    Let $\Z_{(\cP)} = \Z[1/p: p\not\in\cP]\subseteq\QQ$.
+	    
+	    For instance, if $\cP$ is all primes, then $\cC_\cP$ is all abelian groups.
+	    If $\cP$ is all primes other than $\ell$, then $\cC_\cP$ is $\Z[1/\ell]$-modules.
+	    You're localizing away from $\ell$.
+	    If $\cP = \{\ell\}$, then $\cC_{\{\ell\}} =:\cC_\ell$ is $\Z_{(\ell)}$-modules.
+	    If $\cP = \emptyset$, then $\cC_\emptyset$ is all rational vector spaces.
+	\item There's a further thing you can do: 
+	    if $\cC$ and $\cC^\prime$ are Serre classes, then so is $\cC\cap \cC^\prime$.
+	    For instance, $\cC_\text{tors} \cap \cC_\text{fg} = \cC_\text{finite}$.
+	    Also, $\cC_p \cap \cC_\text{tors}$ is $p$-torsion abelian groups.
+    \end{enumerate}
+\end{example}
+\begin{remark}
+    \begin{enumerate}
+	\item If $C_\bullet$ is a chain complex, and $C_n\in \cC$, then $H_n(C_\bullet)\in\cC$.
+	\item Suppose $F_\ast A$ is a filtration on an abelian group.
+	    If $A\in\cC$, then $\gr_nA\in\cC$ for all $n$.
+	    If $F_\ast A$ is finite and $\gr_n A\in\cC$ for all $n$, then $A\in\cC$.
+	\item Suppose I have a spectral sequence $\{E_r\}$.
+	    Suppose $E^2_{s,t}\in \cC$.
+	    Then $E^r_{s,t}\in \cC$ for $r\geq 2$.
+	    And so, if $\{E^r\}$ is a right half-plane spectral sequence, then $E^{s+1}_{s,t}\fib E^{s+2}_{s,t}\fib\cdots\fib E^\infty_{s,t}\in\cC$.
+
+	    Thus, if the spectral sequence comes from a filtered complex (and it's bounded below and for all $n$ there exists an $s$ such that $F_s H_n(C) = H_n(C)$, i.e., the homology of the filtration stabilizes), then
+	    we found that $E^\infty_{s,t} = \gr_s H_{s+t}(C)$.
+	    This means that if the $E^2_{s,t}\in\cC$ for all $s+t = n$, then $H_n(C)\in\cC$. 
+    \end{enumerate}
+\end{remark}
+To apply this to the Serre spectral sequence, we need an additional axiom.
+\begin{enumerate}
+	\setcounter{enumi}{1}
+    \item if $A,B\in\cC$, then so are $A\otimes B$ and $\Tor_1(A,B)$.
+\end{enumerate}
+All of the examples given above satisfy this.
+\begin{notation}
+    $f:A\to B$ is said to be a:
+    \begin{itemize}
+	\item $\cC$-epi if $\coker f\in \cC$.
+	\item $\cC$-mono if $\ker f\in\cC$.
+	\item $\cC$-iso if both.
+    \end{itemize}
+\end{notation}
+I want to do ... with the Hurewicz theorem.
+\begin{prop}
+    Let $\pi:E\to B$ be a fibration and $B$ path connected.
+    Let $F = \pi^{-1}(\ast)$ be path connected.
+    Suppose $\pi_1(B)$ acts trivially on $H_\ast(F)$.
+    (This means that we don't have to worry about local coefficients.)
+
+    Let $\cC$ be a Serre class with Axiom 2.
+    Let $p\geq 3$ (not a prime, just an index).
+    Assume that $H_n(E)\in\cC$ where $1\leq n<p-1$ and
+    $H_s(B)\in \cC$ for $1\leq s<p$.
+    Then $H_t(F)\in\cC$ for $1\leq t<p-1$.
+\end{prop}
+\begin{proof}
+    It's gonna be a proof by induction, I guess.
+
+    I'll do the case $p=3$ for started.
+    We're gonna want to relate the low-dimension homology of these groups.
+    What can I say?
+    We know that $H_0(E) = \Z$ since it's connected.
+    I have $H_1(E)\to H_1(B)$, via $\pi$.
+    This is one of the edge homomorphisms, and thus it surjects (no possibility for a differential coming in).
+    I now have a map $H_1(F)\to H_1(E)$.
+    But I have a possible $d^2:H_2(B)\to H_1(F)$, which is a transgression that gives:
+    $$
+    H_2(B)\xrightarrow{\partial} H_1(F)\to H_1(E)\to H_1(B)\to 0
+    $$
+    
+    Let me take a step back and say something general.
+    You might be interested in knowing when something in $H_n(F)$ maps to zero in $H_n(E)$.
+    I.e., what's the kernel of $H_n(F)\to H_n(E)$.
+    The sseq gives an obstruction to being an isomorphism.
+    The only way that something can be killed by $H_n(F)\to H_n(E)$ is described by:
+    $$
+    \ker(H_n(F)\to H_n(E)) = \bigcup\left(\img \text{ of }d^r\text{ hitting }E^r_{0,n}\right)
+    $$
+    You can also say what the cokernel is:
+    it's whatever's left in $E^\infty_{s,t}$ with $s+t = n$.
+    These obstruct $H_n(F)\to H_n(E)$ from being surjective.
+    
+    In the same way, I can do this for the base.
+    If I have a class in $H_n(E)$, that maps to $H_n(B)$, the question is: what's the image?
+    Well, the only obstruction is the possibility is that the element in $H_n(B)$ supports a nonzero differential.
+    Thus:
+    $$
+    \img(H_n(E)\xrightarrow{\pi_\ast} H_n(B)) = \bigcap\left(\ker(d^r:E^r_{r,0}\to\cdots)\right)
+    $$
+    Again, you can think of the sseq as giving obstructions.
+    And also, the obstruction to that map being a monomorphism that might occur in lower filtration along the same total degree line.
+
+    Back to our argument.
+    We had the low-dimensional exact sequence:
+    $$
+    H_2(B)\xrightarrow{\partial} H_1(F)\to H_1(E)\to H_1(B)\to 0
+    $$
+    Here $p=3$, so we have $H_2(B)\in\cC$ and $H_1(E)\in\cC$.
+    Thus $H_1(F)\in\cC$.
+    That's the only thing to check when $p=3$.
+
+    Let's do one more case of this induction.
+    What does this say?
+    Now I'll do $p=4$.
+    We're interested in knowing if $E^2_{0,3}\in\cC$.
+    There are now two possible differentials!
+    I have $H_2(F) = E^2_{0,2}\fib E^3_{0,2}$.
+    This quotient comes from $d^2:E^2_{2,1}\to E^2_{0,2}$.
+    Now, $d^3:E^3_{3,0}\to E^3_{0,2}$ which gives a surjection $E^3_{0,2}\fib E^4_{0,2}\simeq E^\infty_{0,2}\hookrightarrow H_2(E)$.
+    Now, our assumptions were that $E^2_{2,1},E^3_{3,0},H_2(E)\in\cC$.
+    Thus $E^3_{0,2}\in\cC$ and so $E^2_{0,2} = H_2(F)\in\cC$.
+    Ta-da!
+\end{proof}
+We're close to doing actual calculations, but I have to talk about the multiplicative structure on the Serre sseq first.
