@@ -187,13 +187,23 @@
 %%%%%%%%%%%%%%%%
 
 %\usepackage{ebgaramond}
-%\usepackage{fancyhdr}
-% 
-%\pagestyle{fancy}
-%\fancyhf{}
-%\lhead{18.905-906 -- Algebraic topology}
-%\rhead{Lecture \thesection}
-%\cfoot{\thepage}
+\usepackage{fancyhdr}
+ 
+\newcommand{\myheader}{
+    \ifnum\value{section} > 38
+    18.906
+    \else
+    18.905
+    \fi
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE]{Notes by Sanath Devalapurkar}
+\fancyhead[LO]{Taught by Haynes Miller}
+\chead{Notes for \myheader}
+\rhead{Lecture \thesection}
+\cfoot{\thepage}
 
 \begin{document}
 \title{18.905-906 -- Algebraic Topology}

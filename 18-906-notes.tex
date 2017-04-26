@@ -2910,3 +2910,96 @@ I want to do ... with the Hurewicz theorem.
     Ta-da!
 \end{proof}
 We're close to doing actual calculations, but I have to talk about the multiplicative structure on the Serre sseq first.
+\section{Mod $\cC$ Hurewicz, Whitehead, cohomology spectral sequence}
+We had $\cC_{fg}$ and $\cC_{tors}$, and
+$$
+\cC_\cP = \{A|\ell:A\xrightarrow{\simeq} A,\ell\not\in\cP\},\quad \cC_p = \cC_{\{p\}},\quad \cC_{p^\prime} = \cC_{\text{not }p}
+$$
+Another one is $\cC_{p^\prime}\cap \cC_{tors}$, which consists of torsion groups such that $p$ is an isomorphism on $A$.
+There is therefore no $p$-torsion, and it has only prime-to-$p$ torsion.
+This is the same thing as saying that $A\otimes\Z_{(p)} = 0$.
+\begin{theorem}[Mod $\cC$ Hurewicz]
+    Let $X$ be simply connected and $\cC$ a Serre class such that $A,B\in\cC$ implies that $A\otimes B,\Tor_1(A,B)\in \cC$ (this is axiom 2).
+    Assume also that if $A\in\cC$, then $H_j(K(A,1)) = H_j(BA)\in\cC$ for all $j>0$.
+    (This is valid for all our examples, and is what is called Axiom 3.)
+
+    Let $n\geq 1$.
+    Then $\pi_i(X)\in\cC$ for any $1<i<n$ if and only if $H_i(X)\in\cC$ for any $1<i<n$,
+    and $\pi_n(X)\to H_n(X)$ is a mod $\cC$ isomorphism.
+\end{theorem}
+\begin{example}
+    For $1<i<n$, the group $\widetilde{H}_i(X)$ is:
+    \begin{enumerate}
+	\item torsion;
+	\item finitely generated;
+	\item finite;
+	\item $-\otimes \Z_{(p)} = 0$
+    \end{enumerate}
+    if and only if $\pi_i(X)$ for $1<i<n$.
+\end{example}
+\begin{proof}
+    Look at $\Omega X\to PX \to X$.
+    Then $\pi_1 \Omega X\in\cC$.
+    Look at Davis+Kirk.
+\end{proof}
+There's a Whitehead theorem that comes out of this, that I want to state for you.
+\begin{theorem}[Mod $\cC$ Whitehead theorem]
+    Let $\cC$ be a Serre class satisfying axioms 1, 2, 3, and:
+    \begin{enumerate}
+	\item[($2^\prime$)] $A\in\cC$ implies that $A\otimes B\in\cC$ for any $B$.
+    \end{enumerate}
+    This is satisfied for all our examples except $\cC_{fg}$.
+
+    Suppose I have $f:X\to Y$ where $X,Y$ are simply connected.
+    Suppose $\pi_2(X)\to \pi_2(Y)$ is onto.
+    Let $n\geq 2$.
+    Then $\pi_i(X)\to \pi_i(Y)$ is a $\cC$-isomorphism for $2\leq i\leq n$ and is a $\cC$-epimorphism for $i=n$,
+    with the same statement for $H_i$.
+\end{theorem}
+These kind of theorems help us work locally at a prime, and that's super.
+You'll see this in the next assignment, which is mostly up on the web.
+You'll also see this in calculations which we'll start doing in a day or two.
+
+Change of subject here.
+Today I'm going to say a lot of things for which I won't give a proof.
+I want to talk about cohomology sseq.
+\subsection{Cohomology sseq}
+We're building up this powerful tool using spectral sequences.
+We saw how powerful the cup product was, and that is what cohomology is good for.
+In cohomology, things get turned upside down:
+\begin{definition}
+    A \emph{decreasing filtration} of an object $A$ is
+    $$A\supseteq\cdots\supseteq F^{-1} A\supseteq F^0 A \supseteq F^1 A\supseteq F^2 A\supseteq \cdots\supseteq 0$$
+    This is called ``bounded above'' if $F^0 A = A$.
+    Write $\gr^s A = F^sA/F^{s+1}A$.
+\end{definition}
+\begin{example}
+    Suppose $X$ is a filtered space.
+    So there's an increasing filtration $\emptyset=F_{-1}X\subseteq F_0X\subseteq\cdots$.
+    Let $R$ be a commutating ring of coefficients.
+    Then I have $S^\ast(X)$, where the differential goes up one degree.
+    Define
+    $$F^s S^\ast(X) = \ker(S^\ast(X)\to S^\ast(F_{s-1}X))$$
+    For instance, $F^0 S^\ast(X) = S^\ast(X)$.
+    Thus this is a bounded above decreasing filtration \todo{My computer will run out of juice soon, \TeX this up later!}.
+\end{example}
+\begin{example}
+    Let $X=E\xrightarrow{\pi}B = \text{ CW-complex}$ with $\pi_1(B)$ acting trivially on $H_t(F)$.
+    Then $F_s E = \pi^{-1}(\mathrm{sk}_s B)$.
+    Thus I get a filtration on $S^\ast(E)$, and
+    $$
+    F^s H^\ast(X) = \ker(H^\ast(X)\to H^\ast(F_{s-1}X))
+    $$
+\end{example}
+Doing everything the same as before, we get a \emph{cohomology spectral sequence}.
+Here are some facts.
+\begin{enumerate}
+    \item First, you have $E_r^{s,t}$ (note that indices got reversed).
+	There's a differential $d_r:E^{s,t}_r \to E_r^{s+r,t-r+1}$, so that the total degree of the differential is $1$.
+    \item You discover that
+	$$
+	E^{s,t}_2 \simeq H^s(B;H^t(F))
+	$$
+    \item and $E^{s,t}_\infty \simeq \gr^s H^{s+t}(E)$.
+    \item 
+\end{enumerate}
