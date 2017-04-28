@@ -1,6 +1,6 @@
 %\documentclass[oneside]{memoir}
 \documentclass[12pt]{amsart}
-
+\usepackage{sseqpages}
 % \headheight=8pt
 % \topmargin=3pt
 % \textheight=624pt
@@ -163,13 +163,14 @@
 %%%%%%%%%%%%%%%%
 %%% Put individual commands and macros here. Please also note in this section 
 %%% if you had to alter the above existing commands and declarations in any way.
+\usepackage{amsbsy}
 \newcommand\cHH{\check{H}}
 \newcommand\cCC{\check{C}}
 \newcommand{\MFGL}{\mathscr M_{\mathit{FGL}}}
 \newcommand{\calO}{{\mathscr O}}
 \newcommand{\calC}{{\mathscr C}}
 \newcommand{\set}{{\mathrm{Set}}}
-\newcommand{\Deltab}{{\mathbf \Delta}}
+\newcommand{\Deltab}{{\Delta}} %change this to bold Delta. This is like this here because garamond fucks up bold things.
 \newcommand{\spec}{\mathrm{Spec}}
 \newcommand{\Z}{\mathbf Z}
 \newcommand{\Sin}{\mathrm{Sin}}

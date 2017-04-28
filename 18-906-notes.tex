@@ -3003,3 +3003,199 @@ Here are some facts.
     \item and $E^{s,t}_\infty \simeq \gr^s H^{s+t}(E)$.
     \item 
 \end{enumerate}
+\section{A few examples, double complexes, Dress sseq}
+Way back in 905 I remember computing the cohomology ring of $\CP^n$ using Poincare duality.
+Let's do it fresh using the fiber sequence
+$$
+S^1\to S^{2n+1}\to \CP^n
+$$
+where $S^1$ acts on $S^{2n+1}$.
+Here we know the cohomology of the fiber and the total space, but not the cohomology of the base.
+Let's look at the cohomology sseq for this.
+Then
+$$
+E_2^{s,t} = H^s(\CP^n;H^t(S^1)) \simeq H^s(\CP^n)\otimes H^t(S^1) Rightarrow H^{s+t}(S^{2n+1})
+$$
+The isomorphism $H^s(\CP^n;H^t(S^1)) \simeq H^s(\CP^n)\otimes H^t(S^1)$ follows from the UCT.
+
+We know at least that $\CP^n$ is simply connected by the lexseq of homotopy groups.
+I don't have to worry about local coefficients.
+Let's work with the case $S^5$.
+We know that $\CP^n$ is simply connected, so the one-dimensional cohomology is $0$.
+The only way to kill $E_2^{0,1}$ is by sending it via $d_2$ to $E_2^{2,0}$.
+Is this map surjective?
+Yes, it's an isomorphism.
+
+Now I'm going to give names to the generators of these things; see the below diagram.
+$E_2^{2,1}$ is in total degree $3$ and so we have to get rid of it.
+I will compute $d_2$ on this via Leibniz:
+$$
+d_2(xy) = (d_2 x)y - x d_2y = (d_2 x)y = y^2
+$$
+which gives (iterating the same computation):
+\begin{sseqdata}[name=example1,classes={draw = none},degree={#1}{-#1+1},classes={inner sep=1ex}]
+    \class["\Z x"](0,1)
+    \class["\Z"](0,0)
+    \class["0"](1,0)
+    \class["0"](1,1)
+    \class["\Z y"](2,0)
+    \class["\Z xy"](2,1)
+    \class["0"](3,0)
+    \class["0"](3,1)
+    \class["\Z y^2"](4,0)
+    \class["\Z xy^2"](4,1)
+    \d["d_2"]2(0,1)
+    \d["d_2"]2(2,1)
+\end{sseqdata}
+\begin{equation*}
+        \printpage[name=example1,page=2]
+\end{equation*}
+This continues until the end where you reach $\Z xy^{??}$ which is a permanent cycle since it lasts until the $E_\infty$-page.
+
+Another example:
+let $C_m$ be the cyclic group of order $m$ sitting inside $S^1$.
+How can we analyse $S^{2n+1}/C_m=:L$?
+This is the lens space.
+We have a map $S^{2n+1}/C_m\to S^{2n+1}/S^1 = \CP^n$.
+This is a fiber bundle whose fiber is $S^1/C_m$.
+The spectral sequence now runs:
+$$
+E^2_{s,t} = H_s(\CP^n)\otimes H_t(S^1/C_m) \Rightarrow H_{s+t}(L)
+$$
+We know the whole $E^2$ term now:
+\begin{sseqdata}[name=example2,classes={draw = none},homological Serre grading,classes={inner sep=1ex}]
+    \class["\Z"](0,1)
+    \class["\Z"](0,0)
+    \class["0"](1,0)
+    \class["0"](1,1)
+    \class["\Z"](2,0)
+    \class["\Z"](2,1)
+    \class["0"](3,0)
+    \class["0"](3,1)
+    \class["\Z"](4,0)
+    \class["\Z"](4,1)
+    \d["m"]2(2,0)
+\end{sseqdata}
+\begin{equation*}
+        \printpage[name=example2,page=2]
+\end{equation*}
+In cohomology, we have something dual:
+\begin{sseqdata}[name=example3,classes={draw = none},degree={#1}{-#1+1},classes={inner sep=1ex}]
+    \class["u"](0,1)
+    \class["1"](0,0)
+    \class["0"](1,0)
+    \class["0"](1,1)
+    \class["y"](2,0)
+    \class["uy"](2,1)
+    \class["0"](3,0)
+    \class["0"](3,1)
+    \class["y^2"](4,0)
+    \class["uy^2"](4,1)
+    \d["m"]2(0,1)
+    \d["m"]2(2,1)
+\end{sseqdata}
+\begin{equation*}
+        \printpage[name=example3,page=2]
+\end{equation*}
+What's the ring structure?
+We get that $H^\ast(L) = \Z[y,v]/(my,y^{n+1},yv,v^2)$ where $|v| = 2n+1$ and $|y| = 2$.
+By the way, when $m=1$, this is $\RP^{2n+1}$.
+This is a computation of the cohomology of odd real projective spaces.
+Remember that odd projective spaces are orientable and you're seeing that here because you're picking up a free abelian group in the top dimension.
+\subsection{Double complexes}
+$A_{s,t}$ is a bigraded abelian group with $d_h:A_{s,t}\to A_{s-1,t}$ and $d_v:A_{s,t}\to A_{s,t-1}$ such that $d_vd_h = d_hd_v$.
+Assume that $\{(smt):s+t=n,A_{s,t}\neq 0\}$ is finite for any $n$.
+Then
+$$
+(tA)_n = \bigoplus_{s+t=n}A_{s,t}
+$$
+Under this assumption, there's only finitely many nonzero terms.
+I like this personally because otherwise I'd have to decide between the direct sum and the direct product, so we're avoiding that here.
+It's supposed to be a chain complex.
+Here's the differential:
+$$
+d(a_{s,t}) = d_ha_{s,t} + (-1)^s d_v a_{s,t}
+$$
+Then $d^2 = 0$, as you can check.
+\begin{question}
+    What is $H_\ast(tA_\ast)$?
+\end{question}
+Define a filtration as follows:
+$$
+F_p(tA)_n = \bigoplus_{s+t=n,s\leq p}A_{s,t}\subseteq (tA)_n
+$$
+This kinda obviously gives a filtered complex.
+Let's compute the low pages of the sseq.
+What is $\gr_s(tA)$?
+Well
+$$
+\gr_s(tA)_{s+t} = (F_s/F_{s-1})_{s+t} = A_{s,t}
+$$
+This associated graded object has its own differential $\gr_s(tA)_{s+t}=A_{s,t}\xar{d_v} A_{s,t-1} = \gr_s(tA)_{s+t-1}$.
+Let $E^0_{s,t} = \gr_s(tA)_{s+t} = A_{s+t}$, so that $d^0 = d_v$.
+Then $E^1 = H(E^0_{s,t},d^0) = H(A_{s,t};d_v) =: H^v_{s,t}(A)$.
+So computing $E^1$ is ez.
+Well, what's $d^1$ then?
+
+To compute $d^1$ I take a vertical cycle that and the differential decreases the ... by $1$, so that $d^1$ is induced by $d_h$.
+This means that I can write $E^2_{s,t} = H^h_{s,t}(H^v(A))$.
+\begin{question}
+    You can also do $^\prime E^2_{s,t} = H^v_{s,t}(H^h(A))$, right?
+\end{question}
+Rather than do that, you can define the transposed double complex $A^\mathsf{T}_{t,s} = A_{s,t}$, and $d^\mathsf{T}_h(a_{s,t}) = (-1)^s d_v(a_{s,t})$ and $d^\mathsf{T}_v(a_{s,t}) = (-1)^t d_h a_{s,t}$.
+When I set the signs up like that, then
+$$
+tA^\mathsf{T} \simeq tA
+$$
+\emph{as complexes} and not just as groups (because of those signs).
+Thus, you get a spectral sequence
+$$
+^\mathsf{T}E^2_{s,t} = H^v_{s,t}(H^h(A))
+$$
+converging to the same thing.
+I'll reserve telling you about Dress' construction until Monday because I want to give a double complex example.
+It's not ... it's just a very clear piece of homological algebra.
+\begin{example}[UCT]
+    For this, suppose I have a (not necessarily commutative) ring $R$.
+    Let $C_\ast$ be a chain complex, bounded below of right $R$-modules, and let $M$ be a left $R$-module.
+    Then I get a new chain complex of abelian groups via $C_\ast\otimes_R M$.
+    What is $H(C_\ast\otimes_R M)$?
+    I'm thinking of $M$ as some kind of coefficient.
+    Let's assume that each $C_n$ is projective, or at least flat, for all $n$.
+
+    Shall we do this?
+
+    Let $M\leftarrow P_0 \leftarrow P_1\leftarrow \cdots$ be a projective resolution of $M$ as a left $R$-module.
+    Then $H_\ast(P_\ast)\xar{\simeq} M$.
+    Form $C_\ast\otimes_R P_\ast$: you know how to do this!
+    I'll define $A_{s,t}$ to be $C_s\otimes_R P_t$.
+    It's got two differentials, and it's a double complex.
+    Let's work out the two sseqs.
+
+    Firstly, let's take it like it stands and take homology wrt $P$ first.
+    I'm organizing it so that $C$ is along the base and $P$ is along the fiber.
+    What is the vertical homology $H^v(A_{\ast,\ast})$?
+    If the $C$ are projective then tensoring with them is exact, so that $H^v(A_{s,\ast}) = C_s\otimes_R H_\ast(P_\ast)$, so that
+    $E^1_{s,t} = H^v_{s,t}(A_{\ast,\ast}) = C_s\otimes M$ if $t=0$ and $0$ otherwise.
+    The spectral sequence is concentrated in one row.
+    Thus,
+    $$E^2_{s,t} = \begin{cases}
+	H_s(C_\ast\otimes_R M) & \text{ if }t = 0\\
+	0 & \text{else}
+    \end{cases}$$
+    This is canonically the same thing as $E^\infty_{s,0}\simeq H_s(tA)$.
+
+    Let me go just one step further here.
+    The game is to look at the \emph{other} spectral sequence, where I do horizontal homology first.
+    Then $H^h(A_{\ast,\ast}) = H_t(C_\ast)\otimes P_s$ again because the $P_\ast$ are projective.
+    Thus,
+    $$
+    E^2_{s,t} = H^v(H^h(A_{\ast,\ast})) = \Tor^R_s(H_t(C),M)\Rightarrow H_{s+t}(C_\ast\otimes_R M)
+    $$
+    That's the \emph{universal coefficients spectral sequence}.
+
+    What happens if $R$ is a PID?
+    Only two columns are nonzero, and $E^2_{0,n} = H_n(C)\otimes_R M$ and $E^2_{1,n-1} = \Tor_1(H_{n-1}(C),M)$.
+    This exactly gives the universal coefficient exact sequence.
+\end{example}
+Later we'll use this stuff to talk about cohomology of classifying spaces and Grassmannians and Thom isomorphisms and so on.
