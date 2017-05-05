@@ -3526,3 +3526,170 @@ This is the Gysin sequence.
 You'll explore more in homework.
 
 I'll talk about characteristic classes on Friday.
+\section{Grothendieck's construction of Chern classes}
+No class Monday because I'll be out!
+We have a few lectures left and I'll use them to talk about characteristic classes, and we'll see some applications.
+Maybe we'll have time to give a construction of Steenrod operations as well.
+\subsection{Generalities on characteristic classes}
+I want to study $G$-bundles, where $G$ is a topological group.
+Let's say $A$ is an abelian group and $n\geq 0$ is an integer.
+\begin{definition}
+    A \emph{characteristic class} for principal $G$-bundles (with values in $H^n(-;A)$) is a natural transformation
+    $$
+    \Bun_G(X) \xar{c} H^n(X;A)
+    $$
+    as functor $\Top\to \Ab$.
+    By naturality, I mean that if $f:X\to Y$ and some principal $G$-bundle $P\to Y$, I can get $f^\ast P\to X$.
+    Naturality means that $c(f^\ast P) = f^\ast c(P)$.
+\end{definition}
+You're supposed to think: $\Bun_G(X)$ is mysterious, but $H^n(X;A)$ is ``computable''.
+At least, we have the Mayer-Vietoris sequence, and we can often compute that cohomology.
+
+Of course, we know that $\Bun_G(X) = [X,BG]$.
+And, although I didn't completely give this story, if $X$ is a CW-complex, then $H^n(X;A) = [X,K(A,n)]$.
+They're easier to compute because the $K(A,n)$ form an infinite loop space.
+Anyway, by Yoneda, these are maps $BG\to K(A,n)$, i.e., an element of $H^n(BG;A)$.
+
+Well, we have an example already: that's the Euler class.
+The Euler class took oriented real $n$-plane vector bundles (with a chosen orientation) and produced an $n$-dimensional cohomology class $e:\Vect^{or}_n(X) = \Bun_{SO(n)}(X)\to H^n(X;\Z)$.
+What I'm claiming is that if I take $\xi\downarrow X$, then I can pull that back via $f:X \to Y$.
+Then $f^\ast\xi$ has a orientation if $\xi$ does, and I'm claiming that $e(f^\ast\xi) = f^\ast e(\xi)$.
+But this is kinda obvious from the stuff we did before because everything we did was natural.
+
+The \emph{mod $2$ Euler class} is $e_2:\Vect_n(X) = \Bun_{O(n)}(X) \to H^n(X;\Z/2\Z)$.
+Everything has an orientation with respect to $\Z/2\Z$ so this makes sense.
+These give you obstructions to nontriviality of the vector bundle.
+
+The Euler class $e$ lives in $H^n(BSO(n);\Z)$; in fact, it's $e(\xi)$, i.e., the Euler class of the universal oriented $n$-plane bundle over $BSO(n)$. A similar statement holds for $e_2\in H^n(BO(n);\Z/2\Z)$.
+
+Something useful about characteristic classes:
+if two bundles over $X$ have two different characteristic classes, then they can't be the same.
+Often, you use it to distinguish it from the trivial bundle.
+
+I want to show that the Euler class is really fundamental.
+For instance, if $n=2$, then $SO(2) = S^1$, and so $BSO(2) = BS^1 = \CP^\infty$.
+We know that $H^\ast(\CP^\infty;\Z) = \Z[e]$ -- it's the polynomial algebra on that Euler class.
+You can't get much more fundamental than that!
+Another example: we know that $O(1) = \Z/2\Z$, and $BO(1) = \RP^\infty$.
+We know that $H^\ast(\RP^\infty;\Z/2\Z) = \Z/2\Z[e_2]$ -- it's the polynomial algebra over $\Z/2\Z$ on that mod $2$ Euler class.
+
+I want to now describe Chern classes.
+\subsection{Chern classes}
+\begin{theorem}[Chern classes]
+    There is a unique family of characteristic classes for complex vector bundles that assigns to a complex $n$-plane bundle $\xi$ over $X$ the \emph{$n$th Chern class} $c^{(n)}_k(\xi)\in H^{2k}(X;\Z)$, such that:
+    \begin{enumerate}
+	\item $c^{(n)}_0(\xi) = 1$.
+	\item If $\xi$ is a line bundle, then $c^{(1)}_1(\xi) = -e(\xi)$. (I'll justify this sign in a few minutes.)
+	\item The \emph{Whitney sum formula} is true:
+	    \begin{equation*}
+		c^{(p+q)}_k(\xi\oplus \eta) = \sum_{i+j=k} c^{(p)}_i(\xi)\cup c^{(q)}_j(\eta) \in H^{2k}(X;\Z);
+	    \end{equation*}
+	    that's the fiberwise direct sum there; here $\xi$ is a $p$-plane bundle and $\eta$ is a $q$-plane vector bundle.
+    \end{enumerate}
+    Moreover:
+    $$H^\ast(BU(n);\Z) \simeq \Z[c_1^{(n)}, \cdots, c^{(n)}_n]$$
+    where $c^{(n)}_k = c^{(n)}_k(\xi_n)$, where $\xi_n$ is the universal $n$-plane bundle.
+\end{theorem}
+This says that all characteristic classes for complex vector bundles are given by polynomials in the Chern classes
+because the cohomology of $BU(n)$ gives all the characteristic classes.
+It also says that there are no universal algebraic relations among the Chern classes: you can specify them independently.
+
+There were a bunch of questions about computing Chern classes.
+
+How do I interpret the Whitney sum formula in terms of $H^\ast(BU(n))$?
+I have $\xi_{p+q}$ over $BU(p+q)$.
+Note that $\xi$ with a subscript is the universal bundle.
+Ah, but I also have $\xi_p\times \xi_q = pr_1^\ast \xi_p\oplus pr_2^\ast\xi_q$ over $BU(p)\times BU(q)$.
+This is a $(p+q)$-plane bundle, and hence is classified by a map $BU(p)\times BU(q) \xar{\mu} BU(p+q)$.
+The Whitney sum formula is computing the effect of $\mu$ on cohomology:
+$$
+\mu^\ast(c^{(n)}_k) = \sum_{i+j = k} c^{(p)}_i \times c^{(q)}_j \in H^{2k}(BU(p)\times BU(q))
+$$
+where, you'll recall, that $x\times y = pr_1^\ast x \cup pr_2^\ast y$, where $x\in H^\ast(X),y\in H^\ast(Y)$.
+
+Another important comment is stability.
+Let $\epsilon$ be the trivial one-dimensional complex vector bundle.
+Let $\xi$ be an $n$-dimensional vector bundle.
+Then what is $c^{(n+q)}_k(\xi\oplus\epsilon^q)$?
+We need to know the Chern classes of the trivial bundles.
+
+Note that the trivial bundle is characterized by the pullback:
+\begin{equation*}
+    \xymatrix{
+	X\times \cc^n = n\epsilon \ar[r]\ar[d] & \cc^n\ar[d]\\
+	X\ar[r] & \ast
+    }
+\end{equation*}
+By naturality, we find that $c^{(n)}_k(n\epsilon) = 0$, where $k>0$.
+By the Whitney sum formula, we therefore find that
+$$
+c^{(n+q)}_k(\xi\oplus \epsilon^q) = c^{(n)}_k(\xi)
+$$
+This is called stability.
+It doesn't depend precisely on the vector bundle: so that could simplify the bundle a lot.
+For this reason, we'll drop the superscript, and just write $c_k(\xi)$.
+
+The truth is that Chern classes are defined on K-theory.
+
+Let me try to give you Grothendieck's construction of them now.
+Here's his idea.
+\subsection{(One of) Grothendieck's construction(s)}
+Let $\xi$ be an $n$-plane bundle.
+Then I can consider $\PP(\xi)$, the projectivization of $\xi$.
+This is a vector bundle over $X$, with projection map $\pi:\PP(\xi) \to X$.
+An element of the fiber of $\PP(\xi)$ over $x\in X$ is just a line inside $\xi_x$.
+The fibers are therefore all isomorphic to $\CP^{n-1}$.
+
+I want to understand $H^\ast(\PP(\xi))$.
+And, well, we can now use the Serre spectral sequence, which runs
+$$
+E_2^{s+t} = H^s(X; H^t(\CP^{n-1})) \Rightarrow H^{s+t}(\PP(\xi))
+$$
+\begin{remark}
+Why didn't I put the underline?
+I can look at the universal example of an $n$-plane bundle $\xi_n\to BU(n)$.
+Our space $X$ need not be simply connected, but $BU(n)$ is simply connected since $U(n)$ is simply connected.
+I can look at the projectivization of the $\xi_n$, and so I can pullback via $f:X\to BU(n)$ to get $\PP(\xi)$.
+We actually have $H_\ast(\PP(\xi)_x) \to H_\ast(\PP(\xi_n)_{f(x)})$, which is an isomorphism.
+This map is equivariant with respect to the action of the fundamental group $\pi_1 (X) \to \pi_1(BU(n)) = 0$.
+\end{remark}
+What does this spectral sequence look like?
+Because $H^\ast(\CP^{n-1})$ is torsion-free and finitely generated in each dimension, we know that $E_2^{s,t} \simeq H^s(X) \otimes H^t(\CP^{n-1})$.
+
+I claim that the spectral sequence collapses at $E_2$, i.e., that $E_2 \simeq E_\infty$, i.e., no differentials.
+This is like the proof of the Leray-Hirsch theorem.
+We know that it's generated as an algebra by things on the fiber and things on the base.
+Thus it suffices to check that things on the fiber survive to $\infty$.
+We know that $E_2^{0,2t} = \Z\langle x^t\rangle$ and $E_2^{0,2t+1} = 0$, where $x = e(\lambda)$ where $\lambda\downarrow\CP^{n-1}$.
+Why does the Euler class $x$ survive?
+It only could support a $d_3$, but why does it survive?
+
+Can you come up with a two dimensional cohomology class in $\PP(\xi)$ that restricts to the Euler class over $\CP^{n-1}$?
+Well, $\lambda$ itself is the restriction of a line bundle over $\CP^\infty$.
+There's a tautologous line bundle $\lambda_\xi \downarrow \PP(\xi)$ which is given by the tautologous line bundle on each fiber.
+In other words, $E(\lambda_\xi)\ni(x\in \ell\subseteq\xi_x)$.
+Thus, $x = e(\lambda_\xi)|_\text{fiber}$.
+This class $x$ therefore survives, and I have an explicit lift to the cohomology of the total space!
+
+So, what we discover is that (Leray-Hirsch kicks in)
+$$
+H^\ast(\PP(\xi)) = H^\ast(X)\langle 1, e(\lambda_\xi), e(\lambda_\xi)^2, \cdots, e(\lambda_\xi)^{n-1}\rangle
+$$
+Let's just write $e = e(\lambda_\xi)$.
+We know some of the algebra structure, but I don't know that $e^n$ is!
+We know that $e^n$ can't be in filtration zero anymore: it must lie in lower filtration.
+Whatever it is, it's going to be a linear combination of those coefficients.
+I'll choose to write that as a monic polynomial:
+$$
+e^n + c_1e^{n-1} + \cdots + c_{n-1} e + c_n = 0
+$$
+Where the $c_k \in H^{2k}(X)$.
+Those are the Chern classes, and they are unique!
+
+For instance, $e+c_1 = 0$ if $n=1$. See?
+
+\begin{question}
+    Why do we know that they are the Chern classes?
+    My margin is too narrow to provide a proof.
+\end{question}
+We'll prove this on Wednesday.
