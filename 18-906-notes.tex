@@ -3835,3 +3835,361 @@ That's very cool, because we now find that $H^\ast(BU(n)) \hookrightarrow H^\ast
 The cohomology of $BT^n$ is extremely simple -- it's the cohomology of a product of $\CP^\infty$s.
 In fact, $H^\ast(BT^n) \simeq \Z[t_1,\cdots,t_n]$, where $|t_k| = 2$.
 These $t_i$s are the Euler classes of $\lambda_i$, under $\pi_i:BT^n\to\CP^\infty$.
+\section{Chern roots, Stiefel-Whitney and Pontryagin classes}
+Pset 6 is due Monday.
+Don't worry abou the functoriality of $H_s(K(A,n))$.
+
+Let me just repeat what I was rushing through at the end on Wednesday.
+I wrote slightly incorrect things.
+Let's look at $\cc^n$.
+Of course, $U(n)$ acts on this, and preserves the inner product.
+Recall that $Fr(\cc^n)$ is the space of orthonormal bases of $\cc^n$.
+Thus there's an action of $U(n)$ on this, and this is simply transitive, i.e., it's free and transitive.
+Some would say that this is a ``torsor for $U(n)$''.
+There's a basepoint in here, namely the standard basis, but you may forget about that.
+
+Now I can make various constructions.
+For instance, think about $\Fl(\cc^n)$, which is the space of ordered orthonormal sets of $n$ lines in $\cc^n$.
+There's lots of isotropy now.
+The isotropy group of the $U(n)$ action on the lines through the standard basis is now $T_n=U(1)^n$, i.e., diagonal matrices with roots of unity on the diagonal.
+This is called the \emph{(complete) flag manifold}.
+
+Another thing you could do as well -- you can forget the ordering.
+This doesn't really have a name, I guess, but what I'm doing is considering $\Fl(\cc^n)/\Sigma_n$, which is the space of unordered orthonormal lines in $\cc^n$.
+This is a homogeneous space, too, and it's $U(n)$ quotiented by permutation matrices where $1$ is any complex number of norm $1$.
+For instance, if $N_{U(n)}(T^n) = \Sigma_n\cdot T^n$ is the nromalizer, then $\Fl(\cc^n)/\Sigma_n = U(n)/N(T^n)$.
+I can consider the cofiber sequence $T^n\hookrightarrow \Sigma_n\cdot T^n \to W_n$, and the $W_n$ is called the Weyl group.
+Something nice here is that
+\begin{equation*}
+    \xymatrix{
+	T^n\ar@{^(->}[r] & \Sigma_n\cdot T^n\ar[r] & W_n\\
+	& \Sigma_n\ar@{^(->}[u]\ar[ur]^\simeq & 
+    }
+\end{equation*}
+To get projective space I consider the space of splittings of $\cc^n$ into a line and its orthogonal complement -- but that's just giving a line because the metric determines the orthogonal complement.
+
+Consider a complex $n$-plane bundle $\xi^n\downarrow X$, with a metric.
+Then $\Fr(\xi^n)\to X$ is a principal $U(n)$-bundle over $X$.
+I can form $E(\xi) = \Fr(\xi)\times_{U(n)}\cc^n$, and $\PP(\xi) = \Fr(\xi)\times_{U(n)} U(n)/(U(1)\times U(n-1))$.
+Note that $U(n)/(U(1)\times U(n-1)) = \CP^{n-1}$.
+I ccan also consider $\Fl(\xi) = \Fr(\xi)\times_{U(n} U(n)/T^n$.
+
+We found that $H^\ast(X) \hookrightarrow H^\ast(\Fl(\xi))$.
+This is the splitting principle.
+
+Let's look at the universal case $\xi_n\downarrow BU(n)$.
+So, $\Fl(\xi_n) = EU(n)\times_{U(n)} U(n)/T^n$, so this is $BT^n$.
+It maps down to $BU(n)$, and the map is the one induced by the inclusion $T^n\hookrightarrow U(n)$.
+So, for any ring, we find that $H^\ast(BU(n))\hookrightarrow H^\ast(BT^n)$.
+We know that 
+$$
+H^\ast(BT^n) = \Z[t_1,\cdots,t_n]
+$$
+where $t_i = e(\lambda_i)$ and $|t_i| = 2$, where $\lambda_i = pr_i^\ast\lambda$ and $\lambda\downarrow \CP^\infty$ is the universal line bundle.
+What is the image of this map $H^\ast(BU(n))\hookrightarrow H^\ast(BT^n)$?
+
+I have the symmetric group sitting inside of $U(n)$, and hence it acts by conjugation on $U(n)$.
+Then this action stabilizes this subgroup $T^n$.
+By naturality, it acts on the classifying spaces.
+Since $\Sigma_n$ acts by conjugation on $U(n)$, it acts on $BU(n)$ in a way that's homotopic to the identity.
+However, each $\sigma\in \Sigma_n$ permutes the factors in $BT^n = (\CP^\infty)^n$.
+This tells us that $H^\ast(BU(n);R) \hookrightarrow H^\ast(BT^n;R)^{\Sigma_n}$.
+\begin{theorem}[Algebra]
+    If you take $R[t_1,\cdots,t_n]$ and let $\Sigma_n$ act by permuting the generators, then
+    $$
+    R[t_1,\cdots,t_n]^{\Sigma_n} = R[\sigma_1^{(n)},\cdots,\sigma_n^{(n)}]
+    $$
+    where the $\sigma_i$ are the \emph{elementary symmetric polynomials}, defined via
+    $$
+    \prod^n_{i=1}(x-t_i) = \sum^n_{j=0} \sigma_i^{(n)}x^{n-i}
+    $$
+\end{theorem}
+For instance, $\sigma_1^{(n)} = -\sum t_i$, and $\sigma_n^{(n)} = (-1)^n\prod t_i$.
+In between, they're homogeneous polynomials that probably are familiar to you.
+
+You have to be a little careful at this point.
+If I grade $|t_i| = 2$, and we have that $|\sigma_i^{(n)}| = 2i$.
+So, this ring $H^\ast(BT^n)^{\Sigma_n}$ has the same size as $H^\ast(BU(n))$.
+They have exactly the same Poincar\'{e} series.
+You could imagine that maybe it embeds as a lattice inside the integers?
+
+Let's see.
+Suppose I have finitely generated abelian groups $M\hookrightarrow N$, with quotient $Q$.
+Suppose we know that after tensoring with any field, I get an isomorphism.
+Note that this is true in our case, since I can count dimensions.
+If $Q\otimes k = 0$, then $Q = 0$.
+This is because if I tensor it with $\QQ$, I kill all torsion, so if I get zero, then it's torsion.
+If I tensor it with $\FF_p$ and it's zero, then it has no $p$-component.
+Thus $M\simeq N$.
+In particular, we find that
+$$
+H^\ast(BU(n);R) \xrightarrow{\simeq} H^\ast(BT^n;R)^{\Sigma_n} = R[\sigma_1^{(n)},\cdots,\sigma_n^{(n)}]
+$$
+Let's look at the compatibility when I change $n$ for these things.
+I can map $R[t_1,\cdots,t_n] \to R[t_1,\cdots,t_{n-1}]$ by sending $t_n\mapsto 0$ and $t_i\mapsto t_i$ for $i\neq n$.
+Of course, I can't say that this is equivariant with respect to $\Sigma_n$.
+But I can say that it's invariant with respect to an action of $\Sigma_{n-1}$ on $R[t_1,\cdots,t_n]$, where $\Sigma_{n-1}\hookrightarrow \Sigma_n$ as the isotropy group of $n\in\{1,\cdots,n\}$.
+So the full invariant sit inside the $\Sigma_{n-1}$ invariants, and hence I get a map
+$$
+R[t_1,\cdots,t_n]^{\Sigma_n} \to R[t_1,\cdots,t_n]^{\Sigma_{n-1}} \to R[t_1,\cdots,t_{n-1}]^{\Sigma_{n-1}}
+$$
+If you look at the formula that I wrote before, then you find that for $i<n$, then $\sigma_i^{(n)} \to \sigma_i^{(n-1)}$ and $\sigma_n^{(n)} \mapsto 0$.
+\subsection{Where do the Chern classes go?}
+To do this, we're going to have to understand the multiplicativity of the Chern class.
+This is simple, but I'll spend time on it.
+Suppose $\xi^p\downarrow X,\eta^q\downarrow Y$ are oriented real vector bundles.
+I can consider $\xi\times\eta\downarrow X\times Y$, which is another oriented real vector bundle.
+I can give this an orientation by picking oriented bases for $\xi$ and $\eta$.
+There are lot of choices, but I'll put the first one first and the second one second.
+I claim that
+$$
+e(\xi\times\eta) = e(\xi)\times e(\eta) \in H^{p+q}(X\times Y)
+$$
+We can consider $R$-oriented things, but it's either $\Z/2$-oriented or $\Z$-oriented.
+Why is it true?
+If I want to compute $D(\xi\times\eta)$, well, it's homeomorphic to $D(\xi)\times D(\eta)$.
+If I want to go to the sphere bundle -- oh, really I should say that
+$$
+u_{\xi\times \eta} = u_\xi\times u_\eta\in H^{p+q}(\Th(\xi)\times\Th(\eta))
+$$
+Anyway, we find that $S(\xi\times\eta) = D(\xi)\times S(\eta)\cup S(\xi)\times D(\eta)$.
+There's a relative Kunneth formula that tells you that
+$$
+H^\ast(D(\xi\times\eta),S(\xi\times\eta)) \leftarrow H^\ast(D(\xi),S(\xi))\otimes H^\ast(D(\eta),S(\eta))
+$$
+and $u_\xi\otimes u_\eta\mapsto u_{\xi\times\eta}$ because it's true on each fiber.
+By restricting to the base, you get multiplicativity for the Euler class.
+
+If I let $X=Y$, and $\Delta:X\to X\times X$, then the cross product pulls back to the cup product and direct product pulls back to the Whitney sum.
+So, you get that
+$$e(\xi\oplus\eta) = e(\xi)\cup e(\eta)$$
+What does that say about Chern classes?
+
+If $\xi^n\downarrow X$ is an $n$-dimensional complex vector bundle, then we defined\footnote{Well a complex bundle doesn't really have an orientation but its underlying oriented real vector bundle does.}
+$$
+c_n(\xi) = (-1)^n e(\xi_\RR)
+$$
+We're interested in $H^{2n}(BU(n)) \to H^{2n}(BT^n)^{\Sigma_n}$.
+I want to know where $c_n(\xi_n)$ goes.
+This is $(-1)^ne(\xi)$.
+Where does the Euler class go?
+Where does $\xi$ come from?
+
+I've got $f:BT^n\to BU(n)$, and I have $\xi_n\downarrow BU(n)$.
+Thus, by construction, $f^\ast\xi_n = \lambda_1\oplus\cdots\oplus \lambda_n$.
+Thus, $(-1)^ne(\xi)\mapsto (-1)^n e(\lambda_1\oplus\cdots\oplus \lambda_n)$.
+We computed that the right hand side (by multiplicativity) maps to $(-1)^nt_1\cdots t_n$.
+This is precisely $\sigma_n^{(n)}$!
+Thus the top Chern class goes to $\sigma_n^{(n)}$.
+
+Now, I have:
+\begin{equation*}
+    \xymatrix{
+	H^\ast(BU(n)) \ar[r] \ar[d] & H^\ast(BT^n)^{\Sigma_n}\ar[d]\\
+	H^\ast(BU(n-1)) \ar[r] & H^\ast(BT^{n-1})^{\Sigma_{n-1}}
+    }
+\end{equation*}
+The diagram commutes, but you have to check how maximal tori sit in these spaces.
+We know that going from top left to bottom left to bottom right runs via $c_i\mapsto c_i\mapsto \sigma_i^{(n-1)}$, for $i<n$.
+By commutativity, $c_i^{(i)}\mapsto \sigma_i^{(i)}$.
+(Note that we're inducting here.)
+\subsection{Proving the Whitney sum formula}
+Whitney called this the hardest theorem he ever proved.
+This formula relates characteristic classes.
+Well by the stuff we did above, it's the same as this claim:
+$$
+\sigma^{(p+q)}_k = \sum_{i+j=k}\sigma_i^{(p)}\cdot\sigma_j^{(q)}
+$$
+This is happening in $\Z[t_1,\cdots,t_p,t_{p+1},\cdots,t_{p+q}]$.
+Here $\sigma_i^{(p)}$ is thought of as a polynomial in $t_1,\cdots,t_p$, while $\sigma_i^{(q)}$ is a polynomial in $t_{p+1},\cdots,t_{p+q}$.
+Let's check this.
+Recall that
+\begin{align*}
+    \sum_{k=0}^{p+q} \sigma_k^{(p+q)}x^{p+q-k} & = \prod^{p+q}_{i=1}(x-t_i)\\
+    & = \prod^p_{i=1}(x-t_i)\cdot\prod^{p+q}_{j=p+1}(x-t_j)\\
+    & = \left(\sum^p_{i=0}\sigma^{(p)}_i x^{p-i}\right)\left(\sum^q_{j=0}\sigma_j^{(p)} x^{q-j}\right)\\
+    & = \sum^{p+q}_{k=0}\left(\sum_{i+j=k}\sigma_i^{(p)}\sigma_j^{(q)}\right)x^{p+q-k}
+\end{align*}
+Now compare coefficients.
+\section{Steifel-Whitney classes, immersions, cobordisms}
+\begin{theorem}
+    There exist a unique family of characteristic classes $w_i:\Vect_n(X) \to H^n(X;\FF_2)$ such that for $0\leq i$ and $i>n$, we have $w_i=0$, and:
+    \begin{enumerate}
+	\item $w_0 = 1$
+	\item $w_1(\lambda) = e(\lambda)$.
+	\item Whitney sum:
+	    \begin{equation*}
+		w_k(\xi\oplus\eta) = \sum_{i+j=k} w_i(\xi)\cup w_j(\eta)
+	    \end{equation*}
+    \end{enumerate}
+    Moreover:
+    $$
+    H^\ast(BO(n);\FF_2) = \FF_2[w_1,\cdots,w_n]
+    $$
+    where $w_n = e_2$, and $H^\ast(BO(n-1);\FF_2) = \FF_2[w_1,\cdots,w_{n-1}]$ with $w_i\mapsto w_i$ for $i<n$ and $0$ for $i=n$
+\end{theorem}
+\begin{remark}
+    You can express the Whitney sum formula simply by defining the \emph{total Steifel-Whitney class} $1 + w_1 + w_2 + \cdots=:w$ (this is an inhomogenous cohomology class).
+    Then the Whitney sum formula is just
+    $$
+    w(\xi\oplus\eta) = w(\xi)\cdot w(\eta)
+    $$
+    That's kind of how you prove it, actually, with the splitting principle.
+\end{remark}
+Here, Grothendieck's definition works.
+The splitting principle also holds, so $H^\ast(BO(n))\hookrightarrow H^\ast(B(\Z/2\Z)^n)$.
+We can't do what we did before, when considering $S^{n-1} \to EO(n)\times_{O(n)} O(n)/O(n-1)\to BO(n)$, because the $n-1$ can be even or odd; there's no restriction for it to be even like it was before.
+We still have a Gysin sequence, though:
+$$
+\cdots\to H^{q-n}(BO(n))\xar{e\cdot} H^q(BO(n)) \xar{\pi^\ast} H^q(BO(n-1)) \to H^{q-n+1}(BO(n))\to\cdots
+$$
+We want that $e$ is a nonzero divisor.
+But we have a splitting principle!
+
+We know that $H^\ast(BO(n)) \hookrightarrow H^\ast((\RP^\infty)^n)$, and $e_2=w_n\mapsto e_2(\lambda_1\oplus\cdots\oplus\lambda_n) = t_1\cdots t_n$, which \emph{is} a nonzero divisor, as $H^\ast((\RP^\infty)^n)$ is an integral domain.
+\todo{this was not written well, because I came late.}
+\subsection{Application I: immersions}
+I'm going to think about immersions into Euclidean space.
+That means that I have some manifold $M^n$, that is some closed smooth manifold.
+An immersion is a smooth map $f:M^n\looparrowright \RR^{n+k}$ (that's how it's denoted) such that $(\tau_{M^n})_x \hookrightarrow (\tau_{\RR^{n+k}})_{f(x)}$ for $x\in M$.
+So you can have crossings, but no cusps.
+It's a big problem in topology to try to eliminate the crossings.
+
+By the way, if you haven't seen it, there's a beautiful immersion $\RP^2 \looparrowright \RR^3$ that's known as \emph{Boys' surface}.
+
+That's a question; when can I immerse a manifold into an Euclidean space?
+Assume I had an immersion $i:M^n\looparrowright \RR^{n+k}$.
+Then I have $f:\tau_M \to i^\ast \tau_{\RR^{n+k}}$.
+The right hand thing is a trivial bundle over $M$, and the property of being an immersion says that $f$ is an embedding.
+Thus, $\tau_M$ has a $k$-dimensional complement, called $\xi$.
+This $\tau_M\oplus\xi = (n+k)\epsilon$.
+When I apply the total Steifel-Whitney class, we have (since there's no higher Steifel-Whitney class of a trivial bundle):
+$$
+w(\tau)w(\xi) = 1
+$$
+Which means that
+$$
+w(\xi) = w(\tau)^{-1}
+$$
+\begin{example}
+    Let $M = \RP^n\looparrowright \RR^{n+k}$.
+    I picked this since we know what $\tau_{\RP^n}$ is.
+    In particular, we know that
+    $$
+    \tau_{\RP^n}\oplus\epsilon\simeq (n+1)\lambda^\ast \simeq (n+1)\lambda
+    $$
+    where $\lambda\downarrow \RP^n$ is the canonical line bundle.
+    Now, I can compute the total Steifel-Whitney class of this.
+    By the way, because of that Whitney sum formula, we get that $w(\xi\oplus k\epsilon) = w(\xi)$ -- these are \emph{stable} characteristic classes.
+    So, I have:
+    $$
+    w(\tau_{\RP^n}) = w(\tau_{\RP^n}\oplus\eta) = w((n+1)\lambda) = w(\lambda)^{n+1}
+    $$
+    What's $w(\lambda)$?
+    It only has a $w_1$, and thus $w(\lambda) = x$ if we write $H^\ast(\RP^n) = \FF_2[x]/(x^{n+1})$; everything is with $\FF_2$-coefficients.
+    Thus, we have
+    $$
+    w(\tau_{\RP^n}) = (1+x)^{n+1} = \sum^n_{i=0}\binom{n+1}{i}x^i
+    $$
+    and thus it follows that
+    $$
+    w_i(\tau_{\RP^n}) = \binom{n+1}{i}x^i
+    $$
+    If we're talking about immersions, we should talk about the SW class of the complement of the tangent bundle, and it's:
+    $$
+    w(\xi) = (1+x)^{-n-1}
+    $$
+    We could write down a formula, but the most interesting case is what happens when $n=2^s$ for some integer $s$.
+    Then we'd have
+    $$
+    w(\xi) = (1+x)^{-1-2^s} = (1+x)^{-1}(1+x)^{-2^s} = (1+x)^{-1}(1+x^{2^s})^{-1} = (1+x+x^2+\cdots)(1+x^{2^s}+\cdots)
+    $$
+    Because taking powers of $2$ is linear in char. $2$.
+    Since we're in $\FF_2[x]/x^{2^s+1}$, I don't care about higher terms.
+    So
+    $$
+    w(\xi) = 1+x+x^2+\cdots+x^{2^s-1}+2x^s = 1+x+x^2+\cdots+x^{2^s-1}
+    $$
+    This means that $k = \dim\xi \geq 2^s-1$, as $x^{2^s-1}\neq 0$.
+    The conclusion is:
+    \begin{theorem}
+	$\RP^{2^s}\not \looparrowright \RR^{2\cdot 2^{s}-2}$.
+    \end{theorem}
+    This is sharp\footnote{This means that I can't reduce the dimension of the Euclidean space into which I'm embedding.}, because of the following theorem:
+    \begin{theorem}[Whitney]
+	Any smooth compact closed manifold $M^n \looparrowright \RR^{2n-1}$.
+	This result is \emph{not} sharp.
+    \end{theorem}
+    The sharp theorem, though, is this:
+    \begin{theorem}[Brown, Peterson, Cohen, in 1980?]
+	A closed compact smooth $n$-manifold $M^n \looparrowright \RR^{2n-\alpha(n)}$, where $\alpha(n)$ is the number of $1$s in the dyadic expansion of $n$.
+	This is sharp, since if $n=\sum 2^{d_i}$ for the dyadic expansion, then $M = \prod_i \RP^{2^{d_i}} \not \looparrowright \RR^{2n-\alpha(n)-1}$, using Steifel-Whitney classes.
+    \end{theorem}
+\end{example}
+There was a period of time in the late '60s, etc. when a lot of effort was put in to stronger and stronger immersion results.
+\subsection{Cobordism, characteristic numbers}
+If I have an $n$-manifold (smooth closed compact), one thing that's always true is that it embeds in $\RR^{n+k}$ for some $k>>0$.
+So, you have a normal bundle: $\tau_M^n\oplus \nu_M^k = (n+k)\epsilon$.
+A piece of differential topology tells you that if $k$ is large, then $\nu_M\oplus ?\epsilon$ is independent of the bundle, where $?$ is some number.
+
+It makes sense to talk about the Steifel-Whitney class for $w\in H^\ast(BO) = \FF_2[w_1,w_2,\cdots]$, where $BO = \varinjlim BO(n)$.
+That's where we should be talking about things that are well-defined but only up to some trivial bundle.
+I can consider $w(\nu_M)$ -- that makes sense.
+The $w$ is to remind you that this is related to the Steifel-Whitney class.
+I can now consider $\langle w(\nu_M),[M]\rangle$.
+This is called the characteristic number.
+We saw an example of this already, for instance in the Euler characteristic (this is slightly different since I'm using the normal bundle here).
+Note that $[M]$ exists since we're working with coeffs in $\FF_2$.
+
+That's a useful thing you can do.
+This relates to the notion of a cobordism.
+
+Let me say that two $n$-manifolds $M, N$ are \emph{(co)bordant} if there's an $(n+1)$-dimenional manifold $W^{n+1}$ with boundary such that $\partial W\simeq M\sqcup N$.
+What if $n=0$, for example?
+We know that the manifold $\ast\sqcup \ast$ is \emph{not} cobordant to $\ast$, but it is cobordant to the empty set.
+But $\ast\sqcup\ast\sqcup\ast$ is cobordant to $\ast$.
+Any manifold is cobordant to itself, since $\partial(M\times I) = M\sqcup M$.
+Cobordism is an equivalence relation.
+
+Note that all my manifolds are compact and smooth.
+But $M$ and $N$ are closed.
+
+Let us define
+$$
+\Omega^O_n = \{\text{cobordism classes of $n$-manifolds}\}
+$$
+We computed that $\Omega^O_n = \FF_2$.
+I wrote this as a group, because I can add cobordism classes, by taking disjoint unions.
+Every element is its own inverse.
+In fact, when I put this together, I get a graded \emph{cobordism ring}, denoted $\Omega^O_\ast$.
+
+Let me show you something here.
+This is due to Rene Thom.
+He made the following observation, that's pretty cool.
+Suppose my manifold is embedded into Euclidean space.
+Then suppose $M$ is nullbordant via some $W$.
+When you set it up like that, you find that $\nu_W|_{M} = \nu_M$; there's no change in dimension.
+
+Look what I can do.
+I can consider $\langle w(\nu_M),[M]\rangle = \langle w(\nu_W)|_{M},[M]\rangle$.
+On the other hand, $H_n(M) \leftarrow H_{n+1}(W,M)$ given by $[W,M]\mapsto[M]$, where that's a relative fundamental class.
+Thus $\langle w(\nu_M),[M]\rangle = \langle w(\nu_M),\partial[W,M]\rangle = \langle \delta w(\nu_M),[W,M]\rangle$.
+But, let's see, we have an exact sequence $H^n(W)\xar{i^\ast} H^n(M) \xar{\delta} H^{n+1}(W,M)$.
+Since $w(\nu_M)$ is $i^\ast$ of something, it follows that $\delta w(\nu_M) = 0$.
+Thus, we find that:
+\begin{prop}
+    Characteristic numbers are cobordism invariants.
+    That is to say, they give a map $\Omega^O_n \to \Hom(H^n(BO),\FF_2)\simeq H_n(BO)$, by UCT.
+\end{prop}
+Thus Stiefel-Whitney numbers tell all.
+\begin{theorem}[Thom, 1954]
+    This map of graded rings is an embedding, i.e., $\Omega^O_\ast \hookrightarrow H_\ast(BO)$.
+    In other words, if $w(M^n) = w(N^n)$ for all $w\in H^n(BO)$, then $M^n \sim N^n$.
+\end{theorem}
+The way that he did this was by expressing $\Omega^O_\ast = \pi_\ast(\text{space})$, and he showed that that space i the product of mod $2$ Eilenberg-Maclane spaces.
+Along the way, he also gave a computation:
+$$
+\Omega^O_\ast = \FF_2[x_i:i\neq 2^s-1] = \FF_2[x_2,x_4,x_5,x_6,x_8,\cdots]
+$$
+(It's a nice exercise to see that every $1$-manifold is nullbordant.)
+On Wednesday we'll talk about Pontryagin classes and the signature theorem.
