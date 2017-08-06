@@ -1,0 +1,86 @@
+\section{Cap product and ``\v{C}ech'' cohomology}
+Let $R$ be a commutative ring with coefficients. The cap product is a map $\cap: H^p(X)\otimes H_n(X)\to H_{q}(X)$ where $p+q=n$. This comes from a chain level map $S^p(X)\otimes S_n(X)\xrightarrow{1\otimes\alpha} S^p(X)\otimes S_p(X)\otimes S_q(X)\xrightarrow{\langle-,-\rangle\otimes 1}R\otimes S_q(X)\cong S_q(X)$. Using our explicit formula for $\alpha$, we can write:
+\begin{equation*}
+\cap:\beta\otimes\sigma\mapsto\beta\otimes(\sigma\circ\alpha_p)\otimes(\sigma\circ\omega_q)\mapsto\left(\beta(\sigma\circ\alpha_p)\right)\cdot (\sigma\circ\omega_q)
+\end{equation*}
+There's many things to say:
+\begin{enumerate}
+\item $ H_\ast(X)$ is a module for $ H^\ast(X)$.
+\item The only reasonable thing to ask for in terms of naturality is the following. Suppose $f:X\to Y$, and let $b\in H^p(Y)$ and $x\in H_n(X)$. We then have $f_\ast(f^\ast(b)\cap x)=b\cap f_\ast(x)$, where $f^\ast(b)\cap x\in H_q(X)$ and $b\cap f_\ast(x)\in H_n(X)$. This is called a projection formula. To see this, let $[\beta]=b$. Then:
+\begin{align*}
+f_\ast(f^\ast(\beta)\cap\sigma)& =f_\ast(\left(f^\ast(\beta)(\sigma\circ\alpha_p)\right)\cdot(\sigma\circ\omega_q))\\
+& =f_\ast(\beta(f\circ\sigma\circ\alpha_p)\cdot(\sigma\circ\omega))\\
+& =\beta(f\circ\sigma\circ\alpha_p)\cdot f_\ast(\sigma\circ\omega_q)\\
+& = \beta(f\circ\sigma\circ\alpha_p)\cdot(f\circ\sigma\circ\omega_q)\\
+& = \beta\cap f_\ast(\sigma)
+\end{align*}
+So we're done.
+\item There's a relation between the cap and Kronecker product. Any space has an augmentation $\varepsilon:X\to\ast$, so I get $\varepsilon_\ast: H_\ast(X)\to R$. Maybe we should compute $\varepsilon_\ast(\beta\cap \sigma)$. I will get zero unless $p=n$ and $q=0$. What does our formula say? This just says that $\varepsilon_\ast(b\cap x)=\varepsilon_\ast(\beta(\sigma)\cdot c^0_{\sigma(n)})=\beta(\sigma)\varepsilon_\ast(c^0_{\sigma(n)})=\beta(\sigma)=\langle \beta,\sigma\rangle$ because $\varepsilon_\ast$ counts the number of points, i.e., it's $1$. Hence $\varepsilon_\ast(b\cap x)=\langle b,x\rangle$.
+\item What is $\langle a\cup b,x\rangle$? This is $\varepsilon_\ast((a\cup b)\cap x)=\varepsilon_\ast(a\cap(b\cap x))$ by an assertion in the previous lecture (namely that $(\alpha\cup\beta)\cap x=\alpha\cap(\beta\cap x)$ and $1\cap x=x$), which becomes $\langle a,b\cap x\rangle$. In other words, $\langle a\cup b,x\rangle=\langle a,b\cap x\rangle$. So the cup product is adjoint to the cap product.
+\end{enumerate}
+\subsection{Relative $\cap$}
+There's a lot of structure, but we want more. We want to now try to understand the relative cap product. Suppose $A\subseteq X$ is a subspace. We have:
+\begin{equation*}
+\xymatrix{
+	0\ar[d] & & 0\ar[d]\\
+	S^p(X)\otimes S_n(A)\ar[d]^{1\otimes i_\ast}\ar[r]^{i^\ast\otimes 1} & S^p(A)\otimes S_n(A)\ar[r]^{\cap} & S_q(A)\ar[d]\\
+	S^p(X)\otimes S_n(X)\ar[rr]^\cap\ar[d] & & S_q(X)\ar[d]\\
+	S^p(X)\otimes S_n(X,A)\ar[d]\ar@{-->}[rr] & & S_q(X,A)\ar[d]\\
+	0 & & 0
+}
+\end{equation*}
+The left sequence is exact because $0\to S_n(A)\to S_n(X)\to S_n(X,A)\to 0$ splits and tensoring with $S^p(X)$ still leaves it exact. We have to check that this diagram commutes.
+
+Let $\beta\otimes \sigma\in S^p(X)\otimes S_n(A)$. We then get:
+\begin{equation*}
+\beta\otimes\sigma\xrightarrow{i^\ast\otimes 1}i^\ast\beta\otimes\sigma\to i^\ast(\beta)\cap\sigma\xrightarrow{i_\ast}i_\ast(i^\ast(\beta)\cap\sigma)
+\end{equation*}
+And:
+\begin{equation*}
+\beta\otimes\sigma\xrightarrow{1\otimes i_\ast}\beta\otimes i_\ast\sigma\to \beta\cap i_\ast(\sigma)
+\end{equation*}
+So they're equal by the projection formula. Hence you get $\cap: H^p(X)\otimes H_n(X,A)\to H_q(X,A)$ that makes $ H_\ast(X,A)$ a $ H^\ast(X)$-module.
+\subsection{A different perspective on excision}
+Recall what excision is. We know that $ H_\ast(X-U,A-U)\cong H_\ast(X,A)$. There's another perspective on this. Suppose $K\subseteq U\subseteq X$ such that $\overline{K}\subseteq\mathrm{Int}(U)$. To simplify things, suppose $K$ is closed and $U$ is open. Let $A=X-K\supseteq X-U=V$. Then excision says that $ H_\ast(X-V,A-V)= H_\ast(X-(X-U),(X-K)-(X-U))\cong H_\ast(X,A)= H_\ast(X,X-K)$. There's a simpler expression: $ H_\ast(X-(X-U),(X-K)-(X-U))= H_\ast(U,U-K)$, so $ H_\ast(U,U-K)\cong H_\ast(X,X-K)$, i.e., it depends only on an open neighborhood of $K$. A question that we now have is: how does this depend on $ H_\ast(K)$? $ H^\ast(K)$? This is really what Poincar\'{e} duality wants to understand.
+\begin{example}
+We'll eventually be talking, for example, about $X=S^3$ and $K=\text{knot}$.
+\end{example}
+We want to understand $ H_\ast(X,X-K)$ better. We have a cap product $ H^p(X)\otimes H_n(X,X-K)\to H_q(X,X-K)$. We just decided that $ H_n(X,X-K)\cong H_n(U,U-K)$, and so I have the cap product $ H^p(U)\otimes H_n(U,U-K)\to H_q(U-U-K)$. Hence I get the cap product map like $ H^p(U)\otimes H_n(X,X-K)\to H_q(X,X-K)$. But this seems to depend upon a choice of $U$. What if I make $U$ smaller?
+\begin{lemma}
+Let $U\supseteq V\supseteq K$. Then:
+\begin{equation*}
+\xymatrix{
+	 H^p(U)\ar[dd]^{i^\ast\otimes 1}\otimes H_n(X,X-K)\ar[dr]^\cap & \\
+	 & H_q(X,X-K)\\
+	 H^p(V)\otimes H_n(X,X-K)\ar[ur]^\cap
+}
+\end{equation*}
+\end{lemma}
+\begin{proof}
+Hint: use projection formula again.
+\end{proof}
+Let $\mathcal{U}_K$ be the set of open neighborhoods of $K$ in $X$. This is a poset (actually a directed set because you can take intersections), under reverse-inclusion as the ordering. This lemma says that $ H^p:\mathcal{U}_K\to\mathbf{Ab}$.
+\begin{definition}
+$\cHH^p(K):=\varinjlim_{U\in\mathcal{U}_K} H^p(U)$.
+\end{definition}
+This is bad notation because it depends on the way $K$ is sitting in $X$.
+
+You therefore get $\cHH^p(K)\otimes H_n(X,X-K)\xrightarrow{\cap} H_q(X,X-K)$. This is the best you can do. It's the natural structure that this relative homology has, i.e., $ H_\ast(X,X-K)$ is a module over $\cHH^\ast(K)$.
+
+Sometimes, $\cHH^\ast(K)$ will just be $ H^\ast(K)$. Suppose $K\subseteq X$ satisfies the condition (called the ``regularity'' condition) that for every open $U\supseteq K$, there exists an open $V$ such that $U\supseteq V\supseteq K$ such that $K\to V$ is a homotopy equivalence (or actually just a homology isomorphism). (for example, a smooth knot in $S^3$) Then:
+\begin{lemma}
+Suppose $\cI$ is a directed set (nonempty). Let $F:\cI\to\mathbf{Ab}$, and suppose I have a natural transformation $\theta:F\to c_A$ (for example, a map from $F$ to its direct limit). This expresses $A$ as $\varinjlim_\cI F$ provided that for all $i$, there is $j\geq i$ such that $F(i)\to A$ factors through $F(j)\to A$, which should be an isomorphism, i.e.:
+\begin{equation*}
+\xymatrix{
+	F(i)\ar[dr]\ar[rr] & & A\\
+	& F(j)\ar[ur]^\cong
+}
+\end{equation*}
+\end{lemma}
+\begin{proof}
+Given $a\in A$, it has to come from somewhere to be a direct limit. This is obviously true. Also, for any $i$ and $a_i\in F(i)$ such that $a_i\mapsto 0$, then there exists $j\geq i$ such that $a_i\mapsto 0\in F(j)$. This is also obvious.
+\end{proof}
+\begin{remark}
+This is a really strong condition by the way. It is a really stupid way.
+\end{remark}
+This works in the case that $K$ is regular in $X$. Thus, under this condition, $\cHH^p(K)\cong H^p(K)$. One other comment is that more generally, if $X$ is an Euclidean neighborhood retract (a retract of a neighborhood in some $\RR^n$), and $K$ is locally compact, then $\cHH^p(K)$ depends only on $K$, and it is isomorphic to \v{C}ech cohomology (which is a different type of cohomology theory).

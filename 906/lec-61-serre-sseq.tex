@@ -1,0 +1,168 @@
+\section{Serre spectral sequence}
+Spectral sequences are one of these things for which anybody who is anybody must suffer through.
+Once you've done that, it's like linear algebra.
+You stop thinking so much about the ``inner workings'' later.
+Today will be the surface story, and we'll get into the innards later.
+
+On Monday I was talking about the example of a filtered space.
+That gives rise to a filtered complex.
+That's a chain complex $C$, with an increasing sequence $F_\ast C$ of subchain complexes.
+
+We saw various things: we've got
+\begin{equation*}
+    \xymatrix{
+	F_{s-1} C \ar[r] & F_s C \ar[d] \ar[r] & F_{s+1} C\ar[d]\\
+	& \gr_s C & \gr_{s+1} C
+    }
+\end{equation*}
+We then let $E^0_{st} = \gr_s C_{s+t}$, and we have a differential $d^0:E^0_{st} \to E^0_{s, t-1}$.
+We can go even further: I'll define $E^1_{st} = H_{s,t}(E^0_{s,t}, d^0)$.
+\begin{equation*}
+    \xymatrix{
+	HF_{s-1}\ar[r] & HF_s \ar[r] \ar[d] & HF_{s+1}\\
+	E^1_{s-1,\ast} & E^1_{s,t}\ar[l]^{d^1} & 
+    }
+\end{equation*}
+We saw this already in cellular chains, where the $E^1$ were the cellular chains.
+Now, $d^1:E^1_{s,t} \to E^1_{s-1,t}$ since the differentials decrease total degree by $1$.
+I could draw out the spectral sequence like this\todo{use sseq package to redraw this!!}:
+\begin{equation*}
+    \xymatrix{
+	\ast & & \\
+	& \ast & \ast\ar[d]^{d^0}\ar[l]_{d^1}\ar[ull]_{d^2} \\
+	& & \ast
+    }
+\end{equation*}
+the vertical thing is $t$, called the complementary degree, and the horizontal indexing is the filtration degree $s$.
+\begin{theorem}
+    Let $F_\ast C$ be a filtered complex.
+    There exists natural:
+    \begin{enumerate}
+	\item for any $r\geq 0$, a bigraded group $(E^r_{s,t})_{s\geq 0, t\in\Z}$.
+	\item for any $r\geq 0$, a differential $d^r:E^r_{s,t} \to E^r_{s-r,t+r - 1}$.
+	\item $H_{s,t}(E^r_{\ast,\ast}, d^r) = E^{r+1}_{s,t}$.
+    \end{enumerate}
+    and $(E^0, d^0)$ and $(E^1, d^1)$ are as above.
+    Then under certain hypotheses (see below) ($F_\ast C$ is bounded below), there is an isomorphism:
+    $$
+    E^\infty_{s,t} \simeq \gr_s H_{s+t}(C)
+    $$
+    See below for what $E^\infty$ means.
+\end{theorem}
+It's supposed to help us compute the homology of the thing we started with.
+This is called a \emph{homology spectral sequence}.
+
+There's a filtration $F_s H_n(C):=\img(H_n(F_s C) \to H_n(C))$.
+What the spectral sequence will tell you is information about the associated graded.
+This isn't so bad if you're over, like, vector spaces.
+
+Let's assume that the filtration $F_\ast C$ is bounded below (so $F_{-1} C = 0$).
+Then $E^0_{s,t} = F_s C_{s+t}/F_{s-1} C_{s+t} = 0$ for $s<0$.
+It's a ``right half plane'' spectral sequence.
+Thus, in our example, the differentials from the group at $(s,t)$ must have $d^{s+1} = 0$.
+This tells us that there's a surjection $E^{s+1}_{s,t} \to E^{s+2}_{s,t}$.
+And that continues: we get surjections all the way, and take the direct limit of $E^{r}_{s,t}$, which is defined to be $E^\infty_{s,t}$.
+
+OK, so for our theorem, we have the following picture of $E^\infty_{\ast,\ast}$:
+\begin{equation*}
+    \xymatrix{
+	\gr_0 H_n(C) \simeq E^\infty_{0,n} & & & \\
+	& \gr_1 H_n(C) \simeq E^\infty_{1,n-1} & & \\
+	& & \gr_2 H_n(C) \simeq E^\infty_{2,n-2} & & \\
+	& & & \ddots
+    }
+\end{equation*}
+Note that $\gr_0 H_n(C) = F_0 H_n(C) = \img(H_n(F_0 C) \to H_n(C))$.
+
+Maybe you still don't get the homology of $n$ (like if $F_\ast$ is $0$).
+But if $F_\ast C$ is exhaustive, then $F_\ast H_\ast C$ is also exhaustive (I said this on Monday).
+With this assumption, then we get all the associated graded pieces.
+\begin{corollary}
+    Let $C\xrightarrow{f} D$ be a map of filtered complexes.
+    Assume that the filtration on $C$ and $D$ are bounded below and exhaustive.
+    Assume also that $E^r(f)$ is an isomorphism for some $r$.
+    Then $f_\ast : H(C) \to H(D)$ is an isomorphism.
+\end{corollary}
+You're completely recovering the homology of $C$ in this sense.
+\begin{proof}
+    $E^r(f)$ is an isomorphism, and it's also a chain map (it's compatible with the differential $d^r$).
+    Thus $E^{r+1}(f)$ is an isomorphism.
+    And so on.
+    Thus, $E^\infty_{s,t}(f)$ is an isomorphism for all $s,t$.
+    Thus the associated graded map $\gr_s(f_\ast):\gr_s H_\ast(C) \to \gr_s H(D)$ is an isomorpihsm.
+    I have a short exact sequence:
+    $$
+    0 \to F_0 H_\ast \to F_1 H_\ast \to \gr_1 H_\ast \to 0
+    $$
+    We have an isomorphism on the left and right nontrivial groups, so by the five lemma and induction, $F_s f_\ast$ is an isomorphism.
+    The filtration was exhaustive, so $f_\ast$ is an isomorphism.
+\end{proof}
+This is convergence following Eilenberg-Moore.
+
+Wow, OK.
+Let's talk about the Serre spectral sequence.
+\subsection{Serre spectral sequence}
+I'll give two constructions.
+I have a fibration $E\xrightarrow{p} B$, with $B$ a CW-complex.
+I can define a filtration on $E$ by taking preimages.
+So, I get a filtration $F_s S_\ast (E) = \img(S_\ast(p^{-1} \sk_s(B)) \to S_\ast E)$.
+I'll let $E_s = p^{-1} \sk_s B$.
+This is bounded below and exhaustive.
+And that's the Serre spectral sequence.
+The low terms might depend on the CW-structure, but higher terms won't.
+
+Let's think about how you build $E_{s-1}$.
+You have a pushout:
+\begin{equation*}
+    \xymatrix{
+	E_{s-1}\ar[r]\ar[d] & E_s\ar[d]\\
+	B_{s-1}\ar[r] & B_s\\
+	\coprod_{\alpha\in\Sigma_s}S^{s-1}_\alpha\ar[r]\ar[u] & \coprod_{\alpha\in\Sigma_s} D^s_\alpha\ar[u]
+    }
+\end{equation*}
+I can pullback $E_s$ via:
+\begin{equation*}
+    \xymatrix{
+	\coprod_{\alpha\in \Sigma_s} D^s_\alpha\times F_\alpha\ar[r]\ar[d] & E_s\ar[d]\\
+	\coprod_{\alpha\in \Sigma_s} D^s_\alpha\ar[r] & B_s
+    }
+\end{equation*}
+where $F_\alpha$ is $p^{-1}$ of the center of $\alpha$ cell.
+In particular, I have a pushout:
+\begin{equation*}
+    \xymatrix{
+	E_{s-1}\ar[r] & E_s\\
+	\coprod_{\alpha\in\Sigma_s} S^{s-1}_\alpha\times F_\alpha\ar[r]\ar[u] & \coprod_{\alpha\in\Sigma_s} D^s_\alpha \times F_\alpha\ar[u]
+    }
+\end{equation*}
+This fits inside a cube that I didn't have time to \TeX.
+Now, we know that $E^1_{s,t} = H_{s+t}(E_s,E_{s-1})$.
+The same argument shows that $E^1_{s,t} = \bigoplus_{\alpha\in \Sigma_s} H_{s+t}(D^s_\alpha\times F_\alpha, S^{s-1}_\alpha\times F_\alpha)$.
+I can write this differently as $\bigoplus_{\alpha\in\Sigma_s} H_{s+1}((D^s_\alpha, S^{s-1}_\alpha)\times F_\alpha)$, which is, by Kunneth, exactly $\bigoplus_{\alpha\in\Sigma_s} H_t(F_\alpha)$.
+I guess I can write this as ``$C_s(B;H_t(F_\alpha))$''.
+There's some things wrong with writing it like that.
+
+I mean, suppose $B$ isn't connected.
+Then the $F_\alpha$ could have completely different homotopy types.
+That symbol $C_s(B;H_t(F_\alpha))$ doesn't make any sense then.
+Even if you're path-connected, there's still no canonical way to identify the fiber over one point to the fiber over another point.
+What you get is that $H_t(p^{-1}(-)):\Pi_1(B) \to \mathbf{Ab}$.
+This is the same thing as a ``local coefficient system'' on $B$.
+So, the right thing to say is:
+$$
+E^2_{s,t} = H_s(B;\underline{H_t(\mathrm{fiber})})
+$$
+Pick a basepoint in $B$, and build the universal cover $\widetilde{B}\to B$, with an action of $\pi_1(B,\ast)$.
+Look at $S_\ast(\widetilde{B})$.
+There is an action of $\pi_1(B,\ast)$ on this chain complex.
+So $S_\ast(\widetilde{B})$ is a chain complex of right modules over $\Z[\pi_1(B)]$.
+If $B$ is connected, then giving a local coefficient system on $B$ is the same thing as giving an action of $\pi_1(B)$ on $H_t(p^{-1}(\ast))$.
+This is now a left action.
+You know what you want to do then:
+$$
+S_\ast(B;\underline{H_t(p^{-1}(\ast))}) = S_\ast(\widetilde{B}) \otimes_{\Z[\pi_1(B)]} H_t(p^{-1}(\ast))
+$$
+The homology of this chain complex is the $E^2$-page.
+On Friday, I'll try to show you some applications of this.
+
+We'll always be in the case where that local system is trivially (eg if $\pi_1$ acts trivially, like if $B$ is simply connected).

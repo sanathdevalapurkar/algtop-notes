@@ -1,0 +1,73 @@
+\section{Universal coefficient theorem, and products in $ H^\ast$}
+We talked about cohomology $ H^\ast(X,A;N)$, which was contravariant in $(X,A)$. We can repeat some of the arguments for homology in the cohomological context. We can also relate cohomology to homology. This is the purpose of the universal coefficient theorem for cohomology. I won't actually prove this here, because I've put up notes on the website that covers this.
+\begin{theorem}[Mixed variance UCT]
+Let $R$ be a PID, let $N$ be a $R$-module, and let $C_\bullet$ be a chain complex of free $R$-modules. We've decided that $\Hom_R(C_\bullet,N)$ is a cochain complex. I'm always a little confused on how to write the homology of a cochain complex? Should I write $ H^n$ or $ H_n$? Maybe this is a personal problem, and I should keep it personal? We'll just write $ H^n$. (Some ridiculous notation with the $n$ sitting on the line in $H$ was suggested, but this'd be \emph{impossible} to TeX!)
+
+Anyway, we had a map $ H^n\Hom_R(C_\bullet,N)\to\Hom_R( H_n(C_\bullet),N)$. The theorem is that this is surjective, which has kernel $\Ext^1_R( H_{n-1}(C_\bullet),N)$. I.e, there is a natural sexseq:
+\begin{equation*}
+0\to\Ext^1_R( H_{n-1}(C_\bullet),N)\to H^n\Hom_R(C_\bullet,N)\to\Hom_R( H_n(C_\bullet),N)\to 0
+\end{equation*}
+that splits, but not naturally.
+\end{theorem}
+\begin{proof}[Strategy of the proof]
+I have a sexseq $0\to Z_n(C_\bullet)\to C_n\to C_n/Z_n(C_\bullet)\to 0$ where $Z_n(C_\bullet)=\ker d_n$ (where $C_\bullet$ is a chain complex). But $C_n/Z_n(C_\bullet)=B_{n-1}\hookrightarrow C_{n-1}$ where $B_n(C_\bullet)=\img d_{n-1}$ (this last thing probably has wrong indexing). We assumed $C_{n-1}$ is a free $R$-module, and that $R$ is a PID, so that $B_{n-1}$ is also free. Thus the sexseq $0\to Z_n(C_\bullet)\to C_n\to B_{n-1}\to 0$ splits.
+
+Another sexseq that's important is $0\to Z_n(C_\bullet)/B_n(C_\bullet)\to C_n/B_n(C_\bullet)\to C_n/Z_n(C_\bullet)\to 0$. If you like, you can think of this as follows:
+\begin{equation*}
+\xymatrix{
+	& 0 & 0 & 0 & \\
+	0\ar[r] & Z_n(C_\bullet)/B_n(C_\bullet)\ar[r]\ar[u] & C_n/B_n(C_\bullet)\ar[r]\ar[u] & C_n/Z_n(C_\bullet)\ar[r]\ar[u] & 0\\
+	0\ar[r] & Z_n(C_\bullet)\ar[r]\ar[u] & C_n\ar[r]\ar[u] & C_n/Z_n(C_\bullet)\ar[r]\ar[u] & 0\\
+	0\ar[r] & B_n(C_\bullet)\ar[r]\ar[u] & B_n(C_\bullet)\ar[r]\ar[u] & 0\ar[r]\ar[u] & 0\\
+	& 0\ar[u] & 0\ar[u] & 0\ar[u] &
+}
+\end{equation*}
+Thus $0\to Z_n(C_\bullet)/B_n(C_\bullet)\to C_n/B_n(C_\bullet)\to C_n/Z_n(C_\bullet)\to 0$ splits. But $Z_n(C_\bullet)/B_n(C_\bullet)= H_{n-1}$, so this gives: $0\to H_{n-1}\to C_n/B_n(C_\bullet)\to B_{n-1}\to 0$.
+
+Now, we have a sexseq $0\to B^n\Hom_R(C_\bullet,N)\to Z^n\Hom_R(C_\bullet,N)\to H^n\Hom_R(C_\bullet,N)\to 0$. We want to compare this to $\Hom_R( H_n(C_\bullet),N)$. But, now, $0\to H_{n-1}\to C_n/B_n(C_\bullet)\to B_{n-1}\to 0$ splits, so we get a sexseq $0\to \Hom(B_{n-1},N)\to \Hom(C_n/B_n(C_\bullet),N)\to\Hom( H_{n-1}(C_\bullet),N)\to 0$. Let me write this out:
+\begin{equation*}
+\xymatrix{
+	0\ar[r] & B^n\Hom_R(C_\bullet,N) \ar[r]\ar@{-->}[d] & Z^n\Hom_R(C_\bullet,N) \ar[r]\ar@{-->}[d] & H^n\Hom_R(C_\bullet,N) \ar[r]\ar[d] & 0\\
+	0 \ar[r] & \Hom(B_{n-1},N) \ar[r] & \Hom(C_n/B_n(C_\bullet),N)\ar[r] & \Hom( H_{n-1}(C_\bullet),N) \ar[r] & 0
+}
+\end{equation*}
+An element of $Z^n\Hom_R(C_\bullet,N)$ is a map $f:C_n\to N$ such that $f\circ d=0$. So this map $f$ factors as $C_n/B_n(C_\bullet)\to N$. Thus we have the middle dotted map, and it's actually an isomorphism. You can then check compatibility, to get the left dotted map.
+
+Is the map $ H^n\Hom_R(C_\bullet,N)\to\Hom( H_{n-1}(C_\bullet),N)$ surjective? Well, use the snake lemma. I can then use diagram chasing to see that the map is indeed surjective, with kernel given by the kernel of $B^n\Hom_R(C_\bullet,N)\to \Hom(B_{n-1},N)$. And the rest of the proof amounts to showing that this kernel is $\Ext^1_R( H_{n-1}(C_\bullet),N)$. And for splitting we can construct a splitting map, see the notes.
+\end{proof}
+\begin{remark}
+Miguel: Why is $\Ext$ called Ext?
+
+Miller: It deals with extensions. Let $R$ be a commutative ring, and let $M,N$ be two $R$-modules. I can think about extensions $0\to N\to L\to M\to 0$. Well, for example, I have two extensions $0\to\Z/2\Z\to\Z/2\Z\oplus\Z/2\Z\to\Z/2\Z\to 0$, and $0\to \Z/2\Z\to\Z/4\Z\to\Z/2\Z\to 0$. Say that two extensions are equivalent if there's a map of sexseqs between them is the identity on $N$ and $M$. The two extensions above aren't equivalent, for example.
+
+Another definition of $\Ext^1_R(M,N)$ is the set of extensions like this modulo this notion of equivalence. The zero in the group is the split extension.
+
+Also, $\Ext$ is contravariant in the first variable, but not in the second variable. If you want to find the Ext groups, you can use an injective resolution of the second variable, or a projective resolution of the first variable. These are what are known as derived functors. $\Tor$ is a left derived functor because it uses a projective resolution that goes off to the left, but $\Ext$ is a right derived functor because it uses an injective resolution that goes off to the right.
+\end{remark}
+\subsection{Products}
+We'll talk about the cohomology cross product.
+\begin{construction}
+Define $S^p(X)\otimes S^q(Y)\xrightarrow{\times}S^{p+q}(X\times Y)$ as follows. Let $\sigma$ be a $(p+q)$-simplex in $X\times Y$. Let $f\otimes g\in S^p(X)\otimes S^q(Y)$. We'll define $f\times g\in S^{p+q}(X\times Y)$. Then $f:S_p(X)\to R$ and $g:S_q(Y)\to R$. I can write $\sigma=\begin{pmatrix}\sigma_1 \\ \sigma_2\end{pmatrix}$ where $\sigma_1:\Delta^{p+q}\to X$ and $\sigma_2:\Delta^{p+q}\to Y$. Define:
+\begin{equation*}
+(f\times g)(\sigma)=f(\sigma_1\circ\alpha_p)g(\sigma_2\circ\omega_q)
+\end{equation*}
+where $\alpha_p:\Delta^p\to\Delta^{p+q}$ takes $k\mapsto k$ where $k\in[p]$. And $\omega_q:\Delta^q\to\Delta^{p+q}$ sends $\ell\mapsto \ell+p$ where $\ell\in[q]$. It is an extremely (idiotic I think was the word used) construction that I have never gotten used to.
+\begin{remark}
+It is \emph{incredibly} stupid.
+\end{remark}
+We get a map on cochains. We need to check that this is a chain map $S^\ast(X)\otimes S^\ast(Y)\to S^\ast(X\times Y)$. This is your homework! What this means is that you get a map $ H^\ast(S^\ast(X)\otimes S^\ast(Y))\to H^\ast(X\times Y)$. I guess I have coefficients in $R$. I'm not quite done, but I have a map $ H^\ast(X)\otimes H^\ast(Y)\to H^\ast(S^\ast(X)\otimes S^\ast(Y))$. The composition $ H^\ast(X)\otimes H^\ast(Y)\to H^\ast(S^\ast(X)\otimes S^\ast(Y))\to H^\ast(X\times Y)$ is the cross product.
+\end{construction}
+It's not very easy to do computations with this. It's just hard to deal with. Let me make some points about this construction, though.
+\begin{definition}
+Now take $X=Y$. Then I get $ H^p(X)\otimes H^q(X)\xrightarrow{\times} H^{p+q}(X\times X)\xrightarrow{\Delta^\ast} H^{p+q}(X)$ where $\Delta:X\to X\times X$ is the diagonal. This composition is called the cup product. Some people write $\smile$, and others write $\cup$. (I'll TeX it as $\cup$.)
+\end{definition}
+Some properties of the cup product are the following. I claim that $ H^0(X)\cong\Map(\pi_0(X),R)$ as rings. This $\alpha$ and $\omega$ stuff collapses if $p=q=0$. There's nothing to do ... they're both the identity maps. So this isomorphism is clear. Also, inside $ H^0(X)$, we pick the element that maps to $(c\mapsto 1)\in\Map(\pi_0(X),R)$. This is the identity for the cup product. This comes out because when $p=0$ in our above story, then $\alpha_0$ is just including the $0$-simplex, and $\omega$ is the identity, so this is completely clear from that description.
+\begin{prop}
+If $f\in S^p(X)$ and $g\in S^q(Y)$ and $h\in S^r(Z)$, then $((f\times g)\times h)(\sigma)=(f\times(g\times h))(\sigma)$ where $\sigma:\Delta^{p+q+r}\to X\times Y\times Z$.
+\end{prop}
+\begin{proof}
+Well, $((f\times g)\times h)(\sigma)=(f\times g)(\sigma_{12}\circ\alpha_{p+q})h(\sigma_3\circ\omega_r)$ where $\sigma_{12}:\Delta^{p+q+r}\to X\times Y$ and $\sigma_3:\Delta^{p+q+r}\to Z$. But $(f\times g)(\sigma_{12}\circ\alpha_{p+q})=f(\sigma_1\circ\alpha_p)g(\sigma_2\circ\mu_q)$ where $\mu_q$ is the ``middle portion'' that sends $\ell\mapsto \ell+p$ where $\ell\in[q]$. In other words, $((f\times g)\times h)(\sigma)=f(\sigma_1\circ\alpha_p)g(\sigma_2\circ\mu_q)h(\sigma_3\circ\omega_r)$. I've used associativity of the ring. But this thing is exactly the same as $(f\times(g\times h))(\sigma)$, so this is associative.
+\end{proof}
+Therefore, $(\alpha\cup\beta)\cup\gamma=\alpha\cup(\beta\cup\gamma)$.
+
+But this product is obviously not commutative. It treats the two maps completely differently. But we have ways of dealing with this. This comes from the story of acyclic models, where I'll show that $\alpha\cup\beta=(-1)^{|\alpha|\cdot|\beta|}\beta\cup\alpha$. Thus $ H^\ast(X)$ forms a \emph{graded commutative ring}.

@@ -1,0 +1,58 @@
+\section{Cohomology, Ext, cup product}
+Let $R$ be a ring, probably a PID. It's often a field, but it could be $\Z$. Let $N$ be an $R$-module. Define $S^n(X;N)=\Map(\Sin_n(X),N)$. There's a boundary map $d:S^n(X;N)\to S^{n+1}(X;N)$ that takes a cochain $f$ to the map $df$ defined by $df(\sigma)=(-1)^{n+1}f(d\sigma)$ where $\sigma\in \Sin_{n+1}(X)$. Now, $d^2=0$, so $ H^n(X;N):= H^n(S^\ast(X;N))$. This is a contravariant functor from $\mathbf{Top}$ to $\mathbf{Ab}$ and it's covariant in the coefficients. 
+
+When $n=0$, you have $0\to S^0(X;N)\xrightarrow{d} S^1(X;N)$. Thus $ H^0(X;N)=\ker d$. Well, $S^0(X;N)=\Map(X,N)$, and $d$ sends a $0$-cochain $f$ to $\sigma\mapsto\pm f(d\sigma)=\pm(f(\sigma(0))-f(\sigma(1)))$. So a function is in the kernel of $d$ if its values on the ends of any path is the same. Thus $ H^0(X;N)=\Map(\pi_0(X),N)$.
+
+We also talked about the Kronecker pairing. This gave an evaluation $ H^n(X;N)\otimes_R H_n(X;R)\to N$. Taking the adjoint gives a map $ H^n(X;N)\xrightarrow{\beta}\Hom_R( H_n(X;R),N)$. We can try to understand cohomology in terms of homology. $\beta$'ll often be an isomorphism, but not always.
+\begin{theorem}[UCT for cohomology]
+There is a natural sexseq:
+\begin{equation*}
+0\to\Ext^1_R( H_{n-1}(X;R),N)\to H^n(X;N)\xrightarrow{\beta}\Hom_R( H_n(X;R),N)\to 0
+\end{equation*}
+that splits, but not naturally. This also holds for relative cohomology.
+\end{theorem}
+I will tell you what $\Ext$ means now. I will prove this on Friday.
+
+The problem that arises is that $\Hom_R(-,N):\mathbf{Mod}_R\to\mathbf{Mod}_R$ is not exact. More precisely, it preserves right exact sequences, but not left exact sequences. Consider $M^\prime\xrightarrow{i} M\xrightarrow{p} M^{\prime\prime}\to 0$ an exact sequence of $R$-modules. This gives a sequence $0\to \Hom_R(M^{\prime\prime},N)\to\Hom_R(M,N)\to \Hom_R(M^{\prime},N)$. If I have $f:M^{\prime\prime}\to N$, and I compose with $p$ to get a zero map, then is $f$ zero? Well, yes, because $p$ is surjective. Now suppose I have $g:M\to N$, such that $i\circ g=0$. So it facts through the cokernel, and you get a unique factorization $M^{\prime\prime}\to N$ (unique because $M\to M^{\prime\prime}$ is surjective).
+
+Suppose I have an injection $0\to M^\prime\to M$. Is $\Hom(M,N)\to\Hom(M^\prime,N)$ surjective? If I have some map $M^\prime\to N$ and $M^\prime\hookrightarrow N$, then does this extend to a map $M\to N$? No! For example, if you have $1:\Z/2\Z\to\Z/2\Z$ and $\Z/2\Z\hookrightarrow\Z/4\Z$, then you can't lift to a map $\Z/4\Z\to\Z/2\Z$. This works, though, if the sexseq splits.
+
+Homological algebra now comes to the rescue! Pick a free resolution of $M$ given by $\cdots\to F_2\to F_1\to M\to F_0\to 0$. If I apply $\Hom$, I get a chain complex $0\to \Hom(F_0,N)\to \Hom(F_1,N)\to \Hom(F_2,N)\to\cdots$.
+\begin{definition}
+Define $\Ext_R^n(M,N)= H^n(\Hom_R(F_\bullet,N))$ as the $n$-dimensional homology of this chain complex.
+\end{definition}
+\begin{remark}
+If $R$ is a PID, then $\Ext^n=0$ if $n>1$. If $R$ is a field, then $\Ext^n=0$ for $n>0$. Also, $\Ext$ is well-defined and functorial (by the fundamental theorem of homological algebra). Another important point is that $\Hom_R(-,N)$ takes chain homotopies to chain homotopies. This is a pretty important thing, and is something to think about for a minute. This is because if I have $M^\prime\to M$, I get an induced map $\Hom_R(M^\prime,N)\leftarrow\Hom_R(M,N)$, and this is actualy an $R$-module map, and in particular, additive. And this means that the $dh-hd=f_1-f_0$ is preserved. Lastly, if $M$ is free or projective, then $\Ext^n(M,-)=0$ for $n>0$. In addition, $\Ext^0(M,N)=\Hom_R(M,N)$.
+\end{remark}
+Recall the trick that if I have a sexseq $0\to A\to B\to C\to 0$, and I have free resolutions $F^\prime_\bullet\to A$ and $F^{\prime\prime}_\bullet\to 0$, I can get a free resolution $F_\bullet\to B$ to get a sexseq $0\to F^\prime_\bullet\to F_\bullet\to F^{\prime\prime}_\bullet\to 0$. I can now apply $\Hom_R(-,N)$ to get a sexseq of cochain complexes, because this sequence splits in any given degree. Thus, I get a lexseq:
+\begin{equation*}
+\xymatrix{ & & 0\ar[dll]\\
+\Hom_R(M^{\prime\prime},N)\ar[r] & \Hom_R(M,N)\ar[r] & \Hom_R(M^{\prime},N)\ar[dll]\\
+\Ext^1_R(M^{\prime\prime},N)\ar[r] & \Ext^1_R(M,N)\ar[r] & \Ext^1_R(M^{\prime},N)\ar[dll]\\
+\cdots & &}
+\end{equation*}
+In this sense, $\Ext$ is like a cohomology theory for $R$-modules.
+
+Let us use this to make a calculation.
+\begin{example}
+Let $R=\Z$, and look at the sexseq $0\to \Z\xrightarrow{k}\Z\to\Z/k\Z\to 0$. Here $N$ is some abelian group. So, our lexseq will look like:
+\begin{equation*}
+\xymatrix{ & & 0\ar[dll]\\
+\Hom_R(\Z/k\Z,N)\ar[r] & \Hom_R(\Z,N)=N\ar[r] & \Hom_R(\Z,N)=N\ar[dll]\\
+\Ext^1_R(\Z/k\Z,N)\ar[r] & 0\ar[r] & 0\ar[dll]\\
+\cdots & &}
+\end{equation*}
+The map $N\to N$ in this lexseq is multiplication by $k$. Thus $\Hom(\Z/k\Z,N)=\ker(N\xrightarrow{k}N)$. And, well, $\Ext^1_\Z(\Z/k\Z,N)=N/kN$.
+\end{example}
+Let's get some consequences of cohomology from the UCT. Even independent of that, we get some properties.
+\subsection{Properties of cohomology}
+\begin{enumerate}
+\item It's homotopy invariant. This means that if $f_0\sim f_1:(X,A)\to (Y,B)$, then $ H^\ast(X,A;N)\xleftarrow{f_0^\ast,f_1^\ast} H^\ast(Y,B;N)$ are equal. I can't use the UCT to address this because the UCT only tells you that things are isomorphic (use the 5-lemma). But we did establish a chain homotopy $f_{0,\ast}\sim f_{1,\ast}:S_\ast(X,A)\to S_\ast(Y,B)$, and applying $\Hom$ still retains this chain homotopy, and hence you get the same map on cohomology.
+\item Excision. If $U\subseteq A\subseteq X$ such that $\overline{U}\subseteq\mathrm{Int}(A)$, then $ H^\ast(X,A;N)\leftarrow H^\ast(X-U,A-U;N)$ is an isomorphism. This follows from the UCT (in the relative form, which is also true).
+\item Mayer-Vietoris sequence. If I have $A,B\subseteq X$ such that their interiors cover $X$, then I have an lexseq:
+\begin{equation*}
+\xymatrix{ & & \cdots\ar[dll]\\
+ H^n(X;N)\ar[r] & H^n(A;N)\oplus H^n(B;N)\ar[r] & H^n(A\cap B;N)\ar[dll]\\
+ H^{n+1}(X;N)\ar[r] & \cdots & }
+\end{equation*}
+\end{enumerate}

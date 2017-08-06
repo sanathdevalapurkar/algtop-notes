@@ -1,0 +1,92 @@
+\section{Vector bundles, principle bundles}
+I was late because there was a fire at my dorm. From what I gather, a point is a map from the terminal object; this is also known as the cross section. A vector space over $B$ is a space $E\to B$ over $B$ with the following structures:
+\begin{equation*}
+    \xymatrix{
+	E\times_B E\ar[d]\ar[r]^\mu & E\ar[dl] & B\ar[l]_{zero}\ar[dll]\\
+	B
+    }
+\end{equation*}
+And an inverse:
+\begin{equation*}
+    \xymatrix{
+	E\ar[d]\ar[r]^\chi & E\ar[dl]\\
+	B &
+    }
+\end{equation*}
+And an action of $\RR$:
+\begin{equation*}
+    \xymatrix{
+	\RR\times E\ar[dr]^{p\circ pr_2}\ar@{=}[r] & (B\times\RR)\times_B E\ar[r]\ar[d] & E\ar[dl]^p\\
+	& B &
+    }
+\end{equation*}
+Because $\RR$ is a field, we know that $p^{-1}(b)$ is a $\RR$-vector space over $b\in B$.
+
+A stupid example is the projection $B\times V\to B$ where $V$ is a (always finite-dimensional) vector space.
+\begin{example}
+    The map $\RR\times\RR\xrightarrow{(s,t)\mapsto(s,st)}\RR\times\RR$ over $\RR$ (with projection onto the first factor) is an isomorphism on all fibers, but is zero everywhere else. Taking the kernel only has $0$ everywhere except for over $0\in\RR$. I guess you can call this the ``skyscraper'' vector bundle over $B$.
+\end{example}
+There's a subject called sheaf theory to accomodate examples like this. Anyway, there's only so far you can go with this ``vector space'' over $B$. So we can refine this:
+\begin{definition}
+    A \emph{vector bundle} over $B$ is a vector space over $B$ that is locally trivial. (We'll always assume numerable as well, and that the fiber dimensions are always finite.)
+\end{definition}
+If $p:E\to B$ is a vector bundle, then $E$ is called the \emph{total space}, $p$ is called the projection, and $B$ is called a base space. We denote $\xi$ or $\zeta$ or something for a vector bundle, and we write $E(\xi)\to B(\xi)$ for the actual map.
+\begin{example}
+\begin{enumerate}
+    \item The trivial bundle $B\times\RR^n\to B$. We denote this by $n\epsilon$. That's a pretty stupid example.
+    \item The most interesting possible example come from the Grassmannians $\Gra_K(\RR^n)$, $\Gra_k(\cc^n)$, and $\Gra_k(\HH^n)$. Over this Grassmannian is the \emph{tautological bundle} $\gamma$. This is a sub-bundle of $n\epsilon$. (I'll just define it for $\Gra_K(\RR^n)$, you can do it for the others.) The total space of $\gamma$ is defined as:
+	\begin{equation*}
+	    E(\gamma) = \{(V,x)\in\Gra_k(\RR^n)\times\RR^n:x\in V\}
+	\end{equation*}
+	This maps down to the Grassmannian via $(V,x)\mapsto V$. I'll leave it to you to determine why this is locally trivial.
+
+	\begin{example}
+	    When $k=1$, we have $\Gra_1(\RR^n) = \RP^{n-1}$. Then $\gamma$ is one-dimensional, and it's called a line bundle. It's the canonical line bundle over $\RP^{n-1}$.
+	\end{example}
+    \item $M$ is a smooth manifold, then $\tau_M$ is the tangent bundle $TM\to M$ over $M$. This is a super important and useful vector bundle. I'll give some examples in a minute. Let's do one example right now! $S^{n-1}$ for example; I can identify $TS^{n-1} = \{(x,v)\in S^{n-1}\times\RR^n:v\cdot x = 0\}$.
+\end{enumerate}
+\end{example}
+\subsection{Constructions}
+You can't take kernels of maps of vector bundles, but just about anything you can do for vector spaces you can do for bundles.
+\begin{enumerate}
+    \item You can take pullbacks: if $p^\prime:E^\prime\to B^\prime$, then the leftmost map in the diagram below is a vector bundle also.
+	\begin{equation*}
+	    \xymatrix{
+		E\ar[r]\ar[d] & E^\prime\ar[d]^{p^\prime}\\
+		B\ar[r]_f & B^\prime
+		}
+	\end{equation*}
+	For instance, if $B=\ast$, you're just looking at the fiber over that point. If $\xi$ is the bundle $E^\prime\to B^\prime$, we denote $E\to B$ as $f^\ast \xi$.
+    \item If $p:E\to B$ and $p^\prime:E^\prime\to B^\prime$, then I can take the product $E\times E^\prime\xrightarrow{p\times p^\prime}B\times B^\prime$. 
+    \item If I take $B=B^\prime$, I can take the pullback:
+	\begin{equation*}
+	    \xymatrix{
+		E\oplus E^\prime\ar[r]\ar[d] & E\times E^\prime\ar[d]\\
+		B\ar[r]_{\Delta} & B\times B
+		}
+	\end{equation*}
+	This $E\oplus E^\prime$ thing is called the \emph{Whitney sum}. For instance, $n\epsilon = \epsilon\oplus\cdots\oplus\epsilon$.
+    \item If $E,E^\prime\to B$, I can form another vector bundle $E\otimes_\RR E^\prime\to B$ (fiberwise tensor product). I can also take the fiberwise Hom to get $\Hom_\RR(E,E^\prime)\to B$.
+\end{enumerate}
+\begin{example}
+    We know that there's the tautologous bundle $\gamma$ over $\RP^{n-1}$, denoted $L\to\RP^{n-1}$. This is the canonical line bundle. That's one bundle I have, but I also have the tangent bundle $T(\RP^{n-1})\to \RP^{n-1}$, denoted $\tau$. What's the relationship between these things? The map from $S^{n-1}\to\RP^{n-1}$ is a covering map, so locally it's a diffeomorphism. Thus I can identify the map on the tangent spaces as an isomorphism.
+    
+    It looks like $T_{\pm x}\RP^{n-1}=\{(x,v)\in S^{n-1}\times\RR^n: x\cdot v = 0\}/(x,v)\sim-(x,v)$. I'm saying that $T\RP^{n-1} = L^\perp$. Do you buy that? I don't. Because look, a point in $L^\perp$ is a point in that orthogonal complement, because I can't tell if I take $v$ or $-v$. That isn't what $L^\perp$ is!
+
+    Instead, what I think is that $T\RP^{n-1} = \Hom(L,L^\perp)$. This is because a tangent line to a point is given by a map from a line through $x\to -x$ to some nearby line, also through the origin. The closer I am to the origin, the less I have to move along the tangent line to get to the nearby line, and the farther I am from the origin, the more I have to move to get to the nearby line. Thus we find:
+    $$\boxed{T\RP^{n-1} = \Hom(L,L^\perp)}$$
+\end{example}
+\subsection{Metrics}
+A \emph{metric} on a vector bundle is a continuous choice of inner products on fibers.
+\begin{lemma}
+    Any vector bundle admits a metric.
+\end{lemma}
+Why is this true? If $g,g^\prime$ are both inner products on $V$, then $tg+(1-t)g^\prime$ is another. The space of metrics forms a real affine space. 
+\begin{proof}
+    Pick a trivializing open cover, and a subordinate partition of unity. So $\phi_U:U\to [0,1)$ so that the preimage of the complement of $0$ is $U$, and they're locally finite, and they sum to $1$. Over each one of these trivial pieces, pick a $g_U$ on $E|_{U}$. Using the principle mentioned above, just take $\sum_{U}\phi_U g_U=:g$.
+\end{proof}
+The word vector bundle occurs all over mathematics, but you can't pick metrics in, e.g., algebraic geometry.
+\begin{corollary}
+    If $0\to E^\prime\to E\to E^{\prime\prime}\to 0$ is an exact sequence of vector bundles (over the same base), then it splits.
+\end{corollary}
+This is because I can pick a metric for $E$, and then look at ${E^\prime}^\perp\subseteq E\to E^{\prime\prime}$, which is an isomorphism; the dimensions are the same. Thus $E\cong E^\prime\oplus {E^\prime}^{\perp}\cong E^\prime\oplus E^{\prime\prime}$. Note that this splitting isn't natural!

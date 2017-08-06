@@ -1,0 +1,87 @@
+\section{Missing lemmas, $\mathbf{RP}^n$ again, and even CW-complexes}
+\begin{lemma}
+We want to show that $ H_\ast(X_n,X_{n-1})\cong H_\ast(X_n/X_{n-1},\ast)$. We have the characteristic map $\left(\coprod_\alpha D^n,\coprod_\alpha S^{n-1}\right)\to (X_n,X_{n-1})$, where the map $\coprod_\alpha S^{n-1}\to X_{n-1}$ is the attaching map.
+\begin{equation*}
+\xymatrix{ H_\ast(X_n,X_{n-1})\ar[d]^\cong & H_\ast\left(\coprod_\alpha D^n,\coprod_\alpha S^{n-1}\right)\ar[l]\ar[d]^{\cong,homework}\\
+ H_\ast(X_n/X_{n-1},\ast) & H_\ast\left(\bigvee_{\alpha}S^n_\alpha,\ast\right)\ar[l]^\cong}
+\end{equation*}
+\end{lemma}
+For preparation, we will talk about ``strong deformation retracts''. For example, $S^{n-1}\hookrightarrow D^n-\{0\}$. You just deform everything back radially.
+\begin{definition}
+A subspace of a space $A$ inside $X$ is a \emph{strong deformation retract} if there is a homotopy $h:X\times I\to X$ such that $h(x,0)=x$, $h(x,1)\in A$, and $h(a,t)=a$ if $a\in A$.
+\end{definition}
+\begin{example}
+For example, for the map $S^{n-1}\hookrightarrow D^n-\{0\}$ can be defined as $h(x,t)=(1-t)x+t\frac{x}{||x||}$.
+\end{example}
+A strong deformation retract is a homotopy equivalence, because we can just define the homotopy inverse to be $h(-,1)$. Then $A\hookrightarrow X\xrightarrow{h(-,1)}A$ is the identity, and $X\xrightarrow{h(-,1)}A\hookrightarrow X$ is homotopic to the identity.
+\begin{example}
+The map $\coprod_\alpha S^{n-1}_\alpha\xrightarrow\coprod(D^{n-1}_\alpha-\{0\})$.
+\end{example}
+Terminology: if $X$ is a CW-complex with filtration $X_0\subseteq X_1\subseteq\cdots\subseteq X$. A choice of characteristic maps is a ``cell structure'' for $X$. Note that this isn't specified in the CW-structure.
+
+\begin{proof}[Proof of the lemma]
+Let $X$ be a CW-complex, with a choice of a cell structure, say with characteristic maps $g_\alpha:D^n_\alpha\to X_n$. Let $C_n=\{g_\alpha(0)|\alpha\in A_n\}$. We know that $X_{n-1}\hookrightarrow X_n-C_n$. We claim that this is a strong deformation retract. This follows from our observation that $\coprod_\alpha S^{n-1}_\alpha\xrightarrow\coprod(D^{n-1}_\alpha-\{0\})$ is a strong deformation retract. In particular, $X_{n-1}\hookrightarrow X_n-C_n$ is a homotopy equivalence.
+
+For example, consider the torus. If you look at the fundamental polygon, and remove a hole, you can retract everything back to the boundary.
+
+Now, we have:
+\begin{equation*}
+\xymatrix{ H_\ast\left(\coprod_\alpha D^n_\alpha,\coprod_\alpha S^{n-1}_\alpha\right)\ar[r]\ar[d] & H_\ast(X_n,X_{n-1})\ar[d]\\
+ H_\ast\left(\coprod_\alpha D^n_\alpha,\coprod_\alpha (D^n_\alpha-\{0\})\right) & H_\ast(X_n,X_n-C_n)}
+\end{equation*}
+The downwards arrows are isomorphisms because of strong deformation retractions, homotopy invariance, lexseq, and the 5-lemma. Recall that if $U\subseteq A\subseteq X$, then $ H_\ast(X-U)\cong H_\ast(X,A)$ if $\overline{U}\subseteq \mathrm{int}(A)$. Suppose we consider $X_{n-1}\subseteq X_n-C_n\subseteq X_n$. This is an excision because $X_{n-1}$ is already closed, and $X_n-C_n$ is already open. Then excision tells us that $ H_\ast(X_n-X_{n-1},X_n-X_{n-1}-C_n)$. This means we can extend the diagram as follows.
+\begin{equation*}
+\xymatrix{ H_\ast\left(\coprod_\alpha D^n_\alpha,\coprod_\alpha S^{n-1}_\alpha\right)\ar[r]\ar[d] & H_\ast(X_n,X_{n-1})\ar[d]\\
+ H_\ast\left(\coprod_\alpha D^n_\alpha,\coprod_\alpha (D^n_\alpha-\{0\})\right) & H_\ast(X_n,X_n-C_n)\\
+ H_\ast(\coprod_\alpha(D^n_\alpha-S^{n-1}_\alpha),\coprod_\alpha(D^n_\alpha-S^{n-1}_\alpha-\{0\}))\ar[r]\ar[u]^\cong & H_\ast(X_n-X_{n-1},X_n-X_{n-1}-C_n)\ar[u]^\cong}
+\end{equation*}
+The left arrow on the second row is the excision from $\coprod_\alpha S^{n-1}_\alpha\subseteq \coprod_\alpha D^n_\alpha-\{0\}\subseteq \coprod_\alpha D^n_\alpha$. The bottom right arrow is an isomorphism because $\coprod_\alpha(D^n_\alpha-S^{n-1}_\alpha),\coprod_\alpha(D^n_\alpha-S^{n-1}_\alpha-\{0\})\to (X_n-X_{n-1},X_n-X_{n-1}-C_n)$ is a homeomorphism, and hence an isomorphism. This concludes the proof of the lemma.
+\end{proof}
+Now for the second lemma
+\begin{lemma}
+We have:
+\begin{equation*}
+\xymatrix{\ar[r]\cdots & H_q(X_{q-1})\ar[r]\ar@{=}[d] & H_q(X_q)\ar@{->>}[r]\ar[d]^\cong\ar[drr] & H_q(X_{q+1})\ar[r]^\cong\ar[dr] & H_q(X_{q+2})\ar[d]\ar[r]^\cong & \cdots\ar[dl]\\
+& 0 & H_n(C_\ast(X_n))\ar@{=}[d] & & H_n(X) \\
+& & \ker(C_n(X)\xrightarrow{d}C_{n-1}(X))\ar@{^(->}[d] & &\\
+& & C_n(X_n) & &}
+\end{equation*}
+So $ H_q(X_q)$ is free abelian. The lemma is that $ H_n(X_{n+1})\to H_n(X)$ is an isomorphism.
+\end{lemma}
+For preparation, we'll talk about subcomplexes.
+\begin{definition}
+Let $X$ be a CW-complex with a cell structure $\{g_\alpha:D^n_\alpha\to X_n|\alpha\in A_n\}$. A subcomplex is a subspace $Y\subseteq X$ such that for all $n$, there are $B_n\subseteq A_n$ such that $Y_n=Y\cap X_n$ is a CW-filtration for $Y$ with characteristic maps $\{g_\beta|\beta\in B_n\}$.
+\end{definition}
+\begin{example}
+$X_n\subseteq X$ is a subcomplex.
+\end{example}
+\begin{prop}[Bredon, p. 196]
+Let $X$ be a CW-complex with a chosen cell structure. Let $K\subseteq X$ be compact. Then $K$ sits inside some finite subcomplex. 
+\end{prop}
+\begin{remark}
+For fixed cell structures, unions and intersections of subcomplexes are subcomplexes.
+\end{remark}
+\begin{proof}[Proof of lemma 2]
+Let's do surjectivity. Pick $c\in Z_n(C_\bullet)(X)$. Well, $c=\sum c_i\sigma_i$ where $\sigma_i:\Delta^n\to X$. Since $\Delta^n$ is compact, $\sigma_i(\Delta^n)$ is compact, and thus $\bigcup\sigma_i(\Delta^n)$ is compact, and hence it lies in a finite subcomplex. Hence it sits in some $X_N$ for some $N$, possibly very large. Thus $c\in S_n(X_N)\subseteq S_n(X)$. It's still a cycle because it was a cycle before. (This is a stronger result, we've proved that cycles come from cycles). This is more than enough.
+
+Let's do injectivity. Let $c\in Z_n(C_\bullet)(X_{n+1})$. If $i_\ast$ denotes the maps $ H_n(X_q)\to H_n(X)$, then $i_\ast c\in Z_n(C_\bullet)(X)$. Suppose there was $b$ such that $db=i_\ast(c)$, so that $i_\ast(c)=0$ in $ H_n(X)$. Well, $b=\sum b_i \tau_i$ where $\tau_i:\Delta^{n+1}\to X$. Then $\bigcup \tau_i(\Delta^{n+1})$ is compact, and thus sits inside $X_M$. So $b\in S_{n+1}(X_M)$, so the equation $db=i_\ast(c)$ is still true in $X_M$. So $[c]=0$ in $ H_n(X_M)$. It's not quite what I wanted.
+
+This is good enough, because the maps $ H_n(X_{n+1})\to H_n(X_{n+2})\to \cdots$ are all isomorphisms.
+\end{proof}
+We'll talk about real projective space next week.
+\begin{remark}
+Suppose $X$ has only even cells. For example, $\mathbf{CP}^n$, namely complex lines in $\mathbf{C}^{n+1}$ through the origin, or $S^{2n+1}/v\sim \zeta z$ for any $\zeta\in \CC$ such that $|\zeta|=1$. I have a map $S^{2n-1}\to \mathbf{CP}^{n-1}$. We have:
+\begin{equation*}
+\xymatrix{S^{2n-1}\ar@{^(->}[r]\ar[d] & D^{2n}\ar[d]\\
+\mathbf{CP}^{n-1}\ar@{^(->}[r] & \mathbf{CP}^n}
+\end{equation*}
+The same argument that we had before for $\mathbf{RP}^n$ show that the CW stucture on $\mathbf{CP}^n$ is $\CP^0\subseteq\CP^1\subseteq\cdots\subseteq\CP^n$. So $\CP^n=D^0\cup D^2\cup\cdots\cup D^{2n}$.
+
+Anyway, if you had $X$ only with even cells, then $C_{\text{odd}}(X)=0$, so $ H_n(X)=\begin{cases}C_n(X) & n=2k \\ 0 & n=2k+1\end{cases}$. We've shown that:
+\begin{equation*}
+ H_k(\mathbf{CP}^n)=\begin{cases}
+\Z & k=2n\\
+0 & k=2n+1
+\end{cases}
+\end{equation*}
+\end{remark}

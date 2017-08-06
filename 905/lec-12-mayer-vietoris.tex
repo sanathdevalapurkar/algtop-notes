@@ -1,0 +1,61 @@
+\section{Mayer-Vietoris and Subdivision}
+(Is it Meyer-Vietoris or Mayer-Vietoris?) Today is the lecture with a lot of formulae.
+\begin{theorem}
+Let $\sca$ be a cover of $X$, so that $X=\bigcup_{A\in \sca}\mathrm{Int}(A)$. Then the theorem we're going to prove is this. If $S^\sca_\ast(X)=\sum_{A\in\sca}S_\ast(A)\to S_\ast(X)$ induces an isomorphism in $ H_\ast$. (This is a ``quasi-isomorphism'' of chain complexes.)
+\end{theorem}
+Because this lecture's full of formulas, I'm going to stand around with a piece of paper in my hand.
+\begin{example}
+Let $\sca=\{A,B\}$ of X, so that:
+\begin{equation*}
+\xymatrix{A\cap B\ar[r]^{j_1}\ar[d]^{j_2} & A\ar[d]^{i_1}\\
+B\ar[r]_{i_2} & X}
+\end{equation*}
+Then consider the following diagram:
+\begin{equation*}
+\xymatrix{0\ar[r] & S_\ast(A\cap B)\ar[r]^{\begin{pmatrix}j_{1\ast} \\ -j_{2\ast}\end{pmatrix}}\ar@{=}[d] & S_\ast(A)\oplus S_\ast(B)\ar[r]\ar[d] & S^\sca_\ast(X)\ar[r]\ar@{=}[d] & 0\\
+0\ar[r] & S_\ast(A)\cap S_\ast(B)\ar[r] & S_\ast(A)\oplus S_\ast(B)\ar[dr]\ar[r]^{(i_{1\ast},\ i_{2\ast})} & S_\ast(A)+S_\ast(B)\ar[r]\ar@{^(->}[d] & 0\\
+ & & & S_\ast(X) &}
+\end{equation*}
+The map $S_\ast(A)+S_\ast(B)\hookrightarrow S_\ast(X)$ is a quasi-isomorphism, this is what locality says. Take the homology of this to get a lexseq:
+\begin{equation*}
+\xymatrix{ \cdots\ar[rr] & & H_{n+1}(X)\ar[dll]_{\begin{pmatrix}j_{1\ast} \\ -j_{2\ast}\end{pmatrix}}\\
+ H_n(A\cap B)\ar[r] & H_n(A)\oplus H_n(B)\ar[r]^{(i_{1\ast},\ i_{2\ast})} & H_n(X)\ar[dll]\\
+ H_{n-1}(A\cap B)\ar[r] & H_{n-1}(A)\oplus H_{n-1}(B)\ar[r] & \cdots}
+\end{equation*}
+Voila, you have Mayer-Vietoris. (I have a different proof of this that I submitted in homework.)
+\end{example}
+\subsection{The cone construction}
+Let $X\subseteq \mathbf{R}^N$ be a star-shaped region, and let $b\in\mathbf{R}^N$. Then we showed that the augmentation $S_\ast(X)\xrightarrow{\epsilon}\Z$ is a chain homotopy equivalence. There's another map going backwards $\Z\xrightarrow{\eta_b} S_\ast(X)$ sending $1\mapsto c^0_b$. Clearly the composition $\epsilon\circ\eta_b$ is the identity. We want to show that $\eta_b$ ad $\epsilon$ are chain homotopy inverses to each other. One direction is easy. The other map $S_\ast(X)\xrightarrow{\eta_b\epsilon}S_\ast(X)$ being homotopic to $1_{S_\ast(X)}$ is a little harder. This means that we want to construct a map $b\ast:S_n(X)\to S_{n+1}(X)$ such that $db\ast+b\ast d=1-\eta_b\epsilon$.
+
+Consider some $\sigma:\Delta^1\to X$. Then because $X$ is star shaped, you can send $\sigma$ to $b$. This gives a $2$-simplex $b\ast \sigma$, called the \emph{join}. We'll define this $2$-simplex and label it so that the zero vertex is $b$ itself, the $1$ vertex is $d_1\sigma$, and the $2$ vertex is $d_0\sigma$. Define $b\ast\sigma$ as follows (where $(t_0,\cdots,t_{n+1})\in \Delta^{n+1}$):
+\begin{equation*}
+b\ast\sigma(t_0,\cdots,t_n,t_{n+1})=t_0b + (1-t_0)\sigma\left(\frac{t_1,\cdots,t_{n+1}}{1-t_0}\right)
+\end{equation*}
+When $t_0=0$, then you recover exactly $\sigma(t_1,\cdots,t_{n+1})$ and when $t_0=1$, this is exactly $b$. (Why can you divide by $1-t_0=0$?) This is a map $b\ast:\Sin_n(X)\to\Sin_{n+1}(X)$, so we can extend linearly to get $S_n(X)\to S_{n+1}(X)$, also denoted $b\ast$. What is $d_i(b\ast\sigma)$? This is exactly:
+\begin{equation*}
+d_i(b\ast\sigma)=\begin{cases}\sigma & i=0 \\ 
+c^0_b & i=1,n=0\\
+b\ast d_{i-1}\sigma & i>0,n>0\end{cases}
+\end{equation*}
+The latter thing seems true because in the case when $n=1$, $d_2(b\ast\sigma)$ is the cone on $d_1\sigma$. The middle thing is true because when $n=0$ you can't use the bottom thing (what is the boundary in that case?), and if you draw this out, noting our convention that when $t_0=1$ you have $d_1\sigma$ and when $t_0=1$ you have $b$, this automatically yields $d_1(b\ast\sigma)=b$ if $\sigma:\Delta^0\to X$. We can rewrite this as follows. Here $c\in S_n(X)$.
+\begin{equation*}
+d_i(b\ast c)=\begin{cases}
+c & i=0\\
+b\ast d_0c + \eta_b\epsilon c & i=1\\
+b\ast d_{i-1}\sigma & i>1
+\end{cases}
+\end{equation*}
+Because $d_0$ of a $0$-simplex is defined to be zero. This may seem confusing, but it's just a translation of what we wrote down above. We want to compute that this thing is actually a chain homotopy. Let's compute.
+\begin{align*}
+d(b\ast c)& = d_0(b\ast c) - d_1(b\ast c) + \sum_{i>1}(-1)^i d_i(b\ast c)\\
+& = c-(b\ast d_0c + \eta_b\epsilon c) + \sum_{i=2}^n (-1)^ib\ast d_{i-1}c\\
+& = c-\eta_b\epsilon c - \sum_{j=0}^{n-1}(-1)^jb\ast d_jc\\
+& = c-\eta_b\epsilon c - b\ast dc
+\end{align*}
+Here $j=i-1$. The equality $\sum_{j=0}^{n-1}(-1)^jb\ast d_jc=b_\ast dc$ holds because $b\ast$ is linear (by definition on $S_n(X)$). This means that $b\ast$ is a chain homotopy, QED. This completes what we've claimed about the star shaped region. We want to use this cone construction to talk about subdivision.
+\subsection{Subdivide the standard simplex}
+Let's focus on the standard simplex. This is a nice thing about singular homology. For the $1$-simplex, you just cut in half. For the $2$-simplex, just look at the subdivision of each face, and look at the barycenter\footnote{The barycenter of the $n$-simplex is $b_n:=\frac{(1,\cdots,1)}{n+1}$.}, and join the barycenter to the $1$-simplex between each ``half'' $1$-simplex. We want to formalize this process. Define a natural transformation $\$:S_n(X)\to S_n(X)$ by defining on standard $n$-simplex, namely by specifying what $\$(\iota_n)$ is where $\iota_n:\Delta^n\xrightarrow{\mathrm{id}}\Delta^n$, and then extending by naturality (namely $\$(\sigma)=\sigma_\ast\$(\iota_n)$). Here's the definition. When $n=0$, define $\$=\mathrm{id}$, i.e., $\$(\iota_0)=\iota_0$. For $n>0$, define $\$\iota_n:=b_n\ast\$ d\iota_n$ where $b_n$ is the barycenter of $\Delta^n$. This makes a \emph{lot} of sense if you draw out a picture, and it's a very clever definition that captures the geometry we described. Let me tell you what we'll prove about this, most likely on Wednesday.
+\begin{prop}
+$\$$ is a chain map $S_\ast(X)\to S_\ast(X)$, i.e., $\$d=d\$$. Also, $\$\simeq 1$.
+\end{prop}
+Also, class is cancelled on Friday.

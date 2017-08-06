@@ -1,0 +1,96 @@
+\section{Finish off the proof of $\cHH^p$ excision, topological manifolds, fundamental classes}
+\subsection{The end of the proof}
+Let's finish off the proof from last time. Suppose $A,B$ are closed in normal $X$. \underline{Excision for $\cHH^p$}:
+\begin{equation*}
+\xymatrix{
+	\varinjlim_{(W,Y)\in\mathcal{U}_A\times\mathcal{U}_B}H^p(W\cup Y,Y)\ar[rrr]^{\cong,\text{ ordinary excision}}\ar[d]^{\cong,\text{ cofinality/surjectivity}} & & & \varinjlim_{\mathcal{U}_A\times\mathcal{U}_B}H^p(W,W\cap Y)\ar[d]^{\cong,\text{ cofinality, see below}}\\
+	\varinjlim_{(U,V)\in\mathcal{U}_{A\cup B,B}}H^p(U,V)\ar[rrr]\ar@{=}[d] & & & \varinjlim_{(U,V)\in\mathcal{U}_{A,A\cap B}}H^p(U,V)\ar@{=}[d]\\
+	\cHH^p(A\cup B,B)\ar[rrr] & & & \cHH^p(A,A\cap B)
+}
+\end{equation*}
+
+$\mathcal{U}_A\times\mathcal{U}_B\to\mathcal{U}_{A,A\cap B}$ is cofinal since: start with $(U,V)\supseteq(A,A\cap B)$. Using normality, separate $B\cap(X-V)\subseteq T$ and $A\subseteq S$. Take $W=U\cap S$ and $Y=V\cup T$. Then $A\subseteq W\subseteq U$ and $A\cap B\subseteq W\cap Y=S\cap V\subseteq V$.
+
+This means that $\cHH^p$ satisfies excision, hence Mayer-Vietoris. Let's put this in the drawer for now.
+\subsection{Topological manifolds + Poincar\'{e} duality}
+yayyyyyyyyyyyyy finally
+\subsubsection{Fundamental class and orientation local system}
+\begin{definition}
+A \emph{topological manifold} is a Hausdorff space $M$ such that for every $x\in M$, there exists a neighborhood $U\ni x$ that is homeomorphic to some Euclidean space $\RR^n$. It's called an $n$-manifold if all $U$ are homeomorphic to $\RR^n$ for the \emph{same} $n$.
+\end{definition}
+\begin{example}
+$\RR^n$, duh. $\emptyset$ is an $n$-manifold for every $n$. The sphere $S^n$. The Grassmannian $\mathrm{Gr}_k(\RR^n)$, introduced in the beginning of the course. I don't know exactly what the dimension of this is, but you can figure it out. Also, $V_k(\RR^n)$, and surfaces.
+\end{example}
+These things are the most interesting things to look at.
+\begin{warning}
+We assume the following.
+\begin{enumerate}
+\item There exists a countable basis.
+\item There exists a good cover, i.e., all nonempty intersections are Euclidean as well (always true for differentiable manifolds because you can take geodesic neighborhoods, and in particular for the manifolds we listed above).
+\end{enumerate}
+\end{warning}
+This is the context in which duality works.
+\begin{definition}
+Let $X$ be any space, and let $a\in X$. The local homology of $X$ at $a$ is the homology $H_\ast(X,X-a)$. We're always working over a commutative ring.
+\end{definition}
+For example, $H_q(\RR^n,\RR^n-0)=\begin{cases}\text{free of rank }1 & q=n \\ 0 & q\neq n\end{cases}$. This means that local homology is picking out the characteristic feature of Euclidean space. Therefore we also have $H_q(M,M-a)=\begin{cases}\text{free of rank }1 & q=n \\ 0 & q\neq n\end{cases}$ for $n$-manifolds.
+\begin{notation}
+Let $j_a:(M,\emptyset)\to (M,M-a)$ be the inclusion.
+\end{notation}
+\begin{definition}
+A fundamental class for $M$ (an $n$-manifold) is $[M]\in H_n(M)$ such that for every $a\in M$, the image of $[M]$ under $j_{a,\ast}:H_n(M)\to H_n(M,M-a)$ is a generator of $H_n(M,M-a)$.
+\end{definition}
+This is somehow trying to say that this class $[M]$ covers the whole manifold.
+\begin{example}
+When does a space have a fundamental class?
+\begin{center}
+\begin{tabular}{c|c c c } 
+ \hline
+  & $\RR^2$ & $\RP^2$ & $T^2$ \\ 
+  \hline
+ $R=\Z$ & no! & no! & yes! you did this for homework \\
+ $R=\Z/2\Z$ & no! & yes! & yes!
+\end{tabular}
+\end{center}
+Something about orientability and compactness seem to be involved.
+\end{example}
+What do we have? 
+\begin{definition}
+$o_M=\coprod_{a\in M}H_n(M,M-a)$ as a set. This has a map $p:o_M\to M$.
+\end{definition}
+\begin{construction}
+This can be topologized in Euclidean neighborhoods. Let $U\cong\RR^n$ be an Euclidean neighborhood of $a$. I can always arrange so that $a$ corresponds to $0$. We have the open disk sitting inside the closed disk: $\widetilde{D^n}\subseteq D^n\subseteq \RR^n$ that corresponds to some open $V\subseteq \overline{V}\subseteq U$. Let $x\in V$. I have a diagram:
+\begin{equation*}
+\xymatrix{
+	H_n(M,M-\overline{V})\ar[d] & & H_n(U,U-\overline{V})\ar[ll]^{\text{ excision of }M-U}_{\cong}\ar[d]^\cong & H_n(\RR^n,\RR^n-D^n)\ar@{=}[l]\ar[d]^{\cong,\text{ homotopy equivalence}}\\
+	H_n(M,M-x) & & H_n(U,U-x)\ar[ll] & H_n(\RR^n,\RR^n-0)\ar@{=}[l]
+}
+\end{equation*}
+Hence $H_n(M,M-\overline{V})\cong H_n(M,M-x)$. Thus I can collect points in $o_M$ together when they come from the same class in $H_n(M,M-\overline{V})$, so they form ``sheets''.
+
+I have a map $V\times H_n(M,M-\overline{V})\to o_M|_{V}=p^{-1}(V)$ by sending $(x,c)\mapsto (j_x)_\ast(c)\in H_n(M,M-x)$, and this map is bijective (that's what comes from excision). This LHS has a nice topology by letting $H_n(M,M-\overline{V})$ be discrete. I'm topologizing $o_M$ as the weakest topology these generate.
+\end{construction}
+``Have I been sufficiently obscure enough? This is not supposed to be a complicated point''. This $o_M\to M$ is called the \emph{orientation local system}, and is a covering space.
+\begin{definition}
+A continuous map $p:E\to B$ is a covering space if:
+\begin{enumerate}
+\item $p^{-1}(b)$ is discrete for all $b\in B$.
+\item For every $b$ there's a neighborhood $V$ and a map $p^{-1}(V)\to p^{-1}(b)$ such that $p^{-1}(V)\xrightarrow{\cong}V\times p^{-1}(b)$ is a homeomorphism.
+\end{enumerate}
+\end{definition}
+That's exactly the way we topologized $o_M$. There's more structure though because $H_n(M,M-\overline{V})$ is an $R$-module!
+\begin{definition}
+A local system (of $R$-modules) $p:E\to B$ is a covering space together with structure maps $E\times_B E:=\{(e,e^\prime)|pe=pe^\prime\}\xrightarrow{+} E$ and $z:B\to E$ such that:
+\begin{equation*}
+\xymatrix{
+	E\times_B E\ar[rr]^+\ar[dr] & & E\ar[dl] & R\times E\ar[l]\\
+	 & B\ar@{=}[r]\ar[ur] & B\ar[u]^{z} & 
+}
+\end{equation*}
+making $p^{-1}(b)$ a $R$-module.
+\end{definition}
+We have $H_n(M)\xrightarrow{j_x}H_n(M,M-x)$, which gives a \emph{section} of $o_M$. If I have a covering space $p:E\to B$, a section is a continuous map $s:B\to E$ such that $ps=1_B$. Write $\Gamma(E)$ to be the set of sections. If $E$ is a local system, this is an $R$-module. Hence $H_n(M)\xrightarrow{j_x}H_n(M,M-x)$ gives a map $j:H_n(M)\to \Gamma(o_M)$. This is pretty cool because it's telling you about this high-dimensional homology of $M$ into something ``discrete''.
+\begin{theorem}
+If $M$ is compact then $j:H_n(M)\to\Gamma(o_M)$ is an isomorphism, and $H_q(M)=0$ for $q>n$.
+\end{theorem}
+This is case of Poincar\'{e} duality actually because $\Gamma(o_M)$ is somewhat like zero-dimensional cohomology. If this is trivial, like it is for a torus, so if the manifold is connected, then $\Gamma(o_M)$ is just $R$.

@@ -1,0 +1,146 @@
+\section{Dress spectral sequence, Leray-Hirsch}
+I think I have to be doing something tomorrow, so no office hours then.
+The new pset is up, and there'll be one more problem up.
+There are two more things about spectral sequences, and specifically the multiplicative structure, that I have to tell you about.
+The construction of the Serre sseq isn't the one that we gave.
+He did stuff with simplicial homology, but as you painfully figured out, $\Delta^s\times\Delta^t$ isn't another simplex.
+Serre's solution was to not use simplices, but to use cubes.
+He defined a new kind of homology using the $n$-cube.
+It's more complicated and unpleasant, but he worked it out.
+\subsection{Dress' sseq}
+Dress made the following variation on this idea, which I think is rather beautiful.
+We have a trivial fiber bundle $\Delta^t \to \Delta^s\times\Delta^t\to \Delta^s$.
+Let's do with this what we did with homology in the first place.
+Dress started with some map $\pi:E\to B$ (not necessarily a fibration), and he thought about the set of maps from $\Delta^s\times\Delta^t\to \Delta^s$ to $\pi:E\to B$.
+This set is denoted $\Sin_{s,t}(\pi)$.
+This forgets down to $S_s(B)$.
+Altogether, this $\Sin_{\ast,\ast}(\pi)$ is a functor $\Deltab^{op}\times\Deltab^{op}\to \set$, forming a ``bisimplicial set''.
+
+The next thing we did was to take the free $R$-module, to get a bisimplicial $R$-module $R\Sin_{\ast,\ast}(\pi)$.
+We then passed to chain complexes by forming the alternating sum.
+We can do this in two directions here!
+(The $s$ is horizontal and $t$ is vertical.)
+This gives us a double complex.
+We now get a spectral sequence!
+I hope it doesn't come as a surprise that you can compute the horizontal -- you can compute the vertical differential first, and then taking the horizontal differential gives the homology of $B$ with coefficients in something.
+Oh actually, the totalization $tR\Sin_{\ast,\ast}(\pi) \simeq R\Sin_\ast(E) = S_\ast(E)$.
+We'll have
+$$
+E^2_{s,t} = H_s(B;\text{crazy generalized coefficients}) \Rightarrow H_{s+t}(E)
+$$
+These coefficients may not even be local since I didn't put any assumptions on $\pi$!
+This is like the ``Leray'' sseq, set up without sheaf theory.
+If $\pi$ is a fibration, then those crazy generalized coefficients is the local system given by the homology of the fibers.
+This gives the Serre sseq.
+
+This has the virtue of being completely natural.
+Another virtue is that I can form $\Hom(-,R)$, and this gives rise to a multiplicative double complex.
+Remember that the cochains on a space form a DGA, and that's where the cup product comes from.
+The same story puts a bigraded multiplication on this double complex, and that's true \emph{on the nose}.
+That gives rise a multiplicative cohomology sseq.
+
+This is very nice, but the only drawback is that the paper is in German.
+That was item one in my agenda.
+\subsection{Leray-Hirsch}
+This tells you condition under which you can compute the cohomology of a total space.
+Anyway.
+We'll see.
+
+Let's suppose I have a fibration $\pi:E\to B$.
+For simplicity suppose that $B$ is path connected, so that gives meaning to the fiber $F$ which we'll also assume to be path-connected.
+All cohomology is with coefficients in a ring $R$.
+I have a sseq
+$$
+E_2^{s,t} = H^s(B;\underline{H^t F}) \Rightarrow H^{s+t}(E)
+$$
+If you want assume that $\pi_1(B)$ acts trivially so that that cohomology in local coefficients is just cohomology with coefficients in $H^\ast F$.
+I have an algebra map $\pi^\ast:H^\ast(B)\to H^\ast(E)$, making $H^\ast(E)$ into a module over $H^\ast(B)$.
+We have $E^{\ast,t}_2 = H^\ast(B;H^t(F))$, and this is a $H^\ast(B)$-module.
+That's part of the multiplicative structure, since $E_2^{\ast,0} = H^\ast B$.
+This row acts on every other row by that module structure.
+
+Everything in the bottom row is a permanent cycle, i.e., survives to the $E_\infty$-page.
+In other words
+$$
+H^\ast(B) = E^{\ast,0}_2 \fib E^{\ast,0}_3 \fib \cdots \fib E^{\ast,0}_\infty
+$$
+Each one of these surjections is an algebra map.
+
+What the multiplicative structure is telling us is that $E^{\ast,0}_r$ is a graded algebra acting on $E^{\ast,t}_r$.
+Thus, $E^{\ast,t}_\infty$ is a module for $H^\ast(B)$.
+
+Really I should be saying that it's a module for $H^\ast(B;\underline{H^0(F)})$.
+Can I guarantee that the $\pi_1(B)$-action on $F$ is trivial.
+We know that $F\to \ast$ induces an iso on $H^0$ (that's part of being path-connected).
+So if you have a fibration whose fiber is a point, there's no possibility for an action.
+This fibration looks the same as far as $H^0$ of the fiber is concerned.
+Thus the $\pi_1(B)$-action is trivial on $H^0(F)$, so saying that it's a $H^\ast(B)$-module is fine.
+
+Where were we?
+We have module structures all over the place.
+In particular, we know that $H^\ast(E)$ is a module over $H^\ast(B)$ as we saw, and also $E^{\ast,t}_\infty$ is a $H^\ast(B)$-module.
+These better be compatible!
+
+Define an increasing filtration on $H^\ast(E)$ via $F_t H^n(E) = F^{n-t} H^n(E)$.
+For instance, $F_0 H^n(E) = F^n H^n(E)$.
+What is that?
+In our picture, we have the associated quotients along the diagonal on $E^{s,t}_\infty$ given by $s+t = n$.
+In the end, since we know that $F^{n+1} H^n(E) = 0$, it follows that
+$$F_0 H^n(E) = F^n H^n(E) = E^{n,0}_\infty = \img(\pi^\ast:H^n(B)\to H^n(E))$$
+With respect to this filtration, we have
+$$
+\gr_t H^\ast(E) = E^{\ast,t}_\infty
+$$
+I learnt this idea from Dan Quillen.
+It's a great idea.
+This increasing filtration $F_\ast H^\ast(E)$ is a filtration by $H^\ast(B)$-modules, and $\gr_t H^\ast(E) = E^{\ast,t}_\infty$ is true as $H^\ast B$-modules.
+It's exhaustive and bounded below.
+
+This is a great perspective.
+Let's use it for something.
+Let me give you the Leray-Hirsch theorem.
+\begin{theorem}[Leray-Hirsch]
+    Let $\pi:E\to B$.
+    \begin{enumerate}
+	\item Suppose $B$ and $F$ are path-connected.
+	\item Suppose that $H^t(F)$ is free\footnote{Everything is coefficients in $R$} of finite rank as a $R$-module.
+	\item Also suppose that $H^\ast(E)\fib H^\ast(F)$.
+    That's a big assumption; it's dual is saying that the homology of the fiber injects into the homology of $E$.
+    This is called ``totally non-homologous to zero'' -- this is a great phrase, I don't know who invented it.
+    \end{enumerate}
+    Pick an $R$-linear surjection $\sigma:H^\ast(F)\to H^\ast(E)$; this defines a map $\overline{\sigma}:H^\ast(B)\otimes_R H^\ast(F)\to H^\ast(E)$ via $\overline{\sigma}(x\otimes y) = \pi^\ast(x)\cup \sigma(y)$.
+    This is the $H^\ast(B)$-linear extension.
+    Then $\overline{\sigma}$ is an isomorphism.
+\end{theorem}
+\begin{remark}
+    It's not natural since it depends on the choise of $\sigma$.
+    It tells you that $H^\ast(E)$ is free as a $H^\ast(B)$-module.
+    That's a good thing.
+\end{remark}
+\begin{proof}
+    I'm going to use our Serre sseq
+    $$
+    E^{s,t}_2 = H^s(B;\underline{H^t F}) \Rightarrow H^{s+t}(E)
+    $$
+    Our map $H^\ast(E)\to H^\ast(F)$ is an edge homomorphism in the sseq, which means that it factors as $H^\ast(E)\to E^{0,\ast}_2 = H^0(B;\underline{H^\ast(F)}) \subseteq H^\ast(F)$.
+    Since $H^\ast(E)\to H^\ast(F)$, we have $H^0(B;\underline{H^\ast(F)}) \simeq H^\ast(F)$.
+    Thus the $\pi_1(B)$-action on $F$ is trivial.
+    \begin{question}
+	What's this arrow $H^\ast(E)\to E^{0,\ast}_2$?
+	We have a map $H^\ast(E)\to H^\ast(E)/F^1 = E^{0,\ast}_\infty$.
+	This includes into $E^{0,\ast}_2$.
+    \end{question}
+    Now you know that the $E_2$-term is $H^s(B;H^t(F))$.
+    By our assumption on $H^\ast(F)$, this is $H^s(B)\otimes_R H^t(F)$, as algebras.
+    What do the differentials look like?
+    I can't have differentials coming off of the fiber, because if I did then the restriction map to the fiber wouldn't be surjective, i.e., that $d_r|_{E^{0,\infty}_r} = 0$.
+    The differentials on the base are of course zero.
+    This proves that $d_r$ is zero on every page by the algebra structure!
+    This means that $E_\infty = E_2$, i.e., $E_\infty^{\ast,t} = H^\ast(B)\otimes H^t(F)$.
+
+    Now I can appeal to the filtration stuff that I was talking about, so that $E^{\ast,t}_\infty = \gr_t H^\ast(E)$.
+    Let's filter $H^\ast(B)\otimes H^\ast(F)$ by the degree in $H^\ast(F)$, i.e., $F_q = \bigoplus_{t\leq q} H^\ast(B)\otimes H^t(F)$.
+    The map $\overline{\sigma}:H^\ast(B)\otimes H^\ast(F)\to H^\ast(E)$ is filtration preserving, and it's an isomorphism on the associated graded.
+    This is the identification $H^\ast(B)\otimes H^t(F) = E^{\ast,t}_\infty = \gr_t H^\ast(E)$.
+    Since the filtrations are exhaustive and bounded below, we conclude that $\overline{\sigma}$ itself is an isomorphism.
+\end{proof}

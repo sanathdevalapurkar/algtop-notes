@@ -1,0 +1,78 @@
+\section{Homology of CW-complexes}
+\begin{lemma}
+There are isomorphisms:
+\begin{equation*}
+ H_q(X_n,X_{n-1})\xrightarrow{\cong} H_q(X_n/X_{n-1},\ast)= H_q\left(\bigvee_{\alpha\in A_n}S^n_\alpha,\ast\right)=\begin{cases}0 & q\neq n \\ \Z[A_n] & q=n\end{cases}
+\end{equation*}
+\end{lemma}
+Let's talk about ``characteristic maps''. This is a map $\left(\coprod D^n_\alpha,\coprod S^{n-1}_\alpha\right)\to (X_n,X_{n-1})$. This is like a ``relative homeomorphism'' (I was drinking water, so this isn't exactly accurate). We have a map $ H_q(X_n,X_{n-1})\to H_q(X_n/X_{n-1},\ast)$, to get a commutative diagram:
+\begin{equation*}
+\xymatrix{ H_q\left(\coprod D^n_\alpha,\coprod S^{n-1}_\alpha\right)\ar[r]\ar[d] & H_q\left(\bigvee S^n_\alpha,\ast\right)\ar[d]\\
+ H_q(X_n,X_{n-1})\ar[r] & H_q(X_n/X_{n-1},\ast)}
+\end{equation*}
+The right arrow is an isomorphism. The top arrow is an isomorphism. The lemma says that the bottom map is an isomorphism, so that $ H_q\left(\coprod D^n_\alpha,\coprod S^{n-1}_\alpha\right)\to H_q(X_n,X_{n-1})$ is an isomorphism. This is called the ``cellular $n$-chains'' on $X$.
+
+Now, fix $q$. For $q=0$, there is:
+\begin{equation*}
+\xymatrix{ H_1(X_1,X_0)\ar[d] & H_0(X_1,X_0)=0 & H_0(X_2,X_1)=0\\
+ H_0(X_0)\ar[r]\ar[drrr] & H_0(X_1)\ar[r]\ar[drr]\ar[u] & H_0(X_2)\ar[u]\ar[r]\ar[dr] & \cdots\ar[d]\\
+ & H_1(X_2,X_1)=0\ar[u] & & H_0(X)}
+\end{equation*}
+We know that $ H_0(X_1,X_0)=0$, but $ H_1(X_1,X_0)$ is not necessarily $0$. This means that $ H_0(X_0)\to H_0(X_1)$ is surjective, and $ H_0(X_1)\cong H_0(X_2)$, and so on for higher dimensions. This makes sense because adding higher dimensional cells does not change path components.
+
+Let's try this for $q>0$. Then you have:
+\begin{equation*}
+\xymatrix{ & H_{q+1}(X_q,X_{q+1})=0\ar[d]& H_{q+1}(X_{q+1},X_q)\ar[d]\\
+\ar[r]\cdots & H_q(X_{q-1})\ar[r]\ar[dr] & H_q(X_q)\ar[r]\ar[d] & H_q(X_{q+1})\ar[r]\ar[d] & H_q(X_{q+2})\ar[d]\ar[r] & \cdots\\
+& & H_q(X_{q},X_{q-1}) & H_q(X_{q+1},X_q)=0 & H_q(X)}
+\end{equation*}
+So the first maps ($ H_q(X_0)\to H_q(X_1)\to\cdots$) are isomorphisms, the map $ H_q(X_{q+1})\to H_q(X_q)$ is an injection, and the map $ H_q(X_q)\to H_q(X_{q+1})$ is surjective. But also, $ H_q(X_{q+1})\cong H_q(X_{q+2})\cong \cdots$. But also, $ H_q(X_0)\cong 0$, and we have:
+\begin{corollary}
+$ H_q(X)=0$ for $q>\dim X=n$.
+\end{corollary}
+\begin{lemma}
+$ H_q(X_n)\cong H_q(X)$ for $n>0$.
+\end{lemma}
+I want you to have the following picture in mind. We have a diagram coming from the lexseq in the homology of a pair:
+\begin{equation*}
+\xymatrix{C_{n+1}(X)= H_{n+1}(X_{n+1},X_n)\ar[d]^\partial\ar[dr]^d & & 0= H_{n-1}(X_{n-2})\ar[d]\\
+ H_n(X_n)\ar[r]^j\ar[d] & C_n(X)= H_n(X_n,X_{n-1})\ar[r]^\partial\ar[dr]^d & H_{n-1}(X_{n-1})\ar[d]^j\\
+ H_n(X_{n+1})\ar[d] & & C_{n-1}(X)= H_{n-1}(X_{n-1},X_{n-2})\\
+0 = H_n(X_{n+1},X_n)}
+\end{equation*}
+Now, $\partial\circ j=0$. So the composite of the diagonals is zero, i.e., $d^2=0$, and we have a chain complex! More precisely, we get a chain complex, denoted $C_\ast(X)$. This is the ``cellular chain complex'' of $X$. We should compute the homology of this chain complex. Well, $ H_n(C_\ast(X))=\ker d/\img d$. Now, $\ker d=\ker (j\circ\partial)$. But $j$ is injective, so $\ker d=\ker\partial$. Also, $\img d=\img(j\circ\partial)=j(\img\partial)$ because $j$ is injective.
+
+The kernel of $\partial$ is the image of $j$ by exactness, but $j$ is a monomorphism, so $\ker\partial\cong H_n(X)$. Now, $ H_n(C_\ast(X))\cong\frac{ H_n(X)}{\img(\partial)}$. This is equal to $ H_n(X_{n+1})$, again by exactness. But out lemma shows that $ H_n(X_{n+1})= H_n(X)$. In other words, we've proved:
+\begin{theorem}
+If $X$ is a CW-complex, then $ H_\ast(C_\ast(X))\cong H_\ast(X)$. I didn't use specific attaching maps at all, so this is natural in ``skeletal'' maps of CW-complexes.
+\end{theorem}
+What is the differential? You have a relative cycle in dimension $(n+1)$, you're taking its boundary, and then working relative the $(n-1)$-skeleton. You'll see this better in the example we're going to do now, namely projective space.
+\begin{example}
+We'll try $ H_\ast(\mathbf{RP}^n)$. We have: $\mathrm{sk}_k(\RP^n)=\RP^k$, which are just $1$-dimensional subspaces of $\mathbf{R}^{k+1}$. Think of the inclusion $\mathbf{R}^{k+1}\to\mathbf{R}^{n+1}$ as the inclusion of the first $(k+1)$ basis vectors. This is a CW-complex because the map $S^{k-1}\to \mathbf{RP}^{k-1}$ is a double cover, and you have a pushout:
+\begin{equation*}
+\xymatrix{S^{k-1}\ar[r]\ar@{^(->}[d] & \mathbf{RP}^{k-1}\ar@{^(->}[d]\\
+D^k\ar[r] & \mathbf{RP}^k}
+\end{equation*}
+The attaching maps are the double cover maps.
+\end{example}
+The notation is as follows. $\mathbf{RP}^n=\mathbf{RP}^{n-1}\cup_f D^n=\mathbf{RP}^{n-1}\cup_f e^n$. The $e^n$ is the notation for an $n$-cell. In particular, $\mathbf{RP}^n=e_0\cup_f e_1\cup_f\cdots\cup_f e_n$. You have:
+\begin{equation*}
+\xymatrix{0 & C_0(\mathbf{RP}^n)\ar[d]\ar[l] & C_1(\mathbf{RP}^n)\ar[d]\ar[l] & \cdots\ar[l]\ar[d] & C_n(\mathbf{RP}^n)\ar[d]\ar[l] & 0\\
+& \Z\langle e^0\rangle & \Z\langle e^1\rangle\ar[l]^{d=0} & \cdots\ar[l] & \Z\langle e^n\rangle\ar[l]}
+\end{equation*}
+The first differential is zero because we know what $ H_0(\mathbf{RP}^n)$ is (it's $\Z$!). I have $S^{n-1}\xrightarrow{f}\mathbf{RP}^{n-1}\to \mathbf{RP}^{n-1}/\mathbf{RP}^{n-2}=S^{n-1}$. Also recall the commutative diagram from before.
+\begin{equation*}
+\xymatrix{ H_n(D^n,S^{n-1})\ar[r]^\partial \ar[d]^\cong & H_{n-1}(S^{n-1})\ar[r]\ar[d]^\cong & H_{n-1}(S^{n-1},\ast)\ar[d]^\cong\\
+C_n= H_n(\mathbf{RP}^n,\mathbf{RP}^{n-1})\ar[r]^\partial & H_{n-1}(\mathbf{RP}^{n-1}) \ar[r] & H_{n-1}(\mathbf{RP}^{n-1},\mathbf{RP}^{n-2})=C_{n-1}
+}
+\end{equation*}
+The first map on the top is an isomorphism. The bottom composite is our differential. So the map $ H_{n-1}(S^{n-1})\to H_{n-1}(S^{n-1},\ast)$. Therefore, $S^{n-1}\xrightarrow{\text{double cover}}\mathbf{RP}^{n-1}\xrightarrow{\text{pinching}} S^{n-1}$.
+\begin{equation*}
+\xymatrix{S^{n-1}\ar[r]^{\text{double cover}}\ar[dr] & \mathbf{RP}^{n-1}\ar[r]^{\text{pinching}} & S^{n-1}\\
+ & S^{n-1}/S^{n-2}=S^{n-1}\vee S^{n-1}\ar[ur]}
+\end{equation*}
+One of the maps $S^{n-1}\to S^{n-1}$ from the wedge is the identity, and the other map is the antipodal map, as can be seen by looking at a picture. If $\alpha$ is the antipodal map, then $S^{n-1}\vee S^{n-1}\to S^{n-1}$ is $[1,\alpha]$. If $\sigma$ is a generator of $ H_{n-1}(S^{n-1})$, we have $\sigma\mapsto (\sigma,\sigma)\mapsto \sigma+\alpha_\ast\sigma$. What is the degree of $\alpha_\ast: H_{n-1}(S^{n-1})\to H_{n-1}(S^{n-1})$, so $\deg\alpha=(-1)^n$. Thus the composite, and hence the attaching map, is $(1+(-1)^n)\sigma$. This means the cellular chain complex is:
+\begin{equation*}
+\xymatrix{0 & \Z\ar[l]^0 & \Z\ar[l]^2 & \cdots\ar[l]^0 & \Z\ar[l]^{2\text{ or }0} & 0\ar[l] & 0\ar[l] & \cdots\ar[l]}
+\end{equation*}
+We'll continue next time\footnote{Why don't we work in $\Z/2\Z$ coefficients? This is so much easier then. :P}.

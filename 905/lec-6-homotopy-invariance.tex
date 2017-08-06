@@ -1,0 +1,48 @@
+\section{Homotopy invariance of homology}
+As a side product, we'll construct something called the cross product. Here's the theorem.
+	\begin{theorem}
+	If $f_0,f_1:X\to Y$ and $f_0\sim f_1$, then $f_{0,\ast}\sim f_{1,\ast}:S_\ast(X)\to S_\ast(Y)$.
+	\end{theorem}
+	\begin{corollary}
+	With the same hypotheses, then $f_{0,\ast}=f_{1,\ast}: H_\ast(X)\to H_\ast(Y)$, because chain homotopic maps induce the same map on homology.
+	\end{corollary}
+The proof uses naturality (a lot). We'll produce a chain homotopy from the two inclusions $i_0,i_1:X\to X\times I$, and then homotope $f_0,f_1$ through a map $X\times I\to Y$. Namely, we'll construct a chain homotopy $h_X:S_n(X)\to S_{n+1}(X\times I)$ which gives a homotopy $i_{0,\ast}\sim i_{1,\ast}$, and this'll be natural in $X$.
+
+This gives the result we want. We can get a homotopy $h:=g\circ h_\ast:S_n(X)\to S_{n+1}(X\times I)\to S_{n+1}(Y)$. Well:
+		\begin{multline*}
+		\partial h + h\partial = \partial(g_\ast h_\ast) + g_\ast h_\ast\partial=g_\ast\partial h_\ast + g_\ast h_\ast \partial = g_\ast(\partial h_\ast + h_\ast\partial)\\
+		 = g_\ast(i_{1,\ast} - i_{0,\ast}) = g_\ast i_{1,\ast} - g_\ast i_{0,\ast} = (g\circ i_1)_\ast - (g\circ i_0)_{\ast} = f_{1,\ast} - f_{0,\ast}
+		\end{multline*}
+(The last equality is because $h_\ast$ is a chain homotopy between $i_{1,\ast}$ and $i_{0,\ast}$.) So $h=g_\ast\circ h_\ast$ is a chain homotopy. But how do we define $h_\ast:S_n(X)\to S_{n+1}(X\times I)$? You want to take $\sigma\mapsto``\sigma\times I''$. More generally, we'll set up a cross product $\times:S_p(X)\times S_q(Y)\to S_{p+q}(X\times Y)$ that is natural, bilinear, satisfy the Leibniz rule, and are normalized.
+
+Naturality is exactly what you'd expect it to be. If $A,B,C$ are abelian groups, then $A\times B\to C$ is a bilinear map if $f(a+a^\prime,b)=f(a,b)+f(a^\prime,b)$ and similarly in the other variable (just substitute the $S_n(X)$ etc here). The Leibniz formula says:
+		\begin{equation*}
+		\partial(a\times b) = (\partial a)\times b + (-1)^{|a|}a\times\partial b,\quad\text{where }|a|=p\text{ means that }a\in S_p(X).
+		\end{equation*}
+The word normalized means that the following construction is correct. Suppose $q=0$; then this is a map $S_p(X)\to S_0(Y)\to S_p(X\times Y)$, which (it suffices to define a map $\Sin_p(X)\times \Sin_0(Y)\to S_p(X\times Y)$ because $\left(\sum_i a_i\sigma_i,\sum_j b_j\tau_j\right)\mapsto \sum_{i,j}a_ib_i(\sigma_i\times\tau_j)$ by bilinearity) sending:
+		\begin{equation*}
+		(\sigma, c^0_y)\mapsto \left(\begin{pmatrix}\sigma \\ c^p_y\end{pmatrix}:\Delta^p\to X\times Y\right)
+		\end{equation*}
+This latter map is just the composition $\Delta^p\xrightarrow{\sigma} X\xrightarrow{\text{inclusion at }y\in Y}X\times Y$. When $p=0$, we can send:
+		\begin{equation*}
+		(c^0_x,\tau)\mapsto \left(\begin{pmatrix}c^p_0 \\ \tau\end{pmatrix}:\Delta^p\to X\times Y\right)
+		\end{equation*}
+This latter map is just the composition $\Delta^p\xrightarrow{\tau} Y\xrightarrow{\text{inclusion at }x\in X}X\times Y$. We have to check that this behaves correctly for the boundary map, namely, that Leibniz holds. We have:
+		\begin{equation*}
+		\partial(\sigma\times c^0_y) = \partial\sigma\times c^0_y
+		\end{equation*}
+and similarly. We're going to use induction to define this for $p+q$; we've only done this for $p+q=0,1$. Let's assume it's done for $p+q-1$. First note that there's a universal example of a $p$-simplex, namely the map $\iota_p:\Delta^p\to \Delta^p$, because given any $p$-simplex $\sigma:\Delta^p\to X$, you get $\sigma=\sigma_\ast(\iota_p)$ where $\sigma_\ast:\Sin_p(\Delta^p)\to \Sin_p(X)$. It suffices to define $\iota_p\times\iota_q\in S_{p+q}(\Delta^p\times\Delta^q)$; you're supposed to think of the product of two simplices as a prism, which isn't a simplex itself - but you can triangulate it and look at it as the formal sum of two simplices. Then $\sigma\times \tau = (\sigma\times\tau)_\ast(\iota_p\times\iota_q)$ where $(\sigma\times\tau)_\ast:S_{p+q}(\Delta^p\times\Delta^q)\to S_{p+q}(X\times Y)$. We need this to satisfy the Leibniz rule, so that:
+		\begin{equation*}
+		S_{p+q-1}(\Delta^p\times\Delta^q)\ni \partial(\iota_p\times\iota_q) = (\partial\iota_p)\times\iota_q + (-1)^p\iota_p\times\partial\iota_q
+		\end{equation*}
+A necessary condition for $\iota_p\times\iota_q$ to exist is that $\partial((\partial\iota_p)\times\iota_q + (-1)^p\iota_p\times\partial\iota_q) =0$. Let's compute what this is.
+		\begin{equation*}
+		\partial((\partial\iota_p)\times\iota_q + (-1)^p\iota_p\times\partial\iota_q) = \partial^2(\iota_p)\times\iota_q + (-1)^{p-1}(\partial \iota_p)\times(\partial \iota_q) + (-1)^p(\partial\iota_p)\times(\partial\iota_q) + (-1)^q\iota_p\times\partial^2\iota_q = 0
+		\end{equation*}
+because $\partial^2=0$. 
+
+The subspace $\Delta^p\times\Delta^q\subseteq\mathbf{R}^{p+1}\times\mathbf{R}^{q+1}$ is convex, so by translation, it's homeomorphic to a star-shaped region. But we know that $ H_{p+q-1}(\Delta^p\times\Delta^q)=0$ because $p+q>1$, which means that every cycle is a boundary. In other words, what we checked above is also sufficient! So, choose any element $\iota_p\times\iota_q$ with the right boundary. This means we're done if we check that this choice satisfies naturality, bilinearity, and the Leibniz rule (left to reader). We'll now define $h_X:S_n(X)\to S_{n+1}(X\times I)$ via $h_Xc = c\times\iota$ where $\iota:\Delta^1\to I$ is the obvious map. The cross product is in $S_{p+1}(X\times I)$. Let's compute:
+		\begin{equation*}
+		\partial h_X = \partial(c\times \iota) = \partial c\times\iota + (-1)^{|c|}c\times\partial\iota
+		\end{equation*}
+But now, $\partial\iota = c_1^0 - c_0^0\in S_0(I)$, which means that this becomes $\partial c\times\iota + (-1)^{|c|}(\iota_{1,\ast} - \iota_{0,\ast})$. We'll do a little more next time.

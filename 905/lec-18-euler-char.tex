@@ -1,0 +1,68 @@
+\section{Relative attaching maps, $\RP^n$, Euler characteristic, and homology approximation}
+Recall:
+\begin{equation*}
+\xymatrix{ H_n\left(\coprod_\alpha D^n_\alpha\right)\ar[r]^\partial_\cong\ar[d]^\cong_{\text{char. map}} & H_{n-1}\left(\coprod_\alpha S^{n-1}_\alpha\right)\ar[d]_{\text{attaching map}} & H_{n-1}\left(\coprod_\beta D^{n-1}_\beta,\coprod_\beta S^{n-2}_\beta\right) \ar[r]^\cong & \widetilde{ H}_{n-1}\left(\bigvee_\beta D^{n-1}_\beta/S^{n-2}_\beta\right)\ar[d]^\cong\\
+ H_n(X_n,X_{n-1})\ar[r]^\partial\ar@{=}[d] & H_{n-1}(X_{n-1})\ar[r]^j & H_{n-1}(X_{n-1},X_{n-2})\ar[r]^\cong\ar[ur]^\cong\ar@{=}[d] & \widetilde{ H}_{n-1}(X_{n-1}/X_{n-2})\\
+C_n(X)\ar[rr]^d & & C_{n-1}(X)}
+\end{equation*}
+This boundary map $d$ is the effect of $ H_{n-1}(-)$ to:
+\begin{equation*}
+\xymatrix{\coprod_\alpha S^{n-1}_\alpha\ar[r]^{f_{n-1}} & X_{n-1}\ar[d]\ar[r] & X_{n-1}/X_{n-2}\cong \bigvee_\beta D^{n-1}_\beta/S^{n-2}_\beta\\
+ & X_n}
+\end{equation*}
+The composite in the top row of this diagram is called the ``relative attaching map'' because you're working relative to the $(n-2)$-skeleton.
+
+Before, I coyly said before that there is a monoid homomorphism $\deg:[S^{n-1},S^{n-1}]\to\Z_\times$ that sends $f\mapsto ( H_{n-1}(f): H_{n-1}(S^{n-1})\to H_{n-1}(S^{n-1}))$. I said that this was surjective. This is actually an isomorphism. We won't prove injectivity here, but we'll do this in 18.906.
+\subsection{$\RP^m$}
+Recall the CW-structure $\RP^0\subseteq\RP^1\subseteq\cdots\subseteq\RP^{n-1}\subseteq\RP^n\subseteq \cdots\subseteq\RP^m$, where $\RP^{n-1}$ is the collection of lines in $\RR^n$. The attaching map is the double cover $\pi:S^{n-1}\to\RP^{n-1}$ to get a pushout
+\begin{equation*}
+\xymatrix{S^{n-1}\ar[r]^{\text{double cover}}\ar[d] & \RP^{n-1}\ar[d]\\
+D^n\ar[r] & \RP^n}
+\end{equation*}
+The cellular chain complex $C_\ast$ will look like:
+\begin{equation*}
+\xymatrix{0 & C_0=\Z\ar[l] & C_1=\Z\ar[l] & \cdots\ar[l] & C_{n-1}=\Z\ar[l] & C_n=\Z\ar[l] & \cdots\ar[l] & C_m=\Z\ar[l] & 0\ar[l]}
+\end{equation*}
+The first map $C_1\to C_0$ is easy because $\RP^m$ is connected. Thus $C_1\to C_0$ is the zero map.
+
+The relative attaching maps are: $S^{n-1}\xrightarrow{\pi}\RP^{n-1}\to \RP^{n-1}/\RP^{n-2}\cong S^{n-1}$. All we have to do is figure out the degree of this map. What happens when I collapse out $\RP^{n-2}$? This has the effect of collapsing out by the equator because you are collapsing all those points on the equator of $S^{n-1}$ that go to $\RP^{n-1}$. So the composition $S^{n-1}\xrightarrow{\pi}\RP^{n-1}\to \RP^{n-1}/\RP^{n-2}\cong S^{n-1}$ splits as:
+\begin{equation*}
+\xymatrix{S^{n-1}\ar[r]^{\pi}\ar[dr]^{\text{pinching}} & \mathbf{RP}^{n-1}\ar[r] & \RP^{n-1}/\RP^{n-2}\cong S^{n-1}\\
+ & S^{n-1}/S^{n-2}\ar[ur]\ar@{=}[r] & S^{n-1}_u\vee S^{n-1}_\ell}
+\end{equation*}
+The map $S^{n-1}_u\vee S^{n-1}_\ell\to S^{n-1}$ sends the top hemisphere to $S^{n-1}$ itself via the identity, so the first factor is a homeomorphism. The lower hemisphere will be sent to $S^{n-1}$ via the antipodal map (called $\alpha$), which is also a homeomorphism, but I won't draw this in because I don't want to do that here. What does this do in homology? In $(n-1)$-dimensional homology, we choose a generator $\sigma$ of $ H_{n-1}(S^{n-1})$.
+
+The pinch map sends $\sigma$ to $(\sigma,\sigma)$. The map from $S^{n-1}_u\vee S^{n-1}_\ell$ to $S^{n-1}$ sends $(\sigma,\sigma)\mapsto \sigma+\alpha_\ast\sigma$. The degree of $\alpha_\ast$ is $(-1)^n$, as you saw in homework. The composite in homology for $S^{n-1}$ is multiplication by $1+(-1)^n$. Thus the differential $d:C_n(X)\to C_{n-1}(X)$ is multiplication by $1+(-1)^n$. So the cellular chain complex now looks like, if $n$ is even:
+\begin{equation*}
+\xymatrix{0 & C_0=\Z\ar[l] & C_1=\Z\ar[l]^0 & C_2=\Z \ar[l]^2 & \cdots\ar[l]^0 & C_{n-1}=\Z\ar[l]^0 & C_n=\Z\ar[l]^2 & 0\ar[l]}
+\end{equation*}
+and if $n$ is odd:
+\begin{equation*}
+\xymatrix{0 & C_0=\Z\ar[l] & C_1=\Z\ar[l]^0 & C_2=\Z \ar[l]^2 & \cdots\ar[l]^0 & C_{n-1}=\Z\ar[l]^2 & C_n=\Z\ar[l]^0 & 0\ar[l]}
+\end{equation*}
+Thus:
+\begin{equation*}
+ H_k(\RP^n)=\begin{cases}
+\Z & k=0\text{ and }k=n\text{ odd}\\
+\Z/2\Z & k\text{ odd, }0<k<n\\
+0 & \text{else}
+\end{cases}
+\end{equation*}
+This means that odd-dimensional real projective space is orientable, and even-dimensional real projective is non-orientable.
+\subsection{Euler char.}
+On Friday, I made the comment that things are simpler if you have (?). Here's a lemma.
+\begin{lemma}
+If $X$ is a CW-complex with only even cells (eg. $\CP^n,\mathbb{H}\mathbf{P}^n$), then $ H_\text{odd}(X)=0$, and $ H_\text{even}(X)=C_\text{even}(X)$. Actually, I can just write $ H_\ast(X)\cong C_\ast(X)$. Even homology groups are free abelian groups with rank given by the number of $(2q)$-cells.
+\end{lemma}
+\begin{proof}
+Trivial.
+\end{proof}
+Here's a result that'll improve this.
+\begin{theorem}[``Euler'' because this is the generalization of the Euler characteristic]
+Let $X$ be a finite CW-complex\footnote{Some alarm starts ringing. ``What are we supposed to do? It's just here to annoy us. It's ringing, but there's nothing to answer. Can we ignore it? (Turns off the light.) Let's just talk over it''.}. (We write $A_n$ to index the $n$-cells.)\footnote{Alarm ends, yay!} Then $\sum^\infty_{n=0}(-1)^n\# A_n=:\chi(X)=\text{Euler characteristic}$ is independent of the CW-structure on $X$. 
+\end{theorem}
+When $n$ is even, the lemma is much stronger than this. I'm going to prove this theorem. Now I want to give a little reminder about the structure of finitely generated abelian groups.
+\subsection{Finitely generated abelian groups}
+If you have an abelian group $A$, you have a torsion subgroup $T(A)$, i.e., elements of finite order in $A$, i.e., $\{a\in A|\exists n\in \Z_{>0},na=0\}$. Then $A/T(A)$ is \emph{torsion free}. For a general abelian group, that's all you can say. Assume $A$ is finitely generated. Then $A/T(A)$ is also a finitely generated torsion free abelian group (take the image of the generators of $A$). This is actually a \emph{free abelian group}, and so it's isomorphic to $\Z^r$. We say that $r$ is the \emph{rank} of $A$. It's an invariant of $A$.
+
+Another fact is the following. Recall that any subgroup of $A$ is finitely generated (nontrivial fact). This means that $T(A)$ is finitely generated. It is true that $T(A)=\Z/n_1\oplus\Z/n_2\oplus\cdots\oplus\Z/n_t$ where $n_1|n_2|\cdots|n_t$, where $t$ is well-defined and is ``the number of torsion generators''. What this means for us is that $A\cong T(A)\oplus A/T(A)\cong \Z^r\oplus\Z/n_1\oplus\Z/n_2\oplus\cdots\oplus\Z/n_t$ where $n_1|n_2|\cdots|n_t$. If $0\to A\to B\to C\to 0$ is a sexseq of finitely generated abelian groups, then $\text{rank}(A)+\text{rank}(B)=\text{rank}(C)$.

@@ -1,0 +1,69 @@
+\section{Direct Limits}
+Goals are UCT (universal coefficient theorem), which is about $ H_\ast(X;M)$ for varying $M$, the K\"{u}nneth theorem (which is about $ H_\ast(X\times Y)$), cohomology, and Poincar\'{e} duality.
+\subsection{Two more things about $\Tor$}
+If $R$ is a PID, then there's not so much to say about $\Tor$, because any submodule of a free module is free. So that means that any $R$-module has a free resolution $0\to F_1=\ker(f)\to F_0\xrightarrow{f}\to N\to 0$. It follows that $\Tor^R_n(M,N)=0$ for $n>1$. If you have a field, then tensoring is exact, so $\Tor^k_0(M,N)=0$ for $n>0$. That's why it's easy to work with fields. (There's also Prufer rings, where every module is flat.) By the way, this means that if you have a sexseq $0\to A\to B\to C\to 0$, then over a PID $R$, there's a six-term exact sequence $0\to\Tor^R_1(M,A)\to \Tor^R_1(M,B)\to \Tor^R_1(M,C)\to M\otimes_R A\to M\otimes_R B\to M\otimes_R C\to 0$.
+\begin{example}
+I want to give an example when you do have higher $\Tor$. Let $k$ be a field. Let $R=k[e]/(e^2)$. This is sometimes called the ``dual numbers'', or the exterior algebra over $k$. We're going to consider $R$-modules. Let's construct a projective resolution of $k$. Hmm. What is an $R$-module $M$? It's just a $k$-vector space $M$ with an operator $d$ that has action given by multiplication by $e$, and this satisfies $d^2=0$. And this is a chain complex! I guess it's not quite a chain complex because for us chain complexes are graded. So I guess it's an ungraded chain complex. I can consider $ H(M;d):=\ker d/\img d$. Here's an example of an $R$-module. There's the augmentation $R\to k$ sending $e\mapsto 0$. This makes $k$ an $R$-module, where $d=0$. Let's construct a free resolution of $k$.
+
+Here we go. We're going to write $k=\bullet(=1)$ and $R:=(1=)\bullet\xrightarrow{d}\bullet(=e)$. Well, we have $R\to k$ given by $(\bullet\xrightarrow{d}\bullet)\to \bullet$. The kernel is not free, so we get $(\bullet\xrightarrow{d}\bullet)\to (\bullet\xrightarrow{d}\bullet)\to \bullet$. And this continues, so we get a projective resolution $\cdots\xrightarrow{e} R\xrightarrow{e} R\xrightarrow{e} R\to k$. What is $\Tor$? Well, $\Tor^R_\ast(M,k)$ is the homology of the following chain complex $\cdots\xrightarrow{d} M\xrightarrow{d} M\to 0$. What is that homology? Clearly $\Tor^R_0(M,k)=M\otimes_R k=M/dM=M/eM$. This is often called the module of indecomposables. And, $\Tor^R_n(M,k)= H(M;d)$.
+\end{example}
+Last comment about $\Tor$ is that there's a symmetry there. Of course, $M\otimes_R N\cong N\otimes_R M$. This uses the fact that $R$ is commutative. This leads right on to saying that $\Tor^R_n(M,N)\cong \Tor^R_n(N,M)$. We've been computing $\Tor$ by taking a resolution of the second variable. But I could equally have taken a resolution of the first variable. This follows from the fundamental theorem of homological algebra.
+\subsection{Direct limits}
+A long time ago, I said what a poset was. Let me tell you a joke about posets. I was at a conference, and Quillen was giving a talk. He was a student of Raoul Bott. Quillen was giving his talk, and he used the term ``poset''. This word was invented by Garrett Birkhoff(?). Then Bott objected and said ``What is this crazy word?'', and Quillen responded ``What are you talking about? Your colleague invented it!''. Anyway, it's not a joke. I guess it's just a piece of MIT and Harvard rivalry.
+
+Anyway, a poset is a small category $\cI$ such that $\#\cI(i,j)\leq 1$ and isomorphism implies identity. I want to talk about a \emph{directed set}.
+\begin{definition}
+A poset $(\cI,\leq)$ is \emph{directed} if, for every $i,j$, there exists a $k$ such that $i\leq k$ and $j\leq k$.
+\end{definition}
+\begin{example}
+For example, the natural numbers $\Z_{\geq 0}$ with equality. Another example: if $X$ is a space and $I$ is the set of open subsets of $X$. It's directed by saying that $U\leq V$ if $U\subseteq V$. This is because $U,U^\prime$ need not be comparable, but $U,U^\prime\subseteq U\cup U^\prime$. Another example is $\Z_{>0}$ where $i\leq j$ if $i|j$. This is because $i,j|(ij)$.
+\end{example}
+\begin{definition}
+Let $\cI$ be a directed set. An $\cI$-directed diagram in $\cc$ is a functor $\cI\to\cc$. This means that for every $i\in \cI$, there is $X_i\in\cc$, and for every $i\leq j$, there's a map $X_i\xrightarrow{f_{ij}} X_j$ (and similarly for composition).
+\end{definition}
+\begin{example}\label{linear}
+If $\cI=(\Z_{\geq 0},\leq)$, then you get $X_0\xrightarrow{f_{01}}X_1\xrightarrow{f_{12}}X_2\to\cdots$. This is the most important.
+\end{example}
+\begin{example}
+Suppose $\cI=(\Z_{>0},|)$, i.e., the third example above. You can consider $\cI\to\mathbf{Ab}$, say assigning to each $i$ the integers $\Z$, and $f_{ij}:\Z\xrightarrow{j/i}\Z$. You get the picture.
+\end{example}
+These directed systems are a little complicated. But there's a simple one, namely the constant one. 
+\begin{example}
+Let $\cI$ be any directed set. You have a constant functor $c_A:\cI\to\cc$ at some $A\in\cc$.
+\end{example}
+Of course, $\cI$-directed systems in $\cc$ are functors $\cI\to\cc$. They have natural transformations, and those are the morphisms in the category of $\cI$-directed systems. That just means that if I have two directed systems $X,Y:\cI\to\cc$, then a map from one to the other is a commuting diagram:
+\begin{equation*}
+\xymatrix{X_i\ar[r]\ar[d]^{g_i} & X_j\ar[d]^{g_j}\\
+Y_i\ar[r] & Y_j}
+\end{equation*}
+for all $i\leq j$.
+
+It'd be great if every directed system was constant, but this isn't true. This leads to direct limits.
+\begin{definition}
+A direct limit is an object $L$ and a map $X\to c_L$, which is initial among maps to constant systems. This means that I have some other map $X\to c_A$, then there's a unique induced map $c_L\to c_A$ that is induced from a map $L\to A$. We write $\varinjlim_{i\in \cI}X_i=\colim_{i\in I}X_i$. (My own note: it's also sometimes called an an inductive limit.)
+\end{definition}
+This is a universal property. So two different direct limits are canonically isomorphic.
+\begin{example}
+Consider $\cI=(\Z_{\geq 0},\leq)$, then you get $X_0\xrightarrow{f_{01}}X_1\xrightarrow{f_{12}}X_2\to\cdots$ in $\mathbf{Top}$. What is the direct limit? It's going to be $\bigcup_i X_i$. But what's the topology? Give it the finest topology so that all of the maps to the union are open. This just means that a subset is open in $\bigcup_i X_i$ if the preimage is open.
+\end{example}
+\begin{example}
+Recall our example where we let $\cI=(\Z_{>0},|)$, i.e., the third example above. You can consider $\cI\to\mathbf{Ab}$, say assigning to each $i$ the integers $\Z$, and $f_{ij}:\Z\xrightarrow{j/i}\Z$. The colimit is $\QQ$, where you send $X_n\to\QQ$ via $1\mapsto \frac{1}{n}$.
+\end{example}
+\begin{lemma}
+Let $X:\cI\to\mathbf{Ab}$ (or $\mathbf{Mod}_R$). A map $f:X\to c_L$ is the direct limit (we write $f_i:X_i\to L$) if and only if:
+\begin{enumerate}
+\item For every $x\in L$, there exists an $i$ and an $x_i\in X_i$ such that $f_i(x_i)=x$.
+\item Let $x_i\in X_i$ be such that $f_i(x_i)=0$ in $L$. Then there exists some $j\geq i$ such that $f_{ij}(x_i)=0$ in $X_j$.
+\end{enumerate}
+\end{lemma}
+\begin{proof}
+Straightforward.
+\end{proof}
+It generalizes the observation that $\QQ$ is the colimit of the diagram we drew above for $\cI=(\Z_{>0},|)$.
+\begin{corollary}
+The direct limit $\varinjlim_I:\Fun(\cI,\mathbf{Ab})\to\mathbf{Ab}$ is exact. In other words, $X_\bullet\to Y_\bullet\xrightarrow{p} Z_\bullet$ is an exact sequence of $\cI$-directed systems (at every degree, we get an exact sequence of abelian groups), then $\varinjlim_IX_\bullet\xrightarrow{i} \varinjlim_IY_\bullet\xrightarrow{p} \varinjlim_IZ_\bullet$.
+\end{corollary}
+\begin{proof}
+First of all, $X_\bullet\to Z_\bullet$ is zero. Thus it factors through the constant zero object, so that $\varinjlim_IX_\bullet\to \varinjlim_I Z_\bullet$ is zero. Let $y\in \varinjlim_IY_\bullet$, and suppose $y$ maps to $0$ in $\varinjlim_IZ_\bullet$. By the first condition, there exists $i$ such that $y=f_i(y_i)$ for some $y_i\in Y_i$. Then $p(y)=f_ip(y_i)$ because $p$ is a map of systems. This is zero. This means that there is $j\geq i$ such that $f_{ij}p(y_i)=0$. We have an element in $Y_j$ that maps to zero, so there is some $x_j$ that is the preimage of the element in $Y_j$. So we're done.
+\end{proof}
+This makes the world a nice place to live.

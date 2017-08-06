@@ -1,0 +1,72 @@
+\section{Compactly generated spaces}
+A lot of the course is going to be about loop spaces, and mapping spaces. Standard topology doesn't do very well with mapping spaces. So we are going to narrate the story of compactly generated spaces. One of the good things is that you have a \emph{Cartesian-closed category}.
+
+The first thing I want to talk about is the Yoneda lemma. We will start to do some topology pretty soon. OK, so I was proposing the notion of a colimit of a functor. It was defined in terms of maps out of the colimit. More precisely:
+$$\cc(\colim_{j\in\cJ}X_j,Y) = \cc^\cJ(X_\bullet,\mathrm{const}_Y)$$
+They're naturally isomorphic, and that's all you can ask for in this life. How well-defined is this object, if it exists? Whether it exists is a question of how cocomplete your category is. The question of uniqueness is more general. Let's think about that for a minute. The Yoneda lemma -- sometimes ``you-need-a-lemma''(!!) -- is:
+\begin{theorem}[Yoneda lemma]
+    Consider the functor $\cc(X,-):\cc\to\set$. Suppose $G:\cc\to\set$ is another functor. It turns out that:
+    $$\mathrm{nt}(\cc(X,-),G)\simeq G(X)$$
+\end{theorem}
+\begin{proof}
+    Let $x\in G(X)$. We then define a natural transformation that sends $f:X\to Y$ to $f_\ast(x)\in G(Y)$. On the other hand, suppose $\theta:C(X,-)\to G$. Send $\theta$ to $\theta_X(1_X)$. These two are so natural and beautiful that you expect that they're inverses, right? And they are.
+\end{proof}
+OK, so in particular if $G=\cc(Y,-)$ -- these are called \emph{corepresentable} functors -- then $\mathrm{nt}(\cc(X,-),\cc(Y,-))\simeq \cc(Y,X)$. What this means is that if you look at natural isomorphisms $\cc(X,-)\to \cc(Y,-)$, that's the same as isomorphisms $Y\to X$. This means that if you have a corepresentable functor, the object that represents is unique\footnote{at least up to isomorphism}.
+\subsection{CGHW spaces}
+Some constructions commute for ``categorical reasons''. Here's the example to keep in mind. Let $X\in \Top$. Then $X\times\lim_{j\in\cJ}Y_j\simeq \lim_{j\in\cJ}(X\times Y_j)$. Why? This is easily proven because both the limit and the product are defined by what maps into them are. In contrast, $X\times\colim_{j\in \cJ}Y_j$ is not $\colim_{j\in \cJ}(X\times Y_j)$ in general. Very sad :-( An example of this failure is a quotient map $Y\to Z$. Then $X\times Y\to X\times Z$, is this a quotient map? It's not true in general. It's a very sad state of affairs.
+\begin{theorem}[Whitehead]
+    It is if $X$ is a compact Hausdorff space.
+\end{theorem}
+I want to repair that problem. Why were we talking about colimits? Here's an observation. Suppose $X\to Y$ is a quotient map; then a map $Y\to Z$ is continuous iff the composite $X\to Y\to Z$ is continuous. A quotient map \emph{is} a coequalizer. What I'm saying is, I can find two maps to $X$ such that $Y$ is a coequalizer of $X$. What space are we mapping into $X$? Well, suppose $Z=X/\sim$. If we considered:
+\begin{equation*}
+    \begin{tikzcd}
+	X\times_Z X\ar[r,shift left=.75ex,"\pi_1"]\ar[r,shift right=.75ex,swap,"\pi_2"] & X\ar[r] & Z
+    \end{tikzcd}
+\end{equation*}
+The term here is ``regular epimorphism''.
+
+\begin{remark}
+    OK, the statement about limits and products is wrong. Think about what happens when $\cJ$ is a discrete category. We will fix this on Monday.
+\end{remark}
+
+We don't want to just restrict ourselves to compact Hausdorff spaces. So we look at topologies detected by maps from compact Hausdorff spaces.
+\begin{definition}
+    Let $X$ be a space. A subspace $F\subseteq X$ is called \emph{compactly closed} if for any map $k:K\to X$ from compact Hausdroff $K$, then $k^{-1}(F)\subseteq K$ is closed.
+\end{definition}
+If $F$ is closed, then it's clearly compactly closed. But there might be non-closed compactly closed sets.
+\begin{definition}
+    $X$ is a $k$-space if compactly closed implies closed.
+\end{definition}
+The $k$ comes from ``kompact'' and/or Kelly, an early topologist who considered this stuff.
+
+Let $X$ be any space. It can be $k$-ified to some space denoted $kX$. You just enlarge the topology so that it includes the compactly closed sets. This is a topology, bigger than the original one. So the identity $kX\to X$ is continuous.
+
+\begin{remark}
+    $X$ is a $k$-space iff it has the property that a map $X\to Y$ is continuous iff for any compact Hausdorff $K$ and map $k:K\to X$, the composite $K\to X\to Y$ is continuous.
+\end{remark}
+\begin{example}
+    Compact Hausdorff spaces are $k$-spaces. First countable (so metric spaces) and CW-complexes are also $k$-spaces.
+\end{example}
+Define $k\Top$ to be the category of $k$-spaces. There's an inclusion $i:k\Top\hookrightarrow \Top$. Now $k$-ification gives a functor $\Top\to k\Top$. This has the property that:
+$$k\Top(X,kY)=\Top(iX,Y)$$
+Here's an adjunction! This means that $k(iX\times iY)=X\times^{k\Top}Y$ where $X$ and $Y$ are $k$-spaces. It's true that $kiX\simeq X$.
+
+The takeaway is that $k\Top$ has good categorical properties inherited from $\Top$, i.e. it's complete and cocomplete. I want to now talk about mapping spaces, which shows that $k\Top$ is even better!
+\subsection{Mapping spaces}
+Let $X$ and $Y$ be spaces. There's the compact-open topology on $\Top(X,Y)$. For $k$-spaces, I want to make a slight modification. In particular, if $X$ and $Y$ are $k$-spaces, define a topology on $k\Top(X,Y)$ generated by: $W(k:K\to X, \text{ open }U\subseteq Y)=\{f:X\to Y: f(k(K))\subseteq U\}$. We write $Y^X$ for the $k$-ification of this space.
+\begin{prop}
+    \begin{enumerate}
+	\item $(k\Top)^{op}\times k\Top\to k\Top$ given by $(X,Y)\to Y^X$ is a functor of both variables.
+	\item $e:X\times Z^X\to Z$ given by $(x,f)\mapsto f(x)$ and $i:Y\to (X\times Y)^X$ given by $y\mapsto(x\mapsto(x,y))$ are continuous.
+    \end{enumerate}
+\end{prop}
+\begin{proof}
+    Look online -- there are references on the webpage.
+\end{proof}
+I'm not where I wanted to be at this moment in time. Ok, here's a result of this proposition. Consider $k\Top(X\times Y,Z)$ where the product is the product in $k$-spaces. What is $k\Top(Y,Z^X)$? I want to say that:
+$$k\Top(X\times Y,Z)\simeq k\Top(Y,Z^X)$$
+defined by $(f:X\times Y\to Z)\mapsto (Y\xrightarrow{i}(X\times Y)^X\to Z^X)$ in one direction, and by $(f:Y\to Z^X)\mapsto(X\times Y\to X\times Z^X\xrightarrow{e} X)$. They're so natural that they have to be inverses to one another. Let me close with a definition.
+\begin{definition}
+    A category $\cc$ with finite products is Cartesian closed if for any $X$, the functor $X\times -:\cc\to \cc$ has a right adjoint.
+\end{definition}
+So $k\Top$ is Cartesian closed, but $\Top$ isn't. On Monday, I'll justify why this is important.

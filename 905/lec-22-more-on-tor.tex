@@ -1,0 +1,121 @@
+\section{More about $\Tor$}
+Where is everybody? Looks like nobody wants to hear about $\Tor$. You're the select few.
+
+On Monday I gave ``axioms'' for $\Tor$, basically by saying that $\Tor^R_n(M,-):\mathbf{Mod}_R\to\mathbf{Mod}_R$ is like a homology theory. Today I'm going to show a construction of $\Tor$, and verify the axioms. Or at least the lexseq business. I also tried to show that it's a reasonable idea to study free resolutions, namely:
+\begin{equation*}
+\xymatrix{\cdots\ar@{-->}[rr] & & F_2\ar[dr]\ar@{-->}[rr]^d & & F_1\ar[dr]\ar@{-->}[rr]^d & & F_0\ar[dr]\\
+& K_2\ar[ur]\ar[dr] & & K_1\ar[ur]\ar[dr] & & K_0\ar[ur]\ar[dr] & & N\ar[dr]\\
+0\ar[ur] & & 0\ar[ur] & & 0\ar[ur] & & 0\ar[ur] & & 0}
+\end{equation*}
+Where $F_{i+1}$ surjects onto $K_i$ and the $F_i$ are free $R$-modules. Splicing these exact sequences gives you a exact sequence in the top row, which is a free resolution of $N$. Of course there are a lot of choices involved, so free resolutions aren't unique. The resolution $F_\bullet$ does \emph{not} include $N$, and in the following diagram, the top row isn't exact but $\cdots\to F_0\to N\to 0$ is exact.
+\begin{equation*}
+\xymatrix{\cdots\ar[r] & F_2\ar[r] & F_1\ar[r] & F_0\ar[r]\ar[d]^\epsilon & 0\\
+ & & & N & }
+\end{equation*}
+Then, note that:
+\begin{equation*}
+ H_q(F_\bullet)=\begin{cases}
+N & q=0\\
+0 & q>0
+\end{cases}
+\end{equation*}
+\begin{construction}
+We construct $\Tor^R_n(M,N)$ via $ H_n(M\otimes_R F_\bullet)$ where $F_\bullet$ is a free resolution of $N$.
+\end{construction}
+I have to check that this is well-defined, that it's functorial, and that it satisfies the lexseq. Maybe I should also check what $ H_0(M\otimes_R F_\bullet)$ is. I do get $M\otimes_R F_\bullet$, because tensoring with $M$ is right exact, i.e., you have an exact sequence $M\otimes_R F_1\xrightarrow{p} M\otimes_R F_0\to M\otimes_R N\to 0$, and the zeroth homology is the cokernel of $p$, which is $M\otimes_R N$.
+
+The check that it's well-defined goes like this. I call this the fundamental theorem of homological algebra.
+\begin{theorem}[Fundamental theorem of homological algebra]
+Let $f:M\to N$ be an $R$-module homomorphism. Let $\cdots\to E_1\to E_0\to M\to 0$ be such that each $E_n$ is free, and $\cdots\to F_1\to F_0\to N\to 0$ is exact. The fundamental theorem says that I can lift the map $f:M\to N$ to a chain map $E_\bullet\to F_\bullet$ (i.e. they commute with the differentials and the augmentations $\epsilon_N:F_0\to N$ and $\epsilon_M:E_0\to M$), that is unique up to chain homotopy. I.e., they sit in the following commutative diagram:
+\begin{equation*}
+\xymatrix{\cdots\ar[r] & E_2\ar[r]\ar@{-->}[d]^{f_2} & E_1\ar[r]\ar@{-->}[d]^{f_1} & E_0\ar[r]^{\epsilon_M}\ar@{-->}[d]^{f_0} & M\ar[d]^f\ar[r] & 0\\
+\cdots\ar[r] & F_2\ar[r] & F_1\ar[r] & F_0\ar[r]^{\epsilon_N} & N\ar[r] & 0}
+\end{equation*}
+\end{theorem}
+I'm making a big deal about homological algebra in this course on algebraic topology, because this really is a homotopy-theoretic statement. It's part of the homotopy theory of chain complexes. I just want to mention something.
+\begin{definition}
+A projective $R$-module $P$ is something such that there's a lift:
+\begin{equation*}
+\xymatrix{ & M\ar@{->>}[d]\\
+P\ar@{-->}[ur]\ar[r] & N}
+\end{equation*}
+\end{definition}
+Every free module is projective, clearly. Anything that's a direct summand in a projective is also projective. Any projective module is a direct summand of a free module.
+\begin{example}
+Let $k$ be a field. Then $k\times k$ acts on $k$ via $(a,b)c=ac$. This is an example of a projective that isn't free.
+\end{example}
+\begin{remark}
+This proof uses only that $E_n$ is projective. But if you have a PID, there's no difference between projective and free.
+\end{remark}
+\begin{proof}[Proof of the fundamental theorem of homological algebra]
+Let's try to construct $f_0$. Consider:
+\begin{equation*}
+\xymatrix{0\ar[r] & K_0\ar[r]\ar@{-->}[d]^{g_0} & E_0\ar[r]^{\epsilon_M}\ar@{-->}[d]^{f_0} & M\ar[d]^f &\\
+0\ar[r] & L_0=\ker(\epsilon_N)\ar[r] & F_0\ar@{->>}[r]^{\epsilon_N} & N\ar[r] & 0}
+\end{equation*}
+We know that $E_0=R\langle S\rangle$. What we do is push forward the generators of $E$ via $\epsilon_M$, push it forward to $f$, and pull it back via $\epsilon_N$ which makes sense because it's surjective. This gives us $f_0$. You can restrict it to get $g_0$. Now I'm in exactly the same situation.
+\begin{equation*}
+\xymatrix{0\ar[r] & K_1\ar[r]\ar@{-->}[d]^{g_1} & E_1\ar[r]^{\epsilon_M}\ar@{-->}[d]^{f_1} & K_0\ar[d]^{g_0} &\\
+0\ar[r] & L_1\ar[r] & F_1\ar[r] & L_0\ar[r] & 0}
+\end{equation*}
+And $g_1$ exists. Now we need to prove the chain homotopy claim. Suppose I have $f_\bullet:E_\bullet\to F_\bullet$ and $f^{\prime}_\bullet:E_\bullet\to F_\bullet$. Then $f^\prime_n-f_n$ (which we'll rename $\ell_n$) is a chain map lifting $0:M\to N$. Let's rename things, so I have:
+\begin{equation*}
+\xymatrix{\cdots\ar[r] & E_2\ar[r]\ar[d]^{\ell_2} & E_1\ar[r]\ar[d]^{\ell_1} & E_0\ar[r]^{\epsilon_M}\ar[d]^{\ell_0} & M\ar[d]^0\ar[r] & 0\\
+\cdots\ar[r] & F_2\ar[r] & F_1\ar[r] & F_0\ar[r]^{\epsilon_N} & N\ar[r] & 0}
+\end{equation*}
+We want that $\ell_\bullet\simeq 0$. That is, we want $h:E_n\to F_{n+1}$ such that $dh+hd=\ell$. To begin with, we consider:
+\begin{equation*}
+\xymatrix{ & E_0\ar[d]^{\ell_0}\ar@{-->}[dl]^h & \\
+F_1\ar[r]^d & F_0}
+\end{equation*}
+At the beginning, we want $dh=0$. Well, we consider:
+\begin{equation*}
+\xymatrix{ & & E_0\ar[d]^{\ell_0}\ar[dl]\ar@{-->}[dll] & \\
+F_1\ar@{->>}[r] & L_0\ar[r] & F_0}
+\end{equation*}
+Because $F_1\to L_0$ is a surjection, the lift exists, and we have $dh=\ell_0$. For the next step, we have:
+\begin{equation*}
+\xymatrix{ & & E_1\ar[r]\ar[d]^{\ell_1}\ar@{-->}[dll] & E_0\ar[d]^{\ell_0}\ar[dl]^h & \\
+F_2\ar@{->>}[r] & L_1\ar[r] & F_1\ar[r]^d & F_0}
+\end{equation*}
+So what do I want to do here? Ultimately what I want is that $dh=\ell_1-hd$. Well, $d(\ell_1-hd)=d\ell_1-dhd=d\ell_1-\ell_0d=0$ where the last equality comes because $\ell$ is a chain map. So now we can use exactness of $E_\bullet$ to define $h$. Exactly the same process continues.
+\end{proof}
+That's it. We're going to use this several times. I'm glad to have mentioned the notion of projectivity, because we'll use it later. Now, apply $M\otimes_R -$ to that resolution (???). Suppose I have $f:N\to N^\prime$, and get a map $f_\bullet:F_0\to F^\prime_\bullet$. Apply $M\otimes_R -$ to this, to get a chain map $M\otimes_R F_\bullet\to M\otimes_R F^\prime_\bullet$ to get a map in homology $ H_\ast(M\otimes_R F_\bullet)\to H_\ast(M\otimes_R F^\prime_\bullet)$. How independent is this of the lifting that I chose? Suppose I have two chain maps $1\otimes f_0,f\otimes f_0^\prime:M\otimes_R F_\bullet\to M\otimes_R F^\prime_\bullet$. I can certainly form $1\otimes h:M\otimes_R F_n\to M\otimes_R F^\prime_{n+1}$. I know that $dh+hd=f-f^\prime$. When I tensor, I get $1\otimes(hd+dh)=1\otimes(f-f^\prime)$. But I want that $(1\otimes h)(1\otimes d)+(1\otimes d)(1\otimes h)=1\otimes f-1\otimes f^\prime$. We use a further property of the tensor product:
+\begin{enumerate}
+\setcounter{enumi}{7}
+\item If $f,f^\prime:N\to N^\prime$, then $1\otimes(f+f^\prime)=1\otimes f+1\otimes f^\prime:M\otimes_R N\to M\otimes_R N^\prime$, and $1\otimes(rf)=r(1\otimes f)$. And $M\otimes_R -$ is an $R$-linear functor. 
+\end{enumerate}
+There's things called derived functors. In more general cases, you can't use chain complexes, but rather you use simplicial resolutions. There's non-additive homological algebra. Anyway, you check that $1\otimes f$ and $1\otimes f^\prime$ are indeed chain homotopic, and so you're done.
+
+I think I've verified that it's well-defined and functorial. What about the lexseq? Now, I start with a sexseq and want to get an lexseq. Suppose I have a sexseq $0\to A\to B\to C\to 0$. I should first come up with an sexseq of resolutions. Consider:
+\begin{equation*}
+\xymatrix{0\ar[r] & A\ar[r] & B\ar[r] & C\ar[r] & 0\\
+ & F^\prime_0\ar[u] & & F^{\prime\prime}_0\ar[u] & \\
+ & F^\prime_1\ar[u] & & F^{\prime\prime}_1\ar[u] & \\
+ & \vdots\ar[u] & & \vdots\ar[u] & }
+\end{equation*}
+I want to get a free resolution in the middle. The only thing that I can think of doing is constructing:
+\begin{equation*}
+\xymatrix{0\ar[r] & A\ar[r]^i & B\ar[r] & C\ar[r] & 0\\
+0\ar[r] & F^\prime_0\ar[u]^{\epsilon_A}\ar[r] & F^\prime_0\oplus F^{\prime\prime}_0\ar@{-->}[u]^{\epsilon_B}\ar[r] & F^{\prime\prime}_0\ar[u]^{\epsilon_B}\ar[r] & 0 \\
+ & F^\prime_1\ar[u] & & F^{\prime\prime}_1\ar[u] & \\
+ & \vdots\ar[u] & & \vdots\ar[u] & }
+\end{equation*}
+In fact, it's the only choice because you have a free module and the sexseq splits. If I'm going to make this work, this is the only thing I can do. I need the augmentation, though. We can think of $\epsilon_B$ as a row vector. The first entry obviously has to be $i\epsilon$. And, well, there's a lift\footnote{There's some ambiguity here. I have to make a choice. It might seem that the boundary map is made up of the choices, but it \emph{isn't}! I haven't proved that. It still needs to be proved.} because $F^{\prime\prime}_0$ is a free resolution:
+\begin{equation*}
+\xymatrix{0\ar[r] & A\ar[r]^i & B\ar[r] & C\ar[r] & 0\\
+0\ar[r] & F^\prime_0\ar[u]^{\epsilon_A}\ar[r] & F^\prime_0\oplus F^{\prime\prime}_0\ar@{-->}[u]^{\epsilon_B}\ar[r] & F^{\prime\prime}_0\ar[u]^{\epsilon_B}\ar@{-->}[ul]^{\overline{\epsilon}}\ar[r] & 0 \\
+ & F^\prime_1\ar[u] & & F^{\prime\prime}_1\ar[u] & \\
+ & \vdots\ar[u] & & \vdots\ar[u] & }
+\end{equation*}
+So that $\epsilon_B=[i\epsilon,\overline{\epsilon}]$. This is surjective by the Snake lemma. Consider:
+\begin{equation*}
+\xymatrix{& 0 & 0 & 0 & \\
+0\ar[r] & A\ar[r]^i\ar[u] & B\ar[r]\ar[u] & C\ar[r]\ar[u] & 0\\
+0\ar[r] & F^\prime_0\ar[u]^{\epsilon_A}\ar[r] & F^\prime_0\oplus F^{\prime\prime}_0\ar@{-->}[u]^{\epsilon_B}\ar[r] & F^{\prime\prime}_0\ar[u]^{\epsilon_B}\ar@{-->}[ul]^{\overline{\epsilon}}\ar[r] & 0\\
+ 0\ar[r] & K^\prime_0=\ker\epsilon_A\ar[u]\ar[r] & K_0\ar[r]\ar[u] & K^{\prime\prime}_0=\ker\epsilon_B\ar[u]\ar[r] & 0\\
+ & 0\ar[u] & 0\ar[u] & 0\ar[u] & }
+\end{equation*}
+The bottom row is exact by the $3\times 3$-lemma. It's why I gave it to you for homework! Anyway, I now have a sexseq of free resolutions $0\to F^\prime_\bullet\to F_\bullet\to F^{\prime\prime}_\bullet\to 0$. Now I want a sexseq $0\to M\otimes_R F^\prime_\bullet\to M\otimes_R F_\bullet\to M\otimes_R F^{\prime\prime}_\bullet\to 0$, but I don't know this because $M\otimes_R -$ isn't exact. It's why we got into the business in the whole place. But $0\to F^\prime_\bullet\to F_\bullet\to F^{\prime\prime}_\bullet\to 0$ is split. And applying any functor gives a splitting of the sexseq, i.e., $M\otimes_R -$ sends split sexseqs to (split) sexseq. This means that $0\to M\otimes_R F^\prime_\bullet\to M\otimes_R F_\bullet\to M\otimes_R F^{\prime\prime}_\bullet\to 0$ also splits. Thus we're done proving the lexseq in $\Tor$.
+
+The key idea in homological algebra is that free modules are good.

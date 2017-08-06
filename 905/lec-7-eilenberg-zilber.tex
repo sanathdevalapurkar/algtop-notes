@@ -1,0 +1,68 @@
+\section{Basically a recap of what we did last time}
+PSet 1 due today. Last time, we showed:
+\begin{theorem}
+There exists a map $S_p(X)\times S_q(Y)\to S_{p+q}(X\times Y)$ that is:
+	\begin{itemize}
+	\item Natural, in the sense that if $f:X\to X^\prime$ and $g:Y\to Y^\prime$, and $a\in S_p(X)$ and $b\in S_p(Y)$ so that $a\times b\in S_{p+q}(X\times Y)$, then $f_\ast(a)\times g_\ast(b)=(f\times g)_\ast(a\times b)$.
+	\item Bilinear, in the sense that $(a+a^\prime)\times b=(a\times b)+(a^\prime\times b)$, and $a\times (b+b^\prime)=a\times b+a\times b^\prime$.
+	\item The Leibniz rule is satisfied, i.e., $\partial(a\times b)=(\partial a)\times b + (-1)^{|a|}a\times \partial b$.
+	\item Normalized, in the following sense. Let $x\in X$ and $y\in Y$. Write $i_x:Y\to X\times Y$ sending $y\mapsto (x,y)$, and write $i_y:X\to X\times Y$ sending $x\mapsto (x,y)$. If $b\in S_q(Y)$, then $c^0_x\times b=(i_x)_\ast b\in S_q(X\times Y)$, and if $a\in S_p(X)$, then $a\times c^0_y=(i_y)_\ast a\in S_p(X\times Y)$.
+	\end{itemize}
+\end{theorem}
+We were a little hasty in the end, so we're going to recall some things.
+\begin{proof}[Proof sketch]
+There were two steps.
+\begin{enumerate}
+\item It's enough to define $\iota_p\times \iota_q\in S_{p+q}(\Delta^p\times \Delta^q)$ where $\iota_n:\Delta^n\to\Delta^n$ is the identity, because every other simplex is $\iota_n$ pushed forward, and the cross product is supposed to be natural.
+\item Induction on $p+q$. The first thing we use is the Leibniz rule, namely $\partial(\iota_p\times\iota_q) = (\partial\iota_p)\times\iota_q + (-1)^p\iota_p\times\partial\iota_q$. Is this a boundary? A necessary thing for anything to be a boundary is that it's a cycle. But because $\Delta^p\times\Delta^q$ is homeomorphic to a star-shaped region, it's contractible - therefore $ H_{p+q-1}(\Delta^p\times\Delta^q)=0$, a \emph{sufficient} condition for something to be a boundary is that it's a cycle! We showed that $\partial(\iota_p\times\iota_q)$ is a cycle, and therefore a boundary. We just need to choose \emph{some} class $[a]$ in $S_{p+q}(\Delta^p\times\Delta^q)$ such that $\partial([a])=(\partial\iota_p)\times\iota_q + (-1)^p\iota_p\times\partial\iota_q$, and this works.
+\begin{enumerate}
+\item Naturality is left to the reader.
+\item Let's check the Leibniz rule. Let $\sigma:\Delta^p\to X$ and $\tau:\Delta^q\to Y$. What's $\partial(\sigma\times\tau)$? We start by asking how we define $\sigma\times \tau$. Well, this is just $\sigma_\ast\iota_p\times\tau_\ast\iota_q$. Because of naturality, this is just $(\sigma\times\tau)_\ast(\iota_p\times\iota_q)$. This means that $\partial(\sigma\times\tau)=\partial((\sigma\times\tau)_\ast(\iota_p\times\iota_q))$. Now, we can use the naturality of the boundary map to see that this is just $(\sigma\times\tau)_\ast\partial(\iota_p\times\iota_q)$, which we can expand as:
+\begin{align*}
+(\sigma\times\tau)_\ast\partial(\iota_p\times\iota_q)& =(\sigma\times\tau)_\ast((\partial\iota_p)\times\iota_q + (-1)^p\iota_p\times\partial\iota_q) \\
+& = \sigma_\ast(\partial\iota_p)\times\tau_\ast\iota_q + (-1)^{p}(\sigma_\ast\iota_p\times\tau_\ast(\partial\iota_q))\\
+& = \partial(\sigma_\ast\iota_p)\times\tau_\ast\iota_q + (-1)^{p}(\sigma_\ast\iota_p\times\partial(\tau_\ast\iota_q))\\
+& = \partial\sigma\times\tau + (-1)^{p}\sigma\times\partial\tau
+\end{align*}
+\end{enumerate}
+\end{enumerate}
+\end{proof}
+A key fact in this whole thing is that $ H_{p+q-1}(\Delta^p\times\Delta^q)=0$. This method of proof, namely of reducing to things that have zero homology (aka acyclic spaces) is called the \emph{method of acyclic models}.
+
+What happens on the level of homology? Let's abstract a little bit. Suppose we have three chain complexes $A_\bullet$, $B_\bullet$, and $C_\bullet$, to be thought of as $S_\ast(X)$, $S_\ast(Y)$, and $S_\ast(X\times Y)$. Suppose we have maps $\times: A_p\times B_q\to C_{p+q}$ that satisfies bilinearity and the Leibniz formula. What does this induce in homology?
+\begin{lemma}
+This determines a bilinear map $ H_p(A)\times H_q(B)\xrightarrow{\times} H_{p+q}(C)$.
+\end{lemma}
+\begin{proof}
+Let $[a]\in H_p(A)$ where $a\in Z_p(A)$ such that $\partial a=0$ (i.e., $a$ is a cycle). Let $[b]\in H_q(B)$ where $b\in Z_q(A)$ such that $\partial b=0$. We want to define $[a]\times [b]\in H_{p+q}(C)$. We hope that $[a]\times [b]=[a\times b]$. We need to check that $a\times b$ is a cycle; let's check. By Leibniz, $\partial(a\times b)=\partial a\times b+(-1)^pa\times\partial b$. Because $a,b$ are boundaries, this is zero. We still need to check that this thing is well-defined. Let's pick another $[a^\prime]=[a]$ and $[b^\prime]=[b]$. We want $[a\times b]=[a^\prime\times b^\prime]$. In other words, we need that $a\times b$ differs from $a^\prime\times b^\prime$ by a boundary. We can write $a^\prime=a+\partial\overline{a}$ and $b^\prime=b+\partial\overline{b}$. What's $a^\prime\times b^\prime$? It's:
+	\begin{equation*}
+	a^\prime\times b^\prime=(a+\partial\overline{a})+(b+\partial\overline{b})
+	= a\times b+\left(a\times\partial\overline{b} + (\partial\overline{a})\times b+(\partial\overline{a})\times(\partial\overline{b})\right)
+	\end{equation*}
+But, well, $\partial(a\times\overline{b})=\partial a\times\overline{b}+(-1)^pa\times\partial\overline{b}=(-1)^pa\times\partial\overline{b}$, and $\partial(\overline{a}\times b)=\partial\overline{a}\times b$, and $\partial(\overline{a}\times\partial\overline{b})=\partial\overline{a}\times\partial\overline{b}$. This means that $a^\prime\times b^\prime=a\times b+\partial((-1)^{-p}(a\times \overline{b}) + \overline{a}\times b + \overline{a}\times\partial\overline{b})$. They differ by a boundary, so it's well-defined.
+
+The last step is to check bilinearity, which is left to the reader.
+\end{proof}
+This gives the following result.
+\begin{theorem}
+There is a map $ H_p(X)\times H_q(Y)\to H_{p+q}(X\times Y)$ that's natural, bilinear, and normalized. This map is also \emph{unique} (unlike the map $S_p(X)\times S_q(Y)\to S_{p+q}(X\times Y)$, which isn't unique because we there are uncountably many choices of $\iota_p\times\iota_q$, all differing by a boundary), because the map $\times:S_p(X)\times S_q(Y)\to S_{p+q}(X\times Y)$ is unique up to chain homotopy!
+\end{theorem}
+Let's go back to homotopy invariance. Recall that if $f_0\sim f_q:X\to Y$, then $f_{0,\ast}=f_{1,\ast}:S_\ast(X)\to S_\ast(Y)$. We proved this by showing that this reduces to showing that the two inclusions $i_0,i_1:X\to X\times I$ induce the same map on $S_\ast(X)\to S_\ast(X\times I)$. The chain homotopy $h_X:i_{0,\ast}\sim i_{1,\ast}$ is defined as follows. Let $c\in S_p(X)$. We need to give an element of $S_{p+1}(X\times I)$, so if $\iota:\Delta^1\to I$ is the obvious map, we just define $h_X(c)=(-1)^p c\times\iota$. Let's check that.
+
+Let's compute $\partial h_Xc$. This is $\partial((-1)^p c\times \iota)=(-1)^p\partial(c\times\iota)$, which, expanded out, is:
+	\begin{equation*}
+	\partial((-1)^p c\times \iota)=(-1)^p\partial(c\times\iota)=(-1)^p(\partial c)\times\iota+(-1)^{2p}c\times\partial\iota
+	\end{equation*}
+Well, $\partial\iota=c_1^0-c_0^0\in S_0(I)$, so this is equal to $(-1)^p(\partial c)\times\iota+c\times c^0_1 - c\times c_0^0$. But $c\times c^0_1=(i_1)_\ast c-(i_0)_\ast c$. Therefore, this is $(-1)^p(\partial c)\times\iota + (i_1)_\ast c-(i_0)_\ast c$. On the other hand, what's $h_X\partial c=(-1)^{p-1}(\partial c)\times\iota$. Let's add them together:
+	\begin{equation*}
+	\partial h_Xc+h_X\partial c=(-1)^p(\partial c)\times\iota + (i_1)_\ast c-(i_0)_\ast c+(-1)^{p-1}(\partial c)\times\iota=(i_1)_\ast c - (i_0)_\ast c
+	\end{equation*}
+So this is, by definition, a chain homotopy!
+
+I just want to mention that there's an explicit choice of $\iota_p\times\iota_q$. This is called the Eilenberg-Zilber chain. You're highly encouraged to think about this yourself. We're going to consider $\Delta^{p+q}\to\Delta^p\times\Delta^q$. They're all affine maps, sending vertices to pairs of vertices. We're going to think of an ordered map $\omega:[p+q]\to[p]\times[q]$. We can complete the diagram to get:
+	\begin{equation*}
+	\xymatrix{ & [p]\\
+	[p+q]\ar[ur]^{pr_2\omega}\ar[dr]_{pr_1\omega}\ar[r]^\omega & [p]\times[q]\ar[u]^{pr_2}\ar[d]^{pr_1}\\
+	 & [q]}
+	\end{equation*}
+We also want $\omega$ to be injective (which requires that it takes $(0,0)$ to $(p,q)$). We can draw out a ``staircase'' in the $p\times q$ grid, and the area under the staircase defined by $\omega$ is denote $A(\omega)$. Define $\iota_p\times\iota_q=\sum(-1)^{A(\omega)}\overline{\omega}$ where $\overline{\omega}$ is the corresponding affine map $\Delta{p+q}\to\Delta^p\times\Delta^q$. It's combinatorially annoying to check that this satisfies the conditions of the theorem, but it's a good exercise to check it out. It's in a paper by Eilenberg-Moore.

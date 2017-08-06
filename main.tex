@@ -1,240 +1,120 @@
-%\documentclass[oneside]{memoir}
-%\documentclass[12pt]{amsart}
-\documentclass{amsart}
+\documentclass{extbook}
 
-\usepackage{sseqpages}
-% \headheight=8pt
-% \topmargin=3pt
-% \textheight=624pt
-% \textwidth=432pt
-% \oddsidemargin=18pt
-% \evensidemargin=18pt
-%\usepackage{refcount}
-
-\usepackage[T1]{fontenc}
-%\usepackage[urw-garamond]{mathdesign}
-%\usepackage[margin=1.25in]{geometry}
-
-\usepackage{todonotes}
-\usepackage{amsmath}
-%\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{float}
-\usepackage{amsthm}
-\usepackage{comment}
-\usepackage{amscd}
-\usepackage{color}
-\usepackage[all]{xy}
-\usepackage{verbatim}
-\usepackage{setspace}
-\usepackage{hyperref}
-\usepackage[mathscr]{eucal}
-\usepackage{graphicx}
-%\spacing{1.75}
-\usepackage{tikz-cd}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \usepackage{ifluatex,ifxetex}
-
-% \ifluatex\else\ifxetex\else
-%  \usepackage[T1]{fontenc}
-%  \usepackage[utf8]{inputenc}
-% \fi\fi
-
-% \usepackage{ebgaramond}
-% \ifluatex\else\ifxetex\else
-%  \normalfont
-%  \makeatletter
-%  \input{TS1EBGaramond-LF.fd}
-%  \input{TS1EBGaramond-OsF.fd}
-%  \makeatother
-%  \DeclareFontShape{TS1}{EBGaramond-OsF}{m}{sl}{ <-> ssub * EBGaramond-OsF/m/it }{}
-%  \DeclareFontShape{TS1}{EBGaramond-OsF}{b}{n}{ <-> ssub * EBGaramond-OsF/m/n }{}
-%  \DeclareFontShape{TS1}{EBGaramond-OsF}{b}{it}{ <-> ssub * EBGaramond-OsF/m/it }{}
-%  \DeclareFontShape{TS1}{EBGaramond-OsF}{b}{sl}{ <-> ssub * EBGaramond-OsF/m/it }{}
-%  \DeclareFontShape{TS1}{EBGaramond-OsF}{bx}{n}{ <-> ssub * EBGaramond-OsF/m/n }{}
-%  \DeclareFontShape{TS1}{EBGaramond-OsF}{bx}{it}{ <-> ssub * EBGaramond-OsF/m/it }{}
-%  \DeclareFontShape{TS1}{EBGaramond-OsF}{bx}{sl}{ <-> ssub * EBGaramond-OsF/m/it }{}
-% \fi\fi
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\pagestyle{plain}
-
-\theoremstyle{theorem}
-\newtheorem{theorem}{Theorem}[section]
-\newtheorem{prop}[theorem]{Proposition}
-\newtheorem{lemma}[theorem]{Lemma}
-\newtheorem{corollary}[theorem]{Corollary}
-
-\theoremstyle{definition}
-%\theoremstyle{definition}
-\newtheorem{problem}[theorem]{Problem}
-\newtheorem{definition}[theorem]{Definition}
-\newtheorem{notation}[theorem]{Notation}
-\newtheorem{summary}[theorem]{Summary}
-\newtheorem{note}[theorem]{Note}
-\newtheorem{claim}[theorem]{Claim}
-\newtheorem{exercise}[theorem]{Exercise}
-\newtheorem{construction}[theorem]{Construction}
-%\theoremstyle{remark}
-\newtheorem{remark}[theorem]{Remark}
-\newtheorem{example}[theorem]{Example}
-\newtheorem{question}[theorem]{Question}
-\newtheorem{slogan}[theorem]{Slogan}
-\newtheorem{warning}[theorem]{Warning}
-
-\DeclareMathOperator{\Th}{Th}
-\DeclareMathOperator{\Aut}{Aut}
-\DeclareMathOperator{\coeq}{coeq}
-\DeclareMathOperator{\colim}{colim}
-\DeclareMathOperator{\coker}{coker}
-\DeclareMathOperator{\cone}{cone}
-\DeclareMathOperator{\Der}{Der}
-\DeclareMathOperator{\Ext}{Ext}
-\DeclareMathOperator{\Fun}{Fun}
-\DeclareMathOperator{\hocolim}{hocolim}
-\DeclareMathOperator{\holim}{holim}
-\DeclareMathOperator{\Hom}{Hom}
-\DeclareMathOperator{\Iso}{Iso}
-\DeclareMathOperator{\img}{im}
-\DeclareMathOperator{\Map}{Map}
-\DeclareMathOperator{\Tot}{Tot}
-\DeclareMathOperator{\Tor}{Tor}
-\DeclareMathOperator{\Res}{Res}
-\DeclareMathOperator{\Spec}{Spec}
-\DeclareMathOperator{\rank}{Rank}
-\DeclareMathOperator{\Vect}{Vect}
-
-\newcommand{\TMF}{\mathit{TMF}}
-\newcommand{\tmf}{\mathit{tmf}}
-\newcommand{\Mell}{\mathscr M_{\mathit{ell}}}
-\newcommand{\Mord}{\mathscr M_{\mathit{ell}}^{\mathit{ord}}}
-\newcommand{\Mss}{\mathscr M_{\mathit{ell}}^{\mathit{ss}}}
-\newcommand{\Mbar}{\overline{\mathscr M}_{\mathit{ell}}}
-\newcommand{\Mfg}{\mathscr M_{\mathit{FGL}}}
-
-\newcommand{\MU}{\mathit{MU}}
-\newcommand{\MP}{\mathit{MP}}
-\newcommand{\Lk}{L_{K(n)}}
-\newcommand{\Lone}{L_{K(1)}}
-\newcommand{\Ltwo}{L_{K(2)}}
-\newcommand{\Sp}{\mathbf{Sp}}
-\newcommand{\Eoo}{E_\infty}
-\newcommand{\Aoo}{A_\infty}
-\newcommand{\CP}{\mathbf{CP}}
-\newcommand{\RP}{\mathbf{RP}}
-\newcommand{\Set}{\mathrm{Set}}
-
-\newcommand{\Gra}{\mathrm{Gr}}
-\newcommand{\GL}{\mathrm{GL}}
-\newcommand{\gl}{\mathit{gl}}
-
-\newcommand{\nn}{\nonumber}
-\newcommand{\nid}{\noindent}
-\newcommand{\ra}{\rightarrow}
-\newcommand{\la}{\leftarrow}
-\newcommand{\xra}{\xrightarrow}
-\newcommand{\xla}{\xleftarrow}
-
-\newcommand{\weq}{\xrightarrow{\sim}}
-%\newcommand{\cofib}{\rightarrowtail}
-%\newcommand{\fib}{\twoheadrightarrow}
-\newcommand{\cofib}{\to}
-\newcommand{\fib}{\to}
-
-
-\def\llarrow{  \hspace{.05cm}\mbox{\,\put(0,-2){$\leftarrow$}\put(0,2){$\leftarrow$}\hspace{.45cm}}}
-\def\rrarrow{  \hspace{.05cm}\mbox{\,\put(0,-2){$\rightarrow$}\put(0,2){$\rightarrow$}\hspace{.45cm}}}
-\def\lllarrow{ \hspace{.05cm}\mbox{\,\put(0,-3){$\leftarrow$}\put(0,1){$\leftarrow$}\put(0,5){$\leftarrow$}\hspace{.45cm}}}
-\def\rrrarrow{ \hspace{.05cm}\mbox{\,\put(0,-3){$\rightarrow$}\put(0,1){$\rightarrow$}\put(0,5){$\rightarrow$}\hspace{.45cm}}}
-
-\def\cA{\mathscr A}\def\cB{\mathscr B}\def\cc{\mathbf C}\def\cd{\mathbf D}
-\def\cC{\mathscr C}
-\def\ce{\mathscr E}\def\cf{\mathscr F}\def\cG{\mathscr G}\def\cH{\mathscr H}
-\def\cI{\mathscr I}\def\cJ{\mathscr J}\def\cK{\mathscr K}\def\cL{\mathscr L}
-\def\cM{\mathscr M}\def\cN{\mathscr N}\def\cO{\mathbf O}\def\cP{\mathscr P}
-\def\cQ{\mathscr Q}\def\cR{\mathscr R}\def\cS{\mathscr S}\def\cT{\mathscr T}
-\def\cU{\mathscr U}\def\cV{\mathscr V}\def\cW{\mathscr W}\def\cX{\mathscr X}
-\def\cY{\mathscr Y}\def\cZ{\mathscr Z}
-
-\def\AA{\mathbb A}\def\BB{\mathbb B}\def\CC{\mathbf C}\def\DD{\mathbb D}
-\def\EE{\mathbb E}\def\FF{\mathbf F}\def\GG{\mathbb G}\def\HH{\mathbb H}
-\def\II{\mathbb I}\def\JJ{\mathbb J}\def\KK{\mathbb K}\def\LL{\mathbb L}
-\def\MM{\mathscr M}\def\NN{\mathbb N}\def\OO{\mathbb O}\def\PP{\mathbf P}
-\def\QQ{\mathbf Q}\def\RR{\mathbf R}\def\SS{\mathbb S}\def\TT{\mathbb T}
-\def\UU{\mathbb U}\def\VV{\mathbb V}\def\WW{\mathbb W}\def\XX{\mathbb X}
-\def\YY{\mathbb Y}\def\ZZ{\mathbf Z}
-
-%%%%%%%%%%%%%%%%
-%%% Put individual commands and macros here. Please also note in this section 
-%%% if you had to alter the above existing commands and declarations in any way.
-\usepackage{amsbsy}
-\newcommand\cHH{\check{H}}
-\newcommand{\Fl}{F\ell}
-\newcommand{\Fr}{Fr}
-\newcommand\cCC{\check{C}}
-\newcommand{\MFGL}{\mathscr M_{\mathit{FGL}}}
-\newcommand{\calO}{{\mathscr O}}
-\newcommand{\calC}{{\mathscr C}}
-\newcommand{\set}{{\mathrm{Set}}}
-\newcommand{\Deltab}{{\Delta}} %change this to bold Delta. This is like this here because garamond fucks up bold things.
-\newcommand{\spec}{\mathrm{Spec}}
-\newcommand{\Z}{\mathbf Z}
-\newcommand{\Sin}{\mathrm{Sin}}
-\newcommand{\htop}{\mathrm{Ho}(\mathbf{Top})}
-\newcommand{\sca}{\mathscr{A}}
-\DeclareMathOperator{\Spf}{Spf}
-\newcommand{\Top}{\mathbf{Top}}
-\newcommand{\CG}{\mathbf{CG}}
-\newcommand{\Ab}{\mathbf{Ab}}
-\newcommand{\Bun}{\mathrm{Bun}}
-\newcommand{\Ho}{\mathrm{Ho}}
-\newcommand{\gr}{\mathrm{gr}}
-\newcommand{\sk}{\mathrm{sk}}
-\newcommand{\Cat}{\mathbf{Cat}}
-\newcommand{\xar}[1]{\xrightarrow{{#1}}}
-%%%%%%%%%%%%%%%%
-
-%\usepackage{ebgaramond}
-\usepackage{fancyhdr}
- 
-\newcommand{\myheader}{
-    \ifnum\value{section} > 38
-    18.906
-    \else
-    18.905
-    \fi
-}
-
-\pagestyle{fancy}
-\fancyhf{}
-\fancyhead[LE]{Notes by Sanath Devalapurkar}
-\fancyhead[LO]{Taught by Haynes Miller}
-\chead{Notes for \myheader}
-\rhead{Lecture \thesection}
-\cfoot{\thepage}
+\input{header.tex}
 
 \begin{document}
 \title{18.905-906 -- Algebraic Topology}
 \author{Taught by Haynes Miller, notes by Sanath Devalapurkar}
-\date{Fall 2016 -- Spring 2017}
-\maketitle
-\begin{abstract}
-%\chapter*{What is this?}
-18.905/906 is being taught by Professor Haynes Miller in Fall 2016/Spring 2017 (respectively). I am planning on taking notes throughout the semester. I'll add drawings by putting them on a notepad, scanning them as images, and finally inserting them in the appropriate spots. This means that they might be messy. Any mistakes in these notes are only mine, and not Professor Miller's.
+%\date{Fall 2016 -- Spring 2017}
 
-Here are hyperlinks to the notes from each of the semesters.
-    \begin{enumerate}
-        \item The notes for 18.905 start at section \ref{905}.
-        \item The notes for 18.906 start at section \ref{906}.
-    \end{enumerate}
-\end{abstract}
-%\newpage
+\frontmatter
+
+\maketitle
+\input{preface.tex}
 \tableofcontents
 \newpage
-%\part{18.905 -- introduction}
-%\label{905}
-\input{18-905-notes.tex}
+
+\mainmatter
+
+% The current division of labor is: John'll "work on the first part (like, most of 905)",
+% and skd will start off by editing/rewriting the whole of 906.
+
+\part{18.905: an introduction to algebraic topology}\label{905}
+
+\chapter{Homology and CW-complexes}
+\input{905/lec-1-intro.tex}
+\input{905/lec-2-simplices.tex}
+\input{905/lec-3-categories.tex}
+\input{905/lec-4-more-on-categories.tex}
+\input{905/lec-5-homotopy.tex}
+\input{905/lec-6-homotopy-invariance.tex}
+\input{905/lec-7-eilenberg-zilber.tex}
+\input{905/lec-8-relative-homology.tex}
+\input{905/lec-9-lexseq.tex}
+\input{905/lec-10-eilenberg-steenrod.tex}
+\input{905/lec-11-locality-principle.tex}
+\input{905/lec-12-mayer-vietoris.tex}
+\input{905/lec-13-locality-end-ish.tex}
+\input{905/lec-14-ending-locality-and-cw-complexes.tex}
+\input{905/lec-15-cw-complexes-cellular-homology.tex}
+\input{905/lec-16-homology-cw-complexes.tex}
+\input{905/lec-17-RPn.tex}
+\input{905/lec-18-euler-char.tex}
+\input{905/lec-19-eulers-thm.tex}
+\input{905/lec-20-tensor-products.tex}
+\input{905/lec-21-tensor-and-tor.tex}
+\input{905/lec-22-more-on-tor.tex}
+\input{905/lec-23-direct-limits.tex}
+\input{905/lec-24-uct.tex}
+\input{905/lec-25-kunneth-eilenberg-zilber.tex}
+
+\chapter{Cohomology and duality}
+\input{905/lec-26-cohomology.tex}
+\input{905/lec-27-ext-cup-product.tex}
+\input{905/lec-28-uct-products-in-cohomology.tex}
+\input{905/lec-29-cup-products-contd.tex}
+\input{905/lec-30-surfaces-bilinear-forms.tex}
+\input{905/lec-31-plethora-of-products.tex}
+\input{905/lec-32-cap-product-cech-cohomology.tex}
+\input{905/lec-33-fully-relative-cap-product.tex}
+\input{905/lec-34-cech-cohomology.tex}
+\input{905/lec-35-topological-manifolds.tex}
+\input{905/lec-36-fundamental-classes.tex}
+\input{905/lec-37-covering-spaces-poincare.tex}
+\input{905/lec-38-the-end-applications.tex}
+
+\part{18.906 -- homotopy theory}\label{906}
+
+\chapter{Homotopy groups}
+\input{906/lec-39-limits-colimits-adjunctions.tex}
+\input{906/lec-40-compactly-generated.tex}
+\input{906/lec-41-basepoints.tex}
+\input{906/lec-42-fiber-bundles.tex}
+\input{906/lec-43-fibrations-cofibrations.tex}
+\input{906/lec-44-homotopy-fibers.tex}
+\input{906/lec-45-barratt-puppe.tex}
+\input{906/lec-46-relative-homotopy.tex}
+\input{906/lec-47-pi_1-action-hurewicz.tex}
+\input{906/lec-48-examples-cw-complexes.tex}
+\input{906/lec-49-relative-hurewicz.tex}
+\input{906/lec-50-cellular-approximation.tex}
+\input{906/lec-51-and-all-the-rest.tex}
+
+\chapter{Vector bundles}
+\input{906/lec-52-vector-bundles.tex}
+\input{906/lec-53-principal-bundles.tex}
+\input{906/lec-54-I-invariance.tex}
+\input{906/lec-55-grassmann-model-classifying-spaces.tex}
+\input{906/lec-56-ssets.tex}
+\input{906/lec-57-recall.tex}
+\input{906/lec-58-bundles-classifying-spaces.tex}
+\input{906/lec-59-classifying-spaces.tex}
+
+\chapter{Spectral sequences}
+\input{906/lec-60-why-sseqs.tex}
+\input{906/lec-61-serre-sseq.tex}
+\input{906/lec-62-exact-couples.tex}
+\input{906/lec-63-sseq-applications.tex}
+\input{906/lec-64-edge-homomorphisms.tex}
+\input{906/lec-65-serre-classes.tex}
+\input{906/lec-66-mod-C-hurewicz.tex}
+\input{906/lec-67-dress-sseq.tex}
+\input{906/lec-68-leray-hirsch.tex}
+\input{906/lec-69-integration.tex}
+
+\chapter{Characteristic classes}
+\input{906/lec-70-grothendieck-chern-classes.tex}
+\input{906/lec-71-homology-of-BUn.tex}
+\input{906/lec-72-chern-roots.tex}
+\input{906/lec-73-steifel-whitney-classes.tex}
+\input{906/lec-74-oriented-bundles.tex}
+
+\part{Future topics (notes from the Kan seminar, maybe?)}
+
+\chapter{The Steenrod algebra and the Adams spectral sequence}
+
+\chapter{Chromatic homotopy theory}
+
 \newpage
-%\part{18.906 -- homotopy theory}\label{906}
-\input{18-906-notes.tex}
+\todo[inline]{Insert an index, maybe?}
 \end{document}

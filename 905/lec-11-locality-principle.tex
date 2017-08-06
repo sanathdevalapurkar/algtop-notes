@@ -1,0 +1,61 @@
+\section{Application of our previous calculation of $ H_\ast(S^n)$ and the ``locality principle''}
+\begin{theorem}
+Let $n\geq 1$. There is a surjective monoid homomorphism $[S^n,S^n]\to \Z_\times$, where $\Z_\times$ is the multiplicative monoid of $\Z$. $[S^n,S^n]$ is a monoid under composition. (This is basically the degree...)
+\end{theorem}
+\begin{proof}
+Given $f:S^n\to S^n$, take the homology, which is just a homomorphism $\Z\to \Z$, all of which are simply multiplication by an integer. The integer by which you're multiplying to get this homomorphism is the integer associated to $f$.
+
+Construction. If $n=1$, this is just the winding number. Suppose I've constructed this in dimension $n-1$. We have:
+	\begin{equation*}
+	\xymatrix{ H_{n-1}(S^{n-1})\ar[d]^n & \ar[l] H_n(D^n,S^{n-1})\ar[r]\ar[d] & H_n(S^n)\ar[d]\\
+	 H_{n-1}(S^{n-1}) & \ar[l] H_n(D^n,S^{n-1})\ar[r] & H_n(S^n)}
+	\end{equation*}
+So we're basically suspending $f:S^{n-1}\to S^{n-1}$. More explicitly, if you have $f:S^{n-1}\to S^{n-1}$. We can extend to $\overline{f}:D^n\to D^n$ by sending $tx\mapsto tf(x)$ where $tx$ denotes the ray connecting $x\in S^{n-1}$ to the origin, and we can then quotient out by $S^{n-1}$ to get the map $S^n\to S^n$ as required.
+\end{proof}
+\subsection{Addendum to the ES axioms}
+There's a further axiom, which isn't due to ES, but rather due to Milnor. It's this.
+\begin{itemize}
+\item Suppose $I$ a set. For each $\alpha\in I$ there's have a space $X_\alpha\in\mathbf{Top}$. I can consider $\coprod_\alpha X_\alpha$. There are inclusion maps $X_\alpha\to\coprod_\alpha X_\alpha$. Then $\bigoplus_\alpha h_n(X_\alpha)\cong h_n\left(\coprod_\alpha X_\alpha\right)$.
+\end{itemize}
+This is known for ordinary singular homology.
+\subsection{Homological algebra}
+\begin{enumerate}
+\item Suppose $A,B\subseteq C$ are abelian groups. Then $A+C\subseteq C$. You have a sexseq $0\to A\cap B\to A\oplus B\to A+C\to 0$ where the map $c\mapsto (c,-c)$ is how the map $A\cap B\to A\oplus B$ is defined.
+\item ``Fundamental isomorphism for abelian groups'' says the following. We have two sexseqs.
+	\begin{equation*}
+	\xymatrix{0\ar[r] & A\cap B\ar[r]\ar[d] & B\ar[r]\ar[d] & B/A\cap B\ar[r]\ar@{-->}[d]^\cong & 0\\
+	0\ar[r] & A\ar[r] & A+B\ar[r] & (A+B)/A\ar[r] & 0}
+	\end{equation*}
+	I'm not going to write out the diagram chase that we did.
+\item ``Snake lemma''. Suppose I have\footnote{``It's my Turn'', Jill Clayburgh}:
+	\begin{equation*}
+	\xymatrix{ & \ker f^\prime\ar[r]\ar[d] & \ker f\ar[r]\ar[d] & \ker f^{\prime\prime}\ar[d]\\
+	0\ar[r] & A^\prime\ar[r]\ar[d]^{f^\prime} & A\ar[r]\ar[d]^f & A^{\prime\prime}\ar[r]\ar[d]^{f^{\prime\prime}} & 0\\
+	0\ar[r] & B^\prime\ar[r]\ar[d] & B\ar[r]\ar[d] & B^{\prime\prime}\ar[r]\ar[d] & 0\\
+	 & \coker f^\prime\ar[r] & \coker f\ar[r] & \coker f^{\prime\prime}}
+	\end{equation*}
+	Claim is that there's a map $\ker f^{\prime\prime}\to\coker f$ so that $0\to \ker f^\prime\to \ker f\to \ker f^{\prime\prime}\to\coker f^\prime\to\coker f\to \coker f^{\prime\prime}\to 0$. This is basically the lexseq in homology associated to the sexseqs of the following three chain complexes: $0\to A^\prime\to B^\prime\to 0$, $0\to A\to B\to 0$, and $0\to A^{\prime\prime}\to B^{\prime\prime}\to 0$. Work this out yourself.
+\end{enumerate}
+\subsection{Locality}
+\begin{definition}
+The (not necessarily open) cover of a topological space. Won't write this.
+\end{definition}
+\begin{definition}
+Let ${\mathscr{A}}$ be a cover of $X$. An $n$-simplex $\sigma$ is ${\mathscr{A}}$-small if there is $A\in \mathscr{A}$ such that the image of $\sigma$ is entirely in $A$.
+\end{definition}
+Notice that if $\sigma:\Delta^n\to X$ is ${\mathscr{A}}$-small, then so is $d^i\sigma$. Let's denote by $\Sin^{\mathscr{A}}_n(X)$ the set of ${\mathscr{A}}$-small $n$-simplices. This means that we get a map $\Sin^{\mathscr{A}}_n(X)\to \Sin^{\mathscr{A}}_{n-1}(X)$. Let $S^{\mathscr{A}}_n(X)=\Z[\Sin^{\mathscr{A}}_n(X)]$. Then there's a subchain complex $S^{\mathscr{A}}_\ast(X)$.
+\begin{theorem}
+The inclusion $S^\mathscr{A}_\ast(X)\subseteq S_\ast(X)$ is a chain homotopy equivalence.
+\end{theorem}
+\begin{corollary}
+If $ H^\mathscr{A}_\ast(X):= H(S^\mathscr{A}_\ast(X))$, then $ H^\mathscr{A}_\ast(X)\cong H_\ast(X)$.
+\end{corollary}
+We'll do this on Monday.
+\begin{example}
+If $\mathscr{A}=\{A,B\}$, then $\overline{X-B}=X-\mathrm{Int}(B)\subseteq\mathrm{Int}(A)$. Let $X-B=U$. Then $U\subseteq \overline{U}\subseteq \mathrm{Int}(A)\subseteq A\subseteq X$. This is an excision! So $U\subseteq A\subseteq X$ is an excision. But now, $(X-U,A-U)\to (X,A)$ is an excision, but $(X-U,A-U)=(B,A\cap B)$, so we have $(B,A\cap B)\to (X,A)$ is an excision. Now, also, $S^\mathscr{A}_\ast(X)=S_\ast(A)+S_\ast(B)$. Says he got off track, let me just write things out and explain in a moment.
+\begin{equation*}
+	\xymatrix{0\ar[r] & S_n(A)\cap S_n(B)=S_n(A\cap B)\ar[r]\ar[d] & S_n(B)\ar[r]\ar[d] & S_n(B,A\cap B)\ar[r]\ar@{-->}[d]^\cong & 0\\
+	0\ar[r] & S_n(A)\ar[r] & S_n(A)+S_n(B)=S^\mathscr{A}_n(X)\ar[r] & S^\mathscr{A}_n(X)/S_n(A)\ar[r] & 0}
+	\end{equation*}
+But we can consider $S_\ast(X)/S_\ast(A)=S_\ast(X,A)$. By the lexseq + 5 lemma, this thing is isomorphic to $S^\mathscr{A}_n(X)/S_n(A)$, so $S_\ast(B,A\cap B)\cong S_\ast(X,A)$ in homology. This is precisely the excision theorem. QED.
+\end{example}

@@ -1,0 +1,110 @@
+\section{Cup product, continued}
+We can construct an explicit map $S^p(X)\otimes S^q(Y)\xrightarrow{\times} S^{p+q}(Y)$ via:
+\begin{equation*}
+(f\times g)(\sigma)=f(\sigma_1\circ\alpha_p)g(\sigma_2\circ\omega_q)
+\end{equation*}
+where $\alpha_p:\Delta^p\to\Delta^{p+q}$ takes $k\mapsto k$ where $k\in[p]$, and $\omega_q:\Delta^q\to\Delta^{p+q}$ sends $\ell\mapsto \ell+p$ where $\ell\in[q]$.
+
+I would like to modify this definition a bit, and correct what I said. I think it's more natural to put a sign so that:
+\begin{equation*}
+(f\times g)(\sigma)=(-1)^{pq}f(\sigma_1\circ\alpha_p)g(\sigma_2\circ\omega_q)
+\end{equation*}
+You'll see why we're adding the sign soon. The claim is that $\times$ is a chain map, so we get a map $ H(S^p(X)\otimes S^q(Y))\to H_{p+q}(X\times Y)$. There is a map $ H_p(X)\otimes H_q(Y)\xrightarrow{\mu} H(S^p(X)\otimes S^q(Y))$ defined as follows. Given chain complexes $C_\bullet$ and $D_\bullet$, define $\mu: H(C_\bullet)\otimes H(D_\bullet)\to H(C_\bullet\otimes D_\bullet)$. We've done this before, but let me just say: $\mu:[x]\otimes [y]\mapsto [x\otimes y]$. For some reason, he said that we'll not call this $\mu$. But I don't want to delete the $\mu$ so I'll just leave it there.
+
+We get the cup product as follows. Given $\Delta:X\to X\times X$, we get $\cup: H_p(X)\otimes H_q(X)\to H_{p+q}(X\times X)\xrightarrow{\Delta^\ast} H_{p+q}(X)$. We proved that there was a class $1\in H_0(X)=\Map(\pi_0(X),R)\ni (\alpha\mapsto 1)$. This acts as a unit for the cup product. Also, the cup product is strictly associative.
+\begin{definition}
+Let $R$ be a commutative ring. A \emph{graded $R$-algebra} is a graded $R$-module $\cdots,A_{-1},A_0, A_1,A_2,\cdots$ (integer graded sequence) (some people take a direct sum, but I find no reason for doing that) with maps $A_p\otimes_R A_q\to A_{p+q}$ and a map $R\to A_0$ (that determines the unit), that makes the following diagram commute.
+\begin{equation*}
+\xymatrix{
+	A_p\otimes_R (A_q\otimes_R A_r)\ar[r]\ar[d] & A_p\otimes_R A_{q+r}\ar[d]\\
+	(A_{p+q})\otimes_R A_r \ar[r] & A_{p+q+r}
+}
+\end{equation*}
+\end{definition}
+\begin{definition}
+A graded $R$-algebra $A$ is said to be (graded) commutative id the following diagram commutes:
+\begin{equation*}
+\xymatrix{
+	x\otimes y\ar@{|->}[rr] & & (-1)^{|x|\cdot|y|}y\otimes x\\
+	A\otimes A\ar[rr]^{\tau}\ar[dr] & & A\otimes A\ar[dl]\\
+	 & A & 
+}
+\end{equation*}
+\end{definition}
+We claim that $ H_\ast(X)$ forms a graded commutative ring under the cup product. This is nontrivial. On the cochain level, this is clearly not graded commutative. We're going to have to work hard -- in fact, so hard that you're going to do some of it for homework.
+
+We'll do a chain level construction. I say there's a map $\alpha:S_n(X\times Y)\to \bigoplus_{p+q=n}S_p(X)\otimes S_n(Y)$. First I'll tell you what happens to $n$-simplices $\sigma:\Delta^n\to X\times Y$. Let $\sigma_1:\Delta^n\to X\times Y\to X$, and similarly for $\sigma_2$. Define $S_n(X\times Y)\xrightarrow{\alpha} \bigoplus_{p+q=n}S_p(X)\otimes S_n(Y)$ by sending:
+\begin{equation*}
+\sigma\mapsto\sum_{p+q=n}(\sigma_1\circ\alpha_p)\otimes(\sigma_2\otimes\omega_q)
+\end{equation*}
+We claim that this is a chain map, and that this induces the cross product on cochains.
+\begin{remark}
+This map $\alpha$ is called the Alexander-Whitney map.
+\end{remark}
+If I have two chain complexes, I want to consider a map $\mu:\Hom(C_\bullet,R)\otimes \Hom(D_\bullet,R)\to \Hom(C_\bullet\otimes D_\bullet,R)$ given by $f\otimes g\mapsto(x\otimes y\mapsto (-1)^{pq}f(x)g(y))$ where $|f|=|x|=p$ and $|g|=|y|=q$. I haven't quite done the right thing here, have I? I have to write:
+\begin{equation*}
+f\otimes g\mapsto\begin{cases}
+(x\otimes y\mapsto (-1)^{pq}f(x)g(y)) & |x|=|f|=p, |y|=|g|=q\\
+0 & \text{else}
+\end{cases}
+\end{equation*}
+You should check that this is a chain map.
+
+Recall that we have: $S^p(X)\otimes S^q(Y)=\Hom(S_p(X),R)\otimes_R \Hom(S_q(Y),R)$. The map $\mu$ we constructed just now gives a map $\Hom(S_p(X),R)\otimes_R \Hom(S_q(Y),R)\xrightarrow{\mu}\Hom(S_p(X)\otimes S_q(Y),R)\xrightarrow{\alpha}\Hom(S_{p+q}(X\times Y),R)=S^{p+q}(X\times Y)$. This is exactly the cross product $\times:S^p(X)\otimes S^q(Y)\to S^{p+q}(X\times Y)$.
+
+Now, $\alpha$ is a natural transformation. Acyclic models comes into play. For homework, you're going to check that the following diagram commutes.
+\begin{equation*}
+\xymatrix{S_\ast(X\times Y)\ar[r]^{T_\ast}\ar[d]_{\alpha_{X,Y}} & S_\ast(Y\times X)\ar[d]^{\alpha_{Y,X}}\\
+S_\ast(X)\otimes_R S_\ast(Y)\ar[r]^{\tau} & S_\ast(Y)\otimes_R S_\ast(X)}
+\end{equation*}
+Acyclic models helps us prove things like this.
+
+All of this implies that $ H_\ast(X;R)$ is graded commutative. It's a theorem that you can't find a commutative multiplication. This is where Steenrod operations come from. They're called cohomology operations, and we'll talk more about this in 18.906.
+
+My goal is to compute the cohomology of some space.
+\begin{prop}
+$ H^\ast(X)\otimes H^\ast(Y)\xrightarrow{\times} H^\ast(X\times Y)$ is a $R$-algebra homomorphism.
+\end{prop}
+If $A$ and $B$ are graded $R$-algebras, then $(A\otimes B)_n=\bigoplus_{p+q=n}A_p\otimes_R B_q$, and $(a\otimes b)(a^\prime\otimes b^\prime)=(-1)^{|a^\prime|\cdot|b|}aa^\prime\otimes bb^\prime$. This tensor product is graded commutative if $A$ and $B$ are.
+\begin{proof}
+I have $\Delta_X:X\to X\times X$ and $\Delta_Y:Y\to Y\times Y$. I also have $\Delta_{X\times Y}:X\times Y\to X\times Y\times X\times Y$, which factors as $(1\times T\times 1)\circ(\Delta_X\times \Delta_Y)$. Let $\alpha_1,\alpha_2\in H^\ast(X)$ and $\beta_1,\beta_2\in H^\ast(Y)$. Then $\alpha_1\times \beta_1,\alpha_2\times\beta_2\in H^\ast(X\times Y)$. I want to calculate what $(\alpha_1\times\beta_1)\cup(\alpha_2\times\beta_2)$ is. Let's see:
+\begin{align*}
+(\alpha_1\times\beta_1)\cup(\alpha_2\times\beta_2) & = \Delta_{X\times Y}^\ast(\alpha_1\times\beta_1\times\alpha_2\times\beta_2)\\
+& = (\Delta_X\times\Delta_Y)^\ast(1\times T\times 1)^\ast(\alpha_1\times\beta_1\times\alpha_2\times\beta_2)\\
+& = (\Delta_X\times\Delta_Y)^\ast(\alpha_1\times T^\ast(\beta_1\times\alpha_2)\times\beta_2)\\
+& = (-1)^{|\alpha_2|\cdot|\beta_1|}(\Delta_X\times\Delta_Y)^\ast(\alpha_1\times\alpha_2\times\beta_1\times\beta_2)
+\end{align*}
+Now, I have a diagram:
+\begin{equation*}
+\xymatrix{
+	 H^\ast(X\times Y) & \ar[l]^{\times_{X\times Y}} H^\ast(X)\otimes_R H^\ast(Y)\\
+	 H^\ast(X\times X\times Y\times Y)\ar[u]^{(\Delta_X\times\Delta_Y)^\ast} & H^\ast(X\times X)\otimes H^\ast(Y\times Y)\ar[l]_{\times_{X\times X,Y\times Y}}\ar[u]^{\Delta_X^\times\otimes\Delta_Y^\ast}
+}
+\end{equation*}
+This diagram commutes because the cross product is natural. This is exactly what commutativity of the diagram means. This means that:
+\begin{align*}
+(\alpha_1\times\beta_1)\cup(\alpha_2\times\beta_2) & = (-1)^{|\alpha_2|\cdot|\beta_1|}(\Delta_X\times\Delta_Y)^\ast(\alpha_1\times\alpha_2\times\beta_1\times\beta_2)\\
+& = (-1)^{|\alpha_2|\cdot|\beta_1|}(\alpha_1\cup\alpha_2)\times(\beta_1\cup\beta_2)
+\end{align*}
+That's exactly what we wanted.
+\end{proof}
+\begin{example}
+How about $ H^\ast(S^p)$? Let $p>0$. This is: $ H^k(S_p) = \begin{cases}\Z & k=0,p\\ 0 & \text{else}\end{cases}$. Say that $\sigma_p$ generates $ H^p(S^p)$. We now have $ H^\ast(S^p)\otimes H^\ast(S^q)\to H^\ast(S^p\times S^q)$. From the Kunneth theorem, we know that $ H^k(S^p\times S^q)=\begin{cases}\Z & k=0,p,q,p+q\\ 0 & \text{else}\end{cases}$. This structure $ H^\ast(S^p)\otimes H^\ast(S^q)\cong\Z[\sigma_p,\sigma_q]/(\sigma_p^2,\sigma_q^2)\cong H^\ast(S^p\times S^q)$ where $\sigma_p\sigma_q=(-1)^{|p|\cdot|q|}\sigma_q\sigma_p$ where by $\Z[\sigma_p,\sigma_q]$ I mean the free $\Z$-algebra on $\sigma_p,\sigma_q$. When $p=q=1$, this gives an exterior algebra.
+\end{example}
+This is to be contrasted with $X=S^p\vee S^q\vee S^{p+q}$. This has the same homology as the product of two spheres. But in cohomology, the product of the generators must be zero. There is a diagram:
+\begin{equation*}
+\xymatrix{
+	X\ar[r] & S^p\vee S^q\\
+	S^p\ar@{^(->}[u]
+}
+\end{equation*}
+On cohomology, notice that $\sigma_p\sigma_q=0$ in $ H^\ast(S^p\vee S^q)$ because there's no $(p+q)$-dimensional cohomology. Therefore we find that $S^p\vee S^q\vee S^{p+q}\not\simeq S^p\times S^q$.
+
+It's very interesting to think about what the attaching map is:
+\begin{equation*}
+\xymatrix{
+	S^{p+q-1}\ar[r]\ar[d] & S^p\vee S^q\ar[d]\\
+	D^{p+q}\ar[r] & S^p\times S^q
+}
+\end{equation*}
+On wednesday we'll have a relaxed talk about surfaces. BTW I might not TeX that.

@@ -1,0 +1,112 @@
+\section{Concluding Locality! and CW-complexes}
+Again recall what $\sca$-small covers, etc. are. We want to prove that:
+\begin{theorem}
+$S^\sca_\ast(X)\hookrightarrow S_\ast(X)$ is a quasi-isomorphism, i.e., an isomorphism on homology.
+\end{theorem}
+We developed the subdivision operator $\$^k:S_\ast(X)\to S_\ast(X)$, and proved that it's a chain map. We showed that $T_k:\$^k\sim 1$.
+\begin{proof}[Proof of locality]
+We want to prove surjectivity of $ H_n(S^\sca_\ast(X))\to H_n(S_\ast(X))= H_n(X)$. Let $c\in Z_n(C_\bullet)(X)$. We want to find an $\sca$-small $n$-cycle that is homologous to $c$. There's only one thing to do. Pick $k$ such that $\$^k c$ is $\sca$-small. This is a cycle because $d\$^k c=\$^k dc=0$ because $\$^k$ is a chain map. I want to compare this new cycle with $c$. Consider the chain homotopy $T_k$; then: $dT_k c+T_kdc=\$^kc-c$. But $dc=0$, so $\$^k c - c=dT_k c$, so they differ by a boundary, and they're homologous.
+
+Now for injectivity. Suppose $c\in S^\sca_n(X)$ with $dc=0$. Suppose that $c=db$ for some $b\in S_{n+1}(X)$, not necessarily $\sca$-small. We want $c$ to be a boundary of an $\sca$-small chain. Well:
+\begin{align*}
+& dT_kb+T_kdb=\$^k b-b\\
+\Rightarrow& dT_kb+T_kc=\$^k b-b\\
+\Rightarrow& d(dT_kb+T_kc)=\$^kb-b=dT_kc=d\$^k b-c\\
+\Rightarrow& c=d\$^kb-dT_kc=d(\$^k b-T_kc)
+\end{align*}
+Now, $\$^k$ is $\sca$-small. Is $T_kc$ also $\sca$-small? I claim that it is. Why? It is enough to show that $T_k\sigma$ is $\sca$-small if $\sigma$ is. We know that $\sigma=\sigma_\ast\iota_n$. Because $\sigma$ is $\sca$-small, we know that $\sigma:\Delta^n\to X$ is the composition $i_\ast\overline{\sigma}$ where $\overline{\sigma}:\Delta^n\to A$ and $i:A\to X$ is the inclusion for some $A\in\sca$. This means that $T_k\sigma=T_ki_\ast\overline{\sigma}=i_\ast T_k\overline{\sigma}$, which certainly is $\sca$-small.
+\end{proof}
+``Are you happy? You should be very happy, because we've finished our first portion of this course. We now have a whole package of homology.''
+\subsection{CW-complexes}
+Simplicial complexes are rigid and combinatorial. But manifolds are smooth. In between, you have CW-complexes. (A lot of advertisement for this.) We want to ``glue'' things. This is the pushout construction. Namely, if you have $i:A\hookrightarrow B$ and $f:A\to X$, then you define $X\cup_f B$ (or $X\cup_A B$) via:
+\begin{equation*}
+\xymatrix{A\ar[r]^f\ar@{^(->}[d]_i & X\ar[d]\\
+B\ar[r] & X\cup_f B}
+\end{equation*}
+defined by $X\cup_f B=X\sqcup B/\sim$ where $\forall a\in A$, $f(a)\sim a$. This is $X$ with $B$ attached along $f$. There are two kinds of equivalence classes, namely elements of $B-A$, because anything not in $A$ is just a singleton. The other is $\{x\}\cup f^{-1}(x)$ for $x\in X$, because anything that's not in $\img f$ is a singleton, but if something is in $\img f$, you identify it with its preimage. This is what it is as a set. It has a universal property. Suppose you have another space $Y$.
+\begin{equation*}
+\xymatrix{A\ar[r]^f\ar@{^(->}[d]_i & X\ar[d]^j\ar[ddr]^{\overline{j}} & \\
+B\ar[r]\ar[drr]_{\overline{g}} & X\cup_f B\ar@{-->}[dr] & \\
+ & & Y}
+\end{equation*}
+such that $\overline{j}f=\overline{g}i$. The topology is right too because that's what the quotient topology does for you. As I wrote before, this is called a \emph{pushout} of the following diagram:
+\begin{equation*}
+\xymatrix{A\ar[r]^f\ar@{^(->}[d]_i & X\\
+B &}
+\end{equation*}
+\begin{example}
+Let $X=\ast$. Then you have a pushout:
+\begin{equation*}
+\xymatrix{A\ar[r]^f\ar@{^(->}[d]_i & \ast\ar[d]\\
+B\ar[r] & \ast\cup_f B}
+\end{equation*}
+So then $\ast\cup_f B=B/A$.
+\end{example}
+\begin{example}
+\begin{equation*}
+\xymatrix{\emptyset\ar[r]^f\ar@{^(->}[d]_i & X\ar[d]\\
+B\ar[r] & X\cup_f B}
+\end{equation*}
+It's then clear that this is exactly $X\sqcup B$.
+\end{example}
+\begin{example}
+If both:
+\begin{equation*}
+\xymatrix{\emptyset\ar[r]^f\ar@{^(->}[d]_i & \ast\ar[d]\\
+B\ar[r] & \ast\cup_f B}
+\end{equation*}
+So $B/\emptyset=\ast\sqcup B$. For example, $\emptyset/\emptyset=\ast$. This is ``creation from nothing''. ``We won't get into the religious ramifications.''
+\end{example}
+\begin{example}[Attaching a cell, the most important]
+Consider:
+\begin{equation*}
+\xymatrix{S^{n-1}\ar[r]^f\ar@{^(->}[d]_i & X\ar[d]\\
+D^n\ar[r] & X\cup_f D^n}
+\end{equation*}
+This is called attaching a ``cell''. The $D^n$ is what's called a cell. You're attaching a contractible space. You might want to generalize this a little bit:
+\begin{equation*}
+\xymatrix{\coprod_{\alpha\in A}S^{n-1}_\alpha\ar[r]^f\ar@{^(->}[d]_i & X\ar[d]\\
+\coprod_{\alpha\in A}D^n_\alpha\ar[r] & X\cup_f \coprod_{\alpha\in A}D^n_\alpha}
+\end{equation*}
+\end{example}
+What are some examples? When $n=0$, the declaration is that $S^{-1}=\emptyset$, so this is:
+\begin{equation*}
+\xymatrix{\emptyset\ar[r]^f\ar@{^(->}[d]_i & X\ar[d]\\
+\coprod_{\alpha\in A}\ast\ar[r] & X\cup_f \coprod_{\alpha\in A}\ast}
+\end{equation*}
+You're just adding a bunch of points to $X$. This is a little more interesting. What about:
+\begin{equation*}
+\xymatrix{S^0\sqcup S^0\ar[r]^f\ar@{^(->}[d]_i & \ast\ar[d]\\
+D^1\sqcup D^1\ar[r] & \ast\cup_f (D^1\sqcup D^1)}
+\end{equation*}
+Then $\ast\cup_f(D^1\sqcup D^1)$ is a figure $8$, because you have two $1$-disks, where you identify the four boundary points together. If we consider $(X,\ast),(Y,\ast)$, then $X\vee Y:= X\sqcup Y/\ast\sim \ast$. So $\ast\cup_f(D^1\sqcup D^1)=S^1\vee S^1$. More interestingly:
+\begin{equation*}
+\xymatrix{S^1\ar[r]^{aba^{-1}b^{-1}}\ar@{^(->}[d]_i & S^1\vee S^1\ar[d]\\
+D^2\ar[r] & (S^1\vee S^1)\cup_f D^2}
+\end{equation*}
+This is exactly the torus, i.e., $(S^1\vee S^1)\cup_f D^2=T^2$.
+\begin{definition}
+A \emph{CW-complex} is a space $X$ with a sequence of subspaces $\emptyset=X_{-1}\subseteq X_0\subseteq X_1\subseteq\cdots\subseteq X$ (could be an infinite sequence) such that for all $n$, there is a pushout diagram like this:
+\begin{equation*}
+\xymatrix{\coprod_{\alpha\in A_n}S^{n-1}_\alpha\ar[r]^f\ar@{^(->}[d]_i & X_{n-1}\ar[d]\\
+\coprod_{\alpha\in A_n}D^n_\alpha\ar[r] & X_{n}}
+\end{equation*}
+And $X=\bigcup X_n$, topologically (i.e. $A\subseteq X$ is open if and only if $A\cap X_n$ is open for all $n$). Often, $X_n=\mathrm{Sk}_n(X)$, called the $n$-skeleton, in honor of Halloween (coming right up!), of $X$.
+\end{definition}
+\begin{example}
+The torus is $\emptyset\subseteq T^2_0\subseteq T^2_1\subseteq T^2$. Here, $T^2_0=\ast$ and $T^2_1=S^1\vee S^1$.
+\end{example}
+\begin{definition}
+A CW-complex is \emph{finite-dimensional} if $X_n=X$ for some $n$. Say that $X$ is of \emph{finite type} if each $A_n$ is finite, i.e., finitely many cell in each dimension. Say that $X$ is \emph{finite} if it's finite-dimensional and of finite type.
+\end{definition}
+In CW, the C is for cell, and the W is for weak, because of the topology on a CW-complex. This definition is due to J. H. C. Whitehead. Some people say that the ``CW'' comes from his name.
+\begin{theorem}
+\begin{enumerate}
+\item Any CW-complex is Hausdorff, and it's compact if and only if it's finite.
+\item Any compact smooth manifold admits a CW structure.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Not going to do this.
+\end{proof}
+Note that there could be multiple CW-structures on something.

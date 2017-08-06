@@ -1,0 +1,80 @@
+\section{Classifying spaces: the Grassmann model}
+Office hours:Hood from 12 in 2-390, and me from 4-5 on Tuesday in 2-478.
+
+I want to talk about classifying spaces for principal bundles and for vector bundles. I'm going to do this in two ways, one via the Grassmann model and via simplicial methods.
+\begin{lemma}
+    Over a compact Hausdorff space, any $n$-plane bundle embeds in a trivial bundle.
+\end{lemma}
+\begin{proof}
+    Let $\cU$ be a trivializing open cover; since it's compact, we might as well assume that it's finite with $k$ elements.
+    There's no numerability issue, so there's a subordinate partition of unity $\phi_i$.
+    My bundle is $E\to X$. By trivialization, there is a fiberwise isomorphism $p^{-1}(U_i)\xrightarrow{f_i}\RR^n$.
+    Note that a map to a trivial bundle is the same thing as a bundle map:
+    \begin{equation*}
+	\xymatrix{
+	    E\ar[r]\ar[d] & \RR^?\ar[d]\\
+	    B\ar[r] & \ast
+	    }
+    \end{equation*}
+    Define $E\to (\RR^n)^k$ via $e\mapsto (\phi_i(p(e))f_i(e))_{i=1,\cdots,k}$. This is a fiberwise linear embedding, generally called a ``Gauss map''.
+    You have to observe that this thing has no kernel on every fiber, so this is an embedding.
+\end{proof}
+\begin{corollary}
+    Over a compact Hausdorff space, any $n$-plane bundle has a complement (i.e. a $\xi^\perp$ such that $\xi\oplus\xi^\perp = \mathrm{trivial}$), because the trivial bundle has a metric on it, so I just choose the orthogonal complement of the embedding.
+\end{corollary}
+Another way to say this is that if $X$ is compact Hausdorff (henceforth called CHS) with an $n$-plane bundle $\xi$, I've constructed a map $f:X\to\Gra_n(\RR^{kn})$; this is exactly the Gauss map.
+It has the property that I can take the pullback $f^\ast\gamma^n$ of the tautologous bundle over $\Gra_n(\RR^{kn})$, then I get back $\xi$.
+I don't have control over $k$, but in fact I can just consider $\gamma^n$ over $\Gra_n(\RR^\infty)$, topologized as the union of $\Gra_n(\RR^m)$, where $\RR^\infty = \bigoplus^\infty\RR$. This is a CW-complex of finite type (i.e. finitely many cells in each dimension)! Note that $\Gra_n(\RR^m)$ are not the $m$-skeleta of $\Gra_n(\RR^\infty)$.
+It's more universal -- any $n$-plane bundle $\xi$ over $X$ can be obtained as the pull back $f^\ast\gamma^n$ for the Gauss map $f:X\to\Gra_n(\RR^{kn})\to\Gra_n(\RR^\infty)$.
+\begin{lemma}\label{universal}
+    Any (numerable) $n$-plane bundle is pulled back from $\gamma^n\downarrow \Gra_n(\RR^\infty)$.
+\end{lemma}
+This is a little bit tricky, since the covering can be wildly uncountable. To show this, let's use:
+\begin{lemma}\label{sublemma}
+    Let $\cU$ be a numerable cover of $X$. Then there's another numerable cover $\cU^\prime$ such that:
+    \begin{enumerate}
+	\item the number of open sets in $\cU^\prime$ is countable.
+	\item Each element of $\cU^\prime$ is a disjoint union of elements of $\cU$.
+    \end{enumerate}
+\end{lemma}
+If $\cU$ is a trivializing cover, then $\cU^\prime$ is also a trivializing cover.
+\begin{proof}
+    If you don't want to work it out you can refer to Husemoller's book, p.28. I'll put a link on the website.
+\end{proof}
+I think that basically proves Lemma \ref{universal}. Don't be deceived! Beware that you can't necessarily expect a complementary bundle.
+\begin{theorem}
+    The map $[X,\Gra_n(\RR^\infty)]\to \Vect_n(X)$ via $[f]\mapsto [f^\ast\gamma^n]$ is bijective, where $[f]$ is the homotopy class and $[f^\ast\gamma^n]$ is the iso class.
+\end{theorem}
+That's why $\Gra_n(\RR^\infty)$ is called the \emph{classifying space} for $n$-plane bundles.
+
+This is a very explicit geometric description of classifying spaces. There's an abstract way to produce a classifying space for principal $G$-bundles, which we'll talk about on Wednesday. This is the special case of $\GL_n(\RR)$.
+\begin{proof}
+    I've already shown surjectivity; we need to show injectivity. Suppose $f_0,f_1:X\to \Gra_n(\RR^\infty)$ such that $f_0^\ast\gamma^n\simeq f_1^\ast\gamma^n$ over $X$.
+    I'd like to see that $f_0\simeq f_1$.
+    I might as well identify $f_0^\ast\gamma^n$ and $f_1^\ast\gamma_n$ with each other; call it $\xi:E\downarrow X$. What do I have?
+
+    Giving $f_i$ is the same thing as giving a map $g_i:E\to\RR^\infty$ that's a fiberwise linear embedding.
+    The $g$ is for Gauss.
+    This homotopy $f_0\simeq f_1$ is created by saying that we have a homotopy from $g_0$ to $g_1$ through Gauss maps, i.e., through other fiberwise linear embeddings.
+    I'm going to do this without any reference from where $g_0$ came from. I'm saying that \emph{any two} Gauss maps are homotopic through Gauss maps -- that's what I'm claiming! I mean, from this given vector bundle $E$.
+    This is very far from true if I didn't have a $\RR^\infty$ on the RHS there.
+
+    In fact, let's try for an affine homotopy. Think about $tg_0 + (1-t)g_1$ for $0\leq t\leq 1$. Now, wouldn't it be great if that works? I guess it can't.
+    We need that for all $t$, if $tg_0(v) + (1-t)g_1(v) = 0\in\RR^\infty$, then $v=0$ (where $v\in E$). I.e., on each fiber, this map is injective, i.e., has zero kernel. Of course, I can't guarantee that just from $g_0$ and $g_1$ are injective!
+    So we fail.
+
+    We should use the fact that this is an infinite-dimensional Euclidean space. I'll give you two linear isometries:
+    \begin{equation*}
+	\xymatrix{
+	    & \RR^\infty = \langle e_0,e_1,\cdots\rangle\ar[dl]^\alpha_{e_i\mapsto e_{2i}}\ar[dr]_\beta^{e_i\mapsto e_{2i+1}} & \\
+	    \RR^\infty & & \RR^\infty
+	    }
+    \end{equation*}
+    We have four Gauss maps: $g_0$, $\alpha\circ g_0$, $\beta\circ g_1$, and $g_1$.
+    I claim that each of these are homotopic, i.e., $g_0\simeq \alpha \circ g_0\simeq \beta\circ g_1\simeq g_1$ via affine homotopies through Gauss maps.
+
+    Shall we do just one case of that? I'll do the middle case. In the middle case, you'll never have cancelation.
+
+    Let's try $g_0\simeq\alpha\circ g_0$. Suppose $t,v$ are such that $tg_0(v) + (1-t)\alpha g_0(v) = 0$. What's the argument I'll make here? So $\alpha g_0(v)$ has only even coordinates. So I might as well suppose that $0<t<1$. Anyway, since $\alpha g_0(v)$ has only even coordinates, $g_0(v)$ itself must have only even coordinates. But then that means that the nonzero coordinates only for $0\mod 4$. But this equation says that $g_0(v)\neq 0$ only for $i\equiv 0\mod 4$. So I repeat this and find that the coordinates are zero for powers of two.
+\end{proof}
+Maybe that's all I want to say today. I'll just stop today nuless people have questions.

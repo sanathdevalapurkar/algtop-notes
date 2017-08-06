@@ -1,0 +1,63 @@
+\section{Covering spaces and Poincar\'{e} duality}
+Miller's office hours are tomorrow, from 1-3 in 2-478. The first half of this lecture was just explaining the remark above by using less technology.
+
+On the website, there are notes on $\pi_1(X,\ast)$. I'm assuming people have seen this thing. Assume $X$ is path-connected, and let $\ast\in X$. There's another technical assumption: semi-locally simply connected (SLSC), which means that for every $b\in X$ and neighborhood $b\in U$, there exists a smaller neighborhood $b\in V\subseteq U$ such that $\pi_1(V,b)\to\pi_1(X,b)$ is trivial. This is a very very weak condition.
+\begin{theorem}
+Let $X$ be a path-connected, SLSC space with $\ast\in X$. Then there is an equivalence of categories between covering spaces over $X$ and sets with an action of $\pi_1(X,\ast)$. The way this functor goes is by sending $p:E\to X$ to $p^{-1}(\ast)$, which has an action of $\pi_1(X,\ast)$ in the obvious way by path-lifting.
+\end{theorem}
+\begin{example}[Stupidest possible case]
+Suppose $\mathrm{id}:X\to X$ is sent to $\ast$ with the trivial action. This is the terminal covering space over $X$.
+\end{example}
+We've been interested in $\Gamma(E;X)$, which is the same thing as $\Map_X(X\to X,E\to X)\cong\Map_{\pi_1(X)}(\ast,E_\ast)=(E_\ast)^{\pi_1(B)}$, the fixed points of the action. We also thought about the case of $E$ being a local system of $R$-modules, and the same functor gives an equivalence between local systems of $R$-modules and $R[\pi_1(X)]$-modules, i.e., representations of $\pi_1(X)$.
+
+Recall that $o_M$ is the orientation local system, but now \emph{over $\Z$}. Thus, over a general ring, $o_{M,R}=o_M\otimes R$. We were thinking about what happens with a closed path-connected SLSC subset $\ast\in A\subseteq M$ of an $n$-manifold $M$, and then considering $\Gamma(A,o_M\otimes R)$, which we now see to be $(o_M\otimes R)_{\ast}^{\pi_1(A,\ast)}$. How many options do we have here?
+
+That is to say, this local system $o_M$ is the same thing as the free abelian group $H_n(M,M-\ast)$ with an action of $\pi_1(X,\ast)$. There aren't many options for this action. In other words, this is a homomorphism $\pi_1(M,\ast)\to \Aut(H_n(M,M-\ast))$. I haven't chosen a generator for $H_n(M,M-\ast)$, and there's only two automorphisms, i.e., we get a homomorphism $w_1:\pi_1(M,\ast)\to\Z/2\Z$. This homomorphism is called the ``first Stiefel-Whitney class''. 18.906 will describe all the Stiefel-Whitney classes. With $R$-coefficients, I get a map $\pi_1(M,\ast)\to \Aut(H_n(M,M-\ast;R))\cong R^\times$. This is a natural construction, so this homomorphism $\pi_1(M,\ast)\to R^\times$ factors through $\pi_1(M,\ast)\to\Z/2\Z$. This lets us get a good handle on what the sections are: $\Gamma(A;o_M\otimes R)=H_n(M,M-\ast;R)^{\pi_1(X,\ast)}$, but our analysis shows that:
+\begin{align*}
+\Gamma(A;o_M\otimes R) & =H_n(M,M-\ast;R)^{\pi_1(X,\ast)}\\
+& =\begin{cases}
+H_n(M,M-\ast;R)\cong R & \text{if }w_1=1\text{, well-defined up to sign; the orientable case}\\
+\ker(R\xrightarrow{2}R) & \text{if }w_1\neq 1\text{, and this is a canonical identification}
+\end{cases}
+\end{align*}
+where we get the latter thing because then $a=-a$, i.e., $2a=0$. In particular, if $R=\Z/2\Z$, since $\Aut_{\Z/2\Z}(\Z/2\Z)=1$, you always have a unique orientation. If $R=\Z/p\Z,\Z,\QQ$, then $\ker(R\xrightarrow{2}R)=0$.
+
+We had a general theorem:
+\begin{theorem}
+$H_n(M,M-A;R)\xrightarrow{j,\cong}\Gamma_c(A;o_M\otimes R)$ and $H_q(M,M-A;R)=0$ for $q>n$.
+\end{theorem}
+\begin{corollary}
+If $M$ is connected and $A=M$, and if $M$ is not compact, then $H_n(M;R)=0$. If $M$ is compact, then the work we just did shows that $H_n(M;R)=\begin{cases}R & \text{oriented} \\ \ker(R\xrightarrow{2}R) & \text{nonorientable}\end{cases}$.
+\end{corollary}
+\subsection{Poincare duality, finally}
+Assume $M$ is $R$-oriented. Let $K\subseteq M$ be compact. Then $H_n(M,M-K)\xrightarrow{\cong}\Gamma(K;o_M\otimes R)$. Picking an orientation picks an isomorphism $\Gamma(K;o_M\otimes R)\cong R$. This gives some $[M]_K$, which is called the fundamental class along $K$. If $K=M$, then $[M]_M=:[M]\in H_n(M;R)$.
+
+Suppose $K\subseteq L$ are compact subsets. We now combine all of our results above:
+\begin{theorem}[Fully relative Poincare duality]
+If $p+q=n$, then $\cHH^p(K,L;R)\xrightarrow{\cap[M]_K}H_q(M-L,M-K;R)$ is an isomorphism.
+\end{theorem}
+\begin{proof}
+``It's, like, not hard at this point.'' One thing we did was set up an LES for $\cHH$ of a pair, which implies that we may assume that $L=\emptyset$. We want to prove that $\cHH^p(K;R)\xrightarrow{\cap[M]_K}H_q(M,M-K;R)$ is an isomorphism. Now there's a standard local-to-global process.
+
+In the local case, if $M=\RR^n$ and $K=D^n$, then this is saying that $\cHH^p(D^n;R)\cong H^p(D^n;R)\xrightarrow{\cap[\RR^n]_{D^n}}H_q(\RR^n,\RR^n-D^n;R)$ where the first isomorphism comes from analysis we did earlier about \v{C}ech and ordinary cohomology coinciding. If $p\neq 0$, then both sides are zero. When $p=0$, we are asking that $H^0(D^n;R)\xrightarrow{\cap[\RR^n]_{D^n}}H_n(\RR^n,\RR^n-D^n;R)$. They're both equal to $R$, and we are just capping along $[\RR^n]_{D^n}$, because we found that $1\cap[\RR^n]_{D^n}=[\RR^n]_{D^n}$, as desired.
+
+We carefully set up the Mayer-Vietoris sequence ladder (Theorem 33.5) that allows us to put this all together. ``We're not going to go through the details because there's point set topology that I don't like there.'' Note that normality is not needed for $K,L$ compact because compact sets in hausdorff spaces can always be separated, normal or not. I just reversed the order in which things are usually taught in books.
+\end{proof}
+We have time for one beginning application.
+\begin{corollary}[Relative Poincare duality]
+Suppose $K=M$ and $M$ is compact and $R$-oriented. Then $\cHH^p(M,L;R)\xrightarrow{\cap[M]}H_{n-p}(M-L,R)$ is an isomorphism.
+\end{corollary}
+\begin{corollary}[Poincare duality, corollary of corollary]
+Let $M$ be compact and $R$-oriented, then $H^p(M;R)\xrightarrow{\cap [M]}H_{n-p}(M;R)$ is an isomorphism.
+\end{corollary}
+\begin{proof}
+Follows from the above corollary since $\cHH^p(M;R)$ is literally equal to $H^p(M;R)$
+\end{proof}
+That's the most beautiful form of all. If you do have an $L$, you have this ladder, where all vertical maps are isomorphisms:
+\begin{equation*}
+\xymatrix{
+	\cdots\ar[r] & \cHH^p(M,L)\ar[r]\ar@{-->}[d]_{-\cap [M]} & \cHH^p(M)\ar[r]\ar[d]_{-\cap [M]} & \cHH^p(L)\ar[r]^\delta\ar[d]_{-\cap [M]_L} & \cHH^{p+1}(M,L)\ar[r]\ar[d]_{-\cap [M]} & \cdots\\
+	\cdots\ar[r] & H_q(L)\ar[r]& H_q(M)\ar[r] & H_q(M,M-L)\ar[r]^\partial & H_{q-1}(L)\ar[r] & \cdots
+}
+\end{equation*}
+This is a consistency statement for Poincare duality. On Wednesday, we'll specialize even further, and prove the Jordan curve theorem as well as study the cohomology rings of things we haven't worked through before.

@@ -1,0 +1,92 @@
+\section{K\"{u}nneth and Eilenberg-Zilber}
+We want to compute the homology of a product. Long ago, we constructed a bilinear map $S_p(X)\times S_q(Y)\to S_{p+q}(X\times Y)$, called the cross product. So we get a linear map $S_p(X)\otimes S_q(Y)\to S_{p+q}(X\times Y)$, and it satisfies the Leibniz formula, i.e., $d(x\times y)=dx\times y+(-1)^px\times dy$. The method we used was really another example of the fundamental theorem of homological algebra.
+\begin{definition}
+Let $C_\bullet,D_\bullet$ be chain complexes that are bounded below (i.e., $C_i=0$ and $D_i=0$ for $i\ll 0$; we'll be looking at the case where they're zero if $i<0$). Define $(C_\bullet\otimes D_\bullet)_n=\bigoplus_{p+q=n}C_p\otimes D_q$. The boundedness says that it's a finite sum. The differential $(C_\bullet\otimes D_\bullet)_n\to (C_\bullet\otimes D_\bullet)_{n-1}$ sends $C_p\otimes D_q\to C_{p-1}\otimes D_q\bigoplus C_p\otimes D_{q-1}$ given by $x\otimes y\mapsto dx\otimes y+(-1)^p x\otimes dy$.
+\end{definition}
+So the cross product is a map of chain complexes $S_\ast(X)\otimes S_\ast(Y)\to S_\ast(X\times Y)$. The K\"{u}nneth theorem in dimension zero is really easy, because $\pi_0(X)\times \pi_0(Y)=\pi_0(X\times Y)$.
+\subsection{Acyclic models}
+Let $\cc$ be a category, and let $F:\cc\to\mathbf{Ab}$ be a functor. Fix a set of object in $\cc$, and let $\MM$ be the ``models''. If $\cc=\mathbf{Top}\times\mathbf{Top}$, then $\MM$ is the set of pairs of simplices.
+\begin{definition}
+We say that $F$ is $\MM$-free if it is a direct sum of the free abelian group of the corepresentable functors, i.e., $F$ is a direct sum of $\Z\Hom_\cc(M,-)$ where $M\in\MM$.
+\end{definition}
+\begin{example}
+For example, $S_n(X\times Y)=\Z\Hom_\mathbf{Top}(\Delta^n\times Y)=\Z\Hom_{\mathbf{Top}\times\mathbf{Top}}((\Delta^n,\Delta^n),(X,Y))$. Another example is that $\bigoplus_{p+q=n}S_p(X)\otimes S_q(Y)=\bigoplus\Z\Hom_{\mathbf{Top}}(\Delta^p,X)\otimes\Z\Hom_{\mathbf{Top}}(\Delta^q,Y)=\bigoplus_{p+q=n}\Z\langle\Hom_{\mathbf{Top}}(\Delta^p,X)\times\Hom_{\mathbf{Top}}(\Delta^q,Y)\rangle=\bigoplus_{p+q=n}\Z\Hom_{\mathbf{Top}\times\mathbf{Top}}((\Delta^p,\Delta^q),(X,Y))$.
+\end{example}
+\begin{definition}
+A natural transformation of functors $\theta:F\to G$ is a $\MM$-epimorphism if $\theta_M:F(M)\to G(M)$ is a surjection of abelian groups for every $M\in\MM$. Consider a composition of natural transformations of functors $G^\prime\to G\to G^{\prime\prime}$ that is zero. Let $K$ be the objectwise kernel of $G\to G^{\prime\prime}$. So there's a factorization $G^\prime\to K$. Say that the sequence is $\MM$-exact if $G^\prime\to K$ is a $\MM$-epi.
+
+This means that $G^\prime(M)\to G(M)\to G^{\prime\prime}(M)$ is exact for all $M\in\MM$.
+\end{definition}
+\begin{example}
+We claim that $S_n(X\times Y)\to S_{n-1}(X\times Y)\to\cdots\to S_0(X\times Y)\to H_0(X\times Y)\to 0$ is $\MM$-exact, because when I plug in $(\Delta^p,\Delta^q)$, I get an exact sequence (it's contractible so all homology groups vanish).
+\end{example}
+\begin{example}
+Consider the sequence $\cdots\to(S_\ast(X)\otimes S_\ast(Y))_1\to S_0(X)\otimes S_0(Y)\to H_0(X)\otimes H_0(Y)\to 0$. Is this $\MM$-exact? We don't know that yet, although it's true in each factor if you plug in a simplex. It turns out that it actually \emph{is} $\MM$-exact, but I'll come back to this in a few minutes.
+\end{example}
+I've been checking things for our chain complexes that'll come up in the K\"{u}nneth theorem. Here's the key lemma that makes it all work.
+\begin{lemma}
+Let $\cc$ be a category with a set of models $\MM$ and let $F,G,G^\prime:\cc\to\mathbf{Ab}$ be functors. Let $F$ be $\MM$-free, and let $G^\prime\to G$ be a $\MM$-epimorphism. Then there's a lifting:
+\begin{equation*}
+\xymatrix{ & G^\prime\ar[d]\\
+F\ar@{-->}[ur]\ar[r]^f & G}
+\end{equation*}
+\end{lemma}
+\begin{proof}
+Clearly we may assume that $F(X)=\Z\Hom_\cc(M,X)$. Suppose $X=M$. We get:
+\begin{equation*}
+\xymatrix{ & G^\prime(M)\ar@{->>}[d]\\
+\Z\Hom_\cc(M,M)\ar@{-->}[ur]^{\overline{f}_M}\ar[r]|{f_M} & G(M)}
+\end{equation*}
+Consider $1_M\in\Z\Hom_\cc(M,M)$. This maps to $f_M(1_M)$. But because $G^\prime\to G$ is a $\MM$-epi, there is some $c_M$ that maps to $f_M(1_M)$. This is going to be $\overline{f}_M(1_M)$, i.e., $\overline{f}_M(1_M):=c_M$.
+
+Now we're done by naturality! Because given any $\varphi:M\to X$, we get a commutative diagram:
+\begin{equation*}
+\xymatrix{\cc(M,X)\ar[r]^{\overline{f}_X}\ar[d] & G^\prime(X)\ar[d]\\
+\cc(M,M)\ar[r]_{\overline{f}_M} & G^\prime(M)}
+\end{equation*}
+Now, $1_M\mapsto\varphi$, and so $\overline{f}_X(\varphi)=\varphi_\ast(c_M)$ by commutativity. Now extend linearly.
+\end{proof}
+We already knew the following result, but now we can make this formal:
+\begin{theorem}[Eilenberg-Zilber theorem]
+There exists a natural chain map:
+\begin{equation*}
+\xymatrix{S_\ast(X)\otimes S_\ast(Y)\ar[r]^{\times}\ar[d] & S_\ast(X\times Y)\ar[d]\\
+ H_0(X)\otimes H_0(Y)\ar[r]^{\cong} & H_0(X\times Y)}
+\end{equation*}
+That is unique up to natural chain homotopy (this is part we didn't show before). There's also a map $\alpha:S_\ast(X\times Y)\to S_\ast(X)\otimes S_\ast(Y)$ because $ H_0(X)\otimes H_0(Y)\to H_0(X\times Y)$ is an isomorphism. These two maps $\alpha$ and $\times$ are naturally chain homotopy inverses.
+\end{theorem}
+\begin{corollary}
+There is an isomorphism $ H(S_\ast(X)\otimes S_\ast(Y))\cong H_\ast(X\times Y)$.
+\end{corollary}
+We will show the following:
+\begin{theorem}
+Let $C_\bullet,D_\bullet$ be chain complexes, bounded below, where $C_n$ is a free $R$-module for all $n$. Then we have a generalization of the universal coefficient theorem. There is a sexseq:
+\begin{equation*}
+\xymatrix{0\ar[r] & \bigoplus_{p+q=n} H_p(C)\otimes H_q(D)\ar@{=}[r] & ( H_\ast(C)\otimes H_\ast(D))_n\ar[dll]\\
+ H_n(C_\bullet\otimes D_\bullet)\ar[r] & \bigoplus_{p+q=n-1}\Tor^R_1( H_p(C), H_q(D))\ar[r] & 0}
+\end{equation*}
+This is true over any PID, too.
+\end{theorem}
+\begin{proof}
+This is exactly the same as the proof for the UCT. It's a good idea to work through this on your own.
+\end{proof}
+So, by combining this theorem and previous corollary, we get:
+\begin{theorem}[K\"{u}nneth theorem]
+If $R$ is a PID, there is a natural sexseq (that splits, but not naturally):
+\begin{equation*}
+\xymatrix{0\ar[r] & \bigoplus_{p+q=n} H_p(X)\otimes H_q(Y)\ar@{=}[r] & ( H_\ast(X)\otimes H_\ast(X))_n\ar[dll]\\
+ H_n(X\times Y)\ar[r] & \bigoplus_{p+q=n-1}\Tor^R_1( H_p(X), H_q(Y))\ar[r] & 0}
+\end{equation*}
+\end{theorem}
+\begin{example}
+If $R=k$ is a field, every module is already free, so the $\Tor$ term vanishes, and you get a K\"{u}nneth isomorphism:
+\begin{equation*}
+ H_\ast(X;k)\otimes_k H_\ast(Y;k)\cong H_\ast(X\times Y;k)
+\end{equation*}
+\end{example}
+This is rather spectacular. For example, what is $ H_\ast(\RP^2\times\RP^3;\Z/2\Z)$? Well, directly, we see that there is $1$ cell in dimensions $0$ and $5$, $2$ cells in dimensions $1$ and $4$, $3$ cells in dimensions $2$ and $3$. Note the symmetry. This isn't an accident, it's Poincar\'{e} duality, which we'll get to soon. By K\"{u}nneth, it's $ H_\ast(\RP^2;\Z/2\Z)\otimes_{\Z/2\Z} H_\ast(\RP^3)$, i.e.:
+\begin{equation*}
+ H_n(\RP^2\times\RP^3;\Z/2\Z)=\bigoplus_{p+q=n} H_p(\RP^2;\Z/2\Z)\otimes H_q(\RP^3;\Z/2\Z)=\begin{cases}
+\text{work it out yourself}
+\end{cases}
+\end{equation*}

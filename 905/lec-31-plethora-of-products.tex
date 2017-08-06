@@ -1,0 +1,83 @@
+\section{A plethora of products}
+\begin{remark}
+Please note that these notes might be absolute bullshit, because I came back today from my flight at 8 am.
+\end{remark}
+Recall that we have the Kronecker pairing $\langle ,\rangle: H^p(X)\otimes H_p(X)\to R$, which obviously isn't natural because $ H^p$ is contravariant while homology isn't.
+
+Consider the following. Given $f:X\to Y$, and $b\in H^p(Y)$ and $x\in H_p(X)$, how does $\langle f^\ast b,x\rangle$ relate to $\langle b,f_\ast x\rangle$?
+\begin{claim}
+$$\langle f^\ast b,x\rangle=\langle b,f_\ast x\rangle$$
+\end{claim}
+\begin{proof}
+Easy! I find it useful to write out diagrams of where things are. We're gonna work on the chain model.
+\begin{equation*}
+	\xymatrix{
+	\Hom(S_p(X),R)\otimes S_p(X)\ar[r]^{\langle,\rangle} & R\\
+	\Hom(S_p(Y),R)\otimes S_p(X)\ar[r]^{1\otimes f_\ast}\ar[u]^{f^\ast\otimes 1} & \Hom(S_p(Y),R)\otimes S_p(Y)\ar[u]^{\langle,\rangle}
+	}
+\end{equation*}
+The top line is what gives the Kronecker pairing. Note that $f^\ast$ means contravariant and $f_\ast$ means covariant. This diagram commuting \emph{is} the statement we want to prove. Let's see. Suppose $[\beta]=b$ and $[\xi]=x$. Then from the bottom left, going to the right and then the top is $\beta\otimes\xi\mapsto\beta\otimes f_\ast(\xi)\mapsto\beta(f_\ast\xi)$. The other way is $\beta\otimes\xi\mapsto f^\ast(\beta)\otimes\xi=(\beta\circ f)\otimes\xi\mapsto(\beta\circ f)(\xi)$. This is exactly $\beta(f_\ast\xi)$, because, oh, that's just how composition works.
+\end{proof}
+There's another product around. We called this $\mu$ I think, where $\mu:H(C_\bullet)\otimes H(D_\bullet)\to H(C_\bullet\otimes D_\bullet)$ given by $[c]\otimes [d]\mapsto[c\otimes d]$. I'm secretly using this in the above proof.
+
+We also have the cross product(s!) $\times: H_p(X)\otimes H_q(Y)\to H_{p+q}(X\times Y)$ and $\times: H^p(X)\otimes H^q(Y)\to H^{p+q}(X\times Y)$. You should think of this as fishy because both maps are in the same direction -- but this is OK because we're using different things to make these constructions. Still, they're related:
+\begin{theorem}
+Let $a\in H^p(X),b\in H^p(Y),x\in H_p(X), y\in H_q(Y)$. Then:
+\begin{equation*}
+\langle a\times b,x\times y\rangle=(-1)^{|x|\cdot |b|}\langle a,x\rangle\langle b,y\rangle
+\end{equation*}
+\end{theorem}
+This isn't just idle -- although idle things are a great thing to do!
+\begin{proof}
+Say $[\alpha]=a,[\beta]=b,[\xi]=x,[\eta]=y$. Then recall that $\langle a\times b,x\times y\rangle$ comes from $(\alpha\times\beta)(\sigma)=(-1)^{pq}\alpha(\sigma_1\circ\alpha_p)\beta(\sigma_2\circ\omega_q)$ where $\sigma:\Delta^{p+q}\to X\times Y$. There's two uses of the symbol $\alpha$, and there'll be a third one in a minute, but they'll all have subscripts, so I hope you'll forgive me.
+
+Recall also the ($(p,q)$th component of the) Alexander-Whitney map $\alpha_{X,Y}:S_{p+q}(X\times Y)\to S_p(X)\otimes S_q(Y)$. We have a big diagram:
+\begin{equation*}
+\xymatrix{
+	S_p(X)\otimes S_q(Y)\ar[r]^{\times}\ar[dr]^{1\sim} & S_{p+q}(X\times Y)\ar[d]^{\alpha_{X,Y}}\ar[dr]^{\alpha\times\beta} & \\
+	& S_p(X)\otimes S_p(Y)\ar[r]_{\alpha\cdot\beta} & R
+}
+\end{equation*}
+Where $\alpha\cdot\beta:(\xi\otimes\eta)\mapsto(-1)^{pq}\alpha(\xi)\cdot\beta(\xi)$. Now, the diagonal arrow $S_p(X)\otimes S_q(Y)\to S_p(X)\otimes S_p(Y)$ is unique up to chain homotopy, and is homotopic to the identity -- this is what the method of acyclic models tells me. (See the statement of the Eilenberg-Zilber theorem above.)
+
+Thus we find that $\alpha_{X,Y}(\xi\times\eta)=\xi\otimes\eta+(dh+hd)(\xi\otimes\eta)$ for some chain homotopy $h$. I think we're really down now, because $\xi$ and $\eta$ are both cycles, and hence $d$ will kill them (wait it seems like it only kills $\eta$???). So $\alpha_{X,Y}(\xi\times\eta)=\xi\otimes\eta$. Now, $\alpha\cdot\beta$ is a cocycle (check!). When I apply $\alpha$ it kills the $dh$ factor (what???), therefore $(\alpha\cdot\beta)\alpha_{X,Y}(\xi\times \eta)=(\alpha\cdot\beta)(\xi\otimes\eta)$.
+\end{proof}
+All because of the magic of acyclic models.
+
+Let's now try to prove a Kunneth theorem for $ H^\ast$. Let $R=k$ be a field (eg $\FF_p,\QQ$) that's our coefficient. Then we have $ H_\ast(X)\otimes_k H_\ast(Y)\cong H_\ast(X\times Y)$. Also, this map $ H^p(X)\otimes H_p(X)\to k$ has an adjoint $ H^p(X)\to \Hom_k( H_p(X),k)=: H_p(X)^\vee$, which is an isomorphism because $\Ext$ vanishes over a field.
+\begin{theorem}
+Let $k$ be a field. Assume that $ H_p(X)$ is finite-dimensional for all $p$. Then $ H^\ast(X)\otimes H^\ast(Y)\cong H^\ast(X\times Y)$.
+\end{theorem}
+\begin{proof}
+We have:
+\begin{equation*}
+\xymatrix{
+	 H^\ast(X)\otimes H^\ast(Y)\ar[r]^{\times}\ar[d]^\cong & H^\ast(X\times Y)\ar[d]^\cong\\
+	 H_\ast(X)\otimes H_\ast(Y)^\vee\ar[d]^{\zeta} & H_\ast(X\times Y)^\vee\ar[dl]^\cong\\
+	\left( H_\ast(X)\otimes H_\ast(Y)\right)^\vee
+}
+\end{equation*}
+Where $\zeta:\alpha\otimes\beta\mapsto(x\otimes y\mapsto \pm\alpha(x)\beta(y))$. The theorem we proved above implies that this diagram commutes.
+
+In general, I might have two (graded) vector spaces $U,V$, and consider $U^\vee\otimes V^\vee\to(U\otimes V)^\vee$ by the above formula. Well, $(U\otimes V)^\vee=\Hom_k(U\otimes V,k)=\Hom_k(U,V^\vee)$. Thus I get a map $U^\vee\otimes V^\vee\to\Hom_k(U,V^\vee)$. This map is an isomorphism when $U$ or $V$ is finite dimensional. I also have $\widehat{\alpha}:U^\vee\otimes W\to \Hom(U,W)$ via $\alpha\otimes w\mapsto(w\mapsto\alpha(u)w)$. And that's the map we have in mind. The image of $\widehat{\alpha}$ consists of finite rank homomorphisms because a general tensor is a finite sum. This is therefore an isomorphism if $U$ or $W$ is finite dimensional. 
+
+This shows that the map $\zeta$ above is an isomorphism if $ H_\ast(X)$ or $ H_\ast(Y)$ is finite-dimensional. We're done by commutativity.
+\end{proof}
+We saw before that $\times$ is an algebra map! So this is an isomorphism of algebras.
+
+There are more products around. There is a map $ H^p(Y)\otimes H^q(X,A)\to H^{p+q}(Y\times X,Y\times A)$. Constructing this is on your homework. You can see how this comes about. This comes from the map on the chain level, and it comes from looking at the cochains, and you're going to get a map (???). Anyway. Suppose $Y=X$. Then I get $\cup: H^\ast(X)\otimes H^\ast(X,A)\to H^\ast(X\times X,X\times A)\xrightarrow{\Delta^\ast} H^\ast(X,A)$ where $\Delta:(X,A)\to (X\times X,X\times A)$. This ``relative cup product'' makes $ H^\ast(X,A)$ into a graded module over $ H^\ast(X)$. This is \emph{not} a ring -- it doesn't have a unit, for example -- but it is a module. Also the lexseq is a sequence of $ H^\ast(X)$-modules. I'm just making statements here.
+
+I want to introduce you to \emph{one more} product, which we'll talk more about, and forms the foundation of Poincar\'{e} duality. This is the cap product. What can I do with $S^p(X)\otimes S^n(X)$? Well, I get big map:
+\begin{equation*}
+S^p(X)\otimes S_n(X)\xrightarrow{1\times (\alpha_{X,X}\circ \Delta_\ast)} S^p(X)\otimes S_p(X)\otimes S_{n-p}(X)\xrightarrow{\langle -,-\rangle\otimes 1}S_{n-p}(X)
+\end{equation*}
+This composite participates in a chain map. This induces a map in homology $\cap: H^p(X)\otimes H_n(X)\to H_{n-p}(X)$ that comes from $\mu$. This is a pretty interesting map.
+\begin{lemma}
+$(\alpha\cup\beta)\cap x=\alpha\cap(\beta\cap x)$ and $1\cap x=x$.
+\end{lemma}
+\begin{proof}
+Easy to check from the definition.
+\end{proof}
+This makes $ H_\ast(X)$ into a module over $ H^\ast(X)$. These are not hard things to check. There's a lot of structure, and the fact that $ H^\ast(X)$ forms an algebra is a good thing. Notice how the dimensions work. People made a mistake before, and they should have indexed cohomology with negative numbers, so that $\cap: H^p(X)\otimes H_n(X)\to H_{n-p}(X)$ makes sense. A cochain complex with positive grading is the same as a chain complex with negative grading.
+
+There's also slant products (two of them!). Maybe we won't talk about them. We will check a few things about cap products, and then we'll go into Poincar\'{e} duality. We can prove nice theorems then.

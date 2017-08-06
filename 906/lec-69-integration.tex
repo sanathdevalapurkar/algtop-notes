@@ -1,0 +1,181 @@
+\section{Integration, Gysin, Euler, Thom}
+Today
+there's a talk by
+
+the
+one
+
+the
+only
+
+JEAN-PIERRE SERRE
+
+OK let's begin.
+\subsection{Umkehr}
+Let $\pi:E \to B$ be a fibration and suppose $B$ is path-connected.
+Suppose the fiber has no cohomology above some dimension $d$.
+The Serre sseq has nothing above row $d$.
+
+Let's look at $H^n(E)$.
+This happens along total degree $n$.
+We have this neat increasing filtration that I was talking about on Monday whose associated quotients are the rows in this thing.
+So I can divide out by it (i.e I divide out by $F_{d-1} H^n(E)$).
+Then I get 
+$$H^n(E) \fib H^n(E) / F_{d-1} H^n(E) = E^{n-d,d}_\infty \cofib E_2^{n-d,d} = H^{n-d}(B;\underline{H^d(F)})$$
+That's because on the $E_2$ page, at that spot, there's nothing hitting it, but there might be a differential hitting it.
+There it is; here's another edge homomorphism.
+
+\begin{remark}
+This is a \emph{wrong-way map}, also known as an ``umkehr'' map.
+It's also called a \emph{pushforward map}, or the \emph{Gysin map}.
+\end{remark}
+
+We know from the incomprehensible discussion that I was giving on Monday that this was a filtration of modules over $H^\ast(B)$, so that this map $H^n(E) \to H^{n-d}(B;\underline{H^d(F)})$ is a $H^\ast(B)$-module map.
+
+\begin{example}
+    $F$ is a compact connected $d$-manifold with a given $R$-orientation.
+    Thus $H^d(F) \simeq R$, given by $x\mapsto \langle x, [F]\rangle$.
+    There might some local cohomology there, but I do get a map $H^n(E;R) \to H^{n-d}(B;\overline{R})$.
+    This is such a map, and it has a name: it's written $\pi_!$ or $\pi_\ast$.
+    I'll write $\pi_\ast$.
+    
+    Of course, if $\pi_1(B)$ fixes $[F]\in H_d(F;R)$, then $\underline{R}$-cohomology is $R$-cohomology.
+    Thus our map is now $H^n(E;R) \to H^{n-d}(B;R)$.
+    Sometimes it's also called a pushforward map.
+    Note that we also get a projection formula
+    $$
+    \pi_\ast(\pi^\ast(b)\cup e) = b\cup \pi_\ast(e)
+    $$
+    where $\pi^\ast$ is the pushforward, $e\in H^n(E)$ and $b\in H^s(B)$.
+    Others call this Frobenius reciprocity.
+\end{example}
+
+\subsection{Gysin}
+
+Suppose $H^\ast(F) = H^\ast(S^{n-1})$.
+In practice, $F\cong S^{n-1}$, or even $F\simeq S^{n-1}$.
+In that case, $\pi:E\to B$ is called a \emph{spherical fibration}
+Then the spectral sequence is \emph{even simpler}!
+It has only two nonzero rows!
+
+Let's pick an orientation for $S^{n-1}$, to get an isomorphism $H^{n-1}(S^{n-1})$.
+Well the spectral sequence degenerates, and you get a long exact sequence
+$$
+\cdots \to H^s(B) \xar{\pi^\ast} H^s(E) \xar{\pi_\ast} H^{s-n+1}(B;\underline{R}) \xar{d_n} H^{s+1}(B) \xar{\pi^\ast} H^{s+1}(E) \to \cdots
+$$
+That's called the \emph{Gysin sequence}\footnote{pronounced Gee-sin}.
+Because everything is a module over $H^\ast(B)$, this is a lexseq of $H^\ast(B)$-modules.
+
+Let me be a little more explicit.
+Suppose we have an orientation.
+We now have a differential $H^0(B) \to H^n(B)$.
+We have the constant function $1\in H^0(B)$, and this maps to something in $B$.
+This is called the \emph{Euler class}, and is denoted $e$.
+
+Since $d_n$ is a module homomorphism, we have $d_n(x) = d_n(1\cdot x) = d_n(1) \cdot x = e \cdot x$ where $x$ is in the cohomology of $B$.
+Thus our lexseq is of the form
+$$
+\cdots \to H^s(B) \xar{\pi^\ast} H^s(E) \xar{\pi_\ast} H^{s-n+1}(B;\underline{R}) \xar{e\cdot - } H^{s+1}(B) \xar{\pi^\ast} H^{s+1}(E) \to \cdots
+$$
+\subsection{Some facts about the Euler class}
+Suppose $E\to B$ has a section $\sigma:B\to E$ (so that $\pi\sigma = 1_B$).
+So, if it came from a vector bundle, I'm asking that there's a nowhere vanishing cross-section of that vector bundle.
+Let's apply cohomology, so that you get $\sigma^\ast \pi^\ast = 1_{H^\ast(B)}$.
+Thus $\pi^\ast$ is monomorphic.
+In terms of the Gysin sequence, this means that $H^{s-n}(B)\xar{e\cdot -} H^s(B)$ is zero.
+But this implies that
+$$\boxed{e = 0}$$
+Thus, if you don't have a nonzero Euler class then you cannot have a section!
+If your Euler class is zero sometimes you can conclude that your bundle has a section, but that's a different story.
+
+The Euler class of the tangent bundle of a manifold when paired with the fundamental class is the Euler characteristic.
+More precisely, if $M$ is oriented connected compact $n$-manifold, then
+$$
+\langle e(\tau_M), [M] \rangle = \chi(M)
+$$
+That's why it's called the Euler class.
+(He didn't know about spectral sequences or cohomology.)
+\subsection{Time for Thom}
+This was done by Rene Thom.
+Let $\xi$ be a $n$-plane bundle over $X$.
+I can look at $H^\ast(E(\xi), E(\xi) - \text{section})$.
+If I pick a metric, this is $H^\ast(D(\xi), S(\xi))$, where $D(\xi)$ is the disk bundle\footnote{$D(\xi) = \{v\in E(\xi):||v||\leq 1\}$.} and $S(\xi)$ is the sphere bundle.
+If there's no point-set annoyance, this is $\widetilde{H}^\ast(D(\xi)/S(\xi))$.
+
+If $X$ is a compact Hausdorff space, then ...
+The open disk bundle $D^0(\xi) \simeq E(\xi)$.
+This quotient $D(\xi)/S(\xi) = E(\xi)^+$ since you get the one-point compactification by embedding into a compact Hausdorff space ($D(\xi)$ here) and then quotienting by the complement (which is $S(\xi)$ here).
+This is called the \emph{Thom space} of $\xi$.
+There are two notations: some people write $\mathrm{Th}(\xi)$, and some people (Atiyah started this) write $X^\xi$.
+
+\begin{example}[Dumb]
+    Suppose $\xi$ is the zero vector bundle.
+    Then your fibration is $\pi:X \to X$.
+    What's the Thom space?
+    The disk bundle is $X$, and the boundary of a disk is empty, so $\mathrm{Th}(0) = X^0 = X\sqcup \ast$.
+\end{example}
+
+The Thom space is a pointed space (corresponding to $\infty$ or the point which $S(\xi)$ is collapsed to).
+
+I'd like to study its cohomology, because it's interesting.
+There's no other justification.
+Maybe I'll think of it as the relative cohomology.
+
+So, guess what?
+We've developed sseqs and done cohomology.
+Anything else we'd like to do to groups and functors and things?
+
+Let's make the spectral sequence relative!
+
+I have a path connected $B$, and I'll study:
+\begin{equation*}
+    \xymatrix{
+	F_0 \ar[d] \ar@{^(->}[r] & F\ar[d]\\
+	E_0\ar[d] \ar@{^(->}[r] & E\ar[d]\\
+	B\ar@{=}[r] & B
+    }
+\end{equation*}
+Then if you sit patiently and work through things, we get
+$$
+E^{s,t}_2 = H^s(B; H^t(F, F_0)) \Rightarrow_s H^{s+t}(E, E_0)
+$$
+Note that $\Rightarrow_s$ means that $s$ determines the filtration.
+
+Let's do this with the Thom space.
+We have $D(\xi) \xar{\simeq} X$.
+That isn't very interesting.
+In our case, we have an incredibly simple spectral sequence, where everything on the $E_2$-page is concentrated in row $n$.
+Thus the $E_2$ page \emph{is} the cohomology of
+$$\widetilde{H}^{s+n}(\Th(\xi)) = H^{s+n}(D(\xi),S(\xi)) \simeq H^s(B; \underline{R})$$
+where $\underline{R} = \underline{H^n(D^n,S^{n-1})}$.
+This is a canonical isomorphism of $H^\ast(B)$-modules.
+
+Suppose your vector bundle $\xi$ is oriented, so that $\underline{R} = R$.
+Now, if $s=0$, then I have $1\in H^0(B)$.
+This gives $u\in H^n(\Th(\xi))$, which is called the \emph{Thom class}.
+
+The cohomology of $B$ is a free module of rank one over $H^\ast(B)$, so that $H^\ast(\Th(\xi))$ is also a $H^\ast(B)$-module that is free of rank $1$, generated by $u$.
+
+Let me finish by saying one more thing.
+This is why the Thom space is interesting.
+Notice one more thing: there's a lexseq of a pair
+$$
+\cdots\to \widetilde{H}^s(\Th(\xi)) \to H^s(D(\xi)) \to H^s(S(\xi)) \to \widetilde{H}^{s+1}(\Th(\xi)) \to \cdots
+$$
+We have synonyms for these things:
+$$
+\cdots \to H^{s-n}(X) \to H^s(X) \to H^s(S(\xi)) \to H^{s-n+1}(X) \to \cdots
+$$
+And aha, this is is exactly the same form as the Gysin sequence.
+Except, oh my god, what have I done here?
+
+Yeah, right!
+In the Gysin sequence, the map $H^{s-n}(X) \to H^s(X)$ was multiplication by the Euler class.
+The Thom class $u$ maps to some $e^\prime\in H^n(X)$ via $\widetilde{H}^n(D(\xi),S(\xi)) \to H^n(D(\xi)) \simeq H^n(X)$.
+And the map $H^{s-n}(X) \to H^s(X)$ is multiplication by $e^\prime$.
+Guess what?
+This is the Gysin sequence.
+
+You'll explore more in homework.
+
+I'll talk about characteristic classes on Friday.

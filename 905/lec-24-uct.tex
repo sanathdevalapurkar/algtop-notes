@@ -1,0 +1,54 @@
+\section{Universal coefficient theorem (and $\Hom$, adjointness)}
+On Wednesday, we'll talk about the K\"{u}nneth theorem, and later we'll talk about the K\"{u}nneth theorem. We've been talking about tensor products of $R$-modules, but we can do something that's more natural in a way. That's the notion of $\Hom_R(M,N)$, which is the collection of $R$-linear homomorphisms between $R$-modules $M$ and $N$. This is actually itself an $R$-module. It's an abelian group, first of all, because you can add morphisms. How does $r\in R$ act on $f\in \Hom_R(M,N)$? Just define $(rf)(x)=f\cdot f(x)$. You should check that this does actually define an $R$-module homomorphism. (This is trivial.) If $R$ isn't commutative I guess there'd be an action of $Z(R)$ on $\Hom_R(M,N)$. In particular, $\Hom_R(M,-):\mathbf{Mod}_R\to\mathbf{Mod}_R$.
+\begin{remark}
+You're supposed to technically write $\underline{\Hom}_R(M,N)$ to mean $\Hom_R(M,N)$ with the structure of an $R$-module. But in these notes, I will not do this.
+\end{remark}
+I wanted to bring this up because it relates to tensor products in a beautiful way. Consider $\Hom_R(M\otimes_R N,L)$. This is the collection of $R$-bilinear maps $M\times N\to L$. I claim that $\Hom_R(M\otimes_R N,L)\cong\Hom_R(M,\Hom_R(N,L))$. The way this works is the following. Suppose $f:M\otimes_R N\to L$. Define $\widehat{f}:M\to\Hom_R(N,L)$ via $\widehat{f}:m\mapsto(n\mapsto f(m\otimes_R n))$. This is a special case of the notion of an adjoint functor, introduced by Dan Kan, who was actually here at MIT. This is a big part of category theory.
+\begin{prop}
+Let $\cI$ be a direct set, and let $M:\cI\to\mathbf{Mod}_R$ be a $\cI$-directed system of $R$-modules. There is a natural isomorphism $(\varinjlim_I M_i)\otimes_R N\cong \varinjlim_I (M_i\otimes_R N)$. It's very technical but it might be very useful. Maybe in the homework for example \emph{;-)}
+\end{prop}
+\begin{proof}
+Consider $\Hom_R((\varinjlim_I M_i)\otimes_R N,L)\cong\Hom_R(\varinjlim_I M_i,\Hom_R(N,L))$. That's cool, because this is the same thing as $\Map_{\Fun(\cI,\mathbf{Mod}_R)}(\{M_i\},c_{\Hom_R(N,L)})$ because $\{M_i\}$ is a $\cI$-directed system. Now, this is the same as $\Map_{\Fun(\cI,\mathbf{Mod}_R)}(\{M_i\otimes_R N\},c_{L})$ by the Hom-tensor adjunction. We can unspool this to see that this is $\Hom_R(\varinjlim_\cI (M_i\otimes_R N),L)$. Now conclude via the Yoneda lemma (which we haven't discussed yet, but I think is a homework problem). Basically this states that $\Map_\cc(X,-)$ determines $X$.
+\end{proof}
+We'll talk a lot more about $\Hom$ and adjunctions, but not today.
+
+Here's the question I want to talk about today. Suppose that I'm given $ H_\ast(X;\Z)$. Does it determine $ H_\ast(X;\Z/2\Z)$? Consider $\RP^2\to S^2$. In homology with coefficients in $\Z$, in dimension $2$, this map must induce $0$. But in $\Z/2\Z$-coefficients, in dimension $2$, this map gives an isomorphism. I could have considered reduced homology. This shows that there's not a functorial relationship between $ H_\ast(X;\Z)$ and $ H_\ast(X;\Z/2\Z)$. So how \emph{do} we go between different coefficients? That's the mystery.
+
+Let $R$ be a commutative ring. Let $M$ be a $R$-module. I want to think about some chain complex $C_\bullet$ of $R$-modules. It could be the singular complex of a space, but it doesn't have to be. I'm going to forget to write $\otimes_R$ now; I'll just write $\otimes$. I can consider $ H_n(C_\bullet)\otimes M$, or $ H_n(C_\bullet\otimes M)$. The latter thing gives homology with coefficients in $M$. How can we compare these two? I claim that I can construct a map $\alpha: H_n(C_\bullet)\otimes M\to H_n(C_\bullet\otimes M)$. Recall the exact sequence $0\to B_n\to Z_n(C_\bullet)\to H_n\to 0$ that defines homology. So I get an exact seqeucen $B_n\otimes M\to Z_n(C_\bullet)\otimes M\to H_n(C_\bullet)\otimes M\to 0$. And there's a surjection $Z_n(C_\bullet)(C\otimes M)\to H_n(C_\bullet\otimes M)$. I have to tell you where $x\otimes m\in Z_n(C_\bullet)\otimes M$ goes. I'll send it to $x\otimes m\in Z_n(C_\bullet)(C_\bullet\otimes M)$. I claim that this is a cycle, because $d(x\otimes m)=(dx)\otimes m$. But $x\in\ker d$, so this is zero, and thus $x\otimes m\in Z_n(C_\bullet)(C_\bullet\otimes M)$. Does it descend to a map in homology? We want to check that $B_n\otimes M\to Z_n(C_\bullet)(C_\bullet\otimes M)$ is zero. Suppose $y\in C_{n+1}$. Then $dy\in C_n$. Where does $dy\otimes x$ go? Send it to $d(y\otimes x)\in B_n(C_\bullet\otimes M)$. And this maps to zero.
+
+The problem is that $\alpha$ is not always an isomorphism. But it is if $M$ is free, say $M=R\langle S\rangle$. That's because then $C_\bullet\otimes M\cong\bigoplus_S C_\bullet$. Now there's a little lemma that nobody tells you about, because it's obvious, but here it is anyway:
+\begin{lemma}
+Suppose I have a collection of exact sequences of $R$-modules $A_i\to B_i\to C_i$. Then $\bigoplus A_i\to \bigoplus B_i\to \bigoplus C_i$ is short exact, i.e., $\bigoplus$ is an exact functor.
+\end{lemma}
+\begin{proof}
+The composition is obviously zero. If $(b_i)\in\bigoplus B_i$ maps to $0$, then by exactness, there are $a_i$ that map to $b_i$, and we assume that if some $b_i=0$, then $a_i=0$.
+\end{proof}
+This in particular implies that $ H(\bigoplus C_i)\cong\bigoplus H(C_i)$.
+
+Consider a free resolution of $M$. Assume $R$ is a PID, so that $M$ has a free resolution of the form $0\to F_1\to F_0\to M\to 0$. Thus we get a chain complex $C_\bullet\otimes F_1\to C_\bullet\otimes F_0\to C_\bullet M\to 0$. Now I get a lexseq in $\Tor$, namely $\cdots\to\Tor^R_1(C_\bullet,M)\to C_\bullet\otimes F_1\to C_\bullet\otimes F_0\to C_\bullet M\to 0$.
+
+Now I'm going to make a second assumption. Suppose $C_n$ is a free $R$-module for all $n$. At least that $\Tor^R_1(C_n,M)=0$. This shouldn't bother you at all, because the chain complexes that we need satisfy this condition. In particular, we have a sexseq $0\to C_\bullet\otimes F_1\to C_\bullet\otimes F_0\to C_\bullet M\to 0$. What happens then? We get a lexseq. I want to give an unspliced form of this (huge diagram coming up!).
+\begin{equation*}
+\xymatrix{0\ar[d]\ar@{=}[r] & 0\ar[d]\\
+\coker( H_n(C_\bullet\otimes F_1)\to H_n(C_\bullet\otimes F_0))\ar[d]\ar@{=}[r] & H_n(C_\bullet)\otimes M\ar[d]^\alpha\\
+ H_n(C_\bullet\otimes M)\ar[d]^\partial\ar@{=}[r] & H_n(C_\bullet\otimes M)\ar[d]^\partial\\
+\ker( H_{n-1}(C_\bullet\otimes F_1)\to H_{n-1}(C_\bullet\otimes F_0))\ar@{=}[r]\ar[d] & \Tor^R_{1}( H_{n-1}(C_\bullet),M)\ar[d]\\
+0\ar@{=}[r] & 0}
+\end{equation*}
+Because $\ker( H_{n-1}(C_\bullet\otimes F_1)\to H_{n-1}(C_\bullet\otimes F_0))=\ker( H_{n-1}(C_\bullet)\otimes F_1\to H_{n-1}(C_\bullet)\otimes F_0)$ and $\coker( H_n(C_\bullet)\otimes F_1\to H_n(C_\bullet)\otimes F_0)$. Also, $\ker( H_{n-1}(C_\bullet\otimes F_1)\to H_{n-1}(C_\bullet\otimes F_0))=\Tor^R_{1}( H_{n-1}(C_\bullet),M)$ because of the lexseq $0\to \Tor^R_1( H_{n-1}(C_\bullet),M)\to H_{n-1}(C_\bullet)\otimes F_1\to H_{n-1}(C_\bullet)\otimes F_0\to H_{n-1}(C_\bullet)\otimes M\to 0$.
+
+Thus we have a sexseq, which gives the universal coefficient theorem:
+\begin{theorem}[Universal Coefficient Theorem]
+If $R$ is a PID and $C_n$ is free for all $n$, then there is a natural sexseq of $R$-modules:
+\begin{equation*}
+0\to H_n(C_\bullet)\otimes M\xrightarrow{\alpha} H_n(C_\bullet\otimes M)\xrightarrow{\partial}\Tor^R_1( H_{n-1}(C_\bullet),M)\to 0
+\end{equation*}
+A further fact that we won't prove is that this splits as a sexseq of $R$-modules, but not naturally.
+\end{theorem}
+\begin{example}
+Consider $ H_2(\RP^2;\Z/2\Z)\cong\Z/2\Z$, and we can consider $ H_2(\RP^2;\Z)\otimes\Z/2\Z=0$. So by the UCT, this must come from $\Tor^\Z_1( H_1(\RP^2;\Z),\Z/2\Z)\cong\Z/2\Z$. So $\partial$ is an isomorphism. This explains the mystery that we began with.
+\end{example}
+\begin{remark}
+Suppose $R$ is not a PID. For example, consider what we worked with before, e.g., $R=k[e]/(e^2)$, and let $M=k$ (so $e$ acts as $0$). Consider the chain complex $C_\bullet:\cdots\to R\xrightarrow{e}R\xrightarrow{e} R\xrightarrow{e}R\to 0$. This is actually the free resolution of $k$ that we found before. In particular, $ H_n(C_\bullet)=\begin{cases}k & n=0 \\ 0 & n\neq 0\end{cases}$. What is $C_\bullet\otimes_R k$? It's exactly $\cdots\to k\xrightarrow{0}k\xrightarrow{0} k\xrightarrow{0}k\to 0$. So $ H_n(C_\bullet\otimes_R k)=\begin{cases}k & n>0 \\ 0 & n<0\end{cases}=\Tor^R_n(k,k)$. The two homologies are super different. The excess $\Tor$'s are accounted for via spectral sequences, which you'll see when you take 18.906.
+\end{remark}
+The next step is to consider the homology of products.

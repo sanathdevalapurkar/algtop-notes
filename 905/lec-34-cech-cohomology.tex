@@ -1,0 +1,88 @@
+\section{$\cHH^\ast$ as a cohomology theory}
+Office hours: today, Hood in 4-390 from 1:30 to 3:30 and Miller in 4-478 from 1-3 on Tuesday. Note that pset 6 is due Wednesday. Also, Wednesday we'll have a lightning review of $\pi_1$ and covering spaces.
+
+We're coming to the end of the course, and there are going to be oral exams. I have some questions that I'd like to ask you. They won't be super advanced, detailed questions -- they'll be basic things. I'll post a list of examples of questions. I won't select questions from that list, that's cruel and isn't the point. The oral will be 40 minutes. It'll be fun -- better than a written exam. It's much better than grading a written exam!
+
+PLEASE DRAW A PICTURE WHEN READING THIS IF YOU DIDN'T COME TO CLASS!
+\subsection{$\cHH^\ast$ versus $H^\ast$}
+Let's come up with an example that distinguishes $\cHH^\ast$ and $H^\ast$. This is a famous example -- the topologist's sine curve. The topologist's sine curve is defined as follows. Consider the graph of $\sin(\pi/x)$ where $0<x\leq 1$, where we draw a continuous curve from $(0,-1)$ to $(1,0)$. This is a counterexample for a lot of things, you've probably seen it in 18.901.
+
+What is $H_\ast$ of the topologist sine curve? Use Mayer-Vietoris! I can choose the bottom half to be some connected portion of the continuous curve from $(0,-1)$ to $(1,0)$, and the top half to be the rest of the space that intersects the bottom half (in two spots). The top is the union of two path components, each contractible.
+
+To see this, suppose I have $\sigma:I\to\mathrm{top}$ such that $\sigma(0)=(0,b)$ for some $-3/2 < b\leq 1$ (the $-3/2$ is arbitrary, just choose something $\leq 0$). If $b<1$, pick $\epsilon>0$ such that if we write $\sigma=(\sigma_1,\sigma_2)$, then $\sigma_2(t)<1$ for all $t\in[0,\epsilon)$, where we use continuity. Then $\sigma|_{[0,\epsilon)}$ can't be on the sine curve. If $b=1$, pick $\epsilon>0$ such that $\sigma_2(t)>-1$ for all $t\in[0,\epsilon)$. Similarly, it can't be on the sine curve.
+
+Thus, $H_1$ is simple: it fits into $0\to H_1(X)\to H_0(\mathrm{top}\cap\mathrm{bottom})\to H_0(\mathrm{top})\oplus H_0(\mathrm{top})\to H_0(X)\to 0$. This is basically $0\to H_1(X)\xrightarrow{\partial}\to\Z\oplus\Z\hookrightarrow\Z\oplus\Z\oplus\Z\to\Z\to 0$, so $\partial=0$. This means that $H_\ast(X)\cong H_\ast(\ast)$ and this implies that $H^\ast(X)\cong H^\ast(\ast)$.
+
+How about $\cHH^\ast$? Let $X\subset U$ be an open neighborhood. The interval is contained in some $\epsilon$-neighborhood that's contained in $U$. This implies that there exists a neighborhood $X\subseteq V\subseteq U$ such that $V\sim S^1$. Therefore, $\varinjlim_{U\in\mathcal{U}_X}H^\ast(U)\cong H^\ast(S^1)$ by ``cofinality''. So $\cHH^\ast$ and $H^\ast$ differ.
+\subsection{Cofinality}
+Let $\cI$ be a directed set. Let $A:\cI\to \mathbf{Ab}$ be a functor. If I have a functor $f:\cK\to\cI$, then I get $Af:\cK\to\mathbf{Ab}$, i.e., $(Af)_j=A_{f(j)}$.
+
+I can form $\varinjlim_{\cK}Af$ and $\varinjlim_{I}A$. I claim you have a map $\varinjlim_{\cK}Af\to\varinjlim_{\cI}A$. All I have to do is the following:
+\begin{equation*}
+\xymatrix{
+	\varinjlim_{J}Af\ar[r] & \varinjlim_{I}A\\
+	A_{f(j)}\ar[u]^{\mathrm{in}_j}
+}
+\end{equation*}
+So I have to give you maps $A_{f(j)}\to\varinjlim_{I}A$ for various $j$. I know what to do, because I have $\mathrm{in}_{f(j)}:A_{f(j)}\to\varinjlim_{I}A$. Are they compatible when I change $j$? Suppose I have $j^\prime\leq j$. Then I get a map $f(j^\prime)\to f(j)$, so I have a map $A_{f(j^\prime)}\to A_{f(j)}$, and thus the maps are compatible. Hence I get:
+\begin{equation*}
+\xymatrix{
+	\varinjlim_{J}Af\ar[r] & \varinjlim_{I}A\\
+	(Af)_j=A_{f(j)}\ar@{-->}[ur]^{\mathrm{in}_{f(j)}}\ar[u]^{\mathrm{in}_j}
+}
+\end{equation*}
+\begin{example}
+Suppose $K\supseteq L$ be closed, then I get a map $\cHH^\ast(K)\to\cHH^\ast(L)$. Is this a homomorphism? Well, $\cHH^\ast(K)=\varinjlim_{U\in\mathcal{U}_K}H^\ast(U)$ and $\cHH^\ast(L)=\varinjlim_{V\in\mathcal{U}_L}H^\ast(V)$. This is an example of a $\cI$ and $\cK$ that I care about. Well, $\mathcal{U}_K\subseteq\mathcal{U}_L$, and thus I get a map $\cHH^\ast(K)\to\cHH^\ast(L)$, which is what I wanted.
+
+I can do something for relative cohomology. Suppose:
+\begin{equation*}
+\xymatrix{K\ar@{^(->}[d] & L\ar@{^(->}[d]\ar@{_(->}[l] \\ K^\prime & L^\prime\ar@{_(->}[l]}
+\end{equation*}
+I get a homomorphism $\cHH^\ast(K,L)\to \cHH^\ast(K^\prime,L^\prime)$ because I have $\mathcal{U}_{K,L}\to\mathcal{U}_{K^\prime,L^\prime}$.
+\end{example}
+This isn't exactly what we need:
+\begin{question}
+When does $f:\cK\to\cI$ induce an isomorphism $\varinjlim_{J}Af\to\varinjlim_{I}A$?
+\end{question}
+This is a lot like taking a sequence and a subsequence and asking when they have the same limit. There's a cofinality condition in analysis, that has a similar expression here.
+\begin{definition}
+$f:\cK\to\cI$ is cofinal if for all $i\in\cI$, there exists $j\in\cK$ such that $i\leq f(j)$.
+\end{definition}
+\begin{example}
+If $f$ is surjective.
+\end{example}
+\begin{lemma}
+If $f$ is cofinal, then $\varinjlim_{J}Af\to\varinjlim_{I}A$ is an isomorphism.
+\end{lemma}
+\begin{proof}
+Check that $\{A_{f(j)}\to\varinjlim_{I}A\}$ satisfies the necessary and sufficient conditions:
+\begin{enumerate}
+\item For all $a\in\varinjlim_{I}A$, there exists $j$ and $a_j\in A_{f(j)}$ such that $a_j\mapsto a$. We know that there exists some $i$ and $a_i\in A$ such that $a_i\mapsto a$. Pick $j$ such that $f(j)\geq i$, so we get a map $a_i\to a_{f(j)}$, and by compatibility, we get $a_{f(j)}\mapsto a$.
+\item The other condition is also just as easy.
+\end{enumerate}
+\end{proof}
+This is a very convenient condition.
+\begin{example}
+I had a perverse way of constructing $\QQ$ by using the divisibility directed system. A much simpler (linear!) directed system is $\Z\xrightarrow{2}\Z\xrightarrow{3}\Z\xrightarrow{4}\Z\to\cdots$. This has the same colimit as the divisibility directed system because $n|n!$, so we have a cofinal map between directed systems.
+\end{example}
+How about the direct limits in the \v{C}ech cohomology case?
+\begin{example}
+Do I have a map $\cHH^\ast(K,L)\to\cHH^\ast(K)$? Suppose:
+\begin{equation*}
+\xymatrix{K\ar@{^(->}[d] & L\ar@{^(->}[d]\ar@{_(->}[l] \\ U & V\ar@{_(->}[l]}
+\end{equation*}
+Then $\cHH^p(K,L)=\varinjlim_{(U,V)\in\mathcal{U}_{K,L}}H^p(U,V)$ and $\cHH^p(K)=\varinjlim_{U\in\mathcal{U}_K}H^p(U)$. I have a map of directed sets $\mathcal{U}_{K,L}\to\mathcal{U}_K$ by sending $(U,V)\mapsto U$. I didn't have to use cofinality. I want a long exact sequence, though, and I'm going to do this by saying that it's a directed limit of a long exact sequence. I'm going to have to have all of these various \v{C}ech cohomologies as being the directed limit over the \emph{same} indexing set.
+
+I'd really like to say that $\cHH^p(K)=\varinjlim_{U\in\mathcal{U}_K}H^p(U)\cong \varinjlim_{(U,V)\in\mathcal{U}_{K,L}}H^p(U)$. Thus I need to show that $\mathcal{U}_{K,L}\to\mathcal{U}_K$ where $(U,V)\mapsto U$ is cofinal. This is easy, because if $U\in\mathcal{U}_K$, just pick $(U,U)$, i.e., $\mathcal{U}_{K,L}\to\mathcal{U}_K$ is cofinal. How about $\mathcal{U}_{K,L}\to\mathcal{U}_L$ by $(U,V)\mapsto V$; is it cofinal? Yes! For $V\in\mathcal{U}_L$, pick $(X,V)$! This means that $\cdots\cHH^{p-1}(L)\to\cHH^p(K,L)\to\cHH^p(K)\to\cHH^p(L)\to\cHH^{p+1}(K,L)$ is $\varinjlim_{\mathcal{U}_{K,L}}\left(\cdots\to H^{p}(U,V)\to\cdots\right)$, and hence exact.
+\end{example}
+How about excision? I need this to get to Mayer-Veitoris!
+\begin{lemma}
+Assume $X$ is normal and $A,B$ are closed subsets. Then $\cHH^p(A\cup B,B)\to\cHH^p(A,A\cap B)$ is an isomorphism. 
+\end{lemma}
+\begin{proof}
+Well, $\cHH^p(A\cup B,B)$ is $\varinjlim$ over $\mathcal{U}_{A\cup B,B}$ and $\cHH^p(A,A\cap B)$ is $\varinjlim$ over $\mathcal{U}_{A,A\cap B}$. Let $W\supseteq A$ and $Y\supseteq B$ are neighborhoods. I claim that $\mathcal{U}_A\times\mathcal{U}_B\to\mathcal{U}_{A\cup B,B}$ sending $(W,Y)\mapsto (W\cup Y,Y)$ and $\mathcal{U}_A\times\mathcal{U}_B\to\mathcal{U}_{A,A\cap B}$ sending $(W,Y)\mapsto (W,W\cap Y)$ are cofinal.
+
+If I give you $(U,V)\in \mathcal{U}_{A\cup B,B}$, define $(W,V)\in\mathcal{U}_A\times\mathcal{U}_B$ where $W=U$ and $Y=V$, so $\mathcal{U}_A\times\mathcal{U}_B\to\mathcal{U}_{A\cup B,B}$ is surjective, hence cofinal. The latter is trickier. Let $U\supseteq A$ and $V\supseteq A\cap B$. Here's where normality comes into play. Separate $B-V$ from $A$. Let $T\supseteq B-V$. Shit. \emph{Shit!}
+
+Maybe I'll leave this to you. I'll put this on the board on Wednesday. Anyway, I'll use normality to show that $\mathcal{U}_A\times\mathcal{U}_B\to\mathcal{U}_{A,A\cap B}$ is cofinal, and thus this verifies excision -- so you actually have excision.
+\end{proof}

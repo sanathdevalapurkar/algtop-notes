@@ -1,0 +1,93 @@
+\section{A few more things about coefficients, cohomology}
+Problem Set 5 now due Friday! Recall our example where we let $\cI=(\Z_{>0},|)$. You can consider $\cI\to\mathbf{Ab}$, say assigning to each $i$ the integers $\Z$, and $f_{ij}:\Z\xrightarrow{j/i}\Z$. The colimit is $\QQ$, where you send $X_n\to\QQ$ via $1\mapsto \frac{1}{n}$. It's rather natural. But it's not the simplest way to define $\QQ$. You just could have defined $\QQ=\varinjlim(\Z\xrightarrow{2}\Z\xrightarrow{3}\Z\xrightarrow{4}\Z\to\cdots)$.
+
+We saw that $\varinjlim$ is exact, that it commutes with tensor products, and that homology commutes with direct limits. So if I had a chain complex $C_\bullet$ of abelian groups, then the process of computing homology involves exact sequences. If I want to compute:
+\begin{equation*}
+ H(C_\bullet\otimes\QQ)= H(C_\bullet\otimes\varinjlim \Z)= H(\varinjlim(C_\bullet\otimes\Z))= H(\varinjlim C_\bullet)=\varinjlim H(C_\bullet)= H(C_\bullet)\otimes\varinjlim \Z= H(C_\bullet)\otimes\QQ
+\end{equation*}
+Thus $-\otimes\QQ$ is exact, i.e., $\QQ$ is \emph{flat} over $\Z$, so $\Tor^\ZZ_1(M,\QQ)=0$. By UCT, this means that $ H_\ast(X)\otimes \QQ\simeq H_\ast(X;\QQ)$.
+\begin{definition}
+The $n$th Betti number of $X$ is defined to be $\beta_n:=\dim_\QQ H_n(X;\QQ)$.
+\end{definition}
+The Euler characteristic can just as well have been defined as $\chi(X)=\sum^\infty_{n=0}(-1)^n\beta_n$.
+
+Oh, let me ask if 11 am works for those of you who are going to take 18.906. OK? It seems like it's too early.
+
+Anyway, every space has a diagonal map $X\xrightarrow{\Delta}X\times X$. This induces a map $ H_\ast(X;R)\to H_\ast(X\times X;R)$, where $R$ is a PID. But now, we have a K\"{u}nneth map $\alpha: H_\ast(X;R)\otimes_R H_\ast(X;R)\to H_\ast(X\times X;R)$. We can get some kind of comultiplication if $\alpha$ is an isomorphism. And, well, the K\"{u}nneth theorem says that $\Tor^R_1( H_\ast(X;R), H_\ast(X;R))=0$ if and only if $\alpha$ is an isomorphism. This condition is satisfied, for example, if each $ H_n(X;R)$ is flat over $R$ for all $n$ (for example, free over $R$). A special case is when $R$ is a field. So you get a comultiplication $\Delta: H_\ast(X;R)\to H_\ast(X;R)\otimes_R H_\ast(X;R)$ if this condition is satisfied.
+
+This diagonal map has many properties.
+\begin{definition}
+Let $R$ be a ring. A (graded, bounded below) coalgebra over $R$ is a (graded) $R$-module $M$ with a multiplication $\Delta:M\to M\otimes_R M$ and an augmentation map $\varepsilon:M\to R$ such that all of the following diagrams commute:
+\begin{equation*}
+\xymatrix{ & M\ar[d]\ar[dr]\ar[dl] & \\
+R\otimes_R M & M\otimes_R M\ar[l]^{\varepsilon\otimes 1}\ar[r]^{1\otimes\varepsilon} & M\otimes_R R}
+\end{equation*}
+Where the diagonal maps are the canonical isomorphisms. And you have coassociativity:
+\begin{equation*}
+\xymatrix{
+	M\ar[r]^{\Delta}\ar[d]^{\Delta} & M\otimes_R M\ar[d]^{\Delta\otimes 1}\\
+	M\otimes_R M\ar[r]_{1\otimes\Delta} & M\otimes_R M\otimes_R M
+}
+\end{equation*}
+And it's cocommutative (he'll just say commutative because there's no need to say ``co'' if we know we're working with coalgebras, but I want to write it anyway -- I'll probably abuse it though) if:
+\begin{equation*}
+\xymatrix{
+	 & M\ar[dl]^\Delta\ar[dr]^\Delta &\\
+	M\otimes_R M\ar[rr]^{\tau} & & M\otimes_R M
+}
+\end{equation*}
+Where $\tau(x\otimes y)=(-1)^{|x|\cdot|y|}y\otimes x$ is the twisting map.
+\end{definition}
+\begin{example}
+The K\"{u}nneth map is coassociative and cocommutative.
+\end{example}
+Consider:
+\begin{equation*}
+\xymatrix{S_\ast(X)\otimes S_\ast(Y)\ar[r]^{\tau}\ar[d]^{\times} & S_\ast(Y)\otimes S_\ast(X)\ar[d]^{\times}\\
+S_\ast(X\times Y)\ar[r]^{\tau_\ast} & S_\ast(Y\times X)}
+\end{equation*}
+Where $\tau$ is as defined above on the tensor product and $\tau$ is also used to denote the twisting map $X\times Y\to Y\times X$. And this diagram commutes up to chain homotopy.
+\begin{corollary}
+Let $k$ be a field. Then $ H_\ast(X;k)$ has the natural structure of a cocommutative graded coalgebraic structure. 
+\end{corollary}
+I could just talk about coalgebras. But one of my friends told me that nobody in France knew what coalgebras were. So we're going to talk about cohomology, and get an algebra structure. Some say that cohomology is better because you have algebras, but that's more of a sociological statement than a mathematical one.
+\begin{slogan}
+Cohomology gives algebras. It's a contravariant functor on spaces.
+\end{slogan}
+A better reason for looking a cohomology is that there are many geometric constructions that pull back. For example, if I have some covering space $\widetilde{X}\to X$, and I have a map $f:Y\to X$, I get a pullback covering space $f^{\ast}\widetilde{X}$. A better example is vector bundles (that we'll talk about in 18.906) -- they don't push out, they pullback. This'll give the theory of \emph{characteristic classes}. Another even better reason is that cohomology is the target of the Poincar\'{e} duality map.
+\begin{definition}
+Let $N$ be an abelian group. A singular $n$-cochain on $X$ with coefficients in $N$ is a function $\Sin_n(X)\to N$. 
+\end{definition}
+If $N$ is an $R$-module, then I can extend linearly to get a map $S_n(X;R)\to N$.
+\begin{notation}
+Write $S^n(X;N):=\Map(\Sin_n(X);N)=\Hom_R(S_n(X;R);N)$.
+\end{notation}
+This is going to give me something contravariant, that's for sure. But I want to get a cochain complex $(S^\ast(X;N),d)$. Cochain means that the differential increases the degree.
+
+I have a map $(-,-):S^n(X;N)\otimes S_n(X;R)\to N$ given by evaluation. I want $d$ on $S^\ast(X;N)$ that makes the map $S^n(X;N)\otimes S_n(X;R)\to N$ is a chain map where we regard $N$ as a chain complex with zeros everywhere except in dimension $0$. But the way I've said it doesn't quite make sense because $S^\ast(X;N)$ isn't a chain complex! So let $S^\ast(X;N)$ be a chain complex with $S^n(X;N)$ in dimension $(-n)$. But now it's not bounded below. So, to be honest, I should say that we're going to make a decision. If $C_\bullet,D_\bullet$ aren't necessarily bounded below chain complex, then $(C_\bullet\otimes D_\bullet)_n:=\bigoplus_{i+j=n}C_i\otimes D_j$.
+
+Let $f\in S^n(X;R)$ and $\sigma\in S_n(X;R)$. This is a chain map if $d (f,\sigma)=0$. And $d(f,\sigma)=(df,\sigma)+(-1)^{|f|}(f,d\sigma)$. Let me erase this. This doesn't make sense. Scratch that. Let's start over.
+
+Let $f\in S^{n+1}(X;R)$ and $\sigma\in S_n(X;R)$. Then $(df,\sigma)+(-1)^{|f|}(f,d\sigma)=d(f,\sigma)=0$. So $(df)(\sigma)=(-1)^{|f|+1}f(d\sigma)$. That's what the differential is. This makes $S^\ast(X;N)$ a cochain complex. So you can consider its homology.
+\begin{definition}
+The $n$th cohomology of $X$ with coefficients in $N$ is $ H^n(X;N):= H^n(S^\ast(X;N))$. This is a contravariant functor on $\mathbf{Top}$.
+\end{definition}
+If you fix $X$, I get a covariant functor $ H^n(X;-)$ on $\mathbf{Mod}_R$.
+\begin{construction}
+I have a chain map $(,):S^\ast(X;N)\otimes_R S_\ast(X;R)\to N$. I can apply homology to this, to get $\alpha: H^\ast(X;N)\otimes_R H_\ast(X;R)\to H(S^\ast(X;N)\otimes_R S_\ast(X;R))$. In particular, you get a natural pairing $(,): H^\ast(X;N)\otimes_R H_\ast(X;R)\xrightarrow{\alpha} H(S^\ast(X;N)\otimes_R S_\ast(X;R))\xrightarrow{(,)}N$. This ``evaluation map'' is called the Kronecker pairing.
+\end{construction}
+\begin{warning}
+$S^n(X;\Z)=\Map(\Sin_n(X);\Z)=\prod_{\Sin_n(X)}\Z$, which is probably an uncountable product. An awkward fact is that this is never free abelian.
+\end{warning}
+\begin{construction}
+If $A\subseteq X$, there is a restriction map $S^n(X;N)\to S^n(A;N)$. There is an injection $\Sin_n(A)\hookrightarrow \Sin_n(X)$. And as long as $A$ is empty, I can split this. So any function $\Sin_n(A)\to N$ extends to $\Sin_n(X)\to N$. This means that $S^n(X;N)\to S^n(A;N)$ is surjective. You can define the kernel as $S^n(X,A;N)$, which sits in $0\to S^n(X,A;N)\to S^n(X;N)\to S^n(A;N)\to 0$. This gives the \emph{relative cochains}.
+\end{construction}
+I can take the homology of this sexseq to get a lexseq:
+\begin{equation*}
+\xymatrix{
+	\cdots & & \\
+	 H^1(X,A;N)\ar[r] & H^1(X;N)\ar[r] & H^1(A)\ar[ull]^{\delta}\\
+	 H^0(X,A;N)\ar[r] & H^0(X;N)\ar[r] & H^0(A)\ar[ull]^{\delta}
+}
+\end{equation*}
+And $ H^0(X;N)$ sits in the cokernel of $\Map(\Sin_0(X),N)\to \Map(\Sin_1(X),N)$, so that $ H^0(X;N)=\Map(\pi_0(X),N)$.

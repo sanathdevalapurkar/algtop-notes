@@ -1,0 +1,93 @@
+\section{CW-complexes and cellular homology}
+Recall:
+\begin{definition}
+A \emph{CW-complex} is a space $X$ with a sequence of subspaces $\emptyset=X_{-1}\subseteq X_0\subseteq X_1\subseteq\cdots\subseteq X$ (could be an infinite sequence) such that for all $n$, there is a map $f:\coprod_{\alpha\in A_n}S^{n-1}_\alpha\to X_{n-1}$ (called the \emph{attaching map}), such that there is a pushout diagram like this:
+\begin{equation*}
+\xymatrix{\coprod_{\alpha\in A_n}S^{n-1}_\alpha\ar[r]^f\ar@{^(->}[d]_i & X_{n-1}\ar[d]\\
+\coprod_{\alpha\in A_n}D^n_\alpha\ar[r] & X_{n}}
+\end{equation*}
+And $X=\bigcup X_n$, topologically (i.e. $A\subseteq X$ is open if and only if $A\cap X_n$ is open for all $n$). Often, $X_n$ is written $\mathrm{Sk}_n(X)$, and is called the $n$-skeleton of $X$.
+\end{definition}
+\begin{remark}
+This means that if you ignore the topology, i.e., as sets: $X=\coprod_{n\geq 0}\left(\coprod_{\alpha\in A_n}\mathrm{Int}(D^n_\alpha)\right)$ where $\mathrm{Int}(D^n)=\{x\in D^n: |x|<1\}$ (the interior of $D^n$), so that $\mathrm{Int}(D^0)=D^0=\ast$. The $\mathrm{Int}(D^n_\alpha)$ are called ``open $n$-cells''. Note that the open $n$-cells are not generally open in the topology on $X$.
+\end{remark}
+\begin{example}
+The $n$-sphere $S^n$. Let $\mathrm{Sk}_0(S^n)=\ast=\mathrm{Sk}_1(S^n)=\cdots=\mathrm{Sk}_{n-1}(S^n)\subseteq \mathrm{Sk}_n(S^n)=S^n$. We attach it by using the pushout:
+\begin{equation*}
+\xymatrix{S^{n-1}\ar[d]\ar[r] & \ast\ar@{^(->}[d]\\
+D^n\ar[r] & S^n}
+\end{equation*}
+Here's another CW-structure. Let $\mathrm{Sk}_0(S^n)=S^0=S^n\cap \mathbf{R}^1\langle \mathbf{e}_1\rangle$, $\mathrm{Sk}_1(S^n)=S^{1}=S^n\cap\mathbf\mathbf{R}\langle \mathbf{e}_1,\mathbf{e}_2\rangle$, $\mathrm{Sk}_2(S^n)=S^2=S^n\cap\mathbf{R}\langle \mathbf{e}_1,\mathbf{e}_2,\mathbf{e}_3\rangle$, etc. until $\mathrm{Sk}_n(S^n)=S^n$. I have to give maps $u,\ell:D^k\to S^k$ so that you have a pushout:
+\begin{equation*}
+\xymatrix{D^k\ar[r] & S^k\\
+S^{k-1}\ar@{^(->}[u]\ar@{=}[r] & \mathrm{Sk}_k(S^n)\ar@{^(->}[u]}
+\end{equation*}
+Let $u(x)=(x,\sqrt{1-|x|^2})$ and $\ell(x)(x,-\sqrt{1-|x|^2})$ where $x\in D^k$. Clearly $u,\ell$ take values in $S^k$.
+\end{example}
+There's another definition I have to make.
+\begin{definition}
+Let $X$ be a CW-complex. A subcomplex of $X$ is a subspace $Y\subseteq X$ such that $\emptyset\subseteq Y\cap X_0\subseteq Y\cap X_1\subseteq\cdots\subseteq Y\cap X_k\subseteq \cdots\subseteq Y$ is a CW-structure on $Y$.
+\end{definition}
+\begin{example}
+$X_n\subseteq X$ is a subcomplex of a CW-complex $X$. It's not that hard to see why. In particular, $S^0\subseteq S^1\subseteq S^2\subseteq\cdots\subseteq \bigcup_{n\geq 1}S^n=:S^\infty$. This of finite type, but isn't finite-dimensional.
+\end{example}
+\begin{lemma}
+$S^\infty$ is contractible.
+\end{lemma}
+\begin{proof}
+$S^0$ itself is not contractible, but attaching two $1$-cells makes this contractible. Similarly, $S^1$ isn't contractible, but attaching two $2$-cells makes this contractible. This is the idea. You have $S^{k-1}\times I\to S^k$ by $(x,t)\mapsto u(tx+(1-t)\mathbf{e}_1)$ where $u$ is the map we defined above. Therefore we get a map $S^\infty\times I\to S^\infty$ that's a contracting homotopy.
+\end{proof}
+\begin{example}
+Recall $\mathbf{RP}^n=S^n/\sim$ where $x\sim -x$. There's a map from $S^n\to\mathbf{RP}^n$ that's a double cover. Let me propose a CW-decomposition. We have:
+\begin{equation*}
+\xymatrix{\cdots\ar@{^(->}[r] & S^{k-1}\ar@{^(->}[r]\ar[d] & S^k\ar[d]\ar[r] & \cdots\ar[r] & S^n\ar[d]\\
+\cdots\ar@{^(->}[r] & \mathbf{RP}^{k-1}\ar@{^(->}[r] & \mathbf{RP}^k\ar@{^(->}[r] & \cdots\ar@{^(->}[r] & \mathbf{RP}^n}
+\end{equation*}
+We claim that this is a CW-decomposition. We have a double cover $S^1\to\mathbf{RP}^1=S^1$. The maps $S^{k-1}\to\mathbf{RP}^{k-1}$ are not degree $2$ maps -- they're different spaces! If we use the double cover $S^{k-1}\to\mathbf{RP}^{k-1}$, then we claim that there is a pushout:
+\begin{equation*}
+\xymatrix{\mathbf{RP}^{k-1}\ar@{^(->}[r]& \mathbf{RP}^k\ar@{^(->}[r] & \cdots\ar@{^(->}[r] & \bigcup_{k\geq 0}\mathbf{RP}^k=\mathbf{RP}^\infty\\
+S^{k-1}\ar[u]^{\text{double cover}}\ar[r] & D^k\ar[u]}
+\end{equation*}
+This is true if you notice that the preimage of any point of $\mathbf{RP}^k$ must be two points, one of which must be in the upper hemisphere, which is a disk, unless both points are on the equatorial sphere.
+\end{example}
+\subsection{Homology of CW-complexes}
+Consider:
+\begin{equation*}
+\xymatrix{A\ar@{^(->}[r]\ar[d]^f & B\ar[r]\ar[d] & B/A\ar@{-->}[d]\\
+X\ar@{^(->}[r] & X\cup_f B\ar[r] & (X\cup_fB)/X}
+\end{equation*}
+By a diagram chase, the dotted arrow exists and is continuous. This is actually a pointed map. You can see that this is a homeomorphism. What if this is part of a CW-structure?
+\begin{equation*}
+\xymatrix{\coprod_{\alpha}S^{k-1}\ar@{^(->}[r]\ar[d]^f & \coprod_{\alpha}D^k_\alpha\ar[r]\ar[d] & \bigvee_{\alpha}S^k_\alpha\ar@{-->}[d]\\
+X_{k-1}\ar@{^(->}[r] & X_k\cup_f B\ar[r] & X_k/X_{k-1}}
+\end{equation*}
+where $\bigvee$ is the wedge product (disjoint union with all basepoints identified). Then $\bigvee_{\alpha}S^k_\alpha$ is a bouquet of spheres. So $X_k/X_{k-1}\cong\bigvee_{\alpha}S^k_\alpha$. We know the homology of spheres very well by now, so let's exploit this.
+\begin{lemma}
+$ H_q(X_k,X_{k-1})\to H_q(X_k/X_{k-1},\ast)$ is an isomorphism.
+\end{lemma}
+\begin{proof}
+Later.
+\end{proof}
+But now, we know $ H_q(X_k/X_{k-1},\ast)$ very well! It's exactly $\widetilde{ H}_q(\bigvee_{\alpha\in A_k}S^k_\alpha)\cong\begin{cases}\Z[A_k] & q=k \\ 0 & q\neq k\end{cases}$. Therefore the relative homology $ H_q(X_k,X_{k-1})$ counts the number of $k$-cells of $X$.
+\begin{definition}
+Let $C_k(X):= H_k(X_k,X_{k-1})$. This is the ``cellular $k$-chains'' of $X$.
+\end{definition}
+\begin{corollary}
+There's an exact sequence:
+\begin{equation*}
+\xymatrix{ & & H_{k+1}(X_k,X_{k-1})=0\ar[dll]\\
+ H_k(X_{k-1})\ar[r] & H_k(X_k)\ar[r] & C_k(X)\ar[dll]\\
+ H_{k-1}(X_{k-1})\ar[r] & H_{k-1}(X_k)\ar[r] & H_{k-1}(X_k,X_{k-1})=0}
+\end{equation*}
+And in other dimensions, $ H_q(X_{k-1})\cong H_q(X_k)$ for $q\neq k,k-1$. So:
+\begin{enumerate}
+\item We have maps $ H_q(X_k)\to H_q(X_{k+1})\to\cdots$ that are all isomorphisms for $q<k$. (There was a lot of confusion here about what $q$ is greater than or less than). All of these map to $ H_q(X)$. There's another lemma that I will defer again:
+	\begin{lemma}
+	This limit $ H_q(X_k)\to H_q(X_{k+1})\to\cdots\to H_q(X)$ is an isomorphism.
+	\end{lemma}
+	\begin{proof}
+	Deferred.
+	\end{proof}
+\item (There was a bit of confusion at this point, I'm not sure on what exactly.) $ H_q(X_0)\to H_q(X_1)\to\cdots\to H_q(X_k)$ are all isomorphisms for $q>k$. Agreed? That's not what I wanted to say. I'll continue this on Wednesday. It's not supposed to be confusing.
+\end{enumerate}
+\end{corollary}

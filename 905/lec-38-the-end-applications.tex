@@ -1,0 +1,90 @@
+\section{Applications}
+Please check exam schedule! Also, a sample exam is posted. This is the payoff day. All this stuff about Poincare duality has got to be good for something. Recall:
+\begin{theorem}[Fully relative duality]
+Let $M$ be a $R$-oriented $n$-manifold. Let $L\subseteq K\subseteq M$ be compact ($M$ need not be compact). Then $[M]_K\in H_n(M,M-K)$, and capping gives an isomorphism:
+$$\cHH^p(K,L;R)\xrightarrow{\cap[M]_k,\cong}H_{n-p}(M-L,M-K;R)$$
+\end{theorem}
+Today we'll think about the case $L=\emptyset$, so this is saying:
+$$\cHH^p(K;R)\xrightarrow{\cap[M]_k,\cong}H_{n-p}(M,M-K;R)$$
+\begin{corollary}
+$\cHH^q(K;R)=0$ for $q>n$.
+\end{corollary}
+We can contrast this with singular (co)homology. Here's an example:
+\begin{example}[Barratt-Milnor]
+A two-dimensional version $K$ of the Hawaiian earring, i.e., nested spheres all tangent to a point whose radii are going to zero. What they proved is that $H_q(K;\QQ)$ is uncountable for every $q>1$. But if you look at the \v{C}ech cohomology, stuff vanishes.
+\end{example}
+That's nice.
+
+How about an even more special subcase? Suppose $M=\RR^n$. The result is called Alexander duality. This says:
+\begin{theorem}[Alexander duality]
+If $\emptyset\neq K\subseteq \RR^n$ be compact. Then $\cHH^{n-q}(K;R)\xrightarrow{\cong}\widetilde{H}_{q-1}(\RR^n-K;R)$
+\end{theorem}
+\begin{proof}
+We have the LES of a pair, which gives an isomorphism $\partial:H_q(\RR^n,\RR^n-K;R)\xrightarrow{\cong}\widetilde{H}_{q-1}(\RR^n-K;R)$, so the composition $\partial\circ(-\cap[M]_K)$ is an isomorphism by Poincare duality.
+\end{proof}
+For most purposes, this is the most useful duality theorem.
+\begin{example}[Jordan curve theorem]
+$q=1$ and $R=\Z$. Then this is saying that $\cHH^{n-1}(K)\xrightarrow{\cong}\widetilde{H}_0(\RR^n-K)$. But $\widetilde{H}_0(\RR^n-K)$ is free on $\#\pi_0(\RR^n-K)-1$ generators. If $n=2$, for example, and $K\cong S^1$, then $\cHH^{n-1}(K)=H^{n-1}(K)\cong H^{n-1}(S^1)$, so $H^1(S^1)\cong \widetilde{H}_0(\RR^2-K)$. Hence there are \emph{two} components in the complement of $K$. This could also be the topologist's sine curve as well. This is the Jordan curve theorem.
+\end{example}
+Consider the UCT, which states that there's a sexseq $0\to\Ext^1_\Z(H_{q-1}(X),\Z)\to H^q(X)\to\Hom(H_q(X),\Z)\to 0$ that splits, but not naturally. First, note that $\Hom(H_q(X),\Z)$ is always torsion-free. If I assume that $H_{q-1}(X)$ is finitely generated, then $\Ext^1_\Z(H_{q-1}(X),\Z)$ is a finite abelian group, but in particular it's torsion.
+
+The UCT is making the decomposition of $H^q(X)$ into its torsion-free and torsion parts. I can divide by torsion, so that $H^q(X)/\mathrm{tors}\cong \Hom(H_q(X),\Z)$. But there's also an isomorphism $\Hom(H_q(X)/\mathrm{tors},\Z)\to \Hom(H_q(X),\Z)$ because $\Z$ is torsion-free. Therefore I get an isomorphism $\alpha:H^q(X)/\mathrm{tors}\to \Hom(H_q(X)/\mathrm{tors},\Z)$. I.e.:
+\begin{equation*}
+\xymatrix{
+	0\ar[r] & \Ext^1_\Z(H_{q-1}(X),\Z)\ar[r] & H^{q}(X)\ar[r]\ar[d] & \Hom(H_q(X),\Z)\ar[r] & 0\\
+ & & H^q(X)/\mathrm{tors}\ar[ur]^{\cong}\ar[r]^{\alpha} & \Hom(H_q(X)/\mathrm{tors}/\Z)\ar[u]^{\cong}
+}
+\end{equation*}
+Or I could say it like this: the Kronecker pairing can be quotiented by torsion, and you get an induced map $H^q(X)/\mathrm{tors}\otimes H_q(X)/\mathrm{tors}\to\Z$ is a perfect pairing, which means that the adjoint map $H^q(X)/\mathrm{tors}\xrightarrow{\cong}\Hom(H_q(X)/\mathrm{tors},\Z)$. Let's combine this with Poincare duality.
+
+Let $X=M$ be a compact oriented $n$-manifold. Then $H^{n-q}(X)\xrightarrow{-\cap[M],\cong}H_q(M)$, and so we get a perfect pairing $H^q(X)/\mathrm{tors}\otimes H^{n-q}(X)/\mathrm{tors}\to\Z$. And what is that pairing? It's the cup product! We have:
+\begin{equation*}
+\xymatrix{
+	H^q(M)\otimes H^{n-q}(M)\ar[r]\ar[d]_{1\otimes(-\cap [M])} & \Z\\
+	H^q(M)\otimes H_q(M)\ar[ur]_{\langle,\rangle}
+}
+\end{equation*}
+And, well:
+\begin{equation*}
+\langle a,b\cap [M]\rangle = \langle a\cup b,[M]\rangle
+\end{equation*}
+Thus the map $H^q(M)\otimes H^{n-q}(M)\to \Z$ is $a\otimes b\mapsto\langle a\cup b,[M]\rangle$, and it's a perfect pairing. This is a purely cohomological version, and is the most useful statement.
+\begin{example}
+Suppose $M=\CP^2=D^0\cup D^2\cup D^4$, and its homology is $\Z \, 0 \, \Z \, 0\, \Z$, and so its cohomology is the same. Let $a\in H^2(\CP^2)$. Then we have $H^2(\CP^2)\otimes H^2(\CP^2)\to \Z$, and so $a\cup a$ is a generator of $H^4(\CP^2)$, and hence specifies an orientation for $\CP^2$. The conclusion is that $H^\ast(\CP^2)=\Z[a]/(a^3)$ where $|a|=2$.
+
+How about $\CP^3$? It just adds a $6$-cell, so its homology is $\Z \, 0 \, \Z \, 0\, \Z \, 0 \, \Z$, and so its cohomology is the same. But then $a^3=a\cup a\cup a$ is a generator of $H^6(\CP^2)$, and etc. Thus in general, we have:
+$$H^\ast(\CP^n)=\Z[a]/(a^{n+1})$$
+These things are finite CW-complexes, so you find:
+\begin{equation}
+H^\ast(\CP^\infty)=\Z[a]
+\end{equation}
+\end{example}
+\begin{example}
+Suppose I look at maps $f:S^m\to S^n$. One of the most interesting things is that there are lots of non null-homotopic maps $S^m\to S^n$ if $m>2$. For example, $\eta:S^3\to S^2$ that's the attaching map for the $4$-cell in $\CP^2$. This is called the Hopf fibration. It's essential. Why is it nullhomotopic? If $\eta$ was null homotopic, then $\CP^2\simeq S^2\wedge S^4$. That's compatible with the cohomology in each dimension, but not into the cohomology ring! There's a map $S^2\wedge S^4\to S^2$ that collapses $S^4$, and the generator in $H^\ast(S^2)$ has $a^2=0$, so $a^2=0$ in $H^\ast(S^2\wedge S^4)$. But this is not compatible with our computation that $H^\ast(\CP^2)=\Z[a]/(a^3)$ where $|a|=2$.
+\end{example}
+
+With coefficients in a field $k$, then the torsion is zero, so you find that if $M$ is compact $k$-oriented, then if the characteristic of $k=2$, there's no condition for $M$ to be oriented, and if the characteristic of $k$ is not $2$, then $M$ is $\Z$-oriented. Thus we get that $H^q(M;k)\otimes_k H^{n-q}(M;k)\to k$ is a perfect pairing.
+\begin{example}
+Exactly the same argument as for complex projective space shows that:
+\begin{equation*}
+H^\ast(\RP^n;\FF_2)=\FF_2[a]/(a^{n+1})
+\end{equation*}
+where $|a|=1$. So:
+\begin{equation}
+H^\ast(\RP^\infty;\FF_2)=\FF_2[a]
+\end{equation}
+where $|a|=1$.
+\end{example}
+I'll end with the following application.
+\begin{theorem}
+Suppose $f:\RR^{m+1}\supseteq S^m\to S^n\subseteq \RR^{n+1}$ that is equivariant with respect to the antipodal action, i.e., $f(-x)=-f(x)$. Then $m\leq n$.
+\end{theorem}
+So there are \emph{no} equivariant maps from $S^m\to S^n$ if $m>n$!
+\begin{proof}
+Suppose I have a map like that: the map on spheres induces a map $\overline{f}:\RP^m\to\RP^n$. We claim that $H_1(\overline{f})$ is an isomorphism. Let $\pi:S^n\to\RP^n$ denote the map. Let $\sigma:I\to S^m$ be defined via $\sigma(0)=v$ and $\sigma(1)=-v$. So this gives a $1$-cycle $\sigma:I\to S^m\to\RP^m$, and $H_1(\RP^n)=[\pi\sigma]$ is generated by this thing. When I map this thing to $\RP^n$, we send $\pi\sigma$ to a generator. What we've actually proved, therefore, is that $H_1(\RP^m)\cong H_1(\RP^n)$. This is also true with mod $2$ coefficients, i.e., $H_1(\overline{f},\FF_2)\neq 0$.
+
+That means that $H^1(\overline{f};\FF_2)\neq 0$ by UCT. But what is this? This is a map $H^1(f;\FF_2):H^\ast(\RP^n;\FF_2)\to H^\ast(\RP^n;\FF_2)$, i.e., a map $\FF_2[a]/(a^{n+1})\to \FF_2[a]\to(a^{m+1})$. Thus $a\mapsto a$. There's not a lot of ways to do this if $m>n$. Thus what we've shown that $m\leq n$.
+\end{proof}
+This is the Borsuk-Ulam theorem from the '20s, I think. This is an example of how you can use the cohomology ring structure for projective space.
+
+Please check the website for details about your finals. I will ask you to sign a form, to make sure that you don't share the questions or that you haven't heard the questions beforehand. I have a fixed set of questions that'll guide the conversation.

@@ -1,0 +1,59 @@
+\section{More about categories, and computing the homology of a star-shaped region}
+Let $\mathrm{Vect}_{\mathbf{C}}$ be the category of vector spaces and linear transformations. Given a $\mathbf{C}$-vector space $V$, you can consider the dual $V^\ast=\Hom(V,\cc)$. Is this a functor? If you have a linear transformation $F:V\to W$, you get a map $F^\ast:W^\ast\to V^\ast$, so this is like a functor, but isn't strictly functor. This preserves composition and identities. Taking the dual therefore gives a functor $\mathrm{Vect}_\cc^{op}\to\mathrm{Vect}_\cc$, which is a \textit{contravariant} functor.
+\begin{definition}
+Given $\cc,\cd$. A contravariant functor is a functor from $\cc^{op}\to\cd$ where $\cc^{op}$ has the same objects as the category $\cc$ but with all morphisms reversed. There's a contravariant functor $\cc\to\cc^{op}$ that is the identity on objects and on morphisms.
+\end{definition}
+Let $\cc$ be a category, and let $Y\in\mathrm{ob}(\cc)$. We get a map $\cc^{op}\to\set$ that takes $X\mapsto \cc(X,Y)$, and takes a map $X\to W$ to the map defined by composition $\cc(W,Y)\to \cc(X,Y)$. This is called the functor that is represented by $Y$. It is very important to note that $\cc(-,Y)$ is contravariant, but $\cc(Y,-)$ is covariant.
+
+Recall that $\Deltab$ has objects $[0],[1],[2],\cdots$ and a functor $\Deltab\to\mathbf{Top}$ that sends $[n]\mapsto\Delta^n$. We get a map $\mathbf{Top}^{op}\to\set$ given by sending $X\mapsto\mathbf{Top}(\Delta^n,X)=:\Sin_n(X)$. The composition gives you a contravariant functor $\Delta^{op}\to\set$, which sends $[n]\mapsto\mathbf{Top}(\Delta^n,X)$. This, along with the description of what happens to the face and degeneracy maps (see psets!) is precisely the singular simplicial set of $X$. In other words:
+\begin{prop}[Really a definition...]
+Simplicial sets are precisely functors $\Deltab^{op}\to\set$, i.e., $s\set=\mathbf{Fun}(\Deltab^{op},\set)$. More generally, simplicial objects in a category $\cc$ are functors $\Deltab^{op}\to\cc$, i.e., $s\cc=\mathbf{Fun}(\Deltab^{op},\cc)$.
+\end{prop}
+(Note that $\mathbf{Fun}(\cc,\cd)$ is the category whose objects are functors and whose morphisms are natural transformations.) Semi-simplicial sets (only face maps, not necessarily degeneracy maps) in a category $\cc$ are simply $ss\cc=\mathbf{Fun}(\Deltab^{op}_{inj},\cc)$ where $\Deltab_{inj}$ consists of the objects of $\Deltab$ where the morphisms only consist of the injective maps.
+\begin{definition}
+Let $f:X\to Y$ be a morphism in a category $\cc$. Say that $f$ is a \textit{split epimorphism} if there exists $g:Y\to X$ (often called a section or a splitting) such that $Y\xrightarrow{g}X\xrightarrow{f}Y$ is the identity.
+\end{definition}
+\begin{example}
+Let $\cc=\set$. If $f:X\to Y$ is a map of sets, then this says that for every element of $Y$, there exists some element of $X$ whose image in $Y$ is the original element. This means that $f$ is surjective. Is every surjective map a split epimorphism? This reduces to the axiom of choice because proving that if $y\in Y$, the map $g:Y\to X$ can be constructed by choosing some $x\in f^{-1}(y)$.
+\end{example}
+\begin{definition}
+Say that $g:Y\to X$ is a split monomorphism if there is $f:X\to Y$ such that $f\circ g=1_Y$.
+\end{definition}
+\begin{example}
+Let $\cc=\set$. Claim: it's an injection. If $y,y^\prime\in Y$, and $g(y)=g(y^\prime)$, we want to show that $y=y^\prime$. Apply $f$, to get $f(g(y))=y=f(g(y^\prime))=y^\prime$. If $Y\neq \emptyset$, then every injection $g:Y\to X$ is a split mono.
+\end{example}
+\begin{example}
+An isomorphism is a split epi + split mono.
+\end{example}
+\begin{lemma}
+If $f:X\to Y$ is a split epi or mono in $\cc$, and you have a functor $F:\cc\to \cd$, then so is $F(f)$ in $\cd$.
+\end{lemma}
+\begin{proof}
+Trivial.
+\end{proof}
+\begin{example}
+Suppose $\cc=\mathbf{Ab}$, and you have a split epi $f:A\to B$. We have a map $g:B\to A$ so that $fg=1$. Clearly $f$ must be surjective. Consider the kernel of $f$, so we have a composition $\ker f\to A\to B$. We also have a map $B\to A$, so we can add, and get $\ker f\oplus B\xrightarrow{[i,g]} A$ where $i$ is the inclusion $\ker f\to A$. Left for reader: $[i,g]$ is an isomorphism.
+
+If $g:B\to A$ is a split mono, so there is $f:A\to B$ so that $fg=1$. Clearly $g$ is injective, and we get a map $B\to A\xrightarrow{p}\mathrm{coker}(g)$. We therefore get a map $A\xrightarrow{\begin{pmatrix}
+p \\ f
+\end{pmatrix}}\mathrm{coker}(g)\oplus B$. Left to reader again: this is an isomorphism.
+\end{example}
+We have to get into some topology, since it's on our agenda. Suppose I have a space $X$. There's always a unique map $X\to\ast$, which means categorically that $\ast$ is trivial. We have an induced map $ H_n(X)\to H_n(\ast)=\begin{cases}\mathbf{Z} & n=0\\
+0 & \text{else}\end{cases}$. Consider the equivalence class (also called the \textit{homology class} of the cycle $\sum a_ix_i$) $\left[\sum a_ix_i\right]\in H_0(X)$, where $x_i$ is a point in $X$. Under the induced map, this goes as: $\left[\sum a_ix_i\right]\mapsto \left[\sum a_i\ast\right]=\left(\sum a_i\right)\left[\ast\right]$. This is called the augmentation map. This map is a split epi, because we can always choose a point of $X$ and pull an element of $\mathbf{Z}$ back. This motivates the following definition.
+\begin{definition}
+A pointed space is a pair $(X,\ast)$, with $\ast\in X$ called the \textit{basepoint}.
+\end{definition}
+We have an inclusion $\ast\to X\to\ast$, so we get an induced map $\mathbf{Z}\xrightarrow{\eta} H_\ast(X)\xrightarrow{\epsilon}\mathbf{Z}$, and the composition is the identity. The map $\epsilon$ is the augmentation map we described above. This means, by our above analysis, we see that $ H_\ast(X)\cong \mathbf{Z}\oplus\mathrm{coker}\eta \cong\mathbf{Z}\oplus\ker\epsilon$. The homology $ H_\ast(X,\ast)=\mathrm{coker}\eta$, and this is called the reduced homology of $(X,\ast)$. It's isomorphic to $ H_\ast(X)$ in dimensions greater than $0$, but differs by a factor of $\mathbf{Z}$ in dimension $0$.
+
+We spent up a lot of time on categories, and didn't get to star-shaped regions. We'll pick this up on Friday, but we'll begin a little here.
+\begin{definition}
+A star-shaped region is a subspace $X$ of $\mathbf{R}^n$ for some $n$ such that $0\in X$, such that for all $x\in X$, and for all $t\in[0,1]$, $tx\in X$. 
+\end{definition}
+\begin{example}
+Any convex region containing the origin is star shaped.
+\end{example}
+\begin{theorem}
+The augmentation map $\epsilon: H_\ast(X)\to \mathbf{Z}$ is an isomorphism, i.e., $ H_0(X)\cong\mathbf{Z}$ and $ H_i(X)\cong 0$ for $i>0$.
+\end{theorem}
+The strategy of proof is that $\epsilon$ is induced by sending $X\to \ast$. We'll look at the chain map $S_\ast(x)\to\mathbf{Z}\to S_\ast(X)$. We'll show that this composite induces the same map in homology as the identity map, which means that the identity map factors through $\mathbf{Z}$, so we're done.
+

@@ -1,0 +1,104 @@
+\section{Tensor and Tor}
+Office hours are: for Hood, today from 1:30 to 3:30 in 2-390, and for me on Tuesday from 1 to 3 in 2-478. Point-set topology is the hardest part of this course, sorry for messing up the question on this week's pset. I like to emphasize the algebraic part.
+\subsection{Properties over $\otimes_R$}
+\begin{enumerate}
+\setcounter{enumi}{5}
+\item A ring is precisely specified by a map $R\otimes_\Z R\xrightarrow{\mu}R\xleftarrow{\eta}\Z$. You can define a ring purely diagramattically. Associativity is commutativity of the following diagram:
+\begin{equation*}
+\xymatrix{R\otimes R\otimes R\ar[r]^{\mu\otimes 1}\ar[d]^{1\otimes \mu} & R\otimes R\ar[d]^{\mu}\\
+R\otimes R\ar[r]^{\mu} & R}
+\end{equation*}
+The identity map is commutativity of the following diagram.
+\begin{equation*}
+\xymatrix{\Z\otimes R\ar[r]^{\eta\otimes 1}\ar[dr]_{\cong} & R\otimes R\ar[d]^{\mu} & R\otimes \Z\ar[l]^{1\otimes\eta}\ar[dl]_{\cong}\\
+& R & }
+\end{equation*}
+In fact, an $R$-module is an abelian group with a map $R\otimes M\xrightarrow{\varphi}M$ such that the following diagram commutes.
+\begin{equation*}
+\xymatrix{R\otimes R\otimes M\ar[r]^{\mu\otimes 1}\ar[d]^{1\otimes \eta} & R\otimes M\ar[d]^{\varphi}\\
+R\otimes M\ar[r]^{\varphi} & R}
+\end{equation*}
+If $A$ is an abelian group, then $R\otimes A$ is an $R$-module, where the multiplication is: $R\otimes(R\otimes A)\to (R\otimes R)\otimes A\xrightarrow{\mu\otimes 1}R\otimes A$. If $A$ is an abelian group, then $A\to R\otimes A$ sending $a\mapsto 1\otimes a$ is universal for maps from $A$ to an $R$-module. We say that it's ``initial''. This means that if $M$ is an $R$-module, there is a factorization:
+\begin{equation*}
+\xymatrix{A\ar[r]\ar[d]^f & R\otimes A\ar@{-->}[dl]\\
+M}
+\end{equation*}
+Where the map $R\otimes A\to M$ is an $R$-module homomorphism and the map $A\to M$ is an abelian group homomorphism. Why is this true? We have a map $R\otimes A\xrightarrow{1\otimes f}R\otimes M$, so the multiplication $\varphi:R\otimes M\to M$ is what we want. I.e., the extension is the composition:
+\begin{equation*}
+\xymatrix{A\ar[r]\ar[d]_f & R\otimes A\ar[d]^{1\otimes f}\ar[dl]|{\varphi\circ(1\otimes f)}\\
+M & R\otimes M\ar[l]^{\varphi}}
+\end{equation*}
+\begin{example}
+What if we let $A=\Z/n\Z$? Then if $B$ is an abelian group (i.e., a $\Z$-module), $B\otimes \Z/n\Z\cong B/nB$.
+\end{example}
+\item Consider $0\to \Z\xrightarrow{2}\Z\to \Z/2\Z\to 0$. Let's tensor with $\Z/2\Z$, to get $0\to \Z/2\Z\to\Z/2\Z\to\Z/2\Z\to 0$. This cannot be a sexseq! But it's clear that the surjection $\Z\to\Z/2\Z$ gives an isomorphism $\Z/2\Z\to\Z/2\Z$, i.e., $0\to \Z/2\Z\xrightarrow{0}\Z/2\Z\xrightarrow{\cong}\Z/2\Z\to 0$. This is one of the major tragedies, that tensoring isn't exact. Exact means preserves exact sequences. The moral is that tensoring isn't generally exact, but preserves cokernels. More precisely:
+\begin{prop}
+The functor $N\otimes M\otimes_R N$ preserves cokernels. What do I mean? This means that this functor is \emph{right exact}, i.e., if $N^\prime\xrightarrow{i} N\xrightarrow{p} N^{\prime\prime}\to 0$ is exact, then so is $M\otimes_R N^\prime\to M\otimes_R N\to M\otimes_R N^{\prime\prime}\to 0$.
+\end{prop}
+\begin{proof}
+We have:
+\begin{equation*}
+\xymatrix{M\otimes_R N^\prime\ar[r]^{1\otimes i} & M\otimes_R N\ar[r]\ar[d] & M\otimes_R N^{\prime\prime}\\
+ & M\otimes_R N/(\img(1\otimes i))=M\otimes_R N/I\ar@{-->}[ur]_{\overline{\phi}}}
+\end{equation*}
+At least we know that the composite $M\otimes_R N^\prime\to M\otimes_R N\to M\otimes_R N^{\prime\prime}$ is zero. But this means that the dotted map exists, because the image $I$ has to be sent to zero. The claim is that $\overline{\phi}$ is an isomorphism. We can construct an inverse to $\overline{\phi}$. It's easy to construct maps \emph{out} of tensor products. This inverse will be a map $M\otimes_R N^{\prime\prime}\xrightarrow{q}M\otimes_R N/I$. How do we construct maps out of a tensor product? Consider:
+\begin{equation*}
+\xymatrix{M\otimes_R N^{\prime\prime}\ar@{-->}[r]^{\overline{q}} & M\otimes_R N/I\\
+M\times N^{\prime\prime}\ar[u]\ar[ur]^q}
+\end{equation*}
+Where will $x\otimes y$ be sent? Let's pick $\overline{y}\in N$ such that $p\overline{y}=y$. I can do that because I supposed that $p$ was surjective in the first place. Maybe I'm using the axiom of choice. (By the way, if I had a split exact sequence, tensoring will preserve split exact sequences, but not general exact sequences.) Anyway, map $x\otimes y\mapsto x\otimes\overline{y}+I$. That's the only thing I can think of doing, and so we pray and hope that it works. Let's check that this is well-defined first.
+
+We know that $\overline{y}$ is only well-defined up to the image of something from $N^\prime$. So consider $\overline{y}^\prime=\overline{y}+iz$ for $z\in N^\prime$. These are the only possible lifts. Then we get $x\otimes\overline{y}^\prime=x\otimes(\overline{y}+iz)+x\otimes\overline{y}+x\otimes i(z)=x\otimes\overline{y}+(1\otimes i)(x\otimes z)\in x\otimes\overline{y}+I$. Luckily, we divided out by $I$. There's \emph{four} other things I have to check. I have to check that this is linear in each variable. This is just fussing around with the formula. Let's assume we've done that.
+
+Pretty much by construction, $\overline{q}$ is the inverse for $\overline{p}$. This is because $p$ takes $x\otimes\overline{y}+I$ to $x\otimes y$ because that's what $\overline{p}$ does -- it just applies $p$ to the second factor. 
+\end{proof}
+\end{enumerate}
+How about this failure of exactness? What can we do about that? Failure of exactness is bad, so let's try to repair it.
+
+Think of a sexseq of chain complexes (that are bounded below by $0$ and are nonnegatively graded) $0\to N^\prime_\bullet\to N_\bullet\to N^{\prime\prime}_\bullet\to 0$. We get an exact sequence $ H_0 N^\prime\to H_0 N\to H_0 N^\prime\prime\to 0$. We already know that this isn't exact on the left because we have a lexseq in homology (because $ H_1 N^\prime\prime$ need not be trivial). Let's imagine $M\otimes_R-$ as analogous to $ H_0$. We already have an example of a functor that is right exact but not left exact (namely $ H_0$), so this isn't unreasonable. I think I'll write down a theorem and finish the proof on Wednesday.
+\begin{theorem}
+There are functors $\Tor^R_n(M,-):\mathbf{Mod}_R\to\mathbf{Mod}_R$ for $n\geq 0$, where I have a fixed ring $R$ and a fixed $R$-module $M$, and natural transformations sending a sexseq $0\to N^\prime\to N\to N^{\prime\prime}\to 0$ to $\partial:\Tor^R_n(M,N^{\prime\prime})\to \Tor^R_{n-1}(M,N^\prime)$ such that you get a lexseq:
+\begin{equation*}
+\xymatrix{\cdots\ar[r] & \Tor^R_n(M,N)\ar[r] & \Tor^R_n(M,N^{\prime\prime})\ar[dll]\\
+\Tor^R_{n-1}(M,N^\prime)\ar[r] & \Tor^R_{n-1}(M,N)\ar[r] & \cdots}
+\end{equation*}
+such that $\Tor^R_0(M,N)=M\otimes_R N$. Basically, $\Tor$ fulfills the same role as homology.
+\end{theorem}
+Some properties are as follows.
+\begin{itemize}
+\item $\Tor^R_q(M,N)=0$ for $q>1$ is $R$ is a PID.
+\item $\Tor^R_q(M,F)=0$ for $q>0$ if $F$ is a free $R$-module.
+\end{itemize}
+Let's explore what this gives us before we construct it.
+\begin{example}
+Let $R=\Z$, and consider the sexseq $0\to \Z\xrightarrow{n}\Z\to\Z/n\Z\to 0$. Because $\Z$ is free, you have:
+\begin{equation*}
+\xymatrix{\cdots\ar[r] & 0\ar[r] & \Tor^\Z_n(C_\bullet)(M,\Z/n\Z)\ar[dll]\\
+\Tor^\Z_{0}(M,\Z)=M\otimes\Z\ar[r]^{\times n} & \Tor^\Z_{0}(M,\Z)=M\otimes\Z\ar[r] & \Tor^\Z_0(M,\Z/n\Z)=M/nM\ar[r] & 0}
+\end{equation*}
+So $\Tor^\Z_1(M,\Z/n\Z)=\ker(M\xrightarrow{n}M)$. This is the \emph{$n$-torsion} of $M$. That's the origin of $\Tor$. This is the key example to keep in mind. He said something like ``In general, $\Tor$ isn't free, but it is here because $\Z$ is a PID.''
+\end{example}
+Take a general $R$-module $N$. You can always take a free module $F_0$ that surjects onto $N$, i.e., $F_0\to N\to 0$. For example, you can let $F_0$ be the free $R$-module on the underlying set of $N$. Form a sexseq $0\to K_0\to F_0\to N\to 0$. You have an exact sequence for $n>1$:
+\begin{equation*}
+\xymatrix{\cdots\ar[r] & 0\ar[r] & \Tor^R_n(M,N)\ar[dll]\\
+\Tor^R_{n-1}(M,K_0)\ar[r] & 0\ar[r] & \cdots}
+\end{equation*}
+So for $n>1$, $\Tor^R_n(M,N)\to \Tor^R_{n-1}(M,K_0)$ is an isomorphism. If $n=1$, then:
+\begin{equation*}
+\xymatrix{\cdots\ar[r] & 0\ar[r] & \Tor^R_1(M,N)\ar[dll]\\
+M\otimes_R K_0\ar[r] & M\otimes_R F_0\ar[r] & M\otimes_R N\ar[r] & 0}
+\end{equation*}
+The maps between the tensors might be hard to compute, but you can compute this as a kernel.
+
+But I've not constructed the functors yet. I just said to assume that it exists. This was so much fun, taking a free module and surjecting it onto $N$. What I'm trying to do is:
+\begin{equation*}
+\xymatrix{\cdots\ar@{-->}[rr] & & F_2\ar[dr]\ar@{-->}[rr]^d & & F_1\ar[dr]\ar@{-->}[rr]^d & & F_0\ar[dr]\\
+& K_2\ar[ur]\ar[dr] & & K_1\ar[ur]\ar[dr] & & K_0\ar[ur]\ar[dr] & & N\ar[dr]\\
+0\ar[ur] & & 0\ar[ur] & & 0\ar[ur] & & 0\ar[ur] & & 0}
+\end{equation*}
+Where $F_{i+1}$ surjects onto $K_i$ and the $F_i$ are free $R$-modules. Splicing these exact sequences gives you a exact sequence in the top row. This is what's called a \emph{free resolution of $N$}. You can actually write this as:
+\begin{equation*}
+\xymatrix{\cdots\ar[r] & F_2\ar[r] & F_1\ar[r] & F_0\ar[r]\ar[d] & 0\\
+ & & & N & }
+\end{equation*}
+The $F_0$ are generators of $N$, the $F_1$ are relations, the $F_2$ are relations between relations, and so on. We say that these are syzygies. The singular term is syzygy.

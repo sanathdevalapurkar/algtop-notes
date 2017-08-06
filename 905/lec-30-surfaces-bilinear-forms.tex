@@ -1,0 +1,102 @@
+\section{Surfaces and symmetric nondegenerate bilinear forms}
+Never mind, I decided to TeX this.
+\todo[inline]{I think that this should be in an appendix...}
+\subsection{Case of Poincar\'{e} duality}
+Let $M$ be a compact manifold of dimension $n$ (this is the kind of thing most of the world cares about). This whole lecture will be happening with coefficients in $\FF_2$. There is a cup product pairing $ H^p(M)\otimes H^q(M)\to H^{p+q}(M)$.
+\begin{theorem}
+There exists a unique class $[M]\in H_n(M)$, called the fundamental class, such that there's a pairing $ H^p(M)\otimes H^q(M)\xrightarrow{\cup} H^n(M)\xleftarrow{\langle -,[M]\rangle}\FF_2$ when $p+q=n$. This pairing is a nonsingular (aka perfect) pairing, i.e., the map $ H^p(M)\to\Hom( H^q(M),\FF_2)$ defined by $x\mapsto(y\mapsto\langle x\cup y,[M]\rangle)$ is an isomorphism.
+\end{theorem}
+One thing I should say is that $ H_\ast(M)$ is zero in dimensions above $n$, and $ H_i(M)$ are finitely generated.
+\begin{corollary}
+From the UCT, it follows that $ H^p(M)\xrightarrow{\cong}\Hom( H^q(M),\FF_2)= H_q(M)$. The corresponding classes under this association are said to be Poincar\'{e} dual to each other.
+\end{corollary}
+\begin{remark}
+This means I get a pairing $ H_q(M)\otimes H_q(M)\to \FF_2$ in homology when $p+q=n$. This is called the \emph{intersection pairing}. If you have one $p$-cycle and one $q$-cycle, this means that I can make them intersect transversely, i.e., they intersect in points -- or not at all. I count the number of points modulo $2$, and this is the element in $\FF_2$.
+\end{remark}
+\begin{example}
+Let $M=T^2=S^1\times S^1$. We know that $ H^1(M)=\FF_2\times\FF_2=\langle x,y\rangle$ where $x^2=0$ and $y^2=0$, and $xy\neq 0$ (this is the generator of $ H^2(M)$). In terms of homology, this means that I can pick cycles on the torus so that they intersect on one point. This makes sense. Also, $x^2=0=y^2$ because the second copy of $x$ and $y$ can just be moved so that they don't intersect.
+\end{example}
+\begin{example}[Especially interesting case]
+If $n=2k$, I get a symmetric bilinear form on $ H_k(M)$ via $ H_k(M)\otimes H_k(M)\to \FF_2$ that is nondegenerate.
+\end{example}
+\subsection{Symmetric bilinear forms}
+I've really screwed up when TeXing this.
+
+If $W\subseteq V$ is a subspace, then a bilinear form on $V$ gives a bilinear form on $W$, but this need not be nonsingular even if the bilinear form on $V$ is. Observe though that the induced bilinear form on $W$ is nonsingular if and only if $W\cap W^\perp=0$. This result should be obvious, but I don't want to say why.
+
+I have a map $V\xrightarrow{\cong} V^\ast$ by sending $v\mapsto(v^\prime\mapsto v\cdot v^\prime)$. Inside $V$, I have $W^\perp$, and I have a quotient $V^\ast\xrightarrow{\Res} W^\ast$, with kernel $\ker\Res$. I want to claim that $V/W^\perp\cong W^\ast$. We know that $\dim W+\dim W^\perp=\dim V=:n$. If $W$ is nonsingular, then $V=W\oplus W^\perp$. This is true as vector spaces, but also as quadratic forms.
+
+To see this, pick a basis $e_1,\cdots,e_k$ for $W$. The quadratic form is represented by some matrix $\begin{pmatrix} e_i\cdot e_j \end{pmatrix}$. It's nonsingular exactly when its determinant is nonzero, i.e., $1$. Then I can also pick a basis for $W^\perp$. Then I have nondegenerate quadratic form on $V$ given by $\begin{pmatrix}\begin{pmatrix} e_i\cdot e_j \end{pmatrix} & 0 \\ 0 & \begin{pmatrix} ... \end{pmatrix}\end{pmatrix}$ where the bottom left thing is that of $W^\perp$. Since the quadratic form on $V$ has determinant $1$, the matrix for $W^\perp$ also has determinant $1$, and hence $V=W\oplus W^\perp$ as quadratic forms.
+
+Now:
+\begin{enumerate}
+\item Suppose $v\in V$ has $v\cdot v=1$. Then $V=\langle v\rangle\oplus\langle v\rangle^\perp$. This is an orthogonal splitting into nonsingular forms.
+\item Assume $v\cdot v=0$ for all\footnote{Your intuition about dot products isn't very useful here, for example the torus. This is because the matrix for the quadratic form on the torus is $\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}$. Also, $(x+y)\cdot(x+y)=0$. This means that every cycle on the torus can be moved to have no self-intersection, at least modulo $2$.} $v\in V$. Anyway, in our general situation, $v$ might be zero -- so pick $v\neq 0$. But the form is nonsingular, so there exists $w$ such that $v\cdot w\neq 0$, i.e., $v\cdot w=1$. Then $\langle v,w\rangle$ is a $2$-dimensional subspace sitting inside $V$, so it splits off. Thus we get a hyperbolic form $\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}$ (or something like this). (Example: torus)
+\end{enumerate}
+Thus we conclude:
+\begin{prop}
+Any nonsingular symmetric bilinear form on a finite dimensional vector space over $\FF_2$ is isomorphic to: $\begin{pmatrix}\begin{pmatrix}1 & \cdots & 0\\ \vdots & \ddots & \vdots \\ 0 & \cdots & 1 \end{pmatrix} & 0 \\ 0 & \begin{pmatrix}\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix} & \\ & \begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}\end{pmatrix}\end{pmatrix}$ where the bottom left thing has some number of the hyperbolic $\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}$.
+\end{prop}
+Let $\mathbf{Bil}$ be the set of nonsingular symmetric bilinear forms that are finite dimensional over $\FF_2$ modulo isomorphisms. I've just given a classification of these things. This is a commutative monoid under $\bigoplus$. This $\mathbf{Bil}$ is $\{\text{nonsingular matrices}\}/\text{similarity}$ where similarity means $M\sim N$ if $N=AMA^T$ for some nonsingular $A$.
+\begin{claim}
+\begin{equation*}
+\begin{pmatrix}
+ & 1 & \\
+1 & & \\
+ & & 1
+\end{pmatrix}
+\sim
+\begin{pmatrix}
+1 & & \\
+& 1 & \\
+& & 1
+\end{pmatrix}
+\end{equation*}
+This is the same thing as saying that $\begin{pmatrix}
+ & 1 & \\
+1 & & \\
+ & & 1
+\end{pmatrix}=AA^T$ for some nonsingular $A$.
+\end{claim}
+\begin{proof}
+Let $A=\begin{pmatrix}1 & 1 & 1 \\ 1 & 0 & 1 \\ 0 & 1 & 1 \end{pmatrix}$.
+\end{proof}
+So, $\mathbf{Bil}$ is the commutative monoid generated by $(1)$, $\begin{pmatrix}0 & 1 \\ 1 & 0\end{pmatrix}$ with relation $\begin{pmatrix}
+ & 1 & \\
+1 & & \\
+ & & 1
+\end{pmatrix}
+\sim
+\begin{pmatrix}
+1 & & \\
+& 1 & \\
+& & 1
+\end{pmatrix}$.
+\subsection{Connected surfaces}
+Let's go back to topology. Let $n=2$, $k=1$ (so that $2k=n$). Then you get an intersection pairing on $ H_1(M)$. Suppose I consider $\RP^2$. We know that $ H_1(\RP^2)=\FF_2$. This must be that ``$(1)$''-form. This says that anytime you have a cycle on a projective plane, there's nothing I can do to remove its self interesections. This is also seen on a Mobius band that I will not draw because I don't know how to draw fundamental polygons in LaTeX. But this can be seen by looking at the projection from the Mobius band to the circle.
+
+We also had the notion of connected sums. Let's compute the homology of $\Sigma_1\#\Sigma_2$ using Mayer-Vietoris, like you did in the exercise. You get $ H_2(\Sigma_1\#\Sigma_2)\to H_1(S^1)\to H_1(\Sigma_1-D^2)\oplus H_1(\Sigma_2-D^2)\to H_1(\Sigma_1\#\Sigma_2)$. When you pierce a surface, it collapses down into its $1$-skeleton, so $ H_2(\Sigma_1-D^2)\oplus H_2(\Sigma_2-D^2)\cong 0$. Let's restrict ourselves to connected surfaces. The map $ H_1(S^1)\to H_1(\Sigma_1-D^2)\oplus H_1(\Sigma_2-D^2)$ is the zero map when you think of it as a boundary. Actually, that argument needs to use something, because we know that with integer coefficients, this isn't right -- you need to find an oriented chain in that case -- but this orientation issue goes away in $\FF_2$ because there's no issues with $\pm$. And actually, the map $ H_1(\Sigma_1\#\Sigma_2)\to H_0(S^1)$ is zero as well, so $ H_1(\Sigma_1-D^2)\oplus H_1(\Sigma_2-D^2)\cong H_1(\Sigma_1)\oplus H_1(\Sigma_2)\cong H_1(\Sigma_1\#\Sigma_2)$ that respect the intersection pairing.
+
+Let $\mathbf{Surf}$ be the commutative monoid of connected compact surfaces modulo homeomorphism. What we've proved is that there's a map $\mathbf{Surf}\to\mathbf{Bil}$ that takes connected sums to direct sums of orthogonal bilinear forms. And this map is an isomorphism. I.e.:
+\begin{theorem}
+There is an isomorphism of commutative monoids $\mathbf{Surf}\to\mathbf{Bil}$.
+\end{theorem}
+This is a little strange. What is our claim $\begin{pmatrix}
+ & 1 & \\
+1 & & \\
+ & & 1
+\end{pmatrix}
+\sim
+\begin{pmatrix}
+1 & & \\
+& 1 & \\
+& & 1
+\end{pmatrix}$ saying in this context? It's saying that $T^2\#\RP^2\cong(\RP^2)^{\# 3}$.
+\begin{claim}
+If $\Sigma$ is nonoriented, then $\Sigma\# T^2\cong\Sigma\# K$ (where $K$ is the Klein bottle $\RP^2\#\RP^2$).
+\end{claim}
+If it's nonoriented, then a Mobius strip $M$ sits into $\Sigma$. Uh I guess you're dragging your attachment of the torus along $M$?
+
+There's more to be said about this. You can think of quadratic forms if you're working over the reals or something. You can't do this modulo $2$. Under the story we talked about, the oriented surfaces are the ones where the dot product is always zero. A better thing to ask over $\FF_2$ are quadratic forms such that $q(x+y)=q(x)+q(y)+x\cdot y$. This leads to the Kervaire invariant, etc.
+
+Happy Thanksgiving! See you on Monday.

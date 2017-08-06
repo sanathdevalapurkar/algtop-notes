@@ -1,0 +1,103 @@
+\section{Locality (almost done!)}
+\begin{theorem}
+We discovered that $S^\sca_\ast(X)\hookrightarrow S_\ast(X)$ is a subcomplex, and this induced an isomorphism in homology.
+\end{theorem}
+We talked about subdivision and the cone construction, the latter of which dealt with a star-shaped region, relative to some point (which we can safely assume is the origin) $b$. If $\sigma:\Delta^n\to X$ is a map, then $b\ast \sigma:S_n(X)\to S_{n+1}(X)$ where $\ast$ is the join. We did all of this before. The property that this had is that it's a homotopy between $1$ and $\eta_b\epsilon$, i.e., $db\ast + b\ast d = 1-\eta_b\epsilon$. This is called equation $(\ast)$. Look above for the definition of $\eta_b$ and $\epsilon$. Hopefully you remember this story.
+
+The subdivision operator $\$:S_\ast(X)\to S_\ast(X)$ for any space $X$ is natural, so it's enough to say what $\$\iota_n$ and $\$\iota_0$ is. Define $\$\iota_0=\iota_0$, and define $\$\iota_n=b_n\ast\$(d\iota_{n-1})$ where $b_n$ is the barycenter of the $n$-simplex. The standard simplex is star-shaped relative to its barycenter, so by naturality, it suffices to do this for $\iota_n$. The two key properties are the following.
+\begin{theorem}
+\begin{enumerate}
+\item $\$$ is a chain map.
+\item There is a chain homotopy $T:\$\sim 1$.
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+Let's try to prove that it's a chain map. We'll use induction on $n$. It's enough to show that $d\$\iota_n=\$ d\iota_n$, because:$$d\$\sigma=d\$\sigma_\ast\iota_n=\sigma_\ast d\$\iota_n=\sigma_\ast \$d\iota_n=\$ d\sigma_\ast\iota_n=\$ d\sigma$$
+We declared $d\$\iota_0=d\iota_0=0$. But also $\$d\iota_0=\$0=0$, so this works.
+
+For $n\geq 1$, we want to compute $d\$\iota_n$. This is:
+\begin{align*}
+d\$\iota_n & =d(b_n\ast \$ d\iota_n) & \\
+ & = (1-\eta_b\epsilon-b_n\ast d)(\$ d\iota_n) & \text{by $(\ast)$}
+\end{align*}
+What happens when $n=1$? Well:
+$$\eta_b\epsilon\$d\iota_1 = \eta_b\epsilon \$(c^0_1 - c^0_0)=\eta_b\epsilon(c^0_1 - c^0-0)=0$$
+Because $\epsilon$ takes sums of coefficients, which is $1+(-1)=0$. Let's continue.
+\begin{align*}
+d\$\iota_n & = ... & \\
+ & = \$d\iota_n - b_n\ast d\$ d\iota_n & \\
+ & = \$d\iota_n - b_n\$d^2\iota_n &\\
+ & = \$d\iota_n & \text{because $d^2=0$}
+\end{align*}
+So we're done.
+
+To define the chain homotopy $T$, we'll just write down a formula and not justify it. We just need to define $T\iota_n$ by naturality. So define:
+\begin{equation*}
+T\iota_n = \begin{cases}
+0 & n=0\\
+b_{n}\ast(\$\iota_n - \iota_n- Td\iota_n)\in S_{n+1}(\Delta^n) & n>0
+\end{cases}
+\end{equation*}
+This is because $T:S_n(X)\to S_{n+1}(X)$ such that $dT+Td=\$-1$. I'm confused about this, so help me out. Hmm. The term $\$\iota_n - \iota_n-Td\iota_n$ is an $n$-chain. We're going to do this by induction. Again, we need to check only on the universal case.
+
+When $n=0$, $dT\iota_0 + Td\iota_0 = 0+0 = 0 = \$\iota_0 - \iota_0$ because $\$\iota_0=\iota_0$. Now let's induct. For $n\geq 1$, let's start by computing $dT\iota_n$. This is:
+\begin{align*}
+dT\iota_n & = d_n(b_n\ast(\$\iota_n - \iota_n - Td\iota_n)) & \\
+& = (1-b_n\ast d)(\$\iota_n - \iota_n - Td\iota_n) & \text{by $(\ast)$}\\
+ & = \$\iota_n-\iota_n-Td\iota_n-b_n\ast (d\$\iota_n - d\iota_n - dTd\iota_n)
+\end{align*}
+We can ignore the $\eta_b\epsilon$ part because we're in dimension $\geq 1$. All we want now is that $b_n\ast(d\$\iota_n - d\iota_n - dTd\iota_n)=0$. We can do this via induction, because $T(d\iota_n)$ is in dimension $n$ (or is it $n-1$?):
+\begin{align*}
+dTd\iota_n & = -Td(d\iota_b)+\$ d\iota_n - d\iota_n\\
+& = \$d\iota_n - d\iota_n\\
+& = d\$\iota_n - d\iota_n
+\end{align*}
+This means that $d\$\iota_n-d\iota_n - dTd\iota_n=0$, so we're done.
+\end{proof}
+\begin{corollary}
+$\$^k\sim 1:S_\ast(X)\to S_\ast(X)$. I.e., we're iterating subdivision. We want $T_k$ such that $dT_k+T_kd=\$^k-1$
+\end{corollary}
+\begin{proof}
+$dT+Td=\$-1$. Let's apply $\$$ to this. We get $\$dT+\$Td=\$^2-\$$. Sum up these two things, so we get $dT+Td+\$dT+\$Td = \$^2-1$. But now, $\$d=d\$$, so the left hand side is $dT+d\$T + Td+\$Td = d(\$+1)T + (\$+1)Td$, i.e., $d(\$+1)T+(\$+1)Td=\$^2-1$. So define $T_2=(\$+1)T$, and continuing, you see that $T_k=(\$^{k-1}+\$^{k-2}+\cdots+1)T=\left(\sum^{k-1}_{i=0}\$^i\right)T$.
+\end{proof}
+\begin{prop}[Almost completes the proof of locality]
+Let $\sca$ be a cover of $X$. For every chain $c\in S_n(X)$, there is a $k\geq 0$ such that $\$^kc\in S^\sca_n(X)$. This is the geometric thing we have to prove.
+\end{prop}
+\begin{proof}
+We may assume that $c:\sigma:\Delta^n\to X$, and this makes sense because you just take the max of the $k$ of the terms of the sum. A great trick is the following: define an open cover $\mathscr{U}$ of $\Delta^n$ defined by $\mathscr{U}:=\{\sigma^{-1}(\mathrm{Int}(A))|A\in\sca\}$. This is a cover, a basic result from topology. Then we use the Lesbegue covering lemma:
+\begin{lemma}[Lesbegue covering lemma]
+We'll pretend this is part of 18.901. Let $M$ be a compact metric space (eg. $\Delta^n$), and let $\mathscr{U}$ be an open cover. Then there is $\epsilon> 0$ such that for all $x\in M$, there is $B_\epsilon(x)\subseteq U$ for some $U\in \mathscr{U}$.
+\end{lemma}
+\begin{proof}
+Omitted, may be in 18.901. Or even 18.100B.
+\end{proof}
+Let's apply this to the cover we constructed. What we want is that for all $\epsilon>0$, there is a $k$ such that the diameter of the simplices in $\$^k\iota_n$ is less than $\epsilon$. Let's do that.
+\begin{question}
+How small are these subdivided simplices in $\$^k\iota_n$?
+\end{question}
+For example, suppose $\sigma:\Delta^n\to\Delta^n$ is something in the subdivision. These are all affine simplexes, i.e., it's determined by where the simplices of $\Delta^n$ go to in $\sigma$. We can write $\sigma=\langle v_,\cdots,v_n\rangle$. It could be in $\mathbf{R}^N$ if you wanted; maybe it's easier to think of it this way. The barycenter is $\frac{\sum_{i=0}^nv_i}{n+1}$. Let's compute:
+\begin{align*}
+|b-v_i| & =\left|\frac{v_0+\cdots+v_n-(n+1)v_i}{n+1}\right|\\
+& =\left|\frac{(v_0-v_i)+(v_1-v_i)+\cdots+(v_n-v_i)}{n+1}\right|\\
+ & \leq \frac{n}{n+1}\max_{i,j}|v_i-v_j|\\
+ & = \frac{n}{n+1}\mathrm{diam}(\img\sigma)
+\end{align*}
+The following lemma completes the proof because there's always a $k$ such that $\left(\frac{n}{n+1}\right)^k<\epsilon$.
+\begin{lemma}
+Let $\tau$ be a simplex in $\$^k\sigma$ where $\sigma$ is an affine simplex. Then $\mathrm{diam}(\tau)\leq \frac{n}{n+1}\mathrm{diam}(\sigma)$.
+\end{lemma}
+\begin{proof}
+Let's write $\tau=\langle w_0=b,\cdots,w_n\rangle$ and $\sigma=\langle v_0,\cdots,v_n\rangle$. We saw:
+\begin{align*}
+|b-w_i| & \leq\max_i|b-v_i|\\
+ & \leq \frac{n}{n+1}\mathrm{diam}(\sigma)
+\end{align*}
+For the other cases, well, we use induction:
+\begin{align*}
+|w_i-w_j|& \leq \mathrm{diam}(\text{simplex in }\$d\sigma)\\
+& \leq \frac{n-1}{n}\mathrm{diam}(d\sigma)\\
+& \leq \frac{n}{n+1}\mathrm{diam}(\sigma)
+\end{align*}
+We're almost there. We'll finish the proof of locality on Friday.
+\end{proof}
+\end{proof}

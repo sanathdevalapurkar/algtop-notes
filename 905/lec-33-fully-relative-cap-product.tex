@@ -1,0 +1,162 @@
+\section{$\cHH^\ast$ as a cohomology theory, and the fully relative $\cap$ product}
+pset 6 is now doe December 7. If you read any book about Poincar\'{e} duality, there'll be an incomprehensible smear of stuff about cap products. I want to give you a cleaner explanation. The motivation is that it's the main step in the proof of Poincar\'{e} duality.
+
+Let $X$ be any space, and let $K\subseteq X$ be a closed subspace. We'll write $\cHH^p(K)=\varinjlim_{U\in\mathcal{U}_K} H^p(U)$ (and call it the \v{C}ech cohomology -- but there's a different definition, although in certain cases they are isomorphic). We should write down a relative version of this as well. Suppose $L\subseteq K$ be closed. Define $\cHH^p(K,L)=\varinjlim_{(U,V)\in\mathcal{U}_{K,L}} H^p(U,V)$ where $K\supseteq L$ and $K\subseteq U$, and $L\subseteq V$ such that $V\subseteq U$. Here $\mathcal{U}_{K,L}$ is the directed set:
+\begin{equation*}
+\mathcal{U}_{K,L}\text{ is the set of }\xymatrix{K\ar@{^(->}[d] & L\ar@{^(->}[d]\ar@{^(->}[l] \\ U & V\ar@{^(->}[l]}
+\end{equation*}
+such that $U$ and $V$ are open.
+\begin{theorem}
+There is a lexseq:
+\begin{equation*}
+\cdots\to\cHH^p(K,L)\to\cHH^p(K)\to\cHH^p(L)\xrightarrow{\delta}\cHH^{p+1}(K,L)\to\cdots
+\end{equation*}
+\end{theorem}
+All the maps in the lexseq are mysterious.
+
+Also, excision holds:
+\begin{theorem}[Excision]
+Suppose $A,B\subseteq X$ are closed. Then $\cHH^p(A\cup B,A)\cong\cHH^p(B,A\cap B)$. This is a form of excision that doesn't hold for ordinary cohomology.
+\end{theorem}
+So \v{C}ech cohomology is better suited for talking about closed sets. 
+
+We defined $\cap:\cHH^p(K)\otimes H_n(X,X-K)\to H_q(X,X-K)$, such that $p+q=n$. Fix $x_K\in H_n(X,X-K)$. Then capping with $x_K$ gives a map $\cap x_k:\cHH^p(K)\to H_q(X,X-K)$.
+
+Now, if $K\supseteq L$, then $X-K\subseteq X-L$, so I get $H_n(X,X-K)\xrightarrow{i_\ast} H_n(X,X-L)$. Then $x_K\mapsto x_L$. We can now extend our lexseq:
+\begin{equation*}
+\xymatrix{
+	\cdots\ar[r] & \cHH^p(K,L)\ar[r] & \cHH^p(K)\ar[r]\ar[d]_{-\cap x_k} & \cHH^p(L)\ar[r]^\delta\ar[d]_{-\cap x_L} & \cHH^{p+1}(K,L)\ar[r] & \cdots\\
+	& H_q(X-L,X-K)\ar[r]& H_q(X,X-K)\ar[r] & H_q(X,X-L)\ar[r]^\partial & H_{q-1}(X-L,X-K)\ar[r] & \cdots
+}
+\end{equation*}
+Where the bottom thing comes from the lexseq of the triple (see exercise 9 on your pset) $X-K\subseteq X-L\subseteq X$ (I think). Then we can extend our theorem on the lexseq:
+\begin{theorem}
+There is a lexseq and a ladder:
+\begin{equation*}
+\xymatrix{
+	\cdots\ar[r] & \cHH^p(K,L)\ar[r]\ar@{-->}[d]_{-\cap x_{K}} & \cHH^p(K)\ar[r]\ar[d]_{-\cap x_k} & \cHH^p(L)\ar[r]^\delta\ar[d]_{-\cap x_L} & \cHH^{p+1}(K,L)\ar[r]\ar[d]_{-\cap x_{K}} & \cdots\\
+	\cdots\ar[r] & H_q(X-L,X-K)\ar[r]& H_q(X,X-K)\ar[r] & H_q(X,X-L)\ar[r]^\partial & H_{q-1}(X-L,X-K)\ar[r] & \cdots
+}
+\end{equation*}
+\end{theorem}
+What I have to do is define a cap product of the following form (bottom row):
+\begin{equation*}
+\xymatrix{
+	\cHH^p(K)\otimes H_n(X,X-K)\ar[r]^{\cap} & H_q(X,X-K)\\
+	\cHH^p(K,L)\otimes H_n(X,X-K)\ar[u]\ar[r]^{\cap} & H_q(X-L,X-K)
+}
+\end{equation*}
+(where $p+q=n$)
+
+I want to define this fully relative cap product $\cHH^p(K,L)\otimes H_n(X,X-K)\to H_q(X-L,X-K)$. We'll use this in the inductive proof of (some) important theorem.
+
+Our map $\cHH^p(K)\otimes H_n(X,X-K)\to H_q(X,X-K)$ came from $S^p(U)\otimes S_n(U,U-K)\to S_q(U,U-K)$ where $U\supseteq K$, defined via $\beta\otimes\sigma\mapsto\beta(\sigma\circ\alpha_p)\cdot(\sigma\circ\omega_q)$. I'm hoping to get:
+\begin{equation*}
+\xymatrix{
+	S^p(U)\otimes S_n(U,U-K)\ar[r] & S_q(U,U-K)\\
+	S^p(U,V)\otimes S_n(U-L)/S_n(U-K)\ar[r]\ar[u] & S_q(U-L)/S_q(U-K)\ar[u]
+}
+\end{equation*}
+where again we have inclusions ($U,V$ open and $K,L$ closed):
+\begin{equation*}
+\xymatrix{K\ar@{^(->}[d] & L\ar@{^(->}[d]\ar@{^(->}[l] \\ U & V\ar@{^(->}[l]}
+\end{equation*}
+The bottom map $S^p(U,V)\otimes S_n(U-L)/S_n(U-K)\to S_q(U-L)/S_q(U-K)$ makes sense. We can evaluate a cochain that kills everything on $V$. This means that we can add in $S_n(V)$ to get $S^p(U,V)\otimes (S_n(U-L)+S_n(V))/S_n(U-K)\to S_q(U-L)/S_q(U-K)$ by sending $\beta\otimes\tau\mapsto 0$ where $\tau:\Delta^n\to V$. This means that the diagram:
+\begin{equation*}
+\xymatrix{
+	S^p(U)\otimes S_n(U,U-K)\ar[r] & S_q(U,U-K)\\
+	S^p(U,V)\otimes (S_n(U-L)+S_n(V))/S_n(U-K)\ar[r]\ar[u] & S_q(U-L)/S_q(U-K)\ar[u]
+}
+\end{equation*}
+commutes. It's not that far off from where we want to go.
+
+Now, $(U-L)\cup V=U$. I have this covering of $U$ by two open sets. In $S_n(U-L)+S_n(V)$ we're taking the sum of $n$-chains. We have a map $S_\ast(U-L)+S_\ast(V)\to S_\ast(U)$. We have already worked through this -- the locality principle! This tells us that $S_\ast(U-L)+S_\ast(V)\to S_\ast(U)$ is a homotopy equivalence. Hence we can extend our diagram:
+\begin{equation*}
+\xymatrix{
+	S^p(U)\otimes S_n(U,U-K)\ar[r] & S_q(U,U-K)\\
+	S^p(U,V)\otimes (S_n(U-L)+S_n(V))/S_n(U-K)\ar[r]\ar[d]^{\simeq}\ar[u] & S_q(U-L)/S_q(U-K)\ar[u]\\
+	S^p(U,V)\otimes S_n(U)/S_n(U-K) & 
+}
+\end{equation*}
+We want the homology of $S_n(U)/S_n(U-K)$ to approximate $H_n(X,X-K)$.
+\begin{claim}
+There is an isomorphism $H_n(S_\ast(U)/S_\ast(U-K))=H_n(U,U-K)\to H_n(X,X-K)$.
+\end{claim}
+\begin{proof}
+This is exactly excision! Remember our recasting of excision in the previous lecture.
+\end{proof}
+This means that what we've constructed really \emph{is} what we want! We now have our large lexseq:
+\begin{equation*}
+\xymatrix{
+	\cdots\ar[r] & \cHH^p(K,L)\ar[r]\ar@{-->}[d]_{-\cap x_{K}} & \cHH^p(K)\ar[r]\ar[d]_{-\cap x_k} & \cHH^p(L)\ar[r]^\delta\ar[d]_{-\cap x_L} & \cHH^{p+1}(K,L)\ar[r]\ar[d]_{-\cap x_{K}} & \cdots\\
+	\cdots\ar[r] & H_q(X-L,X-K)\ar[r]& H_q(X,X-K)\ar[r] & H_q(X,X-L)\ar[r]^\partial & H_{q-1}(X-L,X-K)\ar[r] & \cdots\\
+	\cdots\ar[r] & H_q(U-L,U-K)\ar[r]\ar[u]^{\cong,\text{ five-lemma}} & H_q(U,U-K)\ar[r]\ar[u]^{\cong,\text{ locality}} & H_q(U,U-L)\ar[r]\ar[u]^{\cong,\text{ locality}} & \cdots
+}
+\end{equation*}
+As desired.
+
+The diagram:
+\begin{equation*}
+\xymatrix{
+	\cHH^p(L)\ar[r]^\delta\ar[d]^{-\cap x_L} & \cHH^{p+q}(K,L)\ar[d]^{-\cap x_K}\\
+	H_q(X,X-L)\ar[r]^{\partial} & H_{q-1}(X-L,X-K)
+}
+\end{equation*}
+says that:
+\begin{equation*}
+(\delta b)\cap x_k=\partial(b\cap x_L)
+\end{equation*}
+It's rather wonderful! You have a decreasing sequence below and an increasing one above.
+
+I want to reformulate all of this in a more useful fashion, from Mayer-Vietoris. We had two different proofs, one from locality, and another one that we'll remind you of:
+\begin{equation*}
+\xymatrix{
+	\cdots\ar[r] & A_n\ar[r]\ar[d] & B_n\ar[r]\ar[d]^\cong & C_n\ar[r]\ar[d] & A_{n-1}\ar[r]\ar[d] & \cdots\\
+	\cdots\ar[r] & A_n^\prime\ar[r] & B_n^\prime\ar[r] & C^\prime_n\ar[r] & A^\prime_{n-1}\ar[r] & \cdots
+}
+\end{equation*}
+then you get a lexseq:
+\begin{equation*}
+\cdots\to C_{n+1}\to C^\prime_{n+1}\oplus A_n\to A^\prime_n\xrightarrow{\partial} C_n\to\cdots
+\end{equation*}
+You can use this to prove Mayer-Vietoris -- I will do this in a special case. (This is exactly what I did in a homework assignment\footnote{Suppose $A\subseteq X$ is a subspace of $X$. Then there is a lexseq in reduced homology $\cdots\to \widetilde{ H}_n(A)\to \widetilde{ H}_n(X)\to H_n(X,A)\to\widetilde{ H}_{n-1}(A)\to\cdots$ that can be obtained by using the lexseq in homology of the sexseq $0\to\widetilde{S}_\ast(A)\to\widetilde{S}_\ast(X)\to S_\ast(X,A)\to 0$.
+
+Now suppose $X=A\cup B$. Consider the ladder:
+\begin{equation*}
+\xymatrix@C=10pt{\cdots\ar[r] & H_{n+1}(A,A\cap B)\ar[r]\ar[d] & \widetilde{ H}_n(A\cap B)\ar[r]\ar[d] & \widetilde{ H}_n(A)\ar[r]\ar[d] & H_n(A,A\cap B)\ar[r]\ar[d] & \cdots\\
+\cdots\ar[r] & H_{n+1}(X,B)\ar[r] & \widetilde{ H}_n(B)\ar[r] & \widetilde{ H}_n(X)\ar[r] & H_n(X,B)\ar[r] & \cdots}
+\end{equation*}
+The first and fourth maps as shown are isomorphisms because of excision. The lexseq from the ladder (see above) therefore yields the Mayer-Vietoris sequence $\cdots\to \widetilde{ H}_n(A\cap B)\to \widetilde{ H}_n(B)\oplus \widetilde{ H}_n(A)\to \widetilde{ H}_n(X)\to \widetilde{ H}_{n-1}(A\cap B)\to\cdots$.}!) We have a ladder of lexseqs:
+\begin{equation*}
+\xymatrix{
+	\cdots\ar[r] & H_q(X,X-A\cup B)\ar[r]\ar[d] & H_q(X,X-A)\ar[r]\ar[d] & H_{q-1}(X-A,X-A\cup B)\ar[r]\ar[d]^{\cong,\text{ excision}} & \cdots\\
+	\cdots\ar[r] & H_q(X,X-B)\ar[r] & H_q(X,X-A\cap B)\ar[r] & H_{q-1}(X-A\cap B,X-B)\ar[r] & \cdots
+}
+\end{equation*}
+This means that (using the lexseq of the ladder) you have a lexseq:
+\begin{equation*}
+\cdots\to H_q(X,X-A\cup B)\to H_q(X,X-A)\oplus H_q(X,X-B)\to H_q(X,X-A\cap B)\to H_{q-1}(X,X-A\cup B)\to\cdots
+\end{equation*}
+This can be used to give a lexseq for \v{C}ech cohomology:
+\begin{equation*}
+\cdots\to \cHH^p(A\cup B)\to \cHH^p(A)\oplus \cHH^p(B)\to \cHH^p(A\cap B)\to \cHH^{p+q}(A\cup B)\to\cdots
+\end{equation*}
+so that we're going to get a commutative Mayer-Vietoris ladder:
+\begin{theorem}
+There's a ``Mayer-Vietoris'' ladder:
+\begin{equation*}
+\xymatrix{
+	\to\cHH^p(A\cup B)\ar[r]\ar[d]^{-\cap x_{A\cup B}} & \cHH^p(A)\oplus \cHH^p(B)\ar[r]\ar[d]^{(-\cap x_A)\oplus -\cap x_B} & \cHH^p(A\cap B)\ar[r]\ar[d] & \cHH^{p+q}(A\cup B)\ar[r]\ar[d] & \cdots\\
+	\to H_q(X,X-A\cup B)\ar[r]& H_q(X,X-A)\oplus H_q(X,X-B)\ar[r]& H_q(X,X-A\cap B)\ar[r]& H_{q-1}(X,X-A\cup B)\ar[r]&\cdots
+}
+\end{equation*}
+where I have four cohomology classes $x_{A \cup B},x_A,x_B,x_{A\cap B}$ that commute in:
+\begin{equation*}
+\xymatrix{
+	 & H_n(X,X-A)\ar[dr] & \\
+	H_n(X,X-A\cap B)\ar[ur]\ar[dr] & & H_n(X,X-A\cap B)\\
+	 & H_n(X,X-B)\ar[ur]
+}
+\end{equation*}
+\end{theorem}
+This is the most complicated blackboard for the rest of the course. Also xymatrix is not compiling properly because the diagram is too big!

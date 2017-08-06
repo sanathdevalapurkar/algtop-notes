@@ -1,0 +1,77 @@
+\section{Fundamental class}
+Note that if $M$ is a compact manifold, then $H_q(M;R)=0$ for $q\gg 0$, and if $R$ is a PID, then for all $q$, $H_q(M;R)$ is finitely-generated. This follows from:
+\begin{claim}
+Suppose $X$ admits an open cover $\{U_i\}_{i=1}^n$ such that all intersections are either empty or contractible (this is what you get for a good cover on a manifold). Then $H_q(X;R)=0$ for $q\geq n$, and if $R$ is a PID, then for all $q$, $H_q(X;R)$ is finitely-generated.
+\end{claim}
+\begin{proof}
+Induct. Certainly true for $n=1$. Let $Y=\bigcup^{n-1}_{i=1}U_i$, then this statement is true by induction -- and similarly for $Y\cap U_n$. Now use Mayer-Vietoris. You have $\cdots\to H_q(Y\cap U_n)\to H_q(Y)\oplus H_q(U_n)\to H_q(X)\to H_{q-1}(Y\cap U_n)\to\cdots$. When $q=n-1$, $H_q(Y\cap U_n)$ could be nonzero, and so you might get something nontrival(???). Also, you'll get a sexseq by unsplicing the lexseq: $0\to H_q(Y)\oplus H_q(U_n)/\text{something}\to H_q(X)\to \text{submodule of }H_{q-1}(Y\cap U_n)\to 0$, where you use $R$ being a PID to conclude that $\text{submodule of }H_{q-1}(Y\cap U_n)$ is finitely generated.
+\end{proof}
+Let $M$ be an $n$-manifold. We had a map $j:H_n(M)\to \Gamma(M;o_M)$. Here $\Gamma(M;o_M)$ is the collection of compatible elements of $H_n(M,M-x)$ for $x\in M$. This map $j:H_n(M)\to \Gamma(M;o_M)$ sends $c\mapsto(x\mapsto j_x c)$ where $j_x:H_n(M,\emptyset)\to H_n(M,M-x)$. I want to make two refinements.
+
+You can't expect $j$ to be surjective, except maybe when $M$ is compact. Here's why. Let $c\in Z_n(M)$. It's a sum of simplices, and each simplex is compact, and so the union of the images is compact, and hence there's a compact subset $K\subseteq M$ such that $c\in Z_n(K)$. Now if I take $x\not\in K$, then the map $H_n(K)\to H_n(M)$ splits as $H_n(K)\to H_n(M-x)\to H_n(M)$. In the relative homology, $H_n(M,M-x)$, the map $H_n(K)\to H_n(M)\to H_n(M,M-x)$ sends $c$ to zero.
+\begin{definition}
+Let $\sigma$ be a section of $p:E\to B$ (local system). Then the support of $\sigma$ is defined as $\mathrm{supp}(\sigma)=\overline{\{x\in B|\sigma(x)\neq 0\}}$. The collection of all sections with compact support is $\Gamma_c(B;E)$, and it's a submodule of $\Gamma(B;E)$.
+\end{definition}
+The first refinement is that $j:H_n(M)\to \Gamma(M;o_M)$ lands in $\Gamma_c(M;o_M)$, because homology is compactly supported.
+
+The second refinement seems a little artificial but is part of the inductive process. Let $A\subseteq M$ be closed. Then you have a restriction map $H_n(M,M-A)\xrightarrow{j_x}H_n(M,M-x)$ for $x\in A$. Thus you get a map $j:H_n(M,M-A)\to \Gamma_c(A;o_M|_{A})$, the latter of which we'll just denote $\Gamma_c(A;o_M)$.
+\begin{theorem}
+The map $j:H_n(M,M-A)\to \Gamma_c(A;o_M|_{A})$ is an isomorphism and $H_q(M,M-A)=0$ for $q>n$. (If $A=M$ then $j:H_n(M)\to \Gamma_c(M;o_M)$ is an isomorphism.)
+\end{theorem}
+\begin{proof}
+For $X=\RR^n$ and $A=D^n$. Well, $o_{\RR^n}=\RR^n\times H_n(\RR^n,\RR^n-0)$ is trivial (i.e., a product projection), so $\Gamma(D^n;o_{\RR^n})=\Hom_{\mathbf{Top}}(D^n,H_n(\RR^n,\RR^n-0))$ where $H_n(\RR^n,\RR^n-0)$ is discrete, and this is therefore just a map from $\pi_0$ into this, and thus $\Gamma(D^n;o_{\RR^n})=R$ (your coefficient). But also, $H_n(\RR^n,\RR^n-D^n)\cong R$, so you have that $j$ gives $H_n(\RR^n,\RR^n-D^n)\to \Gamma_c(D^n;o_{\RR^n}|_{D^n})$.
+
+Say that this is true for $A,B,A\cap B$ -- we'll prove this for $A\cup B$. Obviously, use Mayer-Vietoris. I have a restriction $\Gamma_c(A\cup B;o_M)\to \Gamma_c(A;o_M)\oplus \Gamma_c(B;o_M)$ that sits in an exact sequence $0\to \Gamma_c(A\cup B;o_M)\xrightarrow{\text{inclusion, determined by }A,B} \Gamma_c(A;o_M)\oplus \Gamma_c(B;o_M)\to \Gamma_c(A\cap B;o_M)$. This is a gluing lemma. We also have a relative Mayer-Vietoris $H_n(M,M-A\cup B)\to H_n(M,M-A)\oplus H_n(M,M-B)\to H_n(M,M-A\cap B)$, so we have:
+\begin{align*}
+\xymatrix@C=10pt{
+	0\ar[r] & \Gamma_c(A\cup B;o_M)\ar[r]^{\text{inclusion }A,B\to A\cup B} & \Gamma_c(A;o_M)\oplus \Gamma_c(B;o_M)\ar[r] & \Gamma_c(A\cap B;o_M)\\
+	H_{n+1}(M,M-A\cap B)=0\ar[r]^0 & H_n(M,M-A\cup B)\ar[r]\ar[u] & H_n(M,M-A)\oplus H_n(M,M-B)\ar[r]\ar[u]^{j_\ast}_{\cong} & H_n(M,M-A\cap B)\ar[u]^{j_\ast}_{\cong}
+}
+\end{align*}
+This is a ``local-to-global'' argument. ``I don't feel like going through the point-set topology -- the rest of the proof is just annoyance.'' See Bredon's book for the conclusion of the proof.
+\end{proof}
+\begin{corollary}
+$j:H_n(M)\to \Gamma_c(M;o_M)$ is an isomorphism.
+\end{corollary}
+\begin{definition}
+An $R$-orientation for $M$ is a section $\sigma$ of $\Gamma(M;o_M^\times)$ where $o_M^\times$ is the covering space of $M$ given by the generators (as $R$-modules) of the fibers of $o_M$.
+\end{definition}
+If $M$ is compact, then $j:H_n(M)\to \Gamma(M;o_M)$, and you get $[M]\leftrightarrow \sigma$. When does that exist?
+
+\underline{Over $\Z$:} $o_M^\times\to M$ is a double cover of $M$ (over every element you have two possible elements given by the two possible orientations ($\pm 1$)). If $M$ is an $n$-manifold and $f:N\to M$ is a covering space, then $N$ is also locally Euclidean. I have the orientation local system to get a pullback local system:
+\begin{equation*}
+\xymatrix{
+	f^\ast o_M=N\times_M o_M\ar[r]\ar[d] & o_M\ar[d]\\
+	N\ar[r] & M
+}
+\end{equation*}
+Because $N\to M$ is a covering space, the fibers of $f^\ast o_M$ are the same as the fibers of $o_N$, so actually, $f^\ast o_M\cong o_N$. For example, suppose $N=o_M^\times$. What happens if I consider:
+\begin{equation*}
+\xymatrix{
+	o_N=N\times_M N\ar[r]\ar[d] & N\ar[d]\\
+	N\ar[r] & M
+}
+\end{equation*}
+But now, I have the identity $N\to N$ that sits compatibly as:
+\begin{equation*}
+\xymatrix{
+	N\ar[r]^{\mathrm{id}}\ar[d] ^{\mathrm{id}} & N\ar[d]\\
+	N\ar[r] & M
+}
+\end{equation*}
+And hence you get $N\to o_N^\times$, which is a section of $o_N^\times\to N$. The conclusion is that $N=o_M^\times$ is canonically oriented (even if $M$ is not oriented!). If $M$ is oriented, then the local system is trivial and you have the trivial double cover.
+
+The overarching conclusion is: if $M$ is an $n$-manifold, then:
+\begin{enumerate}
+\item $H_q(M)=0$ for $q>n$.
+\item If $M$ is compact, then $H_n(M)\xrightarrow{\cong}\Gamma(M,o_M)$.
+\item If $M$ is connected and compact, then:
+	\begin{enumerate}
+	\item if $M$ is oriented with respect to $R$, then $H_n(M)\cong \Gamma(M,o_M)\cong R$.
+	\item (I have no idea what was happening here, we didn't reach to a conclusion for a while.) if $M$ is not orientable, then $o_M^\times$ is nontrivial. If $o_M^\times$ has a section, then it's trivial (and so is $o_M$) because if it has a section $\sigma:M\to o^\times_M$, define $M\times R^\times\xrightarrow{\cong} o_M^\times$ by sending $(x,r)\mapsto r\sigma(x)\in o_M^\times$ (and the same thing $M\times R\xrightarrow{\cong} o_M$ for the orientation local system itself). I don't see an argument to conclude that if $M$ is nonorientable, then there aren't any section of $o_M$. In particular, if $R=\Z$, then $H_n(M;\Z)=0$. I'm going to leave this as a statement without proof, unless any of you can help me.
+	\end{enumerate}
+\end{enumerate}
+If a section $\sigma(x)=0$ for some $x$, then $\sigma=0$.
+\begin{remark}
+Prof. Miller talked with me about this after class. If I recall correctly, one way to think about this is as follows. If you have a local system $p:E\to B$, this can be viewed as a representation of $\pi_1(B)\to R^\times$, and the $\Gamma(B;E)=(E_x)^{\pi_1(B)}$ where $\pi_1(B)$ acts on the fibers by multiplication. Thus $(E_x)^{\pi_1(B)}=R^{\pi_1(B)}$. If $R=\Z$, then $R^\times=\{\pm 1\}$, so $R^{\pi_1(B)}=\{r|ar=r,a\in\pi_1(B)\}$, so that $\Z^{\pi_1(B)}=0$. Hence there are no sections of $o_M$, as desired. For a ring $R$, $o_{M,R}=o_{M,\Z}\otimes R$. Something else for $\Z/2\Z$. A higher homotopy theoretic perspective is that if you have a fibration $E\to B$, then $E=PB\times_{\Omega B}F$ where $F$ is the fiber of the fibration, so that $\Gamma(B;E)=\Map_{\Omega B}(PB,F)=F^{h\Omega B}$. In the case of a covering space you recover what you have above since $\pi_0(\Omega B)=\pi_1(B)$.
+\end{remark}

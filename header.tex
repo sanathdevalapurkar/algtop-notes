@@ -1,0 +1,165 @@
+\usepackage[protrusion=true,expansion=true]{microtype}
+
+\usepackage[pdftex,
+            pdfauthor={Sanath Devalapurkar},
+	    pdftitle={Algebraic topology}]{hyperref}
+\usepackage{sseqpages}
+
+\usepackage[T1]{fontenc}
+
+%\usepackage[urw-garamond]{mathdesign}
+%\usepackage[margin=1.25in]{geometry}
+
+\usepackage{todonotes}
+
+\usepackage{amsmath}
+%\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{float}
+\usepackage{amsthm}
+\usepackage{comment}
+%\usepackage{amscd}
+
+\usepackage{txfonts} % Thanks to Eric for showing me that this font exists.
+
+\usepackage{color}
+\usepackage[all]{xy}
+\usepackage{verbatim}
+\usepackage{setspace}
+\usepackage[mathscr]{eucal}
+\usepackage{graphicx}
+\usepackage{tikz-cd}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+
+\theoremstyle{definition}
+%\theoremstyle{definition}
+\newtheorem{problem}[theorem]{Problem}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{summary}[theorem]{Summary}
+\newtheorem{note}[theorem]{Note}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{construction}[theorem]{Construction}
+%\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{slogan}[theorem]{Slogan}
+\newtheorem{warning}[theorem]{Warning}
+
+\DeclareMathOperator{\Th}{Th}
+\DeclareMathOperator{\Aut}{Aut}
+\DeclareMathOperator{\coeq}{coeq}
+\DeclareMathOperator{\colim}{colim}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\cone}{cone}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Fun}{Fun}
+\DeclareMathOperator{\hocolim}{hocolim}
+\DeclareMathOperator{\holim}{holim}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Iso}{Iso}
+\DeclareMathOperator{\img}{im}
+\DeclareMathOperator{\Map}{Map}
+\DeclareMathOperator{\Tot}{Tot}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Spec}{Spec}
+\DeclareMathOperator{\rank}{Rank}
+\DeclareMathOperator{\Vect}{Vect}
+
+\def\llarrow{  \hspace{.05cm}\mbox{\,\put(0,-2){$\leftarrow$}\put(0,2){$\leftarrow$}\hspace{.45cm}}}
+\def\rrarrow{  \hspace{.05cm}\mbox{\,\put(0,-2){$\rightarrow$}\put(0,2){$\rightarrow$}\hspace{.45cm}}}
+\def\lllarrow{ \hspace{.05cm}\mbox{\,\put(0,-3){$\leftarrow$}\put(0,1){$\leftarrow$}\put(0,5){$\leftarrow$}\hspace{.45cm}}}
+\def\rrrarrow{ \hspace{.05cm}\mbox{\,\put(0,-3){$\rightarrow$}\put(0,1){$\rightarrow$}\put(0,5){$\rightarrow$}\hspace{.45cm}}}
+
+\def\cA{\mathscr A}\def\cB{\mathscr B}\def\cc{\mathbf C}\def\cd{\mathbf D}
+\def\cC{\mathscr C}
+\def\ce{\mathscr E}\def\cf{\mathscr F}\def\cG{\mathscr G}\def\cH{\mathscr H}
+\def\cI{\mathscr I}\def\cJ{\mathscr J}\def\cK{\mathscr K}\def\cL{\mathscr L}
+\def\cM{\mathscr M}\def\cN{\mathscr N}\def\cO{\mathbf O}\def\cP{\mathscr P}
+\def\cQ{\mathscr Q}\def\cR{\mathscr R}\def\cS{\mathscr S}\def\cT{\mathscr T}
+\def\cU{\mathscr U}\def\cV{\mathscr V}\def\cW{\mathscr W}\def\cX{\mathscr X}
+\def\cY{\mathscr Y}\def\cZ{\mathscr Z}
+
+\def\AA{\mathbb A}\def\BB{\mathbb B}\def\CC{\mathbf C}\def\DD{\mathbb D}
+\def\EE{\mathbb E}\def\FF{\mathbf F}\def\GG{\mathbb G}\def\HH{\mathbb H}
+\def\II{\mathbb I}\def\JJ{\mathbb J}\def\KK{\mathbb K}\def\LL{\mathbb L}
+\def\MM{\mathscr M}\def\NN{\mathbb N}\def\OO{\mathbb O}\def\PP{\mathbf P}
+\def\QQ{\mathbf Q}\def\RR{\mathbf R}\def\SS{\mathbb S}\def\TT{\mathbb T}
+\def\UU{\mathbb U}\def\VV{\mathbb V}\def\WW{\mathbb W}\def\XX{\mathbb X}
+\def\YY{\mathbb Y}\def\ZZ{\mathbf Z}
+
+\usepackage{amsbsy}
+
+\newcommand{\CP}{\mathbf{CP}}
+\newcommand{\RP}{\mathbf{RP}}
+\newcommand{\Set}{\mathrm{Set}}
+\newcommand{\Gra}{\mathrm{Gr}}
+\newcommand{\GL}{\mathrm{GL}}
+\newcommand{\gl}{\mathit{gl}}
+
+\newcommand{\nn}{\nonumber}
+\newcommand{\nid}{\noindent}
+\newcommand{\ra}{\rightarrow}
+\newcommand{\la}{\leftarrow}
+\newcommand{\xra}{\xrightarrow}
+\newcommand{\xla}{\xleftarrow}
+
+\newcommand{\weq}{\xrightarrow{\sim}}
+\newcommand{\cofib}{\rightarrowtail}
+\newcommand{\fib}{\twoheadrightarrow}
+%\newcommand{\cofib}{\to}
+%\newcommand{\fib}{\to}
+
+\newcommand\cHH{\check{H}}
+\newcommand{\Fl}{F\ell}
+\newcommand{\Fr}{Fr}
+\newcommand\cCC{\check{C}}
+\newcommand{\MFGL}{\mathscr M_{\mathit{FGL}}}
+\newcommand{\calO}{{\mathscr O}}
+\newcommand{\calC}{{\mathscr C}}
+\newcommand{\set}{{\mathrm{Set}}}
+\newcommand{\Deltab}{{\Delta}} %change this to bold Delta. This is like this here because garamond fucks up bold things.
+\newcommand{\spec}{\mathrm{Spec}}
+\newcommand{\Z}{\mathbf Z}
+\newcommand{\Sin}{\mathrm{Sin}}
+\newcommand{\htop}{\mathrm{Ho}(\mathbf{Top})}
+\newcommand{\sca}{\mathscr{A}}
+\DeclareMathOperator{\Spf}{Spf}
+\renewcommand{\Top}{\mathbf{Top}}
+\newcommand{\CG}{\mathbf{CG}}
+\newcommand{\Ab}{\mathbf{Ab}}
+\newcommand{\Bun}{\mathrm{Bun}}
+\newcommand{\Ho}{\mathrm{Ho}}
+\newcommand{\gr}{\mathrm{gr}}
+\newcommand{\sk}{\mathrm{sk}}
+\newcommand{\Cat}{\mathbf{Cat}}
+\newcommand{\xar}[1]{\xrightarrow{{#1}}}
+%%%%%%%%%%%%%%%%
+
+%\usepackage{ebgaramond}
+%\usepackage{fancyhdr}
+% 
+%\newcommand{\myheader}{
+%    \ifnum\value{section} > 38
+%    18.906
+%    \else
+%    18.905
+%    \fi
+%}
+
+%\pagestyle{fancy}
+%\fancyhf{}
+%\fancyhead[LE]{Notes by Sanath Devalapurkar}
+%\fancyhead[LO]{Taught by Haynes Miller}
+%\chead{Notes for \myheader}
+%\rhead{Lecture \thesection}
+%\cfoot{\thepage}

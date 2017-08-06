@@ -1,0 +1,57 @@
+\section{Relative Homology}
+First, let's recall a little about homology. We showed that homology factors as a functor $\mathbf{Top}\to\mathrm{h}\mathbf{Top}\to\mathbf{GrAb}$. As a corollary:
+\begin{corollary}
+If $f:X\to Y$ is a homotopy equivalence (i.e., an isomorphism in the homotopy category), the induced map on homology $ H_\ast(f): H_\ast(X)\to H_\ast(Y)$ is an isomorphism. This is the same thing as saying that if $f:X\to Y$ does not induce an isomorphism on homology, then $f$ can't be a homotopy equivalence. Homology's therefore often used to distinguish spaces.
+\end{corollary}
+\begin{example}
+If $X\times\mathbf{R}^n\to X$ is the projection map, this is a homotopy equivalence because $\mathbf{R}^n$ is contractible. Therefore, $ H_\ast(X\times\mathbf{R}^n)\cong H_\ast(X)$.
+\end{example}
+\subsection{Towards computing homology}
+Fix a space $W$, and consider the functor $X\mapsto [W,X]$. This is basically uncomputable - if you could, you'll win a Fields medal! But there's something more that homology has going for it is that it's ``local''. What do we mean by this? Homology is a bit like a measure:
+	\begin{enumerate}
+	\item If $A\subseteq X$ is a subspace, then $ H_\ast(X)$ is related to $ H_\ast(A)+ H_\ast(X-A)$. Called the lexseq of a pair.
+	\item The homology $ H_\ast(A\cup B)$ is like $ H_\ast(A)+ H_\ast(B)- H_\ast(A\cap B)$. Called the Mayer-Vietoris sequence.
+	\end{enumerate}
+The thing we use is the notion of exact sequences. Let me tell you about exact sequences.
+\subsection{Exact sequences}
+This is a story about abelian groups.
+\begin{definition}
+Let $A\xrightarrow{i} B\xrightarrow{p} C$ be a sequence of abelian groups and homomorphisms. We say that the sequence is exact (at $B$) if $\ker p=\img i$, i.e., $p\circ i=0$ with no room for error.
+\end{definition}
+\begin{example}
+If you have a chain complex $\cdots\to C_{n+1}\to C_n\to C_{n-1}\to\cdots$, it's exact at $C_n$ if the homology $ H_n(C)$ in dimension $n$ is zero. So homology is the obstruction to exactness. 
+\end{example}
+\begin{example}
+$0\to A\xrightarrow{i}B$ is exact iff $i$ is injective, and $B\xrightarrow{p}C\to 0$ is exact iff $p$ is surjective.
+\end{example}
+There's a beautiful book by Eilenberg and Steenrod, published in 1952, which was the founding of algebraic topology.
+\begin{example}
+If you have a sequence that's exact at every point, it's called a long exact sequence (henceforth called lexseq in these notes). If you have a sequence like $0\to A\xrightarrow{i} B\xrightarrow{p} C\to 0$ that's exact, then this is called a short exact sequence (henceforth called sexseq in these notes). This means that $p\circ i=0$, $i$ is injective, $p$ is surjective. Also, this sequence factors like:
+	\begin{equation*}
+	\xymatrix{\ker(p) \ar[dr] & & \\
+	A\ar[u]\ar[r]^i & B\ar[r]^p\ar[dr] & C\\
+	 & & \mathrm{coker}(i)\ar[u]}
+	\end{equation*}
+So $A\cong \ker p$ and $B\cong \mathrm{coker}(i)$. These things are equivalence to short exactness. 
+\end{example}
+Let's see how this appears in algebraic topology.
+\begin{definition}
+A pair of spaces is a space $X$ together with subspaces $A\subseteq X$, denoted $(X,A)$. We have a new category, called $\mathbf{Top}_2$ where morphisms $(X,A)\to (Y,B)$ are maps $f:X\to Y$ that take $A\to B$. There are two functors $\mathbf{Top}\to \mathbf{Top}_2$, sending $X\mapsto (X,\emptyset)$ and $X\mapsto (X,X)$. There are also two functors back to $\mathbf{Top}$, sending $(X,A)\mapsto A$ or $(X,A)\mapsto X$.
+\end{definition}
+How does this behave on the level of chain complexes? If I have a pair $(X,A)$, I get a map $\Sin_n(A)\to \Sin_n(X)$ that's clearly injective. Is this a split monomorphism? Yes, unless $A=\empty$, because you can choose a point in $A$ and send everything not in $A$ to that point. Let's now apply the free abelian group functor to get $S_n(A)\to S_n(X)$. Is this a monomorphism? Yes, because monomorphisms are preserved by this functor. This is also split because being a split mono is a categorical property. This is split even when $A=\empty$ because then $S_n(\empty)=0$.
+\begin{definition}
+The relative $n$-chains is defined as $S_n(X,A):= S_n(X)/S_n(A)$. So we have a sexseq (ses) $0\to S_n(A)\to S_n(X)\to S_n(X,A)\to 0$. Is $S_n(X,A)$ free abelian if $S_n(X)$ and $S_n(A)$ are? If you have a ses $0\to A\to B\to C\to 0$ such that $A\to B$ is split, then it's homework to show that $B\cong A\oplus C$. So $C$ must also be free abelian if $B$ and $A$ are; i.e., $S_n(X,A)$ is free abelian.
+\end{definition}
+\begin{example}
+Consider $\Delta^n$, which contains its boundary $\partial\Delta^n:=\bigcup \img d_i\simeq S^{n-1}$. We have the identity map $\iota_n:\Delta^n\to \Delta^n$, the universal $n$-simplex, which is in $\Sin_n(\Delta^n)\subseteq S_n(\Delta^n)$. Its boundary $\partial\iota_n\in S_{n-1}(\Delta^n)$, but it actually lands in $S_{n-1}(\partial\Delta^n)$. So $\partial\iota_n$ is \emph{not} a boundary in $\partial\Delta^n$, as we'll see, but it certainly is a cycle. So it determines a homology class, $[\partial\iota_n]$, which, it turns out, generates $ H_{n-1}(\partial\Delta^n)\simeq H_{n-1}(S^{n-1})\cong\mathbf{Z}$.
+
+I can think of $\iota_n\in S_n(\Delta^n,\partial\Delta^n)$, or rather the class of it mod $S_n(\partial\Delta^n)$. It's a relative chain. Is it a cycle? Let's branch off a bit.
+\end{example}
+Consider the ses $0\to S_n(A)\to S_n(X)\to S_n(X,A)\to 0$. A $c\in S_n(X)$ determines a relative cycle if $\partial c\in S_{n-1}(A)$. I'm sorry, I've messed this up a little bit. There's so much to say here. I'm getting ahead of myself a little bit here. What I meant to say is, let's think of what $\partial$ does. We have a map of ses:
+\begin{equation*}
+\xymatrix{0\ar[d]\ar[r] & S_n(A)\ar[d]\ar[r] & S_n(X)\ar[d]\ar[r] & S_n(X,A)\ar@{-->}[d]\ar[r] & 0\ar[d]\\
+0\ar[r] & S_{n-1}(A)\ar[r] & S_{n-1}(X)\ar[r] & S_{n-1}(X,A)\ar[r] & 0}
+\end{equation*}
+Does the dotted map exist? We can pull $\overline{c}\in S_n(X,A)$ to some $c\in S_n(X)$, and then define $\partial\overline{c}$ to be the pushforward of $\partial c$. Is this well-defined? If $c,c^\prime$ both map to $\overline{c}$, then $c-c^\prime=0$, so there's some $a$ in $S_n(A)$ that is sent to $c-c^\prime$, and $\partial$ pushes this forward to say that $\partial a$ maps to $\partial(c-c^\prime)=\partial c-\partial c^\prime$. Since we're quotienting out by $S_{n-1}(A)$, this means that the pushforwards of $\partial c$ and $\partial c^\prime$ are the same. I'll leave it to you (although Professor Miller explained this in detail) to show that $\partial^2=0$. 
+
+Now let's continue. A class $c\in S_n(X)$ gives a relative cycle if and only if $\partial c\in S_{n-1}(A)$ because we want $\partial c$ in $S_n(X,A)$ to be zero. So $\iota_n\in S_n(\Delta^n,\partial\Delta^n)$ is indeed a relative cycle since $\partial\iota_n\in S_{n-1}(\partial\Delta^n)$. Similarly, a class $c\in S_n(X)$ is a relative boundary if and only if there is a $b\in S_{n+1}(X)$ such that $\partial b=c\bmod S_n(A)$, i.e., $\partial b-c\in S_n(A)$. So $\iota_n\in S_n(\Delta^n,\partial\Delta^n)$ isn't a relative boundary. Therefore $ H_n(\Delta^n,\partial\Delta^n)\cong\mathbf{Z}=\langle[\iota_n]\rangle$ where $ H_n(X,A)$ denotes the relative homology. This stuff takes a little bit of time to get used to.

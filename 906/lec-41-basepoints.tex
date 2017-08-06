@@ -1,0 +1,48 @@
+\section{``Cartesian closed'', Hausdorff, Basepoints}
+Pset 1 is up, and there's now a number 4. My office hours are Tuesday from 12 to 1:30 in 2-478.
+
+Remember that I wrote something that's obviously wrong; let $Y:\cI\to\cc$. I claimed that $\lim_\cI (X\times Y_i)\simeq X\times \lim_\cI Y_i$. This isn't right because if $\cI$ is a discrete category, this doesn't make sense. One way to fix this is implemented in problem 4. Another way is, let $X:\cI\to\cc$. Then I can take $\lim_\cI(X_i\times Y_i)$, and this is $\lim_\cI X_i\times \lim_\cI Y_i$. This is part of a more general picture involving a Frobenii theorem. You can find out more from MacLane's book or something.
+
+I want to catch up with something that I had to say before but I didn't. That's the relationship between (co)limits and adjoint functors. Namely, left adjoints respect colimits and right adjoints respect limits. There's something called the adjoint functor theorem. For example, $Y\times -:\Top\to\Top$. One kind of colimit is the pushout $X/A=X\cup_A \ast$. But $Y\times X\cup_{Y\times A}\ast\simeq (Y\times X)/(Y\times A)$. But this isn't the same as $Y\times (X/A)$! There is a bijective map $Y\times X/Y\times A\to Y\times(X/A)$, but it's not a homeomorphism in general. The reason this fails is because $Y\times -$ is \emph{not} a left adjoint!
+
+But it is a left adjoint when working with compactly generated spaces (i.e., $k$-spaces)\footnote{Compactly generated spaces are weakly Hausdorff $k$-spaces, what Professor Miller said here was incorrect.}! Recall that this means that $k\Top$ is Cartesian closed. We're gonna make a lot of use of the space $Z^X:=k(k\Top(X,Z))$. You'll check that $(X,Z)\mapsto Z^X$ is a functor. Another thing is that $Z^{X\times Y}\simeq (Z^X)^Y$ and $(Y\times Z)^X\simeq Y^X\times Z^X$. There's a composition map $Y^X\times Z^Y\to Z^X$.
+
+When the ancients came up with the definition of a topology, they were good axioms -- but these are better! Sometimes, you want even more, e.g., points being closed. There's a further refinement of $k$-spaces. 
+\subsection{``Hausdorff''}
+\begin{definition}
+    A space is ``weakly Hausdorff'' if the image of every map $K\to X$ from a compact Hausdorff space $K$ is closed.
+\end{definition}
+Another way to say this is that the map itself if closed. Clearly Hausdorff implies weakly Hausdorff. Another thing this means is that every point in $X$ is closed (eg $K=\ast$). 
+\begin{prop}
+    Let $X$ be a $k$-space.
+    \begin{enumerate}
+	\item $X$ is weakly Hausdorff iff $\Delta:X\to X\times^k X$ is closed. In algebraic geometry such a condition is called separated.
+	\item Let $R\subseteq X\times X$ be an equivalence relation. If $R$ is closed, then $X/R$ is weakly Hausdorff.
+    \end{enumerate}
+\end{prop}
+\begin{definition}
+    A space is comapctly generated if it's a weakly hausdorff $k$-space. The category of such spaces is called $\CG$.
+\end{definition}
+We have a pair of adjoint functors $(i,k):\Top\to k\Top$. It's possible to define a functor $k\Top\to \CG$ given by $X\mapsto X/\bigcap\text{all closed equivalence relations}$. It is easy to check that if $Z$ is weakly Hausdorff, then $Z^X$ is weakly Hausdorff (where $X$ is a $k$-space). What this implies is that $\CG$ is also Cartesian closed!
+
+I'm getting a little tired of point set stuff. Let's start talking about homotopy and all that stuff today for a bit. You know what a homotopy is. I will not worry about point-set topology anymore. So when I say $\Top$, I probably mean $\CG$. A homotopy between $f,g:X\to Y$ is a map $h:I\times X\to Y$ such that the following diagram commutes:
+\begin{equation*}
+    \xymatrix{
+	X\ar[dr]_{i_0}\ar[drr]^f & &\\
+	& I\times X\ar[r]^h & Y\\
+	X\ar[ur]^{i_1}\ar[urr]_g & &
+    }
+\end{equation*}
+We write $f\sim g$. We define $[X,Y]=\Top(X,Y)/\sim$. Well, a map $I\times X\to Y$ is the same as a map $X\to Y^I$ but also $I\to Y^X$. The latter is my favorite! It's a path of maps from $f$ to $g$. So $[X,Y]=\pi_0Y^X$.
+
+To talk about higher homotopy groups and induct etc. we need to talk about basepoints.
+\subsection{Basepoints}
+A pointed space is $(X,\ast)$ with $\ast\in X$. This gives a category $\Top_\ast$ where the morphisms respect the basepoint. This has products because $(X,\ast)\times (Y,\ast)=(X\times Y,(\ast,\ast))$. How about coproducts? It has coproducts as well. This is the wedge product, defined as $X\sqcup Y/\ast_X\sim \ast_Y=:X\vee Y$. This is \verb|\vee|, not \verb|\wedge|. Is this category also Cartesian closed?
+
+Define the space of pointed maps $Z^X_\ast\subseteq Z^X$ topologized as a subspace. Does the functor $Z\mapsto Z^X_\ast$ have a left adjoint? Well $\Top(W,Z^X)=\Top(X\times W,Z)$. What about $\Top(W,Z^X_\ast)$? This is $\{f:X\times W\to Z:f(\ast,w)=\ast\forall w\in W\}$. That's not quite what I wanted either! Thus $\Top_\ast(W,Z^X_\ast)=\{f:X\times W\to Z:f(\ast,w)=\ast=f(x,\ast)\forall x\in X, w\in W\}$. These send both ``axes'' to the basepoint. Thus, $\Top_\ast(W,Z^X_\ast)=\Top_\ast(X\wedge W,Z)$ where $X\wedge W=X\times W/X\vee W$ because $X\vee W$ are the ``axes''.
+
+So $\Top_\ast$ is not Cartesian closed, but admits something called the smash product\footnote{Remark by Sanath: this is like the tensor product.}. What properties would you like? Here's a good property: $(X\wedge Y)\wedge Z$ and $X\wedge(Y\wedge Z)$ are bijective in pointed spaces. If you work in $k\Top$ or $\CG$, then they are homeomorphic! It also has a unit.
+
+Oh yeah, some more things about basepoints! So there's a canonical forgetful functor $i:\Top_\ast\to \Top$. Let's see. If I have $\Top(X,iY)=\Top_\ast(??,Y)$? This is $X_+=X\sqcup \ast$. Thus we have a left adjoint $(-)_+$. It is clear that $(X\sqcup Y)_\ast = X_+ \vee Y_+$. The unit for the smash product is $\ast_+ = S^0$.
+
+On Friday I'll talk about fibrations and fiber bundles.

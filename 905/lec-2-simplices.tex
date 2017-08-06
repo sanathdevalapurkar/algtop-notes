@@ -1,0 +1,43 @@
+\section{Simplices, more about homology}
+Recall the standard $n$-simplex $\Delta^n\subseteq\mathbf{R}^{n+1}$. A singular simplex is a map $\sigma:\Delta^n\to X$; they are elements of the set $\Sin_n(X)$. For example, $\Sin_0(X)$ consists of points of $X$. You have a huge collection of maps $d^i:\Sin_n(X)\to\Sin_{n-1}(X)$ and $s^i:\Sin_n(X)\to\Sin_{n+1}(X)$, and the collection $\{\Sin_n(X),d^i,s^i\}$ forms a simplicial set. You therefore get a functor $\mathbf{Top}\to\{\text{simplicial sets}\}$. Simplicial sets are really cool, because they're combinatorial models for topological spaces.
+
+Now, you get induced maps on free abelian groups. This produces for each space a semi-simplicial abelian group. Using the $d^i$s and $s^i$s, you get a boundary map $\partial$, and therefore a chain complex because $\partial^2=0$ (see homework). We capture this process in a diagram:
+\begin{equation*}
+\xymatrix{\mathbf{Top}\ar[d]\ar[r] & \{\text{semi-simplicial sets}\}\ar[r] & \{\text{semi-simplicial abelian groups}\}\ar[d]\\
+    \{\text{simplicial sets}\}\ar[ur] & & \{\text{chain complexes}\}\ar[d]^{\text{take homology}}\\
+ & &\{\text{graded abelian group}\}}
+\end{equation*}
+If you have a chain complex $\partial:A_n\to A_{n-1}$, then you have its homology $H_n(A,\partial)=\ker\partial_n/\img\partial_n$.
+
+Let's practice with simplices. Suppose we have $\sigma:\Delta^1\to X$. Construct a map $\phi:\Delta^1\to\Delta^1$ via $(t,1-t)\mapsto (1-t,t)$. This reverses the orientation of $\sigma$. Composing $\sigma$ with $\phi$ gives another singular simplex $\overline{\sigma}$. It is \textit{not} true that $\overline{\sigma}=-\sigma$ in $S_1(X)$.
+
+Claim: $\overline{\sigma}\equiv -\sigma\bmod B_1(X)=\img(\partial)$, i.e., they are homologous. That is, if $d_0\sigma=d_1\sigma$, so $\sigma\in Z_1(X)$, then $[\overline{\sigma}]=-[\sigma]$ in $ H_1(X)$. In other words, $\overline{\sigma}+\sigma$ is a boundary. We have to come up with a $2$-simplex in $X$ whose boundary is $\overline{\sigma}+\sigma$.
+
+Let $\pi$ denote the projection map from $[0,1,2]$ to $[0,1]$\todo{MUST UPLOAD PICTURE HERE}. Then, $\partial(\sigma\circ\pi)=\sigma\pi d^0-\sigma\pi d^1 +\sigma\pi d^2=\overline{\sigma}-c^1_{\sigma(0)}+\sigma$ where $c^1_{\sigma(0)}$ is the constant $1$-simplex at $\sigma(0)$ (similarly for $c^n_{\sigma(0)}$). The $c^1_{\sigma(0)}$ is an error term. How do we correct this? Consider the constant $2$-simplex $c^2_{\sigma(0)}$ at $\sigma(0)$; then the boundary is $c^1_{\sigma(0)}-c^1_{\sigma(0)}+c^1_{\sigma(0)}$, which is $c^1_{\sigma(0)}$. So, $\overline{\sigma}+\sigma=\partial(\sigma\circ\pi + c^2_{\sigma(0)})$.
+
+Let's compute the homologies of $\emptyset$ and $\ast$. Well, $\Sin_n(\emptyset)=\emptyset$, so $S_\ast(\emptyset)=0$. So, $\cdots\to S_2\to S_1\to S_0$ is the zero chain complex. This means that $Z_\ast(\emptyset)=0$ and similarly for boundaries. The homology in all dimensions is therefore $0$.
+
+Now for $\ast$. Clearly $\Sin_n(\ast)=\ast$, and this generates $S_n(\ast)$, which is thus $\mathbf{Z}$. The chain complex is $S_0(\ast)\leftarrow S_1(\ast)\leftarrow S_2(\ast)\leftarrow\cdots$. What are the boundary maps? Well, $\partial(c^1_\ast)=d^0c^1_\ast - d^1c^1_\ast = c^0_\ast - c^0_\ast = 0$, $\partial(c^2_\ast)=d^0c_2^\ast - d^1 c^2_\ast + d^2 c^2_\ast = c^1_\ast - c^1_\ast + c^1_\ast = c^1_\ast$, and $\partial (c^3_\ast)=d^0 c^3_\ast - d^1 c^3_\ast + d^2 c^3_\ast - d^3 c^3_\ast = 0$. This means that our chain complex is:
+$$\cdots\to\mathbf{Z}\xrightarrow{0}\mathbf{Z}\xrightarrow{1}\mathbf{Z}\xrightarrow{0}\mathbf{Z}$$
+The cycles therefore alternate between $0$s and $\mathbf{Z}$s, namely as $\mathbf{Z},\mathbf{Z},0,\mathbf{Z},0,\cdots$. The boundaries are the same as the cycles except for dimension zero, namely as $0,\mathbf{Z},0,\mathbf{Z},0,\cdots$. This means that $ H_0(\ast)=\mathbf{Z}$ but $ H_i(\ast)=0$ for $i>0$.
+
+What do these constructions do? Suppose you have $f:X\to Y$. You have a map $f_\ast:\Sin_n(X)\to\Sin_n(Y)$ induced by composition, namely $\sigma\mapsto f\circ \sigma=:f_\ast\sigma$. What about face maps; does the following diagram commute?
+\begin{eqnarray*}
+\xymatrix{\Sin_n(X)\ar[r]^{f_\ast}\ar[d]^{d_i} & \Sin_n(Y)\ar[d]^{d_i}\\
+\Sin_{n-1}(X)\ar[r]^{f_\ast} & \Sin_{n-1}(Y)}
+\end{eqnarray*}
+We see that $d_if_\ast\sigma=(f_\ast\sigma)\circ d^i=f\circ\sigma\circ d^i$, and $f_\ast(d_i\sigma)=f_\ast(\sigma\circ d^i)=f\circ\sigma\circ d^i$. So the answer is yes! This also holds for the free abelian groups. You therefore get a map of chain complexes.
+
+A chain map $f:C_\ast\to D_\ast$ is a map $f_n:C_n\to D_n$ such that the following diagram commutes for every $n$:
+\begin{equation*}
+    \xymatrix{
+	C_n\ar[r]^{f_n}\ar[d]^{partial_C} & D_n\ar[d]^{\partial_D}\\
+	C_{n-1}\ar[r]^{f_{n-1}} & D_{n-1}
+    }
+\end{equation*}
+Does a chain map induce a map in homology $f_\ast: H_n(C)\to H_n(D)$? As a preliminary question, do we get a map $Z_n(C)\to Z_n(D)$? Let $c\in Z_n(C)$, so that $\partial_C c = 0$. Then $\partial_D f_n(c) = f_{n-1}\partial_C c = f_{n-1}(0) = 0$, because $f$ is a chain map. This means that $f_n(c)$ is also an $n$-cycle, i.e., $f$ gives a map $Z_n(C)\to Z_n(D)$.
+
+Do we also get a map $B_n(C)\to B_n(D)$? Let $c\in B_n(C)$, so that there exists $c^\prime \in C_{n+1}$ such that $\partial_C c^\prime = c$. Then $f_n(c) = f_n\partial_C c^\prime = \partial_D f_{n+1}(c^\prime)$. Thus $f_n(c)$ is the boundary of $f_{n+1}(c^\prime)$, and $f$ gives a map $B_n(C)\to B_n(D)$.
+
+The two maps $Z_n(C)\to Z_n(D)$ and $B_n(C)\to B_n(D)$ give a map on homology. This means that we get a map $f_\ast: H_n(X)\to H_n(Y)$, as desired!
+
