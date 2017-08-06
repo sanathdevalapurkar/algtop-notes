@@ -1,5 +1,7 @@
 %\documentclass[oneside]{memoir}
-\documentclass[12pt]{amsart}
+%\documentclass[12pt]{amsart}
+\documentclass{amsart}
+
 \usepackage{sseqpages}
 % \headheight=8pt
 % \topmargin=3pt
@@ -10,13 +12,13 @@
 %\usepackage{refcount}
 
 \usepackage[T1]{fontenc}
-\usepackage[urw-garamond]{mathdesign}
-%\usepackage{garamondx}
+%\usepackage[urw-garamond]{mathdesign}
+%\usepackage[margin=1.25in]{geometry}
 
 \usepackage{todonotes}
 \usepackage{amsmath}
 %\usepackage{amsfonts}
-%\usepackage{amssymb}
+\usepackage{amssymb}
 \usepackage{float}
 \usepackage{amsthm}
 \usepackage{comment}
@@ -29,7 +31,6 @@
 \usepackage[mathscr]{eucal}
 \usepackage{graphicx}
 %\spacing{1.75}
-\usepackage[margin=1.25in]{geometry}
 \usepackage{tikz-cd}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \usepackage{ifluatex,ifxetex}
@@ -135,8 +136,11 @@
 \newcommand{\xla}{\xleftarrow}
 
 \newcommand{\weq}{\xrightarrow{\sim}}
-\newcommand{\cofib}{\rightarrowtail}
-\newcommand{\fib}{\twoheadrightarrow}
+%\newcommand{\cofib}{\rightarrowtail}
+%\newcommand{\fib}{\twoheadrightarrow}
+\newcommand{\cofib}{\to}
+\newcommand{\fib}{\to}
+
 
 \def\llarrow{  \hspace{.05cm}\mbox{\,\put(0,-2){$\leftarrow$}\put(0,2){$\leftarrow$}\hspace{.45cm}}}
 \def\rrarrow{  \hspace{.05cm}\mbox{\,\put(0,-2){$\rightarrow$}\put(0,2){$\rightarrow$}\hspace{.45cm}}}
