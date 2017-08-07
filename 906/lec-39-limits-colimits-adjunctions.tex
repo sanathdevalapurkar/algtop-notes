@@ -1,76 +1,198 @@
 \section{Limits, colimits, and adjunctions}\label{906}
-Hi! This is 18.906. I'm glad to see familiar faces, and new faces. Let me introduce the course. It's a pset based course, with 6 psets. The first one is due Feb 22. It's due every two weeks, so I can't formulate all porblems right at the beginning of the two weeks. I'll try to have the psets done a week before the psets are due. So the first couple problems are up for this pset. You'll be glad to hear that there's no final. I don't think I'll do it again, not this term.
+% Some organizational stuff, unnecessary for the book:
+% Hi! This is 18.906. I'm glad to see familiar faces, and new faces. Let me introduce the course. It's a pset based course, with 6 psets. The first one is due Feb 22. It's due every two weeks, so I can't formulate all porblems right at the beginning of the two weeks. I'll try to have the psets done a week before the psets are due. So the first couple problems are up for this pset. You'll be glad to hear that there's no final. I don't think I'll do it again, not this term.
 
-I'll have office hours every week, but I don't know when yet. Hood's the grader and he'll have office hours. There's a course website which can be easily found. What's the course about? Really homotopy theory. 905 was homology and cohomology. Here's the table of contents.
-\begin{enumerate}
-    \item General homotopy theory (category theory). Because it started in algtop, I have the right to talk about it here. Homotopy groups, lexseqs, obstruction theory.
-    \item Bundles. The theme of the course is using bundles to understand spaces. Brown representability, classifying spaces.
-    \item Spectral sequences(!!!) The story is that it was invented as a piece of algtop. But in the last 60 years it's become a general mathematical tool.
-    \item Homotopy-theoretic applications. How to relate homotopy and homology (Hurewicz, whitehead, and local versions like mod C).
-    \item Characteristic classes (Thom, Euler, Chern, Steifel-Whitney class), where applications to geometry come in.
-    \item Time permitting, there's a beautiful story that comes out (on cobordism, etc).
-\end{enumerate}
-Any questions? I try to correspond problems in the psets and lectures.
-\subsection{Category theory}
-I'm interested in ``construction''. In 905, I began by talking about category theory. I just won't introduce basic concepts again. Suppose $\cI$ is a small category (a set of objects), and $\cc$ another category.
+% I'll have office hours every week, but I don't know when yet. Hood's the grader and he'll have office hours. There's a course website which can be easily found. What's the course about? Really homotopy theory. 905 was homology and cohomology. 
+
+%Any questions? I try to correspond problems in the psets and lectures.
+\subsection{Limits and colimits}
+%I'm interested in ``construction''. In 905, I began by talking about category theory. I just won't introduce basic concepts again.
+We will freely use the theory developed in the first part of this book (see \S \ref{categories}).
+Suppose $\cI$ is a small category (so that it has a \emph{set} of objects),
+and let $\cc$ be another category.
 \begin{definition}
-    Let $X:\cI\to\cc$. A cone under $X$ is a natural transformation from $X$ to a constant functor. So for every $f:i\to j$ in $\cI$, the diagram should commute:
+    Let $X:\cI\to\cc$ be a functor.
+    A \emph{cone under $X$} is a natural transformation $\eta$ from $X$ to a constant functor;
+    explicitly, this means that for every object $i$ of $\cI$, we must have a map $\eta_i: X_i\to Y$,
+    such that for every $f:i\to j$ in $\cI$, the following diagram commutes:
     \begin{equation*}
 	\xymatrix{
-	    X_i\ar[d]^{f_\ast}\ar[dr]^{f_i} & \\
-	    X_j\ar[r]^{f_j} & Y
+	    X_i\ar[d]^{f_\ast}\ar[dr]^{\eta_i} & \\
+	    X_j\ar[r]^{\eta_j} & Y.
 	    }
     \end{equation*}
-    A \emph{colimit} of $X$ is an initial cone under $X$. So, for all $(Y,f_i)$, there exists a unique $h:L\to Y$ such that $h\circ g_i = f_i$.
+    A \emph{colimit} of $X$ is an initial cone $(L,\tau_i)$ under $X$;
+    explicitly, this means that for all cones $(Y,\eta_i)$ under $X$,
+    there exists a unique natural transformation $h:L\to Y$ such that $h\circ \tau_i = \eta_i$.
 \end{definition}
-For example, we can let $\cI = \mathbf{N}$ made a category via its natural poset structure. For example, if $\cc = \mathbf{Ab}$, then you can consider $\Z\xrightarrow{2}\Z\xrightarrow{3}\Z\to\cdots$. The colimit of this is $\QQ$, where the maps are:
-\begin{equation*}
-    \xymatrix{
-	\Z\ar[r]^2\ar[dr]^1 & \Z\ar[r]^3\ar[d]^{1/2} & \Z\ar[r]^4\ar[dl]^{1/3!} & \cdots\\
-	& \QQ & &
-    }
-\end{equation*}
-It looks pretty initial, doesn't it?
+As always for category theoretic concepts, some examples are in order.
+\begin{example}\label{coproductsarecolimits}
+    If $\cI$ is a discrete category (i.e., only a set, with identity maps), the colimit of any functor $\cI\to\cc$
+    is the coproduct. This already illustrates an important point about colimits: they need not exist in general
+    (since, for example, coproducts need not exist in a general category).
+    Examples of categories $\cc$ where the colimit of a functor $\cI\to\cc$ exists:
+    if $\cc$ is sets, or spaces, the colimit is the disjoint union.
+    If $\cc=\mathbf{Ab}$, a candidate for the colimit would be the product:
+    but this only works if $\cI$ is finite; in general, the correct thing is to take the (possibly infinite) direct sum.
+\end{example}
+\begin{example}
+    Let $\cI = \mathbf{N}$, considered as a category via its natural poset structure;
+    then a functor $\cI\to \cc$ is simply a linear system of objects and morphisms in $\cc$.
+    As a specific example, suppose $\cc = \mathbf{Ab}$, and
+    consider the diagram $X:\cI \to \cc$ defined by the system
+    $$\Z\xrightarrow{2}\Z\xrightarrow{3}\Z\to\cdots$$
+    The colimit of this diagram is $\QQ$, where the maps are:
+    \begin{equation*}
+	\xymatrix{
+	    \Z\ar[r]^2\ar[dr]^1 & \Z\ar[r]^3\ar[d]^{1/2} & \Z\ar[r]^4\ar[dl]^{1/3!} & \cdots\\
+	    & \QQ & &
+	    }
+    \end{equation*}
+\end{example}
+\begin{example}\label{colimitgroupaction}
+    Let $G$ be a group; we can view this as a category with one object, where the morphisms are the elements of the group
+    (composition is given by the group structure).
+    If $\cc = \Top$ is the category of topological spaces, a functor $G\to \cc$ is simply a
+    group action on a topological space $X$.
+    The colimit of this functor is the orbit space of the $G$-action on $X$.
+\end{example}
+\begin{example}
+    Let $\cI$ be the category whose objects and morphisms are determined by the following graph:
+    \begin{equation*}
+	\xymatrix{ & a\ar[dl]\ar[dr] & \\
+	b & & c.}
+    \end{equation*}
+    The colimit of a diagram $\cI\to \cc$ is called a \emph{pushout}.
 
-For example, if $\cI = G$ and $\cc=\Top$, then this is just a group action on a topological space. The colimit of this functor is the orbit space, i.e., $X/G$ (technically this is $G\backslash X$ because $G$ acts on the left).
+    If $\cc=\Top$, again, a functor $\cI\to \cc$ is determined by a diagram of spaces:
+    \begin{equation*}
+	\xymatrix{
+	    & A\ar[dl]^f\ar[dr]^g & \\
+	    B & & C.
+	    }
+    \end{equation*}
+    The colimit of such a functor is just the pushout $B\cup_A C:= B\sqcup C/\sim$, where $f(a)\sim g(a)$ for all $a\in A$.
+    We have already seen this in action before: the same construction appears in the process of attaching cells to CW-complexes.
 
-How about the following $\cI$:
-\begin{equation*}
-    \xymatrix{
-	& b\\
-	a\ar[ur]\ar[dr] & \\
-	& c
-    }
-\end{equation*}
-and $\cc=\Top$. The cone of this is the pushout $B\cup_A C:= B\sqcup C/\sim$ where $f(a)\sim g(a)$ for all $a\in A$! Basically, you're gluing $B$ and $C$ along $A$. For example, attaching cells to CW-complexes. If the category is groups, then the pushout is Instead of the disjoint union, you take the free product, and then quotient out to get something known as the \emph{amalgamated free product}.
-
-If you had the following $\cI$:
+    If $\cc$ is the category of groups, instead, the colimit of such a functor is the free product quotiented out
+    by a certain relation (the same as for topological spaces); this is called the \emph{amalgamated free product}.
+\end{example}
+\begin{example}
+    Suppose $\cI$ is the category defined by the following graph:
 \begin{equation*}
     \begin{tikzcd}
-	a\ar[r,shift left=.75ex]\ar[r,shift right=.75ex] & b
+	a\ar[r,shift left=.75ex]\ar[r,shift right=.75ex] & b.
     \end{tikzcd}
 \end{equation*}
-The colimit of this in any category is what's called the \emph{coequalizer}.
+    The colimit of a diagram $\cI\to\cc$ is called the \emph{coequalizer} of the diagram.
+\end{example}
 
-Similarly, if $\cI$ is a discrete category (only a set, with identity maps). The colimit is the coproduct. If the category is sets, or spaces, this is the disjoint union. If the category is abelian groups, then one option would be the product. But this only works if $\cI$ is finite. A better thing is to take the (possibly infinite) direct sum.
-
-\begin{remark}
-    Analogously, you can consider \emph{cones over} $X$. While Miller defined this in class, I'll leave it you, beloved reader, to figure out this definition. It's really just a cone in the opposite category. Like the notion of a colimit, we get a limit as a terminal object in cones over $X$. I encourage you to consider limits in the examples above. For example, in the second example above, the limit of a group action is the fixed point set!
-\end{remark}
-So products are limits, for example. Think about this yourself, because I want to talk about one more thing, namely adjoint functors.
-\subsection{Adjoint functors}
-This is a very useful concept. We have an example, already. Let $\cc^\cI = \Fun(\cI,\cc)$. We've been working in this category! Ok, so what we have is a functor $\cc\to \cc^\cI$, given by the constant functor. We also have a functor $\cc^\cI\to \cc$ given by the colimit. This may not exist in general, but in our examples above, they always exist. What's the rule this colimit plays? Well:
-$$\cc(\colim_{i\in \cI} X_i,Y) = \cc^\cI(X,\mathrm{const}_Y)$$
-where $X:\cI\to\cc$. This is reminiscent of the adjunction operator in linear algebra. So this is an example of an adjoint functor. In fact, also:
-$$\cc(W,\lim_{i\in \cI} X_i) = \cc^{\cI}(\mathrm{const}_W,X)$$
-Another adjunction where the constant functor functor (yes, two ``functor''s!) appears on the left!
-\begin{definition}[Invented by Dan Kan, late, of this department]
-    Let $\cc,\cd$ be categories. Let $F:\cc\to \cd$ and $G:\cd\to\cc$. An \emph{adjunction} between $F$ and $G$ is an isomorphism:
-    $$\cd(FX,Y) = \cc(X,GY)$$
-    which is natural in $X$ and $Y$. We say that $F$ is a left adjoint of $G$ and $G$ is a right adjoint of $X$. People typically write left adjoints on the top.
-\end{definition}
-For example, there's a forgetful functor $\mathrm{Grp}\to\mathrm{Set}$. Any set determines a group. Hmm. What is this? Set maps $X\to u\Gamma$ should be the same as group maps $FX\to \Gamma$ where $\Gamma$ is a group and $F$ is our mysterious left adjoint. $u$ is the forgetful functor. So $FX$ is the free group! This is literally the definition of the free group.
+    One can also consider cones \emph{over} a diagram $X:\cI\to\cc$: this is simply a cone in the opposite category.
 \begin{definition}
-    $\cc$ is \emph{cocomplete} if all colimits exist. It's \emph{complete} if all limits exist.
+    With notation as above, the \emph{limit} of a diagram $X:\cI\to\cc$ is a terminal object in cones over $X$.
 \end{definition}
-Obviously I'm talking about small (co)limits. If a functor has both left and right adjoints, it's super nice! We'll reconvene on Friday.
+For instance, products are limits, just like in Example \ref{coproductsarecolimits}.
+(This example also shows that abelian groups satisfy an interesting property: finite products are the same as finite coproducts!)
+\begin{exercise}
+    Revisit the examples provided above: what is the limit of each diagram?
+    For instance, the limit of the diagram described in Example \ref{colimitgroupaction} is just the fixed points!
+\end{exercise}
+\subsection{Adjoint functors}
+Adjoint functors are very useful --- and very natural --- objects.
+We already have an example: let $\cc^\cI$ be the functor category $\Fun(\cI,\cc)$.
+(We've been working in this category this whole time!)
+Let's make an additional assumption on $\cc$, namely that all $\cI$-indexed colimits exist.
+All examples considered above satisfy this assumption.
+
+There is a functor $\cc\to \cc^\cI$, given by sending any object to the constant functor taking that value.
+The process of taking the colimit of a diagram supplies us with a functor $\cc^\cI\to \cc$.
+We can characterize this functor via a formula\footnote{There is an analogous formula for the limit of a diagram:
+$$\cc(W,\lim_{i\in \cI} X_i) = \cc^{\cI}(\mathrm{const}_W,X).$$}:
+$$\cc(\colim_{i\in \cI} X_i,Y) = \cc^\cI(X,\mathrm{const}_Y),$$
+where $X$ is some functor from $\cI$ to $\cc$.
+This formula is reminiscent of the adjunction operator in linear algebra,
+and is in fact our first example of an adjunction.
+
+\begin{definition}
+    Let $\cc,\cd$ be categories,
+    with specified functors $F:\cc\to \cd$ and $G:\cd\to\cc$.
+    An \emph{adjunction between $F$ and $G$} is an isomorphism:
+    $$\cd(FX,Y) = \cc(X,GY),$$
+    which is natural in $X$ and $Y$.
+    In this situation, we say that $F$ is a \emph{left adjoint} of $G$ and $G$ is a \emph{right adjoint} of $X$.
+    %People typically write left adjoints on the top.
+\end{definition}
+This notion was invented by Dan Kan, who worked in the MIT mathematics department until he passed away in 2013.
+
+We've already seen an example above, but here is another one:
+\begin{definition}[Free groups]
+    There is a forgetful functor $u:\mathrm{Grp}\to\mathrm{Set}$.
+    Any set $X$ gives rise to a group $FX$, namely the free group on $X$ elements.
+    This is determined by a universal property:
+    set maps $X\to u\Gamma$ are the same as group maps $FX\to \Gamma$,
+    where $\Gamma$ is any group.
+    This is exactly saying that the free group functor the left adjoint to the forgetful functor $u$.
+\end{definition}
+In general, ``free objects'' come from left adjoints to forgetful functors.
+
+
+\begin{definition}
+    A category $\cc$ is said to be \emph{cocomplete} if all (small) colimits exist in $\cc$.
+    Similarly, one says that $\cc$ is \emph{complete} if all (small) limits exist in $\cc$.
+\end{definition}
+\subsection{The Yoneda lemma}%This belongs to the next lecture, but fits in better here.
+One of the many important concepts in category theory is that an object is determined by
+the collection of all maps out of it.
+The Yoneda lemma is a way of making this precise.
+An important reason to even bother thinking about objects in this fashion comes from our
+discussion of colimits.
+Namely, how do we even know that the notion is well-defined?
+
+The colimit of an object is characterized by maps out of it; precisely:
+$$\cc(\colim_{j\in\cJ}X_j,Y) = \cc^\cJ(X_\bullet,\mathrm{const}_Y).$$
+The two sides are naturally isomorphic, but if the colimit exists, how do we know that it
+is unique?
+This is solved by Yoneda lemma\footnote{Sometimes ``you-need-a-lemma''!}:
+\begin{theorem}[Yoneda lemma]
+    Consider the functor $\cc(X,-):\cc\to\set$. Suppose $G:\cc\to\set$ is another functor. It turns out that:
+    $$\mathrm{nt}(\cc(X,-),G)\simeq G(X).$$
+\end{theorem}
+\begin{proof}
+    Let $x\in G(X)$.
+    Define a natural transformation that sends a map $f:X\to Y$ to $f_\ast(x)\in G(Y)$.
+    On the other hand, we can send a natural transformation $\theta:C(X,-)\to G$
+    to $\theta_X(1_X)$. 
+    Proving that these are inverses is left as an exercise --- largely in notation --- to the reader.
+\end{proof}
+In particular, if $G=\cc(Y,-)$
+--- these are called \emph{corepresentable} functors ---
+then $\mathrm{nt}(\cc(X,-),\cc(Y,-))\simeq \cc(Y,X)$.
+Simply put, natural isomorphisms $\cc(X,-)\to \cc(Y,-)$ are the same as isomorphisms $Y\to X$.
+As a consequence, the object that a corepresentable functor corepresents is unique
+(at least up to isomorphism).
+
+From the Yoneda lemma, we can obtain some pretty miraculous conclusions.
+For instance, functors with left and/or right adjoints are very well-behaved
+(the ``constant functor'' functor is an example where both adjoints exist),
+as the following theorem tells us.
+\begin{theorem}\label{adjointslimits}
+    Let $F:\cc\to\cd$ be a functor.
+    If $F$ admits a right adjoint, it preserves colimits.
+    Dually, if $F$ admits a left adjoint, it preserves limits.
+\end{theorem}
+\begin{proof}
+    We'll prove the first statement, and leave the other as an (easy) exercise.
+    Let $F:\cc\to\cd$ be a functor that admits a right adjoint $G$, and let $X:\cI\to\cc$ be a
+    small $\cI$-indexed diagram in $\cc$.
+    For any object $Y$ of $\cc$, there is an isomorphism
+    $$\Hom(\colim_{\cI} X, Y) \simeq \lim_{\cI}\Hom(X, Y).$$
+    This follows easily from the definition of a colimit.
+    Let $Y$ be any object of $\cd$; then, we have:
+    \begin{align*}
+	\cd(F(\colim_{\cI} X), Y) & \simeq \cc(\colim_{\cI} X, G(Y))\\
+	& \simeq \lim_{\cI}\cc(X, G(Y))\\
+	& \simeq \lim_{\cI}\cc(F(X), Y)\\
+	& \simeq \cc(\colim_{\cI}F(X), Y).
+    \end{align*}
+    The Yoneda lemma now finishes the job.
+\end{proof}

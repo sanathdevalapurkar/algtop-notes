@@ -1,43 +1,74 @@
 \section{Compactly generated spaces}
-A lot of the course is going to be about loop spaces, and mapping spaces. Standard topology doesn't do very well with mapping spaces. So we are going to narrate the story of compactly generated spaces. One of the good things is that you have a \emph{Cartesian-closed category}.
+A lot of homotopy theory is about loop spaces and mapping spaces.
+Standard topology doesn't do very well with mapping spaces, so we will narrate the story of \emph{compactly generated spaces}.
+One nice consequence of working with compactly generated spaces is that the category is
+Cartesian-closed (a concept to be defined below).
 
-The first thing I want to talk about is the Yoneda lemma. We will start to do some topology pretty soon. OK, so I was proposing the notion of a colimit of a functor. It was defined in terms of maps out of the colimit. More precisely:
-$$\cc(\colim_{j\in\cJ}X_j,Y) = \cc^\cJ(X_\bullet,\mathrm{const}_Y)$$
-They're naturally isomorphic, and that's all you can ask for in this life. How well-defined is this object, if it exists? Whether it exists is a question of how cocomplete your category is. The question of uniqueness is more general. Let's think about that for a minute. The Yoneda lemma -- sometimes ``you-need-a-lemma''(!!) -- is:
-\begin{theorem}[Yoneda lemma]
-    Consider the functor $\cc(X,-):\cc\to\set$. Suppose $G:\cc\to\set$ is another functor. It turns out that:
-    $$\mathrm{nt}(\cc(X,-),G)\simeq G(X)$$
-\end{theorem}
-\begin{proof}
-    Let $x\in G(X)$. We then define a natural transformation that sends $f:X\to Y$ to $f_\ast(x)\in G(Y)$. On the other hand, suppose $\theta:C(X,-)\to G$. Send $\theta$ to $\theta_X(1_X)$. These two are so natural and beautiful that you expect that they're inverses, right? And they are.
-\end{proof}
-OK, so in particular if $G=\cc(Y,-)$ -- these are called \emph{corepresentable} functors -- then $\mathrm{nt}(\cc(X,-),\cc(Y,-))\simeq \cc(Y,X)$. What this means is that if you look at natural isomorphisms $\cc(X,-)\to \cc(Y,-)$, that's the same as isomorphisms $Y\to X$. This means that if you have a corepresentable functor, the object that represents is unique\footnote{at least up to isomorphism}.
 \subsection{CGHW spaces}
-Some constructions commute for ``categorical reasons''. Here's the example to keep in mind. Let $X\in \Top$. Then $X\times\lim_{j\in\cJ}Y_j\simeq \lim_{j\in\cJ}(X\times Y_j)$. Why? This is easily proven because both the limit and the product are defined by what maps into them are. In contrast, $X\times\colim_{j\in \cJ}Y_j$ is not $\colim_{j\in \cJ}(X\times Y_j)$ in general. Very sad :-( An example of this failure is a quotient map $Y\to Z$. Then $X\times Y\to X\times Z$, is this a quotient map? It's not true in general. It's a very sad state of affairs.
-\begin{theorem}[Whitehead]
-    It is if $X$ is a compact Hausdorff space.
-\end{theorem}
-I want to repair that problem. Why were we talking about colimits? Here's an observation. Suppose $X\to Y$ is a quotient map; then a map $Y\to Z$ is continuous iff the composite $X\to Y\to Z$ is continuous. A quotient map \emph{is} a coequalizer. What I'm saying is, I can find two maps to $X$ such that $Y$ is a coequalizer of $X$. What space are we mapping into $X$? Well, suppose $Z=X/\sim$. If we considered:
-\begin{equation*}
-    \begin{tikzcd}
-	X\times_Z X\ar[r,shift left=.75ex,"\pi_1"]\ar[r,shift right=.75ex,swap,"\pi_2"] & X\ar[r] & Z
-    \end{tikzcd}
-\end{equation*}
-The term here is ``regular epimorphism''.
+Some constructions commute for ``categorical reasons''.
+For instance, limits commute with limits.
+Here is an exercise to convince you of a special case of this.
+\begin{exercise}%Exercise 4 from 18.906
+    Let $X$ be an object of a category $\cc$.
+    The \emph{overcategory} (or the \emph{slice category}) $\cc_{/X}$ has objects
+    given by morphisms $p:Y\to X$ in $\cc$, and morphisms given by the obvious
+    commutativity condition.
+    \begin{enumerate}
+	\item Assume that $\cc$ has finite products.
+	    What is the left adjoint to the functor $X\times -:\cc\to\cc_{/X}$ that sends
+	    $Y$ to the object $X\times Y \xar{\pr_1}X$?
+	\item As a consequence of Theorem \ref{adjointslimits}, we find that $X\times -:\cc\to\cc_{/X}$ preserves limits.
+	    The composite $\cc\to\cc_{/X}\to\cc$, however, probably does not.
+	    \begin{itemize}
+		\item What is the limit of a diagram in $\cc_{/X}$?
+		\item Let $Y:\cI\to\cc$ be any diagram. Show that
+		    $${\lim_{i\in\cI}}^{\cc_{/X}}(X\times Y_i)
+		    \simeq X\times {\lim_{i\in\cI}}^\cc Y_i.$$
+		    What happens if $\cI$ only has two objects and only identity morphisms?
+	    \end{itemize}
+    \end{enumerate}
+\end{exercise}
+However, colimits and limits need not commute!
+An example of colimits failing to commute with limits comes from algebra.
+The coproduct in the category of commutative rings is the tensor product.
+But $\left(\lim \Z/p^k\Z\right) \otimes \QQ \simeq \Z_p \otimes \QQ \simeq \QQ_p$ is
+clearly not $\lim\left(\Z/p^k\Z\otimes \QQ\right) \simeq \lim 0 \simeq 0$!
 
-\begin{remark}
-    OK, the statement about limits and products is wrong. Think about what happens when $\cJ$ is a discrete category. We will fix this on Monday.
-\end{remark}
+We also need not have an isomorphism between
+$X\times\colim_{j\in \cJ}Y_j$ and $\colim_{j\in \cJ}(X\times Y_j)$:
+one such example comes a quotient map $Y\to Z$: 
+in general, the induced map $X\times Y\to X\times Z$ is not necessarily another quotient map.
+A theorem of Whitehead's says that this problem is rectified if we assume that $X$ is
+a compact Hausdorff space.
+Unfortunately, a lot of interesting maps are built up from more ``elementary'' maps by such a procedure,
+so we would like to repair this problem.
+%Why were we talking about colimits? Here's an observation. Suppose $X\to Y$ is a quotient map; then a map $Y\to Z$ is continuous iff the composite $X\to Y\to Z$ is continuous. A quotient map \emph{is} a coequalizer. What I'm saying is, I can find two maps to $X$ such that $Y$ is a coequalizer of $X$. What space are we mapping into $X$? Well, suppose $Z=X/\sim$. If we considered:
+%\begin{equation*}
+%    \begin{tikzcd}
+%	X\times_Z X\ar[r,shift left=.75ex,"\pi_1"]\ar[r,shift right=.75ex,swap,"\pi_2"] & X\ar[r] & Z
+%    \end{tikzcd}
+%\end{equation*}
+%The term here is ``regular epimorphism''.
 
-We don't want to just restrict ourselves to compact Hausdorff spaces. So we look at topologies detected by maps from compact Hausdorff spaces.
+We cannot simply do this by restricting ourselves to compact Hausdorff spaces:
+that's a pretty restrictive condition to place.
+Instead (motivated partially by the Yoneda lemma),
+we will look at topologies detected by maps from compact Hausdorff spaces.
 \begin{definition}
-    Let $X$ be a space. A subspace $F\subseteq X$ is called \emph{compactly closed} if for any map $k:K\to X$ from compact Hausdroff $K$, then $k^{-1}(F)\subseteq K$ is closed.
+    Let $X$ be a space.
+    A subspace $F\subseteq X$ is said to be \emph{compactly closed} if,
+    for any map $k:K\to X$ from a compact Hausdorff space $K$, 
+    the preimage $k^{-1}(F)\subseteq K$ is closed.
 \end{definition}
-If $F$ is closed, then it's clearly compactly closed. But there might be non-closed compactly closed sets.
+It is clear that any closed subset is compactly closed, but
+there might be compactly closed sets which are not closed in the topology on $X$.
+This motivates the definition of a $k$-space:
 \begin{definition}
-    $X$ is a $k$-space if compactly closed implies closed.
+    A topological space $X$ is said to be a $k$-space
+    if every compactly closed set is closed.
 \end{definition}
-The $k$ comes from ``kompact'' and/or Kelly, an early topologist who considered this stuff.
+The $k$ comes either from ``kompact'' and/or Kelly, who was an early topologist
+who worked on such foundational topics.
 
 Let $X$ be any space. It can be $k$-ified to some space denoted $kX$. You just enlarge the topology so that it includes the compactly closed sets. This is a topology, bigger than the original one. So the identity $kX\to X$ is continuous.
 

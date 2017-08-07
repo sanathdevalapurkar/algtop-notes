@@ -1,5 +1,7 @@
 \usepackage[protrusion=true,expansion=true]{microtype}
 
+%\usepackage[center]{titlesec}
+
 \usepackage[pdftex,
             pdfauthor={Sanath Devalapurkar},
 	    pdftitle={Algebraic topology}]{hyperref}
@@ -8,7 +10,7 @@
 \usepackage[T1]{fontenc}
 
 %\usepackage[urw-garamond]{mathdesign}
-%\usepackage[margin=1.25in]{geometry}
+\usepackage[left=2in,right=2in,top=2in,bottom=2.5in]{geometry}
 
 \usepackage{todonotes}
 
@@ -37,7 +39,6 @@
 \newtheorem{corollary}[theorem]{Corollary}
 
 \theoremstyle{definition}
-%\theoremstyle{definition}
 \newtheorem{problem}[theorem]{Problem}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{notation}[theorem]{Notation}
@@ -80,19 +81,20 @@
 \def\lllarrow{ \hspace{.05cm}\mbox{\,\put(0,-3){$\leftarrow$}\put(0,1){$\leftarrow$}\put(0,5){$\leftarrow$}\hspace{.45cm}}}
 \def\rrrarrow{ \hspace{.05cm}\mbox{\,\put(0,-3){$\rightarrow$}\put(0,1){$\rightarrow$}\put(0,5){$\rightarrow$}\hspace{.45cm}}}
 
-\def\cA{\mathscr A}\def\cB{\mathscr B}\def\cc{\mathbf C}\def\cd{\mathbf D}
-\def\cC{\mathscr C}
-\def\ce{\mathscr E}\def\cf{\mathscr F}\def\cG{\mathscr G}\def\cH{\mathscr H}
-\def\cI{\mathscr I}\def\cJ{\mathscr J}\def\cK{\mathscr K}\def\cL{\mathscr L}
-\def\cM{\mathscr M}\def\cN{\mathscr N}\def\cO{\mathbf O}\def\cP{\mathscr P}
-\def\cQ{\mathscr Q}\def\cR{\mathscr R}\def\cS{\mathscr S}\def\cT{\mathscr T}
-\def\cU{\mathscr U}\def\cV{\mathscr V}\def\cW{\mathscr W}\def\cX{\mathscr X}
-\def\cY{\mathscr Y}\def\cZ{\mathscr Z}
+\def\cA{\mathcal A}\def\cB{\mathcal B}
+\def\cc{\mathcal C}\def\cC{\mathcal C}
+\def\cd{\mathcal D}
+\def\ce{\mathcal E}\def\cf{\mathcal F}\def\cG{\mathcal G}\def\cH{\mathcal H}
+\def\cI{\mathcal I}\def\cJ{\mathcal J}\def\cK{\mathcal K}\def\cL{\mathcal L}
+\def\cM{\mathcal M}\def\cN{\mathcal N}\def\cO{\mathbf O}\def\cP{\mathcal P}
+\def\cQ{\mathcal Q}\def\cR{\mathcal R}\def\cS{\mathcal S}\def\cT{\mathcal T}
+\def\cU{\mathcal U}\def\cV{\mathcal V}\def\cW{\mathcal W}\def\cX{\mathcal X}
+\def\cY{\mathcal Y}\def\cZ{\mathcal Z}
 
 \def\AA{\mathbb A}\def\BB{\mathbb B}\def\CC{\mathbf C}\def\DD{\mathbb D}
 \def\EE{\mathbb E}\def\FF{\mathbf F}\def\GG{\mathbb G}\def\HH{\mathbb H}
 \def\II{\mathbb I}\def\JJ{\mathbb J}\def\KK{\mathbb K}\def\LL{\mathbb L}
-\def\MM{\mathscr M}\def\NN{\mathbb N}\def\OO{\mathbb O}\def\PP{\mathbf P}
+\def\MM{\mathcal M}\def\NN{\mathbb N}\def\OO{\mathbb O}\def\PP{\mathbf P}
 \def\QQ{\mathbf Q}\def\RR{\mathbf R}\def\SS{\mathbb S}\def\TT{\mathbb T}
 \def\UU{\mathbb U}\def\VV{\mathbb V}\def\WW{\mathbb W}\def\XX{\mathbb X}
 \def\YY{\mathbb Y}\def\ZZ{\mathbf Z}
@@ -123,16 +125,16 @@
 \newcommand{\Fl}{F\ell}
 \newcommand{\Fr}{Fr}
 \newcommand\cCC{\check{C}}
-\newcommand{\MFGL}{\mathscr M_{\mathit{FGL}}}
-\newcommand{\calO}{{\mathscr O}}
-\newcommand{\calC}{{\mathscr C}}
+\newcommand{\MFGL}{\mathcal M_{\mathit{FGL}}}
+\newcommand{\calO}{{\mathcal O}}
+\newcommand{\calC}{{\mathcal C}}
 \newcommand{\set}{{\mathrm{Set}}}
 \newcommand{\Deltab}{{\Delta}} %change this to bold Delta. This is like this here because garamond fucks up bold things.
 \newcommand{\spec}{\mathrm{Spec}}
 \newcommand{\Z}{\mathbf Z}
 \newcommand{\Sin}{\mathrm{Sin}}
 \newcommand{\htop}{\mathrm{Ho}(\mathbf{Top})}
-\newcommand{\sca}{\mathscr{A}}
+\newcommand{\sca}{\mathcal{A}}
 \DeclareMathOperator{\Spf}{Spf}
 \renewcommand{\Top}{\mathbf{Top}}
 \newcommand{\CG}{\mathbf{CG}}
@@ -143,6 +145,7 @@
 \newcommand{\sk}{\mathrm{sk}}
 \newcommand{\Cat}{\mathbf{Cat}}
 \newcommand{\xar}[1]{\xrightarrow{{#1}}}
+\newcommand{\pr}{\mathrm{pr}}
 %%%%%%%%%%%%%%%%
 
 %\usepackage{ebgaramond}
