@@ -1,48 +1,69 @@
 \section{Fiber bundles, fibrations, cofibrations}
-My office hours are Tuesday, 12 - 1:30 and Hood's are Tuesday, 12(next week). It'll probably be Mondays in the future, at 12 as well. Next Monday is a holiday, and next Tuesday is a Monday. Oh, pset 1 is due on Wednesday.
-
-Today's gonna be about fiber bundles and fibrations and possibly cofibrations as well. This is proper homotopy theory.  You have probably seen fiber bundles before. Do you like the yellow chalk? I think it looks good.
-\begin{definition}[Fiber bundles]
-    A fiber (or fibre, if you're British) bundle is a map (of compactly generated spaces, \emph{always} -- although every space in nature is already a weakly Hausdorff $k$-space; it's not a big deal!) $p:E\to B$ such that for every $b\in B$, there exists an open $U\subseteq B$ such that $b\in U$, and a map $p^{-1}(U)\to p^{-1}(b)$ such that $p^{-1}(U)\to U\times p^{-1}(b)$ is a homeomorphism.
+Having set up the requisite technical background, 
+we can finally launch ourselves from point-set topology to the world of homotopy theory.
+\subsection{Fiber bundles}
+\begin{definition}\label{fiberbundle}
+    A fiber\footnote{Or ``fibre'', if you're British.} bundle is a map $p:E\to B$,
+    such that for every $b\in B$, there exists
+    \begin{itemize}
+	\item an open subset $U\subseteq B$ that contains $b$, and
+	\item a map $p^{-1}(U)\to p^{-1}(b)$ such that $p^{-1}(U)\to U\times p^{-1}(b)$ is a homeomorphism.
+    \end{itemize}
+    If $p:E\to B$ is a fiber bundle, $E$ is called the \emph{total space}, $B$ is called the
+    \emph{base space}, $p$ is called a \emph{projection},
+    and $F$ (sometimes denoted $p^{-1}(b)$) is called the \emph{fiber over $b$}.
 \end{definition}
-So the preimage over every point looks like a product. So it's locally trivial in the base. Of course, there's an alternate way to say this. Equivalently, there is an open cover $\cU$ (called the \emph{trivializing cover}) of $B$ such that for every $U\subseteq \cU$, there is a space $F$ and a homeomorphism $p^{-1}(U)\simeq U\times F$ that's compatible with the projections down to $U$.
-\begin{remark}
-    We say that $E$ is the total space, $B$ is a base space, $p$ is a projection, and $F$ (which can vary) -- actually I'll write $p^{-1}(b)$ -- is called the fiber over $b$.
-\end{remark}
-\begin{example}
-    You know of many examples. A covering space $E\to B$ is a fiber bundle with discrete fibers. Thus fiber bundles generalize covering spaces to more interesting cases.
-\end{example}
-\begin{example}
-    The Hopf fibration. It's a fiber bundle. We have $S^3\subseteq \cc^2$. And, well, we can consider the map $S^3\to \CP^1$ that sends a vector through the complex line through $v$. Now, $\CP^1\simeq S^2$. So you have a non-nullhomotopic map $S^3\to S^2$. Here's a picture of this. (I cannot livetex this)
+In simpler terms: the preimage over every point in $B$ looks like a product,
+i.e., the map $p:E\to B$ is ``locally trivial'' in the base.
 
-    The Hopf fibration is a map between smooth manifolds. This is a great way to construct fibrations.
+Here is an equivalent way of stating Definition \ref{fiberbundle}:
+there is an open cover $\cU$ (called the \emph{trivializing cover}) of $B$,
+such that for every $U\subseteq \cU$,
+there is a space $F$, and a homeomorphism
+$p^{-1}(U)\simeq U\times F$ that is compatible with the projections down to $U$.
+
+Fiber bundles are naturally occuring objects.
+For instance, a covering space $E\to B$ is a fiber bundle with discrete fibers. 
+\begin{example}[The Hopf fibration]
+    The Hopf fibration is an extremely important example of a fiber bundle.
+    Let $S^3\subset \cC^2$ be the $3$-sphere.
+    There is a map $S^3\to \CP^1 \simeq S^2$ that is given by sending a vector $v$ to the
+    complex line through $v$ and the origin.
+    This is a non-nullhomotopic map, and is a fiber bundle whose fiber is $S^1$.
 \end{example}
+The Hopf fibration is a map between smooth manifolds.
+A theorem of Ehresmann's says that it is not too hard to construct fiber bundles over smooth manifolds:
 \begin{theorem}[Ehresmann]
-    Suppose $E$ and $B$ are smooth manifolds, and let $p:E\to B$ be a smooth (i.e., $C^\infty$) map. Then $p$ is a fiber bundle if:
+    Suppose $E$ and $B$ are smooth manifolds, and let $p:E\to B$ be a smooth (i.e., $C^\infty$) map.
+    Then $p$ is a fiber bundle if:
     \begin{enumerate}
-	\item It's a submersion (so $dp:T_e E\to T_{p(e)} B$ is a surjection)
-	\item $p$ is proper, so preimages of compact sets are compact.
+	\item $p$ is a \emph{submersion}, i.e., $dp:T_e E\to T_{p(e)} B$ is a surjection, and
+	\item $p$ is \emph{proper}, i.e., preimages of compact sets are compact.
     \end{enumerate}
 \end{theorem}
-For example, I can look at the complement of a closed set in $S^3$, and then the restriction of $p$ won't be a fiber again.
-
-The whole course is about fiber bundles, namely about its cohomological and homotopical structure.
-
-\begin{definition}[See Peter May's \emph{Concise Course}]
-   Let $X$ be a space. Say that an open cover $\cU$ is \emph{numerable} if there exists a subordinate partition of unity, i.e., for each $U\in\cU$ we're given $f_U:X\to [0,1]=I$ such that $f^{-1}((0,1]) = U$ and any $x\in X$ belonds to only finitely many $U\in\cU$.
-
-    Say that $X$ is paracompact if any open cover admits a numerable refinement.
-\end{definition}
-\begin{example}
-    CW-complexes are paracompact.
-\end{example}
-The numerable definition is technical, but you're really just restricting the class of coverings you're looking at.
+%For example, I can look at the complement of a closed set in $S^3$, and then the restriction of $p$ won't be a fiber again.
+The purpose of this part is really about understanding fiber bundles via algebraic
+methods like cohomology and homotopy.
+We will usually need some ``niceness'' condition when studying fiber bundles;
+this is made precise in the following definition (see \cite{MayConcise}).
 \begin{definition}
-    A fiber bundle is ``numerable'' if it admits a numerable trivializing cover.
+    Let $X$ be a space.
+    An open cover $\cU$ of $X$ is said to be \emph{numerable}
+    if there exists a subordinate partition of unity, i.e.,
+    for each $U\in\cU$, there is a function $f_U:X\to [0,1]=I$
+    such that $f^{-1}((0,1]) = U$,
+    and any $x\in X$ belonds to only finitely many $U\in\cU$.
+    The space $X$ is said to be \emph{paracompact} if any open cover admits a numerable refinement.
+\end{definition}
+This isn't too restrictive for us algebraic topologists since CW-complexes are paracompact.
+\begin{definition}
+    A fiber bundle is said to be \emph{numerable} if it admits a numerable trivializing cover.
 \end{definition}
 
-Fiber bundles are still too narrow. So I will now tell you what a fibration is.
-
+\subsection{Fibrations}
+For our purposes, though, fiber bundles are still too narrow.
+Fibrations capture the essence of fiber bundles.
+%Edit from here.
 \begin{definition}
     A map $p:E\to B$ is called a \emph{Hurewicz fibration} (I'll just say fibration) if it satisfies the homotopy lifting property (HLP). That says this. Suppose I have a homotopy $h:I\times W\to B$. Then there exists a lift:
     \begin{equation*}

@@ -1,13 +1,25 @@
 \section{``Cartesian closed'', Hausdorff, Basepoints}
-Pset 1 is up, and there's now a number 4. My office hours are Tuesday from 12 to 1:30 in 2-478.
+Pushouts are colimits, so the quotient space $X/A=X\cup_A \ast$ is an example of a colimit.
+Let $Y$ be a topological space, and consider the functor $Y\times -:\Top\to\Top$.
+Applying this to the pushout square, we find that $(Y\times X)\cup_{Y\times A}\ast\simeq (Y\times X)/(Y\times A)$.
+As we discussed in \S \ref{CGWHspaces}, this product is \emph{not} the same as $Y\times (X/A)$!
+There is a bijective map $Y\times X/Y\times A\to Y\times(X/A)$,
+but it is not, in general, a homeomorphism.
+From a categorical point of view (see Theorem \ref{adjointslimits}), the reason for this failure 
+stems from $Y\times -$ not being a left adjoint.
 
-Remember that I wrote something that's obviously wrong; let $Y:\cI\to\cc$. I claimed that $\lim_\cI (X\times Y_i)\simeq X\times \lim_\cI Y_i$. This isn't right because if $\cI$ is a discrete category, this doesn't make sense. One way to fix this is implemented in problem 4. Another way is, let $X:\cI\to\cc$. Then I can take $\lim_\cI(X_i\times Y_i)$, and this is $\lim_\cI X_i\times \lim_\cI Y_i$. This is part of a more general picture involving a Frobenii theorem. You can find out more from MacLane's book or something.
+The discussion in \S \ref{mappingspaces} implies that, when working with $k$-spaces,
+that functor is indeed a left adjoint
+(in fancy language, the category $k\Top$ is Cartesian closed),
+which means that --- in $k\Top$ --- there is a homeomorphism $Y\times X/Y\times A\to Y\times(X/A)$.
+This addresses the issues raised in \S \ref{CGWHspaces}.
+The ancients had come up with a good definition of a topology ---
+but $k$-spaces are better!
+Sometimes, though, we can be greedy and ask for even more:
+for instance, we can demand that points be closed.
+This leads to a further refinement of $k$-spaces. 
 
-I want to catch up with something that I had to say before but I didn't. That's the relationship between (co)limits and adjoint functors. Namely, left adjoints respect colimits and right adjoints respect limits. There's something called the adjoint functor theorem. For example, $Y\times -:\Top\to\Top$. One kind of colimit is the pushout $X/A=X\cup_A \ast$. But $Y\times X\cup_{Y\times A}\ast\simeq (Y\times X)/(Y\times A)$. But this isn't the same as $Y\times (X/A)$! There is a bijective map $Y\times X/Y\times A\to Y\times(X/A)$, but it's not a homeomorphism in general. The reason this fails is because $Y\times -$ is \emph{not} a left adjoint!
-
-But it is a left adjoint when working with compactly generated spaces (i.e., $k$-spaces)\footnote{Compactly generated spaces are weakly Hausdorff $k$-spaces, what Professor Miller said here was incorrect.}! Recall that this means that $k\Top$ is Cartesian closed. We're gonna make a lot of use of the space $Z^X:=k(k\Top(X,Z))$. You'll check that $(X,Z)\mapsto Z^X$ is a functor. Another thing is that $Z^{X\times Y}\simeq (Z^X)^Y$ and $(Y\times Z)^X\simeq Y^X\times Z^X$. There's a composition map $Y^X\times Z^Y\to Z^X$.
-
-When the ancients came up with the definition of a topology, they were good axioms -- but these are better! Sometimes, you want even more, e.g., points being closed. There's a further refinement of $k$-spaces. 
+\todo[inline]{I don't like point-set topology, so I'll return to editing this lecture at the end.}
 \subsection{``Hausdorff''}
 \begin{definition}
     A space is ``weakly Hausdorff'' if the image of every map $K\to X$ from a compact Hausdorff space $K$ is closed.

@@ -1,4 +1,6 @@
 # algtop-notes
-These are notes for Haynes Miller's 18.905-906 course sequence offered at MIT in the 2016-2017 academic year.
+These are livetexed notes for Haynes Miller's 18.905-906 course sequence offered at MIT in the 2016-2017 academic year.
 
-This was originally written with the documentclass ``book'', but it wasn't compiling properly on my machine; so I've switched to the amsart documentclass. You can change this on your own machine if you want.
+* Confirm with Sanath beforehand if you are planning on making any changes to ``header.tex``.
+* To compile after cloning, run:
+	$ pdflatex main.tex
