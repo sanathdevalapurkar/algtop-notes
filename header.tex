@@ -7,12 +7,17 @@
 	    pdftitle={Algebraic topology}]{hyperref}
 \usepackage{sseqpages}
 
-\usepackage{listings}
+%\usepackage{listings}
 
 \usepackage[T1]{fontenc}
 
 %\usepackage[urw-garamond]{mathdesign}
-\usepackage[left=2in,right=2in,top=2in,bottom=2.5in]{geometry}
+%\usepackage[left=2in,right=2in,top=2in,bottom=2.5in]{geometry}
+\usepackage[margin=1.75in]{geometry}
+\pagestyle{plain}
+
+\usepackage{setspace}
+\setstretch{1.1}
 
 \usepackage{todonotes}
 
@@ -25,12 +30,14 @@
 %\usepackage{amscd}
 
 %\usepackage{txfonts} % Thanks to Eric for showing me that this font exists.
-\usepackage{kpfonts}
+%\usepackage{kpfonts}
+%\renewcommand{\Top}{\mathbf{Top}}
+\newcommand{\Top}{\mathbf{Top}}
 
 \usepackage{color}
 \usepackage[all]{xy}
 \usepackage{verbatim}
-\usepackage{setspace}
+
 \usepackage[mathscr]{eucal}
 \usepackage{graphicx}
 \usepackage{tikz-cd}
@@ -139,7 +146,6 @@
 \newcommand{\htop}{\mathrm{Ho}(\mathbf{Top})}
 \newcommand{\sca}{\mathcal{A}}
 \DeclareMathOperator{\Spf}{Spf}
-\renewcommand{\Top}{\mathbf{Top}}
 \newcommand{\CG}{\mathbf{CG}}
 \newcommand{\Ab}{\mathbf{Ab}}
 \newcommand{\Bun}{\mathrm{Bun}}
