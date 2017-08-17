@@ -34,7 +34,7 @@ The $t_i$ are called barycentric coordinates.
 \end{definition}
 We will write $i$ in lieu of $e_i$ to refer to the vertices of $\Delta^n$. The standard simplicies are related by face inclusions $d^i\colon \Delta^{n-1} \to \Delta^{n}$ for $0\leq i \leq n$, where $d^i$ misses the vertex $i$. \todo{Insert pic here.}
 \begin{definition}
-Let $X$ be any topological space. A singular $n$-simplex in $X$ is a continuous map $\Delta^n\to X$. Denote by $\mathrm{Sin}_n(X)$ the set of all $n$-simplices in $X$.
+Let $X$ be any topological space. A \emph{singular $n$-simplex} in $X$ is a continuous map $\Delta^n\to X$. Denote by $\mathrm{Sin}_n(X)$ the set of all $n$-simplices in $X$.
     
     This seems like a rather bold construction to make, as $\mathrm{Sin}_n(X)$ is huge. Nonetheless, we will soon make it even larger.
 \end{definition}
@@ -64,7 +64,7 @@ Any boundary is a cycle, i.e., $B_n(X) := \mathrm{Im}(\partial:S_{n+1}(X)\to S_n
 \end{proof}
 With the preceding, we are prepared to define singular homology.
 \begin{definition}
-The $n$th singular homology group of $X$ is:
+The \emph{$n$th singular homology group} of $X$ is:
     $$ H_n(X) = Z_n(X)/B_n(X) = \frac{\ker(\partial:S_n(X)\to S_{n-1}(X))}{\mathrm{im}(\partial:S_{n+1}(X)\to S_n(X))}.$$
 \end{definition}
 Both $Z_n(X)$ and $B_n(X)$ are free abelian groups because they are subgroups of the free abelian group $S_n(X)$, but the quotient $H_n(X)$ isn't necessarily free. While $Z_n(X)$ and $B_n(X)$ are uncountably generated, $H_n(X)$ is finitely generated for the spaces we are interested in. If $T$ is the torus for example, then $H_1(T) \cong \mathbf{Z} \oplus \mathbf{Z}$ and $\sigma$ as described previously is one of the two generators.
