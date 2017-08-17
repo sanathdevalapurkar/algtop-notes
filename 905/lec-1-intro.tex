@@ -1,5 +1,11 @@
+% I removed the definition of a manifold and moved it in-line for better flow.
+% I think it's best to use /emph in definitions to show what's being defined.
+% Put periods even in display math!
+% For spacing reasons, should use \colon instead of : for functions, e.g. f \colon A \to B.
+% Since ker is lowercase, im probably should be also.
+
 \section{Introduction, simplices}\label{905}
-Topics to be covered:
+In 18.905, which is the first half of this book, we will cover the following topics:
 \begin{enumerate}
     \item Singular homology
     \item CW-complexes
@@ -10,51 +16,55 @@ Topics to be covered:
     \item Cup and cap products, and
     \item Poincar\'{e} duality.
 \end{enumerate}
-Examples to keep in mind: $\mathbf{R}^n$. Inside, $S^{n-1}$ being the $(n-1)$-sphere. This is topologized as a subspace of Euclidean space. Taking the quotient by the equivalence relation $x\simeq -x$ gives $\mathbf{RP}^{n-1}$, i.e. the space of lines through the origin in $\mathbf{R}^{n+1}$.
+Below are some examples of commonly encountered topological spaces.
+\begin{itemize}
+    \item The most basic is \emph{$n$-dimensional Euclidean space}, $\mathbf{R}^n$.
+    \item The \emph{$n$-sphere} $S^n=\{x\in \mathbf{R}^{n+1}:|x|=1\}$ is topologized as a subspace of $\mathbf{R}^{n+1}$.
+    \item Identifying antipodal points in $S^n$ gives \emph{real projective space} $\mathbf{RP}^n=S^n / (x\sim -x)$, i.e. the space of lines through the origin in $\mathbf{R}^{n+1}$.
+    \item Call an ordered collection of $k$ orthonormal vectors an \emph{orthonormal $k$-frame}. The space of orthonormal $k$-frames in $\mathbf{R}^n$ forms the \emph{Stiefel manifold} $V_k(\mathbf{R}^n)$, which is topologized as a subspace of $(S^{n-1})^k$.
+    \item Let $x\sim y$ if $x$ and $y$ are $k$-frames with the same span. The \emph{Grassmannian} is the quotient $\mathrm{Gr}_k(\mathbf{R}^n)=V_k(\mathbf{R}^n)/\sim$. In particular, $\mathbf{Gr}_1(\mathbf{R}^n) = \mathbf{RP}^{n-1}$.
+\end{itemize}
+The above are all \emph{manifolds}, which are Hausdorff spaces locally homeomorphic to Euclidean space. Aside from $\mathbf{R}^n$ itself, the preceding examples are also compact. Such spaces exhibit a hidden symmetry, which is the culmination of 18.905: Poincar\'{e} duality.
 
-Also, we can look at $V_k(\mathbf{R}^n)$, which is the space of orthonormal $k$-frames (ordered collection of $k$ orthonormal vectors) in $\mathbf{R}^n$, called the Stiefel manifold, topologized as a subspace of $(S^{n-1})^k$. The Grassmannian, $\mathrm{Gr}_k(\mathbf{R}^n)$, the space of $k$-dimensional linear subspaces of $\mathbf{R}^n$. It's a quotient space of $V_k(\mathbf{R}^n)$, since a $k$-frame spans a $k$-dimensional subspace. For example, $\mathbf{Gr}_1(\mathbf{R}^n) = \mathbf{RP}^{n-1}$. These are all \emph{manifolds}.
+As the name suggests, the central aim of algebraic topology is the usage of algebraic tools to study topological spaces. A common technique is to probe topological spaces via maps to them. In different ways, this approach gives rise to singular homology and homotopy groups. We now detail the former; the latter takes stage in 18.906.
 \begin{definition}
-A manifold is a Hausdorff space, locally homeomorphic to $\mathbf{R}^n$.
+For $n\geq 0$, the \emph{standard $n$-simplex} $\Delta^n$ is the convex hull of the standard basis $\{e_0,\cdots,e_n\}$ in $\mathbf{R}^{n+1}$. More explicitly,
+$$\Delta^n = \left\{\sum t_i e_i : \sum t_i = 1, t_i\geq 0\right\}\subseteq\mathbf{R}^{n+1}.$$
+The $t_i$ are called barycentric coordinates.
 \end{definition}
-All these manifolds are compact except for $\mathbf{R}^n$. Manifolds exhibit a hidden symmetry, captured by Poincar\'{e} duality.
-
-We'll probe general topological spaces through simplices.
+We will write $i$ in lieu of $e_i$ to refer to the vertices of $\Delta^n$. The standard simplicies are related by face inclusions $d^i\colon \Delta^{n-1} \to \Delta^{n}$ for $0\leq i \leq n$, where $d^i$ misses the vertex $i$. \todo{Insert pic here.}
 \begin{definition}
-The standard $n$-simplex $\Delta^n$ is the convex hull of $\{e_0,\cdots,e_n\}$ in $\mathbf{R}^{n+1}$. More explicitly,
-$$\Delta^n = \{\sum t_i e_i = 1 : \sum t_i = 1, t_i\geq 0\}\subseteq\mathbf{R}^{n+1}$$
-The $t_i$s are called barycentric coordinates.
-\end{definition}
-Usually we just drop the $e_i$s and just write ``$i$''. There are maps between them, namely inclusions of faces. The map $d^2:\Delta^1\to\Delta^2$ that misses the vertex $i$ (where $0\leq i\leq 2$) is denoted $d^i$\todo{Insert an image here}. They're called ``face inclusions'', and are maps $d^i:\Delta^{n-1}\to\Delta^n$ where $0\leq i\leq n$; they miss the vertex $i$.
-\begin{definition}
-Let $X$ be any topological space. A singular $n$-simplex in $X$ is a continuous map $\Delta^n\to X$. Denote by $\mathrm{Sin}_n(X)$ as the collection of all $n$-simplices of $X$.
+Let $X$ be any topological space. A singular $n$-simplex in $X$ is a continuous map $\Delta^n\to X$. Denote by $\mathrm{Sin}_n(X)$ the set of all $n$-simplices in $X$.
     
-    This seems like a ``fairly insane'' thing to do.
+    This seems like a rather bold construction to make, as $\mathrm{Sin}_n(X)$ is huge. Nonetheless, we will soon make it even larger.
 \end{definition}
-See drawing for a torus\todo{Image me}. The direction of the simplex is like an orientation given by ordering of the indices of $\Delta^n$. The standard notation is $\sigma:\Delta^n\to X$\todo{Depict this whole thing as an image, and remove the sentence when done}.
+(See drawing for a torus\todo{Image me}. The direction of the simplex is like an orientation given by ordering of the indices of $\Delta^n$. The standard notation is $\sigma:\Delta^n\to X$.)\todo{Depict this whole thing as an image, and remove the sentence when done}
 
-If $\sigma:\Delta^n\to X$. Find $(n-1)$-simplices by looking faces of simplex; get a map $d_i:\Sin_n(X)\to\Sin_{n-1}(X)$ for $0\leq i\leq n$ by taking $\sigma\mapsto\sigma\circ d^i=: d_i\sigma$, which is the $i$th face of $\sigma$. This carries a lot of information about the space.
+For $0\leq i \leq n$, precomposition by the face inclusion $d^i$ produces a map $d_i\colon \Sin_n(X)\to\Sin_{n-1}(X)$ sending $\sigma\mapsto\sigma\circ d^i$, which is the $i$th face of $\sigma$. This allows us to make sense of the ``boundary'' of a simplex, and we are particularly interested in simplices for which that boundary vanishes.
 
-Some simplices are particularly interesting. The issue of when boundaries match up is a key aspect of simplices. If $\sigma$ is a simplex that goes around the hole in a torus, then $d_1\sigma = d_0\sigma$, and this means that the ``boundary'' is zero. So we want to understand things like $d_0\sigma - d_1\sigma$, but this isn't even a simplex anymore; we need to take formal sums and differences. We'll therefore consider the abelian group generated by simplices.
+For example, if $\sigma$ is a 1-simplex that goes around the hole in a torus $T$, then $d_1\sigma = d_0\sigma$. To express that the boundary vanishes, we want to write $d_0\sigma - d_1\sigma=0$, but this difference is no longer a simplex. To accomodate such formal sums, we will enlarge $\mathrm{Sin}_n(X)$ further by considering the free abelian group it generates.
 \begin{definition}
-The abelian group of singular $n$-chains in $X$ is the free abelian group generated by $n$-simplices
-$$S_n(X) = \mathbf{Z}\Sin_n(X)$$
-    Its elements are finite linear combinations, i.e. formal sums of the form $\sum_{i\in\text{finite set}}a_i\sigma_i$\todo{idk what was meant by ``display'' in the comments} where $a_i\in\mathbf{Z}$. It's a pretty big group. If $n<0$, say that $S_n(X)=0$. Now, define a map $\partial:\Sin_n(X)\to S_{n-1}(X)$ via:
-$$\partial\sigma = \sum_{i=0}^n(-1)^i d_i\sigma$$
-We'll extend this to $S_n(X) \to S_{n-1}(X)$ by additivity.
+The abelian group $S_n(X)$ of \emph{singular $n$-chains} in $X$ is the free abelian group generated by $n$-simplices
+$$S_n(X) = \mathbf{Z}\Sin_n(X).$$
+    Its elements are finite linear combinations, i.e. formal sums $\sum_{i\in\text{finite set}}a_i\sigma_i$\todo{idk what was meant by ``display'' in the comments} where $a_i\in\mathbf{Z}$. If $n<0$, say that $S_n(X)=0$. Now, define
+$$\partial\colon \Sin_n(X)\to S_{n-1}(X),$$
+$$\partial\sigma = \sum_{i=0}^n(-1)^i d_i\sigma.$$
+This extends to a homomorphism $\partial \colon S_n(X) \to S_{n-1}(X)$ by additivity.
 \end{definition}
-Cycles are chains whose boundary is zero. These are the interesting chains. A more precise definition is the following:
+We use this homomorphism to obtain something more tractable than the entirety of $S_n(X)$. First we restrict our attention to chains with vanishing boundary.
 \begin{definition}
-An $n$-cycle in $X$ is an $n$-chain $c$ with $\partial c = 0$. Denote $Z_n(X) = \ker(S_n(X)\xrightarrow{\partial}S_{n-1}(X))$.
+An \emph{$n$-cycle} in $X$ is an $n$-chain $c$ with $\partial c = 0$. Denote $Z_n(X) = \ker(S_n(X)\xrightarrow{\partial}S_{n-1}(X))$.
 \end{definition}
-For example, with the $\sigma$ on the torus described before, $\partial c = d_0\sigma - d_1\sigma$ and this is zero.
+For example, with $\sigma$ on the torus described before, $\sigma\in Z_1(X)$ since $\partial \sigma = d_0\sigma - d_1\sigma = 0$.
 \begin{theorem}
 Any boundary is a cycle, i.e., $B_n(X) := \mathrm{Im}(\partial:S_{n+1}(X)\to S_n(X))\subseteq Z_n(X)$.
 \end{theorem}
 \begin{proof}
     Homework!
 \end{proof}
+With the preceding, we are prepared to define singular homology.
 \begin{definition}
 The $n$th singular homology group of $X$ is:
-    $$ H_n(X) = Z_n(X)/B_n(X) = \frac{\ker(\partial:S_n(X)\to S_{n-1}(X))}{\mathrm{Im}(\partial:S_{n+1}(X)\to S_n(X))}$$
-The kernel is a free abelian group, and so is the image because they're both subgroups of free abelian groups; but the quotient isn't necessarily free abelian. The quotient is finitely generated for all the spaces we are talking about although the kernel and image are uncountably generated.
+    $$ H_n(X) = Z_n(X)/B_n(X) = \frac{\ker(\partial:S_n(X)\to S_{n-1}(X))}{\mathrm{im}(\partial:S_{n+1}(X)\to S_n(X))}.$$
 \end{definition}
+Both $Z_n(X)$ and $B_n(X)$ are free abelian groups because they are subgroups of the free abelian group $S_n(X)$, but the quotient $H_n(X)$ isn't necessarily free. While $Z_n(X)$ and $B_n(X)$ are uncountably generated, $H_n(X)$ is finitely generated for the spaces we are interested in. If $T$ is the torus for example, then $H_1(T) \cong \mathbf{Z} \oplus \mathbf{Z}$ and $\sigma$ as described previously is one of the two generators.
