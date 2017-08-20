@@ -47,7 +47,7 @@ If $C_\ast$ and $D_\ast$ are chain complexes, a \emph{chain map} $f\colon C_\ast
 \end{equation*}
 For example, if $f\colon X\to Y$ is a continuous map, then $f_\ast \colon S_\ast(X)\to S_\ast(Y)$ is a chain map as discussed above.
 
-A chain map induces a map in homology $f_\ast: H_n(C)\to H_n(D)$. The method of proof is a so-called "diagram chase" and it will be the first of many. We check that we get a map $Z_n(C)\to Z_n(D)$. Let $c\in Z_n(C)$, so that $\partial_C c = 0$. Then $\partial_D f_n(c) = f_{n-1}\partial_C c = f_{n-1}(0) = 0$, because $f$ is a chain map. This means that $f_n(c)$ is also an $n$-cycle, i.e., $f$ gives a map $Z_n(C)\to Z_n(D)$.
+A chain map induces a map in homology $f_\ast: H_n(C)\to H_n(D)$. The method of proof is a so-called ``diagram chase'' and it will be the first of many. We check that we get a map $Z_n(C)\to Z_n(D)$. Let $c\in Z_n(C)$, so that $\partial_C c = 0$. Then $\partial_D f_n(c) = f_{n-1}\partial_C c = f_{n-1}(0) = 0$, because $f$ is a chain map. This means that $f_n(c)$ is also an $n$-cycle, i.e., $f$ gives a map $Z_n(C)\to Z_n(D)$.
 
 Similarly, we also get a map $B_n(C)\to B_n(D)$. Let $c\in B_n(C)$, so that there exists $c^\prime \in C_{n+1}$ such that $\partial_C c^\prime = c$. Then $f_n(c) = f_n\partial_C c^\prime = \partial_D f_{n+1}(c^\prime)$. Thus $f_n(c)$ is the boundary of $f_{n+1}(c^\prime)$, and $f$ gives a map $B_n(C)\to B_n(D)$.
 
