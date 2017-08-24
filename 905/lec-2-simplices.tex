@@ -4,7 +4,7 @@
 \section{Simplices, more about homology}
 Previously we introduced the standard $n$-simplex $\Delta^n\subseteq\mathbf{R}^{n+1}$. Singular simplices in a space $X$ are maps $\sigma\colon\Delta^n\to X$ and constitute the set $\Sin_n(X)$. For example, $\Sin_0(X)$ consists of points of $X$. In addition to the \emph{face maps} $d_i\colon\Sin_n(X)\to\Sin_{n-1}(X)$ we described, there are also \emph{degeneracy maps} $s_i\colon\Sin_n(X)\to\Sin_{n+1}(X)$, and the collection $\{\Sin_n(X),d_i,s_i\}$ forms a \emph{simplicial set}. Simplicial sets are combinatorial models for topological spaces. In the language of category theory, which we will discuss shortly, we have a functor $\mathbf{Top}\to\{\text{simplicial sets}\}$.
 
-To $\{\Sin_n(X),d_i,s_i\}$ we then applied the free abelian group functor, obtaining a semi-simplicial abelian group. Using the $d_i$s, we constructed a boundary map $\partial$which makes $S_\ast(X)$ a \emph{chain complex} because $\partial^2=0$ (see Problem Set 1). We capture this process in a diagram:
+To the semi-simplicial set $\{\Sin_n(X),d_i\}$ we then applied the free abelian group functor, obtaining a semi-simplicial abelian group. Using the $d_i$s, we constructed a boundary map $\partial$ which makes $S_\ast(X)$ a \emph{chain complex} because $\partial^2=0$ (see Problem Set 1). We capture this process in a diagram:
 \begin{equation*}
 \xymatrix{\mathbf{Top}\ar[d]\ar[r] & \{\text{semi-simplicial sets}\}\ar[r] & \{\text{semi-simplicial abelian groups}\}\ar[d]\\
     \{\text{simplicial sets}\}\ar[ur] & & \{\text{chain complexes}\}\ar[d]^{\text{take homology}}\\
@@ -31,7 +31,7 @@ This means that our chain complex is:
 $$\cdots\to\mathbf{Z}\xrightarrow{0}\mathbf{Z}\xrightarrow{1}\mathbf{Z}\xrightarrow{0}\mathbf{Z}\to 0.$$
 The boundaries coincide with the cycles except in dimension zero, where $B_0(\ast)=0$ while $Z_0(\ast)=\mathbf{Z}$. Therefore $ H_0(\ast)=\mathbf{Z}$ but $ H_i(\ast)=0$ for $i>0$.
 
-We've defined homology groups for each space, but haven't yet discussed maps between spaces. A continuous map $f\colon X\to Y$ induces a map $f_\ast\colon \Sin_n(X)\to\Sin_n(Y)$ by composition: $\sigma\mapsto f\circ \sigma=:f_\ast\sigma$. For $f_\ast$ to be a map of semi-simplicial sets, it needs to commute with face maps. Explicitly, we need $f_\ast \circ d_i = d_i \circ f_\ast$. A diagram is said to be \emph{commutative} if all composites with the same source and target are equal, so this is equivalent to commutativity of the below.
+We've defined homology groups for each space, but haven't considered what happens to maps between spaces. A continuous map $f\colon X\to Y$ induces a map $f_\ast\colon \Sin_n(X)\to\Sin_n(Y)$ by composition: $\sigma\mapsto f\circ \sigma=:f_\ast\sigma$. For $f_\ast$ to be a map of semi-simplicial sets, it needs to commute with face maps. Explicitly, we need $f_\ast \circ d_i = d_i \circ f_\ast$. A diagram is said to be \emph{commutative} if all composites with the same source and target are equal, so this is equivalent to commutativity of the below.
 \begin{eqnarray*}
 \xymatrix{\Sin_n(X)\ar[r]^{f_\ast}\ar[d]^{d_i} & \Sin_n(Y)\ar[d]^{d_i}\\
 \Sin_{n-1}(X)\ar[r]^{f_\ast} & \Sin_{n-1}(Y)}

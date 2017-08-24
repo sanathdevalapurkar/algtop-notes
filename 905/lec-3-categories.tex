@@ -1,27 +1,56 @@
 \section{Categories, functors, natural transformations}\label{categories}
-Office hours. Hood Chatham's are Mondays, 1:30 - 3:30, in 2-390A. Miller's is Tuesdays, 3:00-5:00 in 2-478.
+%Office hours. Hood Chatham's are Mondays, 1:30 - 3:30, in 2-390A. Miller's is Tuesdays, 3:00-5:00 in 2-478. (commented out because not relevant to readers)
+%Replaced \mathbf{C} with \cC as brought up in ``Stuff to fix.''
+%Rearranged some stuff. Added a notational remark following the definition of a category.
+From spaces and continuous maps, we constructed graded abelian groups and homomorphisms. We now cast this construction in the more general language of category theory.
 
-The collection of all topological spaces forms a category. Similarly with simplicial sets, denoted $\set_\Deltab$ or $s\set$. You can take $X\mapsto \Sin_\bullet(X)$, and if $X\to Y$ is a map of spaces, this induces $\Sin_\bullet(X)\to\Sin_\bullet(Y)$. This is a functor $\mathbf{Top}\to s\set$.
+Our discussion of category theory will be interspersed throughout the text, introducing new concepts as they are needed. Here we begin by introducing the basic definitions.
+
 \begin{definition}
-A category $\cc$ is a class $\mathrm{ob}(\cc)$ of objects, such that for every two objects, $\cc(X,Y)$ is a set (thought of as a set of maps from $X$ to $Y$); these are called morphisms. These satisfy the properties that for all $X\in\mathrm{ob}(\cc)$, there exists an element $1_X\in\cc(X,X)$ that acts as the identity, and for all $X,Y,X\in\mathrm{ob}(\cc)$, there is a composition $\cc(X,Y)\times\cc(Y,Z)\to\cc(X,Z)$. These in turn satisfy the following properties:
+A \emph{category} $\cc$ is a class $\mathrm{ob}(\cc)$ of objects, such that for every two objects $X$ and $Y$ there is a set of \emph{morphisms} $\cc(X,Y)$ (thought of as a set of maps from $X$ to $Y$). We require that for all $X\in\mathrm{ob}(\cc)$, there exists an identity element $1_X\in\cc(X,X)$, and for all $X,Y,Z\in\mathrm{ob}(\cc)$, there is a composition $\cc(X,Y)\times\cc(Y,Z)\to\cc(X,Z)$ sending $(f,g)\mapsto g \circ f$. These in turn satisfy the following:
 \begin{itemize}
 \item $1_Y\circ f=f$, and $f\circ 1_X=f$.
 \item Composition is associative.
 \end{itemize}
 \end{definition}
-\begin{example}
-The category of sets and functions between sets forms a category. The category of abelian groups and homomorphisms forms a category. Of course, topological spaces and continuous maps. A monoid, which is a category with one object. The simplex category (note that $|[n]|=n+1$). A poset forms a category; but note that if $x\leq y$ and $y\leq x$, then $x\cong y$, not $x=y$. The latter property holds if the only isomorphisms are identities.
-\end{example}
-A small category is one such that $\mathrm{ob}(\cc)$ is a set, not necessarily a class.
-\begin{definition}
-Let $\cc,\cd$ be categories. A functor $F:\cc\to\cd$ is a function $\mathrm{ob}(\cc)\to\mathrm{ob}(\cd)$, such that for all $x,y\in\mathrm{ob}(\cc)$, there is a map $\cc(x,y)\to\cc(F(x),F(y))$ that respects composition and the identity.
+Note that, for set-theoretic reasons, we require the collection of objects to be a class. This enables us to talk about a ``category of all sets'' for example, but not a ``category of all categories'' because that is too large.
 
-Let $F,G:\cc\to\cd$. A natural transformation $\theta:F\to G$ is a map $\theta(X):F(X)\to G(X)$ for all $X\in\mathrm{ob}(\cc)$, and a commuting diagram for all $f:X\to Y$:
+We will often write $X\in\cc$ to mean $X\in\mathrm{ob}(\cc)$, and $f\colon X\to Y$ to mean $f\in \cc(X,Y)$.
+\begin{definition}
+If $X,Y\in \cc$, then $f\colon X\to Y$ is an \emph{isomorphism} if there exists $g\colon Y\to X$ with $f \circ g=1_Y$ and $g\circ f=1_X$, and we write $X\cong Y$. 
+\end{definition}
+
+\begin{example}
+Many common mathematical structures can be arranged in categories.
+\begin{itemize}
+\item Sets and functions between them form a category $\set$.
+\item Abelian groups and homomorphisms form a category $\mathbf{Ab}$.
+\item Topological spaces and continuous maps form a category $\mathbf{Top}$.
+\item Simplicial sets and their maps form a category $s\set$.
+\item A monoid is the same as a category with one object, where the elements of the monoid are the morphisms in the category.
+\item The sets $[n]=\{0,\ldots,n\}$ for $n\geq 0$ together with weakly order-preserving maps between them form the simplex category $\Delta$.
+\item A poset forms a category in which there is a morphism from $x$ to $y$ iff $x\leq y$. However, note that $x\leq y$ and $y\leq x$ imply $x\cong y$ rather than $x=y$. The latter holds if the only isomorphisms are identities.
+\end{itemize}
+\end{example}
+A small category is one such that $\mathrm{ob}(\cc)$ is a set, not necessarily a class. While we cannot consider the category of all categories, it is sensible to define the category $\mathbf{Cat}$ of all small categories. But first, we must first define a ``morphism of categories.''
+\begin{definition}
+Let $\cc,\cd$ be categories. A \emph{functor} $F\colon\cc\to\cd$ is a function $\mathrm{ob}(\cc)\to\mathrm{ob}(\cd)$, such that for all $x,y\in\mathrm{ob}(\cc)$, there is a map $\cc(x,y)\to\cc(F(x),F(y))$ that respects composition and the identity.
+\end{definition}
+The diagram at the beginning of the previous section shows the functors we have built thus far (although explicit verification of functoriality is left to the reader).
+
+We go a step further. Suppose we fix categories $\cc$ and $\cd$ and consider all functors $\cc\to\cd$. What is a ``morphism of functors''?
+\begin{definition}
+Let $F,G\colon \cc\to\cd$. A \emph{natural transformation} $\theta\colon F\to G$ consists of maps $\theta(X)\colon F(X)\to G(X)$ for all $X\in\mathrm{ob}(\cc)$ such that the following diagram commutes for all $f\colon X\to Y$:
 \begin{equation*}
 \xymatrix{F(X)\ar[d]^{F(f)}\ar[r]^{\theta(X)} & G(X)\ar[d]^{G(f)}\\
 F(Y)\ar[r]^{\theta(Y)} & G(Y)}
 \end{equation*}
 \end{definition}
+Going further down the rabbit hole leads to higher category theory, which we will not delve into.
+
+Natural transformations are central to algebraic topology. We will frequently describe certain maps as ``natural,'' which is to say that they are natural transformations. The reader should determine the functors involved if they are not explicitly stated.
 \begin{example}
-The boundary map $\partial:S_n\to S_{n-1}$ is a natural transformation. Let $G$ be a group viewed as a one-point category. Any element $F\in\mathrm{Fun}(G,\mathbf{Ab})$ is simply a group action of $G$ on $F(\ast)=A$, i.e., a representation of $G$ in abelian groups. A natural transformation from $F\to F^\prime$ is just a $G$-equivariant map.
+The boundary map $\partial\colon S_n\to S_{n-1}$ is a natural transformation.
+
+Let $G$ be a group viewed as a one-point category. Any element $F\in\mathrm{Fun}(G,\mathbf{Ab})$ is simply a group action of $G$ on $F(\ast)=A$, i.e., a representation of $G$ in abelian groups. Given another $F^\prime\in\mathrm{Fun}(G,\mathbf{Ab})$ with $F^\prime(\ast)=A^\prime$, then a natural transformation from $F\to F^\prime$ is precisely a $G$-equivariant map $A\to A^\prime$.
 \end{example}
