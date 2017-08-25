@@ -13,9 +13,9 @@
 
 %\usepackage[urw-garamond]{mathdesign}
 %\usepackage[left=2in,right=2in,top=2in,bottom=2.5in]{geometry}
-%\usepackage[margin=1.75in]{geometry}
+\usepackage[margin=1.25in]{geometry}
 %\pagestyle{plain}
-\usepackage{fullpage}
+%\usepackage{fullpage}
 
 \usepackage{setspace}
 %\setstretch{1.1}
@@ -158,6 +158,11 @@
 \newcommand{\xar}[1]{\xrightarrow{{#1}}}
 \newcommand{\pr}{\mathrm{pr}}
 \newcommand{\ev}{\mathrm{ev}}
+
+% for pullback and pushout squares
+\usepackage{pigpen}
+\newcommand{\po}{\ar@{}[dr]|{\text{\pigpenfont R}}}
+\newcommand{\pb}{\ar@{}[dr]|{\text{\pigpenfont J}}}
 %%%%%%%%%%%%%%%%
 
 %\usepackage{ebgaramond}

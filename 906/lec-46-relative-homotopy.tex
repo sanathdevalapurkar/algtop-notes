@@ -1,93 +1,147 @@
-\section{Relative homotopy, $\pi_1$ action}
-Pset 2 has question 8; there's still one more to go. Hood has office hours today 12 -- 1 in 2-390, and I have office hours today tomorrow 4-5 in 2-478.
+\section{Relative homotopy groups}
+%Pset 2 has question 8; there's still one more to go. Hood has office hours today 12 -- 1 in 2-390, and I have office hours today tomorrow 4-5 in 2-478.
 \subsection{Spheres and homotopy groups}
-Let's talk about spheres, first of all. The $n$-sphere is $S^n=I^n/\partial I^n$. Agreed? It's a standard choice. By the way, $S^1 = I/0\sim 1$. What about $S^0$? This is $\ast/\emptyset = \ast_+$. This is the usual way to think of the zero sphere. The point that you just added is the basepoint.
-
-We have this looping thing going on; we know that $\Omega X$ (I'm always working in $\Top_\ast$ these days) is $X^{S^1}_\ast$. Thus the adjunction says that $\Top_\ast(W,\Omega X) = \Top_\ast(S^1\wedge W,X)$.
+The functor $\Omega$ (sending a space to its based loop space) admits a left adjoint.
+To see this, recall that $\Omega X = X^{S^1}_\ast$, so that
+$$\Top_\ast(W,\Omega X) = \Top_\ast(S^1\wedge W,X).$$
 \begin{definition}
     The \emph{reduced suspension} $\Sigma W$ is $S^1\wedge W$.
 \end{definition}
-If I have $A\subseteq X$, then $X/A\wedge Y/B = (X\times Y)/((A\times Y)\cup_{A\times B}(X\times B))$. Thus $\Sigma X = S^1\wedge X$ is $I\times X/(\partial I \times X\cup I\times \ast)$. I collapse the top and bottom of a cylinder to a point, and also the line along a basepoint gets collapsed.
+If $A\subseteq X$, then
+$$X/A\wedge Y/B = (X\times Y)/((A\times Y)\cup_{A\times B}(X\times B)).$$
+Since $S^1 = I/\partial I$, this tells us that $\Sigma X = S^1\wedge X$ can be identified with
+$I\times X/(\partial I \times X\cup I\times \ast)$: in other words, we collapse the top and bottom of a cylinder to a point,
+as well as the line along a basepoint.
 
-Similarly, $\Sigma^n X$ is the left adjoint of the $n$-fold loop space. Hence $\Sigma^n X = (S^1)^{\wedge n}\wedge X$. What is $S^1\wedge S^n$? This is $I/\partial I\wedge I^n\wedge \partial I^n = (I\times I^n)/(\partial I\times I^n\cup I\times \partial I^n)$. This denominator is exactly $\partial I^{n+1}$; hence $S^1\wedge S^n\simeq S^{1+n}$. In fact, $S^k\wedge S^n\simeq S^{k+n}$.
+The same argument says that $\Sigma^n X$ (defined inductively as $\Sigma(\Sigma^{n-1} X)$)
+is the left adjoint of the $n$-fold loop space functor $X\mapsto \Omega^n X$.
+In other words, $\Sigma^n X = (S^1)^{\wedge n}\wedge X$.
+We claim that $S^1\wedge S^n \simeq S^{n+1}$.
+To see this, note that
+$$S^1\wedge S^n = I/\partial I\wedge I^n\wedge \partial I^n = (I\times I^n)/(\partial I\times I^n\cup I\times \partial I^n).$$
+The denominator is exactly $\partial I^{n+1}$, so $S^1\wedge S^n\simeq S^{n+k}$.
+It's now easy to see that $S^k\wedge S^n\simeq S^{k+n}$.
 \begin{definition}
-    The $n$th homotopy group of $X$ is $\pi_n X = \pi_0(\Omega^n X)$.
+    The \emph{$n$th homotopy group} of $X$ is $\pi_n X = \pi_0(\Omega^n X)$.
 \end{definition}
-This is $[S^0,\Omega^n X]_\ast = [S^n, X]_\ast = [(I^n,\partial I^n),(X,\ast)]$.
-\subsection{The homotopy category}
-We have the \emph{homotopy category of spaces} $\Ho(\Top)$ whose objects are spaces and whose mapping spaces are $\pi_0$ of mapping spaces. I have to check that if $f_0,f_1:X\to Y$ and $g:Y\to Z$, then $gf_0\simeq gf_1$. Of course, it is, just by composing with $g$. Similarly $f_0h\simeq f_1h$. This guarantees that you can define composition of maps in $\Ho(\Top)$. I can also think about $\Ho(\Top_\ast)$, with pointed homotopies. A lot of what we've been doing has been taking place in $\Ho(\Top_\ast)$.
+This is, as we noted in the previous section, $[S^0,\Omega^n X]_\ast = [S^n, X]_\ast = [(I^n,\partial I^n),(X,\ast)]$.
 
-Fix $W$. We need to check that $X\mapsto X^W_\ast$ is a homotopy functor. It defines a functor $\Top_\ast\to\Top_\ast$. Namely, I want to complete:
+\subsection{The homotopy category}
+Define the \emph{homotopy category of spaces} $\Ho(\Top)$ to be the category
+whose objects are spaces, and whose hom-sets are given by taking $\pi_0$ of the mapping space.
+To check that this is indeed a category, we need to check that if $f_0,f_1:X\to Y$ and $g:Y\to Z$, then $gf_0\simeq gf_1$ ---
+but this is clear.
+Similarly, we'd need to check that $f_0h\simeq f_1h$ for any $h:W\to X$.
+We can also think about the homotopy category of pointed spaces (and pointed homotopies) $\Ho(\Top_\ast)$; this is the category
+we have been spending most of our time in.
+Both $\Ho(\Top)$ and $\Ho(\Top_\ast)$ have products and coproducts, but very few other limits or colimits.
+From a category-theoretic standnpoint, these are absolutely terrible.
+
+Let $W$ be a pointed space.
+We would like the assignment $X\mapsto X^W_\ast$ to be a homotopy functor.
+It clearly defines a functor $\Top_\ast\to\Top_\ast$, so this desire is equivalent to providing a dotted arrow in the
+following diagram:
 \begin{equation*}
     \xymatrix{
 	\Top_\ast\ar[d]\ar[r]^{X\mapsto X^W_\ast} & \Top_\ast\ar[d]\\
-	\Ho(\Top_\ast)\ar@{-->}[r] & \Ho(\Top_\ast)
+	\Ho(\Top_\ast)\ar@{-->}[r] & \Ho(\Top_\ast).
     }
 \end{equation*}
-So I'd better check that if I have a homotopy $f_0\sim f_1:X\to Y$. Is that a map $I\wedge X\to Y$? This really tells you that there's a nullhomotopy if the basepoint of $I$ is one of the endpoints. I really want to consider $I\times X/I\times\ast$. Aha, but this is just $I_+\wedge X$. So a homotopy $f_0\sim f_1:X\to Y$ is a map $I_+\wedge X\to Y$.
+Before we can prove this, we will check that a homotopy $f_0\sim f_1:X\to Y$ is the same as a map $I_+\wedge X\to Y$.
+There is a nullhomotopy if the basepoint of $I$ is one of the endpoints, so a homotopy is the same as a map
+$I\times X/I\times\ast \to Y$. The source is just $I_+\wedge X$, as desired.
 
-Suppose I have a homotopy like this; then I get $(I_+\wedge X)^W\to Y^W_\ast$. I wanted $I_+\wedge X^W_\ast\to Y^W_\ast$, so that's not quite what I wanted. I can get this if I can construct a map $I_+\wedge X^W_\ast\to (I_+\wedge X)^W_\ast$. In fact, I want to construct $A\wedge X^W_\ast\to (A\wedge X)^W_\ast$. One thing I can do is $A\wedge X^W_\ast\to A^W_\ast\wedge X^W_\ast$ by sending $a\mapsto c_a$, and then the exponential law gives a homotop $A^W_\ast\wedge X^W_\ast\to (A\wedge X)^W_\ast$. This gives me a map $I_+\wedge X^W_\ast\to (I_+\wedge X)^W_\ast\to Y^W_\ast$ making $X\mapsto X^W_\ast$ a homotopy functor. In particular, $\Omega^n$ is a homotopy functor.
+A homotopy $f_0 \simeq f_1:X\to Y$ begets a map $(I_+\wedge X)^W\to Y^W_\ast$.
+For the assignment $X\mapsto X^W_\ast$ to be a homotopy functor, we need a natural transformation $I_+\wedge X^W_\ast\to Y^W_\ast$, so this map is not quite what's necessary.
+Instead, we can attempt to construct a map $I_+\wedge X^W_\ast\to (I_+\wedge X)^W_\ast$.
 
-Let's continue with this homotopical localization of things.
+We can construct a general map $A\wedge X^W_\ast\to (A\wedge X)^W_\ast$: 
+there is a map $A\wedge X^W_\ast\to A^W_\ast\wedge X^W_\ast$, given by sending $a\mapsto c_a$;
+then the exponential law gives a homotopy $A^W_\ast\wedge X^W_\ast\to (A\wedge X)^W_\ast$.
+This, in turn, gives a map $I_+\wedge X^W_\ast\to (I_+\wedge X)^W_\ast\to Y^W_\ast$,
+thus making $X\mapsto X^W_\ast$ a homotopy functor.
+
+Motivated by our discussion of homotopy fibers, we can study composites which ``behave'' like short exact sequences.
 \begin{definition}
-    A fiber sequence in $\Ho(\Top_\ast)$ is a composite $X\to Y\to Z$ that is isomorphic in $\Ho(\Top_\ast)$ to some $Ff\xrightarrow{p} E\xrightarrow{f}B$. Namely we want some (possibly zig-zag of) maps that are homotopy equivalences:
+    A \emph{fiber sequence} in $\Ho(\Top_\ast)$ is a composite $X\to Y\to Z$ that is
+    isomorphic, in $\Ho(\Top_\ast)$, to some composite $Ff\xrightarrow{p} E\xrightarrow{f}B$;
+    in other words, there exist (possibly zig-zags of) maps that are homotopy equivalences, that make the following
+    diagram commute:
     \begin{equation*}
 	\xymatrix{
 	    X\ar[r]\ar[d] & Y\ar[r]\ar[d] & Z\ar[d]\\
-	    Ff\ar[r]_p & E\ar[r]_f & B
+	    Ff\ar[r]_p & E\ar[r]_f & B.
 	    }
     \end{equation*}
 \end{definition}
-We've seen examples in our elaborate story. Recall our diagram:
+Let us remark here that if $A^\prime \xar{\sim} A$ is a homotopy equivalence, and $A\to B \to C$ is a fiber sequence, so
+is the composite $A^\prime\xar{\sim} A \to B\to C$.
+
+\begin{exercise}\label{loopslimit}
+    Prove the following statements.
+    \begin{itemize}
+	\item $\Omega$ takes fiber sequences to fiber sequences.
+	\item $\Omega Ff\simeq F\Omega f$. Check this!
+    \end{itemize}
+\end{exercise}
+
+We've seen examples of fiber sequences in our elaborate study of the Barratt-Puppe sequence.
+\begin{example}
+Recall our diagram:
 \begin{equation*}
     \xymatrix{
 	\cdots\ar[r] & Fp_4\ar[r] & Fp_3 \ar[r] & Fp_2\ar[r] & Fp_1\ar[r]^{p_2} & Ff\ar[r]^{p_1} & X\ar[r]^{f} & Y\\
-    \cdots\ar[r] & \Omega Fp_1\ar[r]|{\overline{\Omega p_2}}\ar[u]_{\simeq} & \Omega Fp_0\ar[u]_{\simeq}\ar[ur]|{i(p_2)}\ar[r]|{\overline{\Omega p}} & \Omega X\ar[r]|{\overline{\Omega f}}\ar[u]_{\simeq}\ar[ur]|{i(p_1)} & \Omega Y\ar[u]_\simeq \ar[ur]|{i(p_0)} & &\\
-	\Omega^2 X\ar[u]_{\simeq}\ar[r]_{\Omega f} & \Omega Y\ar[u]_{\simeq}\ar[ur]_{\overline{\Omega i(p_0)}} & & &
+    \cdots\ar[r] & \Omega Fp_1\ar[r]|{\overline{\Omega p_2}}\ar[u]_{\simeq} & \Omega Ff\ar[u]_{\simeq}\ar[ur]|{i(p_2)}\ar[r]|{\overline{\Omega p}} & \Omega X\ar[r]|{\overline{\Omega f}}\ar[u]_{\simeq}\ar[ur]|{i(p_1)} & \Omega Y\ar[u]_\simeq \ar[ur]|{i(f)} & &\\
+	\Omega^2 X\ar[u]_{\simeq}\ar[r]_{\Omega f} & \Omega Y\ar[u]_{\simeq}\ar[ur]_{\overline{\Omega i(f)}} & & &
     }
 \end{equation*}
-So look, $Ff\to X\to Y$ is a fiber sequence. And $\Omega Y\to F\xrightarrow{p}X$ is another fiber sequence because it's isomorphic to $Fp\to F\to X$ in $\Ho(\Top_\ast)$. I also have $\Omega X\xrightarrow{\overline{\Omega f}}\Omega Y\to F$ is another fiber sequence. This means that $\Omega X\xrightarrow{\Omega f}\Omega Y\to F$ is another fiber sequence because these two fiber sequences differ by an automorphism of $\Omega X$ because in general, if $A^\prime\xrightarrow{\sim} A$ and $A\to B\to C$ is a fiber sequence, so is $A^\prime\xrightarrow{\sim} A\to B\to C$.
+The composite $Ff\to X\xar{f} Y$ is canonically a fiber sequence.
+The above diagram shows that $\Omega Y\to F\xrightarrow{p}X$ is another fiber sequence: it is isomorphic to
+$Fp\to F\to X$ in $\Ho(\Top_\ast)$.
+Similarly, the composite $\Omega X\xrightarrow{\overline{\Omega f}}\Omega Y\to F$ is another fiber sequence;
+this implies that $\Omega X\xrightarrow{\Omega f}\Omega Y\to F$ is also an example of a fiber sequence
+(because these two fiber sequences differ by an automorphism of $\Omega X$)
 
-I can apply $\Omega$ again, so I get $\Omega F\xrightarrow{\Omega p} \Omega X\xrightarrow{\Omega f} \Omega Y$. I claim this is a fiber sequence, because this is a loop of a fiber sequence, and taking loops takes fiber sequences to fiber sequences. This is called the \emph{Barratt-Puppe sequence}. I carefully explained that this makes some sense, because it firstly makes sense to ask that $\Omega$ is a homotopy functor. I haven't said this yet. So in particular:
-\begin{enumerate}
-    \item $\Omega$ takes fiber sequences to fiber sequences.
-    \item $\Omega Ff\simeq F\Omega f$. Check this!
-\end{enumerate}
-You can now \emph{loop back} to get $\Omega^2 Y\xrightarrow{\Omega i} \Omega F\xrightarrow{\Omega p}\Omega X$. This is an unstable version of a triangulated category. It wants to be a triangulated category, but it isn't.
-\begin{remark}
-    If $f:X\to Y$, I can form $Ff$. I might have a homotopy commuting diagram like:
-    \begin{equation*}
-	\xymatrix{
-	    \Omega Y\ar[d]_{\Omega g}\ar[r] & Ff\ar@{-->}[d]\ar[r] & X\ar[d]_{h}\ar[r]^f & Y\ar[d]^g\\
-	    \Omega Y^\prime\ar[r] & Ff^\prime\ar[r] & X^\prime\ar[r]_{f^\prime} & Y
-	    }
-    \end{equation*}
-    The dotted map exists, but \emph{this map depends on the homotopy} $f^\prime h\simeq gf$. That's an important subtlety.
-\end{remark}
-\subsection{Lexseq of a fiber sequence}
-Applying $\pi_0 = [S^0,-]_\ast$ to the Barratt-Puppe sequence gives a lexseq:
+Applying $\Omega$ again, we get $\Omega F\xrightarrow{\Omega p} \Omega X\xrightarrow{\Omega f} \Omega Y$.
+Since this is a looping of a fiber sequence, and taking loops takes fiber sequences to fiber sequences (Exercise \ref{loopslimit}), this is another fiber sequence. 
+Looping again gives another fiber sequence $\Omega^2 Y\xrightarrow{\Omega i} \Omega F\xrightarrow{\Omega p}\Omega X$.
+(For the category-theoretically--minded folks, this is an unstable version of a triangulated category.)
+\end{example}
+
+\subsection{The long exact sequence of a fiber sequence}
+As discussed at the end of \S \ref{secbarrattpuppe}, applying $\pi_0 = [S^0,-]_\ast$ to the
+Barratt-Puppe sequence associated to a map $f:X\to Y$ gives a long exact sequence:
 \begin{equation*}
     \xymatrix{
 	& \cdots\ar[r] & \pi_2 Y\ar[dll]\\
 	\pi_1 F\ar[r] & \pi_1 X\ar[r] & \pi_1 Y\ar[dll]\\
-	\pi_0 F\ar[r] & \pi_0 X\ar[r] & \pi_1 X
+	\pi_0 F\ar[r] & \pi_0 X. & 
     }
 \end{equation*}
-of pointed sets. But this is even better, ,because $\Omega X$ is a group object in $\Ho(\Top_\ast)$.
-\begin{remark}
-    $\Ho(\Top)$ and $\Ho(\Top_\ast)$ has products and coproducts, but very few other limits or colimits. So as a category, it is \emph{horrible}.
-\end{remark}
-I showed you an argument that $\Omega^2 X$ is an \emph{abelian} group object, i.e., multiplication is commutative up to homotopy. Thus $\pi_1$ is a group and $\pi_k$ is an abelian group for $k\geq 2$; hence in our diagram above, all maps (except on $\pi_0$) are group homomorphisms!
+of pointed sets.
+The space $\Omega^2 X$ is an \emph{abelian} group object in $\Ho(\Top)$
+(in other words, the multiplication on $\Omega^2 X$ is commutative up to homotopy).
+This implies $\pi_1(X)$ is a group, and that $\pi_k(X)$ is abelian for $k\geq 2$;
+hence, in our diagram above, all maps (except on $\pi_0$) are group homomorphisms.
 
-What if $X\to Y$ is the inclusion $i:A\hookrightarrow X$ of a subspace? Then $Fi=\{(a,\omega)\in A\times X^I_\ast|\omega(1) = a\}$. This is just the collection of all paths that begin at $\ast\in A$ and ends in $A$.
+Consider the case when $X\to Y$ is the inclusion $i:A\hookrightarrow X$ of a subspace.
+In this case,
+$$Fi=\{(a,\omega)\in A\times X^I_\ast|\omega(1) = a\};$$
+this is just the collection of all paths that begin at $\ast\in A$ and end in $A$.
+This motivates the definition of \emph{relative homotopy groups}:
 \begin{definition}
-    $\pi_n(X,A,\ast) = \pi_n(X,A)$ is $\pi_{n-1}Fi = [(I^n,\partial I^n,(\partial I^n\times I)\cup (I^{n-1}\times 0)),(X,A,\ast)]$.
+    Define: 
+    $$\pi_n(X,A,\ast) = \pi_n(X,A) := \pi_{n-1}Fi = [(I^n,\partial I^n,(\partial I^n\times I)\cup (I^{n-1}\times 0)),(X,A,\ast)].$$
 \end{definition}
-Inside $I^n$ is $\partial I^n$, and also including in it is $\partial I^n\times I\cup I^{n-1}\times 0$. Then you can check that $\pi_{n-1}Fi = [(I^n,\partial I^n,(\partial I^n\times I)\cup (I^{n-1}\times 0)),(X,A,\ast)]$. In this case, you have a lexseq: 
+We have a sequence of inclusions
+$$\partial I^n\times I\cup I^{n-1}\times 0 \subset \partial I^n \subset I^n.$$
+One can check that
+$$\pi_{n-1}Fi = [(I^n,\partial I^n,(\partial I^n\times I)\cup (I^{n-1}\times 0)),(X,A,\ast)].$$
+This gives a long exact sequence on homotopy, analogous to the long exact sequence in relative homology:
 \begin{equation*}
     \xymatrix{
 	& \cdots\ar[r] & \pi_2 (X,a)\ar[dll]\\
 	\pi_1 A\ar[r] & \pi_1 X\ar[r] & \pi_1 (X,A)\ar[dll]\\
-	\pi_0 A\ar[r] & \pi_0 X\ar[r] & 
+	\pi_0 A\ar[r] & \pi_0 X. & 
     }
 \end{equation*}
