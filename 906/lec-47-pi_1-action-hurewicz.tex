@@ -1,80 +1,192 @@
 \section{Action of $\pi_1$, simple spaces, and the Hurewicz theorem}
-Recall that $\pi_n(X,A,\ast) = [(I^n,\partial I^n,\partial I^{n-1}\times I\cup I^{n-1}\times 0),(X,A,\ast)]$. You have a lexseq of the form:
+In the previous section, we constructed a long exact sequence of homotopy groups:
 \begin{equation*}
     \xymatrix{
-	& \cdots\ar[r] & \pi_2 (X,a)\ar[dll]\\
+	& \cdots\ar[r] & \pi_2 (X,A)\ar[dll]\\
 	\pi_1 A\ar[r] & \pi_1 X\ar[r] & \pi_1 (X,A)\ar[dll]\\
-	\pi_0 A\ar[r] & \pi_0 X\ar[r] & 
+	\pi_0 A\ar[r] & \pi_0 X, & 
     }
 \end{equation*}
-This looks very similar to the lexseq for homology. How does this actually relate?
+which looks suspiciously similar to the long exact sequence in homology.
+The goal of this section is to describe a relationship between homotopy groups and homology groups.
+
+Before we proceed, we will need the following lemma.
 \begin{lemma}[Excision]
-    If $A\subseteq X$ is a cofibration, then there is an isomorphism $H_\ast(X,A)\xrightarrow{\simeq}\widetilde{H}_\ast(X/A)$. Under this hypothesis, $X/A\simeq\text{Mapping cone of }i:A\to X$. The mapping cone is the dual to the homotopy fiber, i.e., the homotopy quotient, which is defined by the pushout:
+    If $A\subseteq X$ is a cofibration, there is an isomorphism
+    $$H_\ast(X,A)\xrightarrow{\simeq}\widetilde{H}_\ast(X/A).$$
+    Under this hypothesis,
+    $$X/A\simeq\text{Mapping cone of }i:A\to X;$$
+    here, the mapping cone is the homotopy pushout in the following diagram:
     \begin{equation*}
 	\xymatrix{
 	    A\ar[r]^i\ar[d]^{in_1} & X\ar[d]\\
-	    CA\ar[r] & X\cup_A CA
+	    CA\ar[r] & X\cup_A CA,
 	    }
     \end{equation*}
-    where $CA$ is the cone on $A$ defined as $CA = A\times I/A\times 0$ (this is a contractible space).
+    where $CA$ is the cone on $A$, defined by
+    $$CA = A\times I/A\times 0.$$
 \end{lemma}
-This is dual to saying that $Ff\simeq f^{-1}(\ast)$ if $f$ is a fibration.
+This lemma is dual to the statement that the homotopy fiber is homotopy equivalent to the strict fiber for fibrations.
 
-But $\pi_\ast(X,A)$ is definitely not $\pi_\ast(X/A)$! For example, $S^1\to D^2\to S^2$ is a cofibration sequence, but $\pi_\ast S^1$ is just $\Z$ in dimension $1$. We don't know the homotopy groups of $S^2$, though. In fact:
-\begin{theorem}[Now]
-    If $X$ is a simply connected finite complex, and $X\not\simeq \ast$, then we do not know $\pi_\ast(X)$. And we'll probably never be able to know them.
-\end{theorem}
-These groups \emph{are} computable (a theorem by Edgar Brown), but it's super-exponential. This is discouraging. We'll never know what, eg., $\pi_{10000}(S^2)$ is.
+Unfortunatel, $\pi_\ast(X,A)$ is definitely not $\pi_\ast(X/A)$!
+For instance, there is a cofibration sequence
+$$S^1\to D^2\to S^2.$$
+We know that $\pi_\ast S^1$ is just $\Z$ in dimension $1$, and is zero in other dimensions.
+On the other hand, we do not, and probably will never, know the homotopy groups of $S^2$.
+(A theorem of Edgar Brown \todo{find a citation} says that these groups are computable, but this is super-exponential.)
+%\begin{theorem}[Now]
+%    If $X$ is a simply connected finite complex, and $X\not\simeq \ast$, then we do not know $\pi_\ast(X)$. And we'll probably never be able to know them.
+%\end{theorem}
+%These groups \emph{are} computable (a theorem by Edgar Brown), but it's super-exponential. This is discouraging. We'll never know what, eg., $\pi_{10000}(S^2)$ is.
 
-Anyway, I said there was $\partial:\pi_n(X,A,\ast)\to \pi_{n-1}(A,\ast)$. How does this look? Well you just look at the restriction of $I^n\to X$ to $1\times I^{n-1}\to A$. And the composite $\pi_n(X,A,\ast)\xrightarrow{\partial}\pi_{n-1}(A,\ast)\to \pi_{n-1}(X,\ast)$ is trivial by definition!
+%Anyway, I said there was $\partial:\pi_n(X,A,\ast)\to \pi_{n-1}(A,\ast)$. How does this look? Well you just look at the restriction of $I^n\to X$ to $1\times I^{n-1}\to A$. And the composite $\pi_n(X,A,\ast)\xrightarrow{\partial}\pi_{n-1}(A,\ast)\to \pi_{n-1}(X,\ast)$ is trivial by definition!
 \subsection{$\pi_1$-action}
-There's a little more structure about this sequence. That's the following thing: $\pi_1(X)$ acts on $\pi_n(X)$ from the left by group homomorphisms. There was a picture, but I didn't understand it. Let me write this out (as I understand it). Suppose $x,y\in X$, and let $\omega:I\to X$ with $\omega(0) = x$ and $\omega(1) = y$. Then we have a map $f_\omega:\pi_n(X,x)\to \pi_n(X,y)$, so $\pi_1(X,\ast)$ acts on $\pi_n(X,\ast)$.
+There is more structure in the long exact sequence in homotopy groups that we constructed last time, coming from an action
+of $\pi_1(X)$.
+There is an action of $\pi_1(X)$ on $\pi_n(X)$: if $x,y$ are points in $X$, and $\omega:I\to X$ is a path with $\omega(0) = x$ and $\omega(1) = y$, we have a map $f_\omega:\pi_n(X,x)\to \pi_n(X,y)$;
+this, in particular, implies that $\pi_1(X,\ast)$ acts on $\pi_n(X,\ast)$.
+When $n=1$, the action $\pi_1(X)$ on itself is by conjugation.
 
-When $n=1$, $\pi_1(X)$ acts by conjugation. In fact, $\pi_1(A)$ acts on $\pi_n(X,A,\ast)$ as well. It then follows that all maps in the lexseq are equivariant for this action of $\pi_1(A)$. We also have the Peiffer identity:
+In fact, one can also see that $\pi_1(A)$ acts on $\pi_n(X,A,\ast)$.
+It follows (by construction) that all maps in the long exact sequence of Equation \eqref{lexseqhomotopy} are equivariant for
+this action of $\pi_1(A)$.
+Moreover:
 \begin{prop}[Peiffer identity]
-    let $\alpha,\beta\in \pi_2(X,A)$. Then $(\partial \alpha)\cdot\beta = \alpha\beta\alpha^{-1}$.
+    Let $\alpha,\beta\in \pi_2(X,A)$. Then $(\partial \alpha)\cdot\beta = \alpha\beta\alpha^{-1}$.
 \end{prop}
-For example, if $j:\pi_2(X)\to \pi_2(X,A)$, and $\alpha = j(\gamma)$, $\partial\alpha = 1$: $\img(k)\subseteq\coker \pi_2(X,A)$. (I did not follow this)
+%For example, if $j:\pi_2(X)\to \pi_2(X,A)$, and $\alpha = j(\gamma)$, $\partial\alpha = 1$: $\img(k)\subseteq\coker \pi_2(X,A)$. (I did not follow this)
 
 \begin{definition}
-    $X$ is simply connected if it's path connected and $\pi_1(X,\ast) = 1$.
+    A topological space $X$ is said to be \emph{simply connected} if it is path connected, and $\pi_1(X,\ast) = 1$.
 \end{definition}
-Sometimes you have nontrivial $\pi_1$, and so:
+Let $p:E\to B$ be a covering space with $E$ and $B$ connected.
+Then, the fibers are discrete, hence do not have any higher homotopy.
+Using the long exact sequence in homotopy groups, we learn that $\pi_n(E)\to \pi_n(B)$ is an isomorphism for $n>1$,
+and that $\pi_1(E)$ is a subgroup of $\pi_1(B)$ that classifies the covering space.
+In general, we know from Exercise \ref{simplequotient} that $\Omega B$ acts on the homotopy fiber $Fp$.
+Since $Ff$ is discrete, this action factors through $\pi_0(\Omega B)\simeq \pi_1(B)$.
+
+%In particular, $\pi_q(S^n)\simeq \pi_q(\RP^n)$ for $q>1$. Of course, $\pi_1(\RP^n)\simeq \Z/2\Z$. This creates a ton of homology in $\RP^n$ that's not present in the homology of $S^n$. Here's a piece of language.
 \begin{definition}
-    $X$ is \emph{simple} if it is path-connected and $\pi_1(X)$ acts trivially on $\pi_n(X)$ for $n\geq 1$.
+    A space $X$ is said to be \emph{$n$-connected} if $\pi_i(X) = 0$ for $i\leq n$.
 \end{definition}
-(In particular, $\pi_1(X)$ is abelian.) What does being simple do for you?
-\begin{itemize}
-    \item Being simple is independent of the choice of basepoint. If $\omega:x\to x^\prime$, then $\omega_\sharp:\pi_n(X,x)\to \pi_n(X,x^\prime)$ is a group isomorphism. I have $\pi_1(X,x)$ acting on $\pi_n(X,x)$ and $\pi_1(X,x^\prime)$ acting on $\pi_n(X,x^\prime)$. These actions are compatible, and if $\pi_1(X,x)$ acts trivially then so does $\pi_1(X,x^\prime)$.
-    \item Say $X$ is path-connected. Then there's a map $\pi_n(X,\ast)\to [S^n,X]$. It's pretty obvious that this map is surjective because I can always choose a basepoint in $X$ as the image of a basepoint in $S^n$. Thus you'd expect a factorization:
-	\begin{equation*}
-	    \xymatrix{
-		\pi_n(X,\ast)\ar@{->>}[r]\ar[dr] & [S^n,X]\\
-		& \pi_1(X,\ast)\backslash \pi_n(X,\ast)\ar[u]_{\cong,\text{homework}}
-		}
-	\end{equation*}
-	If $X$ is simple, then $\pi_1(X,\ast)\backslash \pi_n(X,\ast)$ is trivial, and so $\pi_n(X,\ast)\cong [S^n,X]$ that's independent of the basepoint. I.e., these groups are canonically the same, i.e., two paths $\omega,\omega^\prime:x\to y$ give the same map $\omega_\sharp = \omega^\prime_\sharp:\pi_n(X,x)\to \pi_n(X,y)$.
-\end{itemize}
+Note that this is a well-defined condition, although we did not specify the basepoint: $0$-connected implies path connected.
+Suppose $E\to B$ is a covering space, with the total space $E$ being $n$-connected.
+Then, Hopf showed that the group $\pi_1(B)$ determines the homology $H_i(B)$ in dimensions $i<n$.
+%in particular, $H_i(B) = H_i(\pi_1(B))$, which is the group homology. This is due to Heinz Hopf.
+
+Sometimes, there are interesting spaces which are not simply connected, for which the $\pi_1$-action is nontrivial.
+\begin{example}
+    Consider the space $S^1\vee S^2$.
+    The universal cover is just $\RR$, with a $2$-sphere $S^2$ stuck on at every integer point.
+    This space is simply connected, so the Hurewicz theorem says that $\pi_2(E)\simeq H_2(E)$.
+    Since the real line is contractible, we can collapse it to a point: this gives a countable bouquet of $2$-spheres.
+    As a consequence, $\pi_2(E)\simeq H_2(E) = \bigoplus_{i=0}^\infty \Z$.
+
+    There is an action of $\pi_1(S^1\vee S^2)$ on $E$: the action does is shift the $2$-spheres on the integer points of $\RR$ (on $E$) to the right by $1$ (note that $\pi_1(S^1\vee S^2) = \Z$).
+    This tells us that $\pi_2(E) \simeq \Z[\pi_1(B)]$ as a $\Z[\pi_1(B)]$-module; this is the same action of $\pi_1(E)$ on
+    $\pi_2(E)$.
+    We should be horrified: $S^1\vee S^2$ is a very simple $3$-complex, but its homotopy is huge!
+\end{example}
+Simply-connectedness can sometimes be a restrictive condition; instead, to simplify the long exact sequence, we define:
+\begin{definition}
+    A topological space $X$ is said to be \emph{simple} if it is path-connected, and
+    $\pi_1(X)$ acts trivially on $\pi_n(X)$ for $n\geq 1$.
+\end{definition}
+Note, in particular, that $\pi_1(X)$ is abelian for a simple space.
+
+Being simple is independent of the choice of basepoint. If $\omega:x\mapsto x^\prime$ is a path in $X$,
+then $\omega_\sharp:\pi_n(X,x)\to \pi_n(X,x^\prime)$ is a group isomorphism.
+There is a (trivial) action of $\pi_1(X,x)$ on $\pi_n(X,x)$, and another (potentially nontrivial)
+action of $\pi_1(X,x^\prime)$ on $\pi_n(X,x^\prime)$.
+Both actions are compatible: hence, if $\pi_1(X,x)$ acts trivially, so does $\pi_1(X,x^\prime)$.
+
+If $X$ is path-connected, there is a map $\pi_n(X,\ast)\to [S^n,X]$.
+It is clear that this map is surjective,
+%because I can always choose a basepoint in $X$ as the image of a basepoint in $S^n$.
+so one might expect a factorization:
+\begin{equation*}
+    \xymatrix{
+	\pi_n(X,\ast)\ar@{->>}[r]\ar[dr] & [S^n,X]\\
+	& \pi_1(X,\ast)\backslash \pi_n(X,\ast)\ar[u]
+	}
+\end{equation*}
+\begin{exercise}\label{simplequotient}
+    %Exercises 7 and 9 of pset 2
+    Prove that $\pi_1(X,\ast)\backslash \pi_n(X,\ast) \simeq [S^n, X]$.
+    To do this, work through the following exercises.
+    
+    Let $f:X\to Y$ be a map of spaces, and let $\ast\in Y$ be a fixed basepoint of $Y$.
+    Denote by $Ff$ the homotopy fiber of $f$; this admits a natural fibration $p:Ff \to X$, given by $(x,\sigma)\mapsto x$.
+    If $\Omega Y$ denotes the (based) loop space of $Y$, we get an action $\Omega Y \times Ff \to Ff$, given by
+    $$(\omega,(x,\sigma)) \mapsto (x,\sigma\cdot\omega),$$
+    where $\sigma\cdot\omega$ is the concatenation of $\sigma$ and $\omega$, defined, as usual, by
+    $$
+    \sigma\cdot\omega(t) = \begin{cases}
+	\omega(2t) & 0\leq t\leq 1/2\\
+	\sigma(2t-1) & 1/2\leq t\leq 1.
+    \end{cases}
+    $$
+    (Note that when $X$ is the point, this defines a ``multiplication'' $\Omega Y \times \Omega Y \to \Omega Y$; this is 
+    associative and unital up to homotopy.)
+    On connected components, we therefore get an action of $\pi_0\Omega Y \simeq \pi_1 Y$ on $\pi_0 Ff$.
+
+    There is a canonical map
+    $$Ff \times \Omega Y \to Ff\times_X Ff,$$
+    given by $((x,\sigma),\omega) \mapsto ((x,\sigma),(x,\sigma)\cdot\omega)$.
+    Prove that this map is a homotopy equivalence (so that the action of $\Omega Y$ on $Ff$ is ``free''), and conclude that
+    two elements in $\pi_0 Ff$ map to the same element of $\pi_0 X$ if and only if they are in the same orbit under the action
+    of $\pi_1 Y$.
+
+    Let $X$ be path connected, with basepoint $\ast\in X$.
+    Conclude that $\pi_1(X,\ast)\backslash \pi_n(X,\ast) \simeq [S^n,X]$ by provin that the surjection
+    $\pi_n(X,\ast) \to [S^n,X]$ can be identified with the orbit projection for the action of $\pi_1(X,\ast)$ on $\pi_n(X,\ast)$.
+\end{exercise}
+If $X$ is simple, then the quotient $\pi_1(X,\ast)\backslash \pi_n(X,\ast)$ is simply $\pi_n(X, \ast)$, so
+Exercise \ref{simplequotient} implies that $\pi_n(X,\ast)\cong [S^n,X]$ --- independently of the basepoint;
+in other words, these groups are canonically the same, i.e., two paths $\omega,\omega^\prime:x\to y$ give the
+same map $\omega_\sharp = \omega^\prime_\sharp:\pi_n(X,x)\to \pi_n(X,y)$.
+
+\begin{exercise}
+    A \emph{$H$-space} is a pointed space $X$, along with a pointed map $\mu:X\times X \to X$, such that the maps
+    $x\mapsto \mu(x,\ast)$ and $x\mapsto \mu(\ast,x)$ are both pointed homotopic to the identity.
+    In this exercise, you will prove that path connected $H$-spaces are simple.
+    
+    Denote by $\cc$ the category of pairs $(G,H)$, where $G$ is a group that acts on the group $H$ (on the left); the morphisms
+    in $\cc$ are pairs of homomorphisms which are compatible with the group actions.
+    This category has finite products.
+    Explain what it means for an object of $\cc$ to have a ``unital multiplication'', and prove that any object $(G,H)$ of $\cc$
+    with a unital multiplication has $G$ and $H$ abelian, and that the $G$-action on $H$ is trivial.
+    Conclude from this that path connected $H$-spaces are simple.
+\end{exercise}
 \subsection{Hurewicz theorem}
-I talked about homotopy, and I talked about homology. Now it's time to compare the two. This is the story of the Hurewicz theorem. You should think of homology of being computable, while homotopy is a big mystery.
 \begin{definition}
-The Hurewicz map is a map $h:\pi_n(X,\ast)\to H_n(X)$, where $X$ is a path connected space. How does this map go? An element in $\pi_n(X,\ast)$ is represented by $\alpha:S^n\to X$. Pick a generator $\sigma:H_n(S^n)$; then $\alpha_\ast(\sigma)\in H_n(X)$.
+    Let $X$ be a path-connected space.
+    The Hurewicz map $h:\pi_n(X,\ast)\to H_n(X)$is defined as follows:
+    an element in $\pi_n(X,\ast)$ is represented by $\alpha:S^n\to X$; pick a generator $\sigma\in H_n(S^n)$, and send
+    $$\alpha\mapsto\alpha_\ast(\sigma)\in H_n(X).$$
 \end{definition}
-This is a homomorphism, as I'll show in a bit.
+We will see below that $h$ is in fact a homomorphism.
 
-What happens when $n=0$? What map $\pi_0(X)\to H_0(X)$ do we have? A point is like a $0$-cycle, and that's the map! In fact, we have an isomorphism $H_0(X)\simeq \Z[\pi_0(X)]$. This is an example of the Hurewicz theorem.
+This is easy in dimension $0$: a point is a $0$-cycle!
+In fact, we have an isomorphism $H_0(X)\simeq \Z[\pi_0(X)]$.
+(This isomorphism is an example of the Hurewicz theorem.)
 
-How about $n=1$? Now, we have $h:\pi_1(X,\ast)\to H_1(X)$. This factors as $\pi_1(X,\ast)\to \pi_1(X,\ast)^{ab}\to H_1(X)$. And the Hurewicz theorem says that $\pi_1(X,\ast)^{ab}\xrightarrow{\simeq} H_1(X)$. I'm not going to prove this; it's not very hard but it's annoying. It's pretty clear why it's true: for example, it's onto. $1$-cycles just look like a bunch of circles, so just concatenate loops from the basepoint to these $1$-cycles.
+When $n=1$, we have $h:\pi_1(X,\ast)\to H_1(X)$. Since $H_1(X)$ is abelian, this factors as
+$\pi_1(X,\ast)\to \pi_1(X,\ast)^{ab}\to H_1(X)$.
+The Hurewicz theorem says that the map $\pi_1(X,\ast)^{ab}\to H_1(X)$ is an isomorphism.
+We will not prove this here; see \cite[Theorem 2A.1]{hatcher} for a proof.
 
-Let me show you that the Hurewicz map is a homomorphism. Before that, here's the Hurewicz theorem.
+The Hurewicz theorem generalizes these results to higher dimensions:
 \begin{theorem}[Hurewicz]
-    Suppose $\pi_i(X) = 0$ for $i<n$ where $n\geq 2$. Then $\pi_n(X)\xrightarrow{\simeq}H_n(X)$.
+    Suppose $X$ is a space for which $\pi_i(X) = 0$ for $i<n$, where $n\geq 2$.
+    Then the Hurewicz map $h:\pi_n(X)\to H_n(X)$ is an isomorphism.
 \end{theorem}
-We can't compute homotopy in general, but we can at least make a start.
 
-OK, why is $h$ a homomorphism? Let $\alpha,\beta:S^n\to X$ be pointed maps. What is the product in $\pi_n(X)$? It's just the composite:
-$$\alpha\beta:S^n\xrightarrow{\delta\text{, pinching along the equator}} S^n\vee S^n\xrightarrow{\beta\vee\alpha}X\vee X\xrightarrow{\nabla\text{, the fold map}}X$$
-where $\nabla:X\vee X\to X$ is defined by:
+Before the word ``isomorphism'' can make sense, we need to prove that $h$ is a homomorphism.
+Let $\alpha,\beta:S^n\to X$ be pointed maps. The product $\alpha\beta\in \pi_n(X)$ is the composite:
+$$\alpha\beta:S^n\xrightarrow{\delta\text{, pinching along the equator}} S^n\vee S^n\xrightarrow{\beta\vee\alpha}X\vee X\xrightarrow{\nabla}X,$$
+where $\nabla:X\vee X\to X$ is the fold map, defined by:
 \begin{equation*}
     \xymatrix{
 	X\ar[dr]^1\ar[d] & \\
@@ -82,8 +194,40 @@ where $\nabla:X\vee X\to X$ is defined by:
 	X\ar[u]\ar[ur]_1 & 
     }
 \end{equation*}
-We have two inclusions $in_1,in_2$ of $S^n$ to $S^n\vee S^n$. Now, we have:
-$$\sigma\mapsto {in_1}_\ast\sigma + {in_2}_\ast\sigma\mapsto {in_1}_\ast h(\alpha) + {in_2}_\ast h(\beta)\mapsto h(\alpha) + h(\beta)$$
-As desired. It's possible to give an elementary proof of Hurewicz's theorem. But I'll prove this as a consequence of the Serre spectral sequence, which gives a more genral theorem. It'll be an inductive proof that'll use Poincare's result.
+%We have two inclusions $\mathrm{in}_1,\mathrm{in}_2$ of $S^n$ to $S^n\vee S^n$.
+%If $\sigma\in H_n(S^n)$ is a generator, the composite
+%$$\sigma\mapsto {in_1}_\ast\sigma + {in_2}_\ast\sigma\mapsto {in_1}_\ast h(\alpha) + {in_2}_\ast h(\beta)\mapsto h(\alpha) + h(\beta)$$
+%\todo{edit from here}
+%As desired.
+To show that $h$ is a homomorphism, it suffices to prove that for two maps $\alpha,\beta:S^n \to X$, the induced maps on homology
+satisfy $(\alpha+\beta)_\ast = \alpha_\ast + \beta_\ast$ --- then,
+$$h(\alpha+\beta) = (\alpha+\beta)_\ast(\sigma) = \alpha_\ast(\sigma) + \beta_\ast(\sigma) = h(\alpha) + h(\beta).$$
+To prove this, we will use the pinch map $\delta:S^n \to S^n \vee S^n$, and the quotient maps $q_1,q_2:S^n\vee S^n \to S^n$;
+the induced map $H_n(S^n) \to H_n(S^n) \oplus H_n(S^n)$ is given by the diagonal map $a\mapsto (a,a)$.
+It follows from the equalities
+$$(f\vee g)\iota_1 = f, \ (f\vee g)\iota_2 = g,$$
+where $\iota_1,\iota_2:S^n\hookrightarrow S^n \vee S^n$ are the inclusions of the two wedge summands, that the map $(f\vee g)_\ast((\iota_1)_\ast + (\iota_2)_\ast)$
+sends $(x,0)$ to $f_\ast(x)$, and $(0,x)$ to $g_\ast(x)$.
+In particular,
+$$(x,x)\mapsto f_\ast(x) + g_\ast(x),$$
+so the composite $H_n(S^n) \to H_n(X)$ sends $x\mapsto (x,x) \mapsto f_\ast(x) + g_\ast(x)$.
+This composite is just $(f+g)_\ast(x)$, since the composite $(f\vee g)\delta$ induces the map $(f+g)_\ast$ on homology.
 
-One more thing to say is that $\pi_i(S^n) = 0$ if $i<n$. I won't prove this, but it's also kind of obvious, isn't it? By Hurewicz, it follows that $\pi_n(S^n)\simeq H_n(S^n)\simeq \Z$. We actually have one more example: $\pi_3(S^2)\simeq \Z$ generated by the Hopf fibration $S^3\to S^2$. It's not obvious that this isn't nullhomotopic, but it's true. But now, for example, I can suspend $\eta$ (the Hopf fibration) and get $\eta\circ\Sigma\eta$. We thought for a long time that there were the only things we could compute in $\pi_\ast S^n$; but this is not true! It's a lot more chaotic.
+It is possible to give an elementary proof of the Hurewicz theorem, but we won't do that here: instead,
+we will prove this as a consequence of the Serre spectral sequence.
+
+\begin{example}
+    Since $\pi_i(S^n) = 0$ for $i<n$, the Hurewicz theorem tells us that $\pi_n(S^n) \simeq H_n(S^n) \simeq \Z$.
+\end{example}
+
+\begin{example}
+    Recall the Hopf fibration $S^1\to S^3\xar{\eta} S^2$.
+    The long exact sequence on homotopy groups tells us that
+    $\pi_i(S^3)\xrightarrow{\simeq}\pi_i(S^2)$ for $i>2$, where the map is given by
+    $\alpha\mapsto\eta\alpha$.
+    As we saw above, $\pi_3(S^3) = \Z$, so $\pi_3(S^2)\simeq \Z$, generated by $\eta$.
+    
+    One can show that $\pi_{4n-1}(S^{2n})\otimes\QQ\simeq \QQ$.
+    A theorem of Serre's says that, other than $\pi_n(S^n)$, these are the only non-torsion homotopy groups of spheres.
+\end{example}
+%One more thing to say is that $\pi_i(S^n) = 0$ if $i<n$. I won't prove this, but it's also kind of obvious, isn't it? By Hurewicz, it follows that $\pi_n(S^n)\simeq H_n(S^n)\simeq \Z$. We actually have one more example: $\pi_3(S^2)\simeq \Z$ generated by the Hopf fibration $S^3\to S^2$. It's not obvious that this isn't nullhomotopic, but it's true. But now, for example, I can suspend $\eta$ (the Hopf fibration) and get $\eta\circ\Sigma\eta$. We thought for a long time that there were the only things we could compute in $\pi_\ast S^n$; but this is not true! It's a lot more chaotic.
