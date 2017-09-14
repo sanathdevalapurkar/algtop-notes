@@ -1,5 +1,5 @@
-\section{... and all the rest}
-I'm going to state a few corollaries of the obstruction theory stuff. Davis-Kirk is a great book, and so is Hatcher -- but although it seems to be a chatty book, the proofs are very very dense.
+\section{Conclusions from obstruction theory}
+The main result of obstruction theory, as discussed in the previous section, is the following.
 \begin{theorem}[Obstruction theory]
     Let $(X,A)$ be a relative CW-complex, and $Y$ a simple space. The map $[X,Y]\to [A,Y]$ is:
     \begin{enumerate}
@@ -7,97 +7,139 @@ I'm going to state a few corollaries of the obstruction theory stuff. Davis-Kirk
 	\item is one-to-one if $H^n(X,A;\pi_n(Y)) = 0$ for all $n\geq 1$.
     \end{enumerate}
 \end{theorem}
-I think (1) implies (2), because suppose I have $g_0,g_1:X\to Y$ and a homotopy $h:g_0|_{A}\simeq g_0|_{A}$. Let's apply (1) to $(X\times I,A\times I\cup X\times\partial I)$. Because $A$ is a relative CW-complex, $A\hookrightarrow X$ is a cofibration, as is $A\times I\cup X\times\partial I\to X\times I$. Thus $H^n(X\times I,A\times I\cup X\times\partial I;\pi)\simeq \widetilde{H}^n(X\times I/(A\times I\cup X\times\partial I);\pi) = H^n(\Sigma X/A;\pi)\simeq \widetilde{H}^{n-1}(X/A;\pi)$.
-
-More precisely, if I have $X_{n-1}\to Y$, we get $\theta\in Z^n(X,A;\pi_{n-1}(Y))$, constructed by looking at the attaching map $f_\alpha$ of some $\alpha\in\Sigma_n$, to define $\theta(g)$ via $\theta(g)(\alpha) = [g\circ f_\alpha]$. This captures the obstruction to extending $g$ over $\alpha$. We found that $d\theta = 0$.
-
+\begin{remark}
+    The first statement implies the second.
+    Indeed, suppose we have two maps $g_0,g_1:X\to Y$ and a homotopy $h:g_0|_{A}\simeq g_0|_{A}$.
+    Assume the first statement.
+    Consider the relative CW-complex $(X\times I,A\times I\cup X\times\partial I)$.
+    Because $(X,A)$ is a relative CW-complex, the map $A\hookrightarrow X$ is a cofibration; this implies that the map $A\times I\cup X\times\partial I\to X\times I$ is also a cofibration.
+    $$H^n(X\times I,A\times I\cup X\times\partial I;\pi)\simeq \widetilde{H}^n(X\times I/(A\times I\cup X\times\partial I);\pi) = H^n(\Sigma X/A;\pi)\simeq \widetilde{H}^{n-1}(X/A;\pi).$$
+%More precisely, if I have $X_{n-1}\to Y$, we get $\theta\in Z^n(X,A;\pi_{n-1}(Y))$, constructed by looking at the attaching map $f_\alpha$ of some $\alpha\in\Sigma_n$, to define $\theta(g)$ via $\theta(g)(\alpha) = [g\circ f_\alpha]$. This captures the obstruction to extending $g$ over $\alpha$. We found that $d\theta = 0$.
+\end{remark}
+We proved the following statement in the previous section.
 \begin{prop}
-    Suppose $g:X_{n-1}\to Y$. Then $g|_{X_{n-2}}$ extends to $X_n\to Y$ iff $[\theta(g)] = 0$ in $H^n(X,A;\pi_{n-1}(Y))$.
+    Suppose $g:X_{n-1}\to Y$ is a map from the $(n-1)$-skeleton of $X$ to $Y$. Then $g|_{X_{n-2}}$ extends to $X_n\to Y$ iff $[\theta(g)] = 0$ in $H^n(X,A;\pi_{n-1}(Y))$.
 \end{prop}
-Here are some consequences.
-\begin{enumerate}
-    \item This is called \emph{CW approximation}.
-	\begin{theorem}
-	    Any space admits a weak equivalence from a CW-complex.
-	\end{theorem}
-	If you're willing to work up to weak equivalences, then CW-complexes are everything.
-    \item If $W$ is a CW-complex and $f:X\to Y$ is a weak equivalence, then $[W,X]\xrightarrow{\simeq}[W,Y]$. This is actually an if and only if statement.
-	\begin{corollary}
-	    If $X$ and $Y$ are CW-complexes, then a weak equivalence $f:X\to Y$ is a homotopy equivalence.
-	\end{corollary}
-    \item Let $X$ be path connected. Then there's a space $X_{\leq n}$ and a map $X\to X_{\leq n}$ such that $\pi_i(X_{\geq n}) = 0$ for $i>n$, and $\pi_i(X)\xrightarrow{\simeq}\pi_i(X_{\leq n})$ for $i\leq n$. The pair $(X,X_{\leq n})$ is essentially unique up to homotopy. This space $X_{\leq n}$ is called a \emph{Postnikov section}.
-\end{enumerate}
-Suppose $A$ is some abelian group. Then there is a space $M(A,n)$ with homology given by:
-	\begin{equation*}
-	    \widetilde{H}_i(M(A,n)) = \begin{cases}
-		A & i = n\\
-		0 & i\neq n
-	    \end{cases}
-	\end{equation*}
-	We made this by looking at a free resolution $0\to F_1\to F_0\to A\to 0$ of $A$. Well, $\bigvee S^n\to \bigvee S^n$ realizes the first two maps, and then cone this off to get $M(A,n)$.
+An immediate consequence is the following.
+\begin{theorem}[CW-approximation]
+    Any space admits a weak equivalence from a CW-complex.
+\end{theorem}
+This tells us that studying CW-complexes is not very restrictive, if we work up to weak equivalence.
 
-	Suppose I apply this ``truncation'' construction to this example; namely, let's look at $M(A,n)_{\leq n}$. What is the $n$-dimensional homotopy of $M(A,n)$? Well, by Hurewicz:
-	\begin{equation*}
-	    \pi_i(M(A,n)) = \begin{cases}
-		0 & i<n\\
-		A & i = n\\
-		?? & i>n
-	    \end{cases}
-	\end{equation*}
-	Thus when we truncate, we obtain:
-	\begin{equation*}
-	    \pi_i(M(A,n)_{\leq n}) = \begin{cases}
-		A & i = n\\
-		0 & i\neq n
-	    \end{cases}
-	\end{equation*}
-	This is a ``designer homotopy type''. This space $M(A,n)_{\leq n}$ is called an \emph{Eilenberg-Maclane space}.
+It is easy to see that if $W$ is a CW-complex and $f:X\to Y$ is a weak equivalence, then $[W,X]\xrightarrow{\simeq}[W,Y]$. 
+We can now finally conclude the result of Theorem \ref{weakhtpyequiv}:
+\begin{corollary}
+    Let $X$ and $Y$ be CW-complexes.
+    Then a weak equivalence $f:X\to Y$ is a homotopy equivalence.
+\end{corollary}
+\subsection{Postnikov and Whitehead towers}
+Let $X$ be path connected.
+There is a space $X_{\leq n}$, and a map $X\to X_{\leq n}$ such that $\pi_i(X_{\geq n}) = 0$ for $i>n$,
+and $\pi_i(X)\xrightarrow{\simeq}\pi_i(X_{\leq n})$ for $i\leq n$.
+This pair $(X,X_{\leq n})$ is essentially unique up to homotopy; the space $X_{\leq n}$ is called 
+the \emph{$n$th Postnikov section} of $X$.
+Since Postnikov sections have ``simpler'' homotopy groups, we can try to understand $X$ by studying each of its Postnikov
+sections individually, and then gluing all the data together.
 
-	When $n=1$, $\pi_1$ doesn't have to be abelian. But you can still construct $K(G,1)$. This is called the classifying space of $G$. Next week, I'll talk a bit about classifying spaces. You know examples of this; for instance, if $\Sigma$ is a closed surface not $S^2$ or $\RR^2$, then $\Sigma \simeq K(\pi_1(\Sigma),1)$. Another example is that $S^1\simeq K(\Z,1)$.
-	
-	Also, $K(\Z,2)\simeq \CP^\infty$. Why's that? We have a fiber sequence $S^1\to S^{2n+1}\to \CP^n$. So the lexseq in homotopy tells us that the homotopy groups of $\CP^n$ are the same as the homotopy groups of $S^1$ until $S^{2n+1}$ starts to interfere. But as $n$ grows, namely, if we take the limit, there's a fibration $S^1\to S^\infty\to \CP^\infty$. But $S^\infty$ is weakly contractible (it has no nonzero homotopy groups), which proves the result. Another example is $K(\Z/2\Z,1)$, which is $\RP^\infty$.
+Suppose $A$ is some abelian group.
+We saw, in the first part\todo{provide a link} that there is a space $M(A,n)$ with homology given by:
+\begin{equation*}
+    \widetilde{H}_i(M(A,n)) = \begin{cases}
+	A & i = n\\
+	0 & i\neq n.
+    \end{cases}
+\end{equation*}
+This space was constructed from a free resolution $0\to F_1\to F_0\to A\to 0$ of $A$.
+We can construct a map $\bigvee S^n\to \bigvee S^n$ which realizes the first two maps; coning this off gets $M(A,n)$.
+By Hurewicz, we have:
+\begin{equation*}
+    \pi_i(M(A,n)) = \begin{cases}
+	0 & i<n\\
+	A & i = n\\
+	?? & i>n
+    \end{cases}
+\end{equation*}
+It follows that, when we look at the $n$th Postnikov section of $M(A,n)$, we have:
+\begin{equation*}
+    \pi_i(M(A,n)_{\leq n}) = \begin{cases}
+	A & i = n\\
+	0 & i\neq n.
+    \end{cases}
+\end{equation*}
+In some sense, therefore, this Postnikov section is a ``designer homotopy type''.
+It deserves a special name: $M(A,n)_{\leq n}$ is called an \emph{Eilenberg-Maclane space}, and is denoted $K(A,n)$.
+By the fiber sequence $\Omega X\to PX\to X$ with $PX\simeq \ast$, we find that $\Omega K(\pi,n)\simeq K(\pi,n-1)$.
+Eilenberg-Maclane spaces are unique up to homotopy.
 
-$K(A,n)$ is automatically a simple space. Thus if $k>0$, then $[S^k,K(A,n)] = \pi_k(K(A,n)) = H^n(S^k,A)$. So in fact:
+Note that $n=1$, $A$ does not have to be abelian, but you can still construct $K(A,1)$.
+This is called the \emph{classifying space} of $G$; such spaces will be discussed in more detail in the next chapter.
+Examples are in abundance: if $\Sigma$ is a closed surface that is not $S^2$ or $\RR^2$, then $\Sigma \simeq K(\pi_1(\Sigma),1)$. 
+Perhaps simpler is the identification $S^1\simeq K(\Z,1)$.
+
+\begin{example}
+    We can identify $K(\Z,2)$ as $\CP^\infty$.
+    To see this, observe that we have a fiber sequence $S^1\to S^{2n+1}\to \CP^n$.
+    The long exact sequence in homotopy tells us that the homotopy groups of $\CP^n$ are the same as the homotopy groups of $S^1$,
+    until $\pi_\ast S^{2n+1}$ starts to interfere.
+    As $n$ grows, we obtain a fibration $S^1\to S^\infty\to \CP^\infty$.
+    Since $S^\infty$ is weakly contractible (it has no nonzero homotopy groups), we get the desired result.
+\end{example}
+\begin{example}
+    Similarly, we can identify $K(\Z/2\Z,1)$ as $\RP^\infty$.
+\end{example}
+
+Since $\pi_1(K(A,n)) = 0$ for $n>1$, it follows that $K(A,n)$ is automatically a simple space.
+This means that
+$$[S^k,K(A,n)] = \pi_k(K(A,n)) = H^n(S^k,A).$$
+In fact, a more general result is true:
 \begin{theorem}[Brown representability]
     If $X$ is a CW-complex, then $[X,K(A,n)] = H^n(X;A)$. 
 \end{theorem}
-I won't prove this, but they aren't that hard to prove. This puts a different perspective on what cohomology is. We have it captured completely on $K(A,n)$. For instance, any one-dimensional cohomology class determines a map to a circle.
+We will not prove this here, but one can show this simply by showing that the functor $[-,K(A,n)]$ satisfies
+the Eilenberg-Steenrod axioms.
+Somehow, these Eilenberg-Maclane spaces $K(A,n)$ completely capture cohomology in dimension $n$. 
 
-If $X$ is a CW-complex, then $X_{\leq n}$ is a CW-complex also. If it isn't, use cellular approximation and then kill homotopy groups. OK, so let $X$ be path connected. Then $X_{\leq 1} = K(\pi_1(X),1)$. I can then form a tower, which commutes (by uniqueness):
+If $X$ is a CW-complex, then we may assume that $X_{\leq n}$ is also a CW-complex.
+(Otherwise, we can use cellular approximation and then kill homotopy groups.)
+Let us assume that $X$ is path connected; then $X_{\leq 1} = K(\pi_1(X),1)$.
+We may then form a (commuting) tower:
 \begin{equation*}
     \xymatrix{
 	& \vdots\ar[d] & \cdots\ar[l]\\
 	& X_{\leq 3}\ar[d]& K(\pi_3(X),3)\ar[l]\\
 	& X_{\leq 2}\ar[d]& K(\pi_2(X),2)\ar[l]\\
-	X\ar[r]\ar[ur]\ar[uur]\ar[uuur]& X_{\leq 1}\ar@{=}[r] & K(\pi_1(X),1)
+	X\ar[r]\ar[ur]\ar[uur]\ar[uuur]& X_{\leq 1}\ar@{=}[r] & K(\pi_1(X),1),
     }
 \end{equation*}
-Where $K(\pi_n(X),n)\to X_{\leq n}\to X_{\leq n-1}$ is a fiber sequence. This is called a \emph{Postnikov tower}.
+since $K(\pi_n(X),n)\to X_{\leq n}\to X_{\leq n-1}$ is a fiber sequence.
+This decomposition of $X$ is called the \emph{Postnikov tower} of $X$.
 
-Aha, but now I can also do the following.
+Denote by $X_{>n}$ the fiber of the map $X\to X_{\leq n}$ (for instance, $X_{>1}$ is the universal cover of $X$); then, we have
 \begin{equation*}
     \xymatrix{
-	\cdots\ar[r]\ar[d] & \cdots\ar[r]\ar@{=}[r] & \vdots\ar[d] & \cdots\ar[l]\\
-	X_{>3}\ar[r]\ar[d] & X\ar[r]\ar@{=}[r] & X_{\leq 3}\ar[d]& K(\pi_3(X),3)\ar[l]\\
-	X_{>2}\ar[r]\ar[d] & X\ar[r]\ar@{=}[r] & X_{\leq 2}\ar[d]& K(\pi_2(X),2)\ar[l]\\
-	X_{>1}\ar[r]\ar[d] & X\ar[r]\ar@{=}[r] & X_{\leq 1}\ar@{=}[r]\ar[d] & K(\pi_1(X),1)\\
+	\cdots\ar[r]\ar[d] & \cdots\ar[r]\ar@{=}[d] & \vdots\ar[d] & \cdots\ar[l]\\
+	X_{>3}\ar[r]\ar[d] & X\ar[r]\ar@{=}[d] & X_{\leq 3}\ar[d]& K(\pi_3(X),3)\ar[l]\\
+	X_{>2}\ar[r]\ar[d] & X\ar[r]\ar@{=}[d] & X_{\leq 2}\ar[d]& K(\pi_2(X),2)\ar[l]\\
+	X_{>1}\ar[r]\ar[d] & X\ar[r]\ar@{=}[d] & X_{\leq 1}\ar@{=}[r]\ar[d] & K(\pi_1(X),1)\\
 	X\ar@{=}[r] & X\ar[r] & \ast
     }
 \end{equation*}
-Where $X_{>n}\to X\to X_{\leq n}$ is a fiber sequence. See, $X_{>1}$ is the universal cover of $X$. I now have a tower that maps into $X$. The left hand tower is called the \emph{Whitehead tower}, named for George Whitehead.
+The leftmost tower is called the \emph{Whitehead tower} of $X$, named after George Whitehead.
 
-I can take the fiber of $X_{>1}\to X$, and I get $K(\pi_1(X),0)$. We can continue this to get:
+I can take the fiber of $X_{>1}\to X$, and I get $K(\pi_1(X),0)$;
+more generally, the fiber of $X_{>n} \to X_{>n-1}$ is $K(\pi_n(X),n-1)$.
+This yields the following diagram:
 \begin{equation*}
     \xymatrix{
-	\cdots\ar[r] & \cdots\ar[r]\ar[d] & \cdots\ar[r]\ar@{=}[d] & \vdots\ar[d] & \cdots\ar[l]\\
+	\cdots & \vdots\ar[d] & \vdots\ar@{=}[d] & \vdots\ar[d] & \cdots\\
 	K(\pi_3(X),2)\ar[r] & X_{>3}\ar[r]\ar[d] & X\ar[r]\ar@{=}[d] & X_{\leq 3}\ar[d]& K(\pi_3(X),3)\ar[l]\\
 	K(\pi_2(X),1)\ar[r] & X_{>2}\ar[r]\ar[d] & X\ar[r]\ar@{=}[d] & X_{\leq 2}\ar[d]& K(\pi_2(X),2)\ar[l]\\
 	K(\pi_1(X),0)\ar[r] & X_{>1}\ar[r]\ar[d] & X\ar[r]\ar@{=}[d] & X_{\leq 1}\ar@{=}[r]\ar[d] & K(\pi_1(X),1)\\
 	& X\ar@{=}[r] & X\ar[r] & \ast
     }
 \end{equation*}
-By the fiber sequence $\Omega X\to PX\to X$ with $PX\simeq \ast$, we find that $\Omega K(\pi,n)\simeq K(\pi,n-1)$. Note that these Eilenberg-Maclane spaces are unique up to homotopy.
 
-I've laid out the rest of this basic homotopy theory story, and the proofs from a cellular point of view are annoying, but they're not difficult. It's kind of implicit, though, so you can't really use attaching cells to compute, say the cohomology of Eilenberg-Maclane spaces. That's a harder problem.
-
-These constructions go back to the 50's, and they had voluminous computations in low dimensions. One day in 1950, they got a postcard from Serre, who said, ``here's a computation you might be interested in: $H^{23}(K(\Z,14)) = ...$''. Of course, Serre and Cartan had a different approach, that was much more effective. They observed that the fact $\Omega K(\pi,n)\simeq K(\pi,n-1)$ wasn't perceived to be useful by Eilenberg and Maclane. They didn't think about fiber sequences. Serre and Cartan did this by means of a spectral sequence. We'll do that later in the course.
+We can construct Eilenberg-Maclane spaces as cellular complexes by attaching cells to the sphere to kill its higher homotopy groups.
+The complexity of homotopy groups, though, shows us that attaching cells to compute the cohomology of Eilenberg-Maclane spaces
+is not feasible.
+%These constructions go back to the 50's, and they had voluminous computations in low dimensions. One day in 1950, they got a postcard from Serre, who said, ``here's a computation you might be interested in: $H^{23}(K(\Z,14)) = ...$''. Of course, Serre and Cartan had a different approach, that was much more effective. They observed that the fact $\Omega K(\pi,n)\simeq K(\pi,n-1)$ wasn't perceived to be useful by Eilenberg and Maclane. They didn't think about fiber sequences. Serre and Cartan did this by means of a spectral sequence. We'll do that later in the course.

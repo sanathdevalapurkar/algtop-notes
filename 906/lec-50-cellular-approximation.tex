@@ -1,13 +1,21 @@
 \section{Cellular approximation, cellular homology, obstruction theory}
-\todo{edit from here}
-pset 3 is up in part. Today I'm going to tell you how to think about CW-complexes and work with them, and I won't give a lot of details. Some good sources are lecture notes by Davis-Kirk, and a beautiful book by Glen Bredon, as well as Hatcher.
+%pset 3 is up in part. Today I'm going to tell you how to think about CW-complexes and work with them, and I won't give a lot of details. Some good sources are lecture notes by Davis-Kirk, and a beautiful book by Glen Bredon, as well as Hatcher.
+In previous sections, we saw that homotopy groups play well with (maps between) CW-complexes.
+Here, we will study maps between CW-complexes themselves, and prove that they are, in some sense, ``cellular'' themselves.
 \subsection{Cellular approximation}
-\begin{theorem}
-    Let $X$ and $Y$ be CW-complexes and $A\subseteq X$ a subcomplex. Let $f:X\to Y$ be a continuous map, and that $f|_{A}$ is skeletal\footnote{Some people would say cellular.}, i.e., $f(\Sigma_n)\subseteq Y_n$. It might not take cells in $A$ to cells in $Y$, but it takes $n$-skeleta to $n$-skeleta. Then $f$ is homotopic to some other $f^\prime:X\to Y$ relative to $A$ with $f^\prime$ skeletal on all of $X$.
+\begin{definition}\label{cellularmaps}
+    Let $X$ and $Y$ be CW-complexes, and let $A\subseteq X$ be a subcomplex.
+    Suppose $f:X\to Y$ is a continuous map.
+    We say that $f|_{A}$ is skeletal\footnote{Some would say cellular.} if $f(\Sigma_n)\subseteq Y_n$. 
+\end{definition}
+Note that a skeletal map might not take cells in $A$ to cells in $Y$, but it takes $n$-skeleta to $n$-skeleta.
+\begin{theorem}[Cellular approximation]\label{cellularapprox}
+    In the setup of Definition \ref{cellularmaps}, the map $f$ is homotopic to some other
+    continuous map $f^\prime:X\to Y$, relative to $A$, such that $f^\prime$ is skeletal on all of $X$.
 \end{theorem}
-This is kind of amazing.
+To prove this, we need the following lemma.
 \begin{lemma}[Key lemma]
-    Any $(D^n,S^{n-1})\to (Y,Y_{n-1})$ compresses through:
+    Any map $(D^n,S^{n-1})\to (Y,Y_{n-1})$ factors as:
     \begin{equation*}
 	\xymatrix{
 	(D^n,S^{n-1})\ar[r]\ar@{-->}[dr] & (Y,Y_{n-1})\\
@@ -16,46 +24,77 @@ This is kind of amazing.
     \end{equation*}
 \end{lemma}
 \begin{proof}[``Proof.'']
-    I take this as obvious, but here's something. Since $D^n$ is compact, we know that $f(D^n)$ must lie in some finite subcomplex $K$ of $Y$. Now the map $D^n\to K$ might hit some top-dimensional cell $e^m\subseteq K$, which doesn't have anything attached to it, so I can poke a hole in it (namely the approximate this so that you miss a point) and it contracts onto a lower-dimensional cell. Iterating this process gives the desired result.
+    Since $D^n$ is compact, we know that $f(D^n)$ must lie in some finite subcomplex $K$ of $Y$.
+    The map $D^n\to K$ might hit some top-dimensional cell $e^m\subseteq K$, which does not have anything attached to it;
+    hence, we can homotope this map to miss a point, so that it contracts onto a lower-dimensional cell.
+    Iterating this process gives the desired result.
 \end{proof}
-Let's see why the theorem is true based on this lemma.
-\begin{proof}[``Proof'' of the cellular approximation theorem]
-    I'm going to make this homotopy $f\simeq f^\prime$ one cell at a time. I might as well replace $A$ by whatever I've extended the homotopy to. So I have a single cell attachment $A\to A\cup D^m$. We have:
+Using this lemma, we can conclude the cellular approximation theorem.
+\begin{proof}[``Proof'' of Theorem \ref{cellularapprox}]
+    We will construct the homotopy $f\simeq f^\prime$ one cell at a time.
+    Note that we can replace the space $A$ by the subspace to which we have extended the homotopy.
+    
+    Consider a single cell attachment $A\to A\cup D^m$; then, we have
     \begin{equation*}
 	\xymatrix{
-	A\ar[d]_{\text{skeletal}}\ar[r] & A\cup D^m\ar[dl]^{\text{may not be skeletal}}\\
+	A\ar[d]_{\text{skeletal}}\ar[r] & A\cup D^m\ar[dl]^{\text{ may not be skeletal}}\\
 	Y &
 	}
     \end{equation*}
-    Now we're to use the compression lemma to get $A\cup D^m\to Y_m$. I'm not satisfied, because I have to do something about the rest of $X$. Here's a wonderful fact: the inclusion of a subcomplex is a cofibration. Thus we can extend this to a map from $X$, and iterate to get what we want.
-
-    Why's the wonderful fact true? We have a cofibration $S^{n-1}\to D^n$, so any coproduct of these is a cofibration, and the pushout of a cofibration is a cofibration.
+    Using the ``compression lemma'' from above, the rightmost map factors (up to homotopy) as the composite
+    $A\cup D^m\to Y_m \to Y$.
+    Unfortunately, we have not extended this map to the whole of $X$, although we could do this
+    if we knew that the inclusion of a subcomplex is a cofibration.
+    But this is true: there is a cofibration $S^{n-1}\to D^n$, and so any pushout of these maps is a cofibration!
+    This allows us to extend; we now win by iterating this procedure.
 \end{proof}
-\begin{corollary}[Homework]
+As a corollary, we find:
+\begin{exercise}
     The pair $(X,X_n)$ is $n$-connected.
-\end{corollary}
+\end{exercise}
 \subsection{Cellular homology}
-Let $(X,A)$ be a relative CW-complex with $A\subseteq X_{n-1}\subseteq X_n\subseteq\cdots\subseteq X$. We showed last fall that $H_\ast(X_n,X_{n-1})\simeq \widetilde{H}_\ast(X_n/X_{n-1})$. More generally, if $B\to Y$ is a cofibration, then $H_\ast(Y,B)\simeq\widetilde{H}_\ast(Y/B)$. You can find a precise proof in Bredon, page 433. Anyway, $X_n/X_{n-1} = \bigvee_{\alpha\in \Sigma_n}S^n_\alpha$, so that $H_\ast(X_n,X_{n-1})\simeq \Z[\Sigma_n] = C_n(X,A)$. The composite $S^{n-1}\to X_{n-1}\to X_{n-1}/X_{n-2}$ is called a relative attaching map.
+Let $(X,A)$ be a relative CW-complex with $A\subseteq X_{n-1}\subseteq X_n\subseteq\cdots\subseteq X$.
+In the previous part \todo{provide a link!} that $H_\ast(X_n,X_{n-1})\simeq \widetilde{H}_\ast(X_n/X_{n-1})$.
+More generally, if $B\to Y$ is a cofibration, there is an isomorphism (see \cite[p. 433]{bredon}):
+$$H_\ast(Y,B)\simeq\widetilde{H}_\ast(Y/B).$$
+Since $X_n/X_{n-1} = \bigvee_{\alpha\in \Sigma_n}S^n_\alpha$, we find that
+$$H_\ast(X_n,X_{n-1})\simeq \Z[\Sigma_n] = C_n.$$
+The composite $S^{n-1}\to X_{n-1}\to X_{n-1}/X_{n-2}$ is called a relative attaching map.
 
-There's a boundary map $d:C_n = H_n(X_n,X_{n-1})\xrightarrow{\partial}H_{n-1}(X_{n-1})\to H_{n-1}(X_{n-1},X_{n-2}) = C_{n-1}$. You can check that $d^2 = 0$. The beautiful theorem is that $H_n(X,A)\simeq H_n(C_\ast(X,A))$. We showed this last fall, but not for relative CW-complexes. Cellular approximation tells us that you can compute the effect of maps on homology.
+There is a boundary map $d:C_n\to C_{n-1}$, defined by
+$$d:C_n = H_n(X_n,X_{n-1})\xrightarrow{\partial}H_{n-1}(X_{n-1})\to H_{n-1}(X_{n-1},X_{n-2}) = C_{n-1}.$$
+\begin{exercise}
+    Check that $d^2 = 0$.
+\end{exercise}
+Using the resulting chain complex, denoted $C_\ast(X,A)$, one can prove that there is an isomorphism
+$$H_n(X,A)\simeq H_n(C_\ast(X,A)).$$
+(In the previous part\todo{provide a link!}, we proved this for CW-pairs, but not for relative CW-complexes.)
+The incredibly useful cellular approximation theorem therefore tells us that the effect of maps on homology can be computed.
 
-I could do the same thing of course for cohomology, to get $C^n(X,A;\pi) = \Hom(C_n(X,A),\pi) = \Map(\Sigma_n,\pi)$. Here $\pi$ is any abelian group. I use $\pi$ because it's gonna be a homotopy group in just a minute.
+Of course, the same story runs for cohomology: one gets a chain complex which, in dimension $n$, is given by
+$$C^n(X,A;\pi) = \Hom(C_n(X,A),\pi) = \Map(\Sigma_n,\pi),$$
+where $\pi$ is any abelian group.
 \subsection{Obstruction theory}
-The question is: can we extend:
-\begin{equation*}
-    \xymatrix{
-	X\ar@{-->}[dr] & \\
-	A\ar@{^(->}[u]\ar[r]_f & Y
-    }
-\end{equation*}
-We can work out the lower level obstructions
+Using the tools developed above, we can attempt to answer some concrete, and useful, questions.
+\begin{question}
+    Let $f:A \to Y$ be a map from a space $A$ to $Y$.
+    Suppose $(X,A)$ is a relative CW-complex.
+    When can we find an extension in the diagram below?
+    \begin{equation*}
+	\xymatrix{
+	    X\ar@{-->}[dr] & \\
+	    A\ar@{^(->}[u]\ar[r]_f & Y
+	    }
+    \end{equation*}
+\end{question}
+The lower level obstructions can be worked out easily:
 \begin{equation*}
     \xymatrix{
 	A\ar[d]\ar@{^(->}[r] & X_0\ar@{-->}[dl]\ar@{^(->}[r] & X_1\ar@{-->}[dll]\\
 	\emptyset\neq Y & &
     }
 \end{equation*}
-for instance if two points in $X_0$ get connected in $X_1$ we've to check that they're connected in $Y$.
+Thus, for instance, if two points in $X_0$ are connected in $X_1$, we only have to check that they are also connected in $Y$.
 
 For $n\geq 2$, we can form the diagram:
 \begin{equation*}
@@ -64,14 +103,24 @@ For $n\geq 2$, we can form the diagram:
 	\coprod_{\Sigma_n}D^n_\alpha\ar[r] & X_n\ar@{-->}[ur] & 
     }
 \end{equation*}
-If the composite $S^{n-1}_\alpha\to X_{n-1}\to Y$ is nullhomotopic, the extension exists.
+The desired extension exists if the composite $S^{n-1}_\alpha\xar{f_\alpha} X_{n-1}\to Y$ is nullhomotopic.
 
-We find that $g\circ f_\alpha\in [S^{n-1},Y]$. Let's assume that $Y$ is simple (it's path connected and the action of $\pi_1$ is trivial, so all homotopy groups are abelian). Then $[S^{n-1},Y] = \pi_{n-1}(Y)$. I've given you a map $\Sigma_n\xrightarrow{\theta}\pi_{n-1}(Y)$, which is now a cochain in $C^n(X,A;\pi_{n-1}(Y))$, and it has the property that $\theta = 0$ if and only if $g$ extends to $X_n\to Y$.
+Clearly, $g\circ f_\alpha\in [S^{n-1},Y]$.
+To simplify the discussion, let us assume that $Y$ is simple;
+then, Exercise \ref{simplequotient} says that $[S^{n-1},Y] = \pi_{n-1}(Y)$.
+This procedure begets a map $\Sigma_n\xrightarrow{\theta}\pi_{n-1}(Y)$, which is a $n$-cochain, i.e., an element of
+$C^n(X,A;\pi_{n-1}(Y))$.
+It is clear that $\theta = 0$ if and only if the map $g$ extends to $X_n\to Y$.
 \begin{prop}
-    $\theta$ is a cocycle, called the ``obstruction cocycle''.
+    $\theta$ is a cocycle in $C^n(X,A;\pi_{n-1}(Y))$, called the ``obstruction cocycle''.
 \end{prop}
 \begin{proof}
-    $\theta$ gives a map $H_n(X_n,X_{n-1})\to \pi_{n-1}(Y)$, and I want to see that this composite $H_{n+1}(X_{n+1},X_n)\xrightarrow{\partial}H_n(X_n)\to H_n(X_n,X_{n-1})\xrightarrow{\theta}\pi_{n-1}(Y)$ is zero. OK, we know that $\pi_n(X_n,X_{n-1})\to H_n(X_n,X_{n-1})$ is surjective. This relative homotopy group holds the characteristic maps, doesn't it? So picking a representative back there is no problem; now I have the lexseq of a pair, which gives:
+    $\theta$ gives a map $H_n(X_n,X_{n-1})\to \pi_{n-1}(Y)$.
+    We would like to show that the composite
+    $$H_{n+1}(X_{n+1},X_n)\xrightarrow{\partial}H_n(X_n)\to H_n(X_n,X_{n-1})\xrightarrow{\theta}\pi_{n-1}(Y)$$
+    is trivial.
+    %OK, we know that $\pi_n(X_n,X_{n-1})\to H_n(X_n,X_{n-1})$ is surjective. This relative homotopy group holds the characteristic maps, doesn't it? So picking a representative back there is no problem; now I have the lexseq of a pair, which gives:
+    We have the long exact sequence in homotopy of a pair (see Equation \eqref{lexseqhomotopy}):
     \begin{equation*}
 	\xymatrix{
 	    \pi_{n+1}(X_{n+1},X_n)\ar[d]\ar@{->>}[r] & H_{n+1}(X_{n+1},X_n)\ar[d]^\partial\\
@@ -82,24 +131,25 @@ We find that $g\circ f_\alpha\in [S^{n-1},Y]$. Let's assume that $Y$ is simple (
     \end{equation*}
     This diagram commutes, so $\theta$ is indeed a cocycle.
 \end{proof}
+Our discussion above allows us to conclude:
 \begin{theorem}
-    Let $(X,A)$ be a CW-complex and $Y$ a simple space. Suppose I have $g:X_{n-1}\to Y$. Then $g|_{X_{n-2}}$ extends to $X_n$ iff $[\theta(g)]\in H^n(X,A;\pi_{n-1}(Y))$ is zero.
+    Let $(X,A)$ be a relative CW-complex and $Y$ a simple space.
+    Let $g:X_{n-1}\to Y$ be a map from the $(n-1)$-skeleton of $X$.
+    Then $g|_{X_{n-2}}$ extends to $X_n$ if and only if $[\theta(g)]\in H^n(X,A;\pi_{n-1}(Y))$ is zero.
 \end{theorem}
-This is a dream come true because it's a cohomological condition for extensions!
 \begin{corollary}
-    If $H^n(X,A;\pi_{n-1}(Y)) = 0$ for all $n>2$, then any:
+    If $H^n(X,A;\pi_{n-1}(Y)) = 0$ for all $n>2$, then any map $A\to Y$ extends to a map $X\to Y$ (up to homotopy\footnote{In fact, this condition is unnecessary, since the inclusion
+    of a subcomplex is a cofibration.});
+    in other words, there is a dotted lift in the following diagram:
     \begin{equation*}
 	\xymatrix{
 	A\ar[r]\ar[d] & Y\\
 	X\ar@{-->}[ur] & 
 	}
     \end{equation*}
-    extends up to homotopy (and thus strictly because $A\to X$ is a cofibration).
 \end{corollary}
-\begin{example}
-    If $X = CA$, does every map $A\to Y$ factor through the cone? The condition is that $H^n(CA,A;\pi_{n-1}(Y)) \simeq \widetilde{H}^{n-1}(A;\pi_{n-1}(Y)) = 0$.
-\end{example}
-It doesn't make it any easier to compute what the homotopy groups of $Y$ are, but often times you can obtain some information.
-\begin{remark}
-    Fix a prime $p$. Later we'll see (I hope) that $Y$ is simply connected (maybe even simple?), and suppose that $\widetilde{H}_\ast(Y;\Z_{(p)}) = 0$ (i.e., no $\Z$-summands and no $\Z/p^k$-summands). Then $\pi_\ast(Y)\otimes\Z_{(p)} = 0$ too. So if $H_\ast(A;\Z/\ell\Z) = 0$ for $\ell\neq p$, then $[A,Y]\simeq \ast$.
-\end{remark}
+For instance, every map $A\to Y$ factors through the cone if $H^n(CA,A;\pi_{n-1}(Y)) \simeq \widetilde{H}^{n-1}(A;\pi_{n-1}(Y)) = 0$.
+%Of course, one still needs to know the homotopy groups of $Y$ are, but often, you can get away even with partial information.
+%\begin{remark}
+%    Fix a prime $p$. Later we'll see (I hope) that $Y$ is simply connected (maybe even simple?), and suppose that $\widetilde{H}_\ast(Y;\Z_{(p)}) = 0$ (i.e., no $\Z$-summands and no $\Z/p^k$-summands). Then $\pi_\ast(Y)\otimes\Z_{(p)} = 0$ too. So if $H_\ast(A;\Z/\ell\Z) = 0$ for $\ell\neq p$, then $[A,Y]\simeq \ast$.
+%\end{remark}
