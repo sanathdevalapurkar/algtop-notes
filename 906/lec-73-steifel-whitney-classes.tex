@@ -1,4 +1,4 @@
-\section{Steifel-Whitney classes, immersions, cobordisms}
+\section{Stiefel-Whitney classes, immersions, cobordisms}
 \begin{theorem}
     There exist a unique family of characteristic classes $w_i:\Vect_n(X) \to H^n(X;\FF_2)$ such that for $0\leq i$ and $i>n$, we have $w_i=0$, and:
     \begin{enumerate}
@@ -16,7 +16,7 @@
     where $w_n = e_2$, and $H^\ast(BO(n-1);\FF_2) = \FF_2[w_1,\cdots,w_{n-1}]$ with $w_i\mapsto w_i$ for $i<n$ and $0$ for $i=n$
 \end{theorem}
 \begin{remark}
-    You can express the Whitney sum formula simply by defining the \emph{total Steifel-Whitney class} $1 + w_1 + w_2 + \cdots=:w$ (this is an inhomogenous cohomology class).
+    You can express the Whitney sum formula simply by defining the \emph{total Steifel-Whitney class} $1 + w_1 + w_2 + \cdots=:w$ (this is an inhomogeneous cohomology class).
     Then the Whitney sum formula is just
     $$
     w(\xi\oplus\eta) = w(\xi)\cdot w(\eta)
@@ -131,7 +131,7 @@ Note that $[M]$ exists since we're working with coeffs in $\FF_2$.
 That's a useful thing you can do.
 This relates to the notion of a cobordism.
 
-Let me say that two $n$-manifolds $M, N$ are \emph{(co)bordant} if there's an $(n+1)$-dimenional manifold $W^{n+1}$ with boundary such that $\partial W\simeq M\sqcup N$.
+Let me say that two $n$-manifolds $M, N$ are \emph{(co)bordant} if there's an $(n+1)$-dimensional manifold $W^{n+1}$ with boundary such that $\partial W\simeq M\sqcup N$.
 What if $n=0$, for example?
 We know that the manifold $\ast\sqcup \ast$ is \emph{not} cobordant to $\ast$, but it is cobordant to the empty set.
 But $\ast\sqcup\ast\sqcup\ast$ is cobordant to $\ast$.
@@ -173,7 +173,7 @@ Thus Stiefel-Whitney numbers tell all.
     This map of graded rings is an embedding, i.e., $\Omega^O_\ast \hookrightarrow H_\ast(BO)$.
     In other words, if $w(M^n) = w(N^n)$ for all $w\in H^n(BO)$, then $M^n \sim N^n$.
 \end{theorem}
-The way that he did this was by expressing $\Omega^O_\ast = \pi_\ast(\text{space})$, and he showed that that space i the product of mod $2$ Eilenberg-Maclane spaces.
+The way that he did this was by expressing $\Omega^O_\ast = \pi_\ast(\text{space})$, and he showed that that space i the product of mod $2$ Eilenberg-MacLane spaces.
 Along the way, he also gave a computation:
 $$
 \Omega^O_\ast = \FF_2[x_i:i\neq 2^s-1] = \FF_2[x_2,x_4,x_5,x_6,x_8,\cdots]

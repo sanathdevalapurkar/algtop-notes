@@ -29,11 +29,11 @@ $H_n(M,M-A;R)\xrightarrow{j,\cong}\Gamma_c(A;o_M\otimes R)$ and $H_q(M,M-A;R)=0$
 \begin{corollary}
 If $M$ is connected and $A=M$, and if $M$ is not compact, then $H_n(M;R)=0$. If $M$ is compact, then the work we just did shows that $H_n(M;R)=\begin{cases}R & \text{oriented} \\ \ker(R\xrightarrow{2}R) & \text{nonorientable}\end{cases}$.
 \end{corollary}
-\subsection{Poincare duality, finally}
+\subsection{Poincar\'e duality, finally}
 Assume $M$ is $R$-oriented. Let $K\subseteq M$ be compact. Then $H_n(M,M-K)\xrightarrow{\cong}\Gamma(K;o_M\otimes R)$. Picking an orientation picks an isomorphism $\Gamma(K;o_M\otimes R)\cong R$. This gives some $[M]_K$, which is called the fundamental class along $K$. If $K=M$, then $[M]_M=:[M]\in H_n(M;R)$.
 
 Suppose $K\subseteq L$ are compact subsets. We now combine all of our results above:
-\begin{theorem}[Fully relative Poincare duality]
+\begin{theorem}[Fully relative Poincar\'e duality]
 If $p+q=n$, then $\cHH^p(K,L;R)\xrightarrow{\cap[M]_K}H_q(M-L,M-K;R)$ is an isomorphism.
 \end{theorem}
 \begin{proof}
@@ -41,13 +41,13 @@ If $p+q=n$, then $\cHH^p(K,L;R)\xrightarrow{\cap[M]_K}H_q(M-L,M-K;R)$ is an isom
 
 In the local case, if $M=\RR^n$ and $K=D^n$, then this is saying that $\cHH^p(D^n;R)\cong H^p(D^n;R)\xrightarrow{\cap[\RR^n]_{D^n}}H_q(\RR^n,\RR^n-D^n;R)$ where the first isomorphism comes from analysis we did earlier about \v{C}ech and ordinary cohomology coinciding. If $p\neq 0$, then both sides are zero. When $p=0$, we are asking that $H^0(D^n;R)\xrightarrow{\cap[\RR^n]_{D^n}}H_n(\RR^n,\RR^n-D^n;R)$. They're both equal to $R$, and we are just capping along $[\RR^n]_{D^n}$, because we found that $1\cap[\RR^n]_{D^n}=[\RR^n]_{D^n}$, as desired.
 
-We carefully set up the Mayer-Vietoris sequence ladder (Theorem 33.5) that allows us to put this all together. ``We're not going to go through the details because there's point set topology that I don't like there.'' Note that normality is not needed for $K,L$ compact because compact sets in hausdorff spaces can always be separated, normal or not. I just reversed the order in which things are usually taught in books.
+We carefully set up the Mayer-Vietoris sequence ladder (Theorem 33.5) that allows us to put this all together. ``We're not going to go through the details because there's point set topology that I don't like there.'' Note that normality is not needed for $K,L$ compact because compact sets in Hausdorff spaces can always be separated, normal or not. I just reversed the order in which things are usually taught in books.
 \end{proof}
 We have time for one beginning application.
-\begin{corollary}[Relative Poincare duality]
+\begin{corollary}[Relative Poincar\'e duality]
 Suppose $K=M$ and $M$ is compact and $R$-oriented. Then $\cHH^p(M,L;R)\xrightarrow{\cap[M]}H_{n-p}(M-L,R)$ is an isomorphism.
 \end{corollary}
-\begin{corollary}[Poincare duality, corollary of corollary]
+\begin{corollary}[Poincar\'e duality, corollary of corollary]
 Let $M$ be compact and $R$-oriented, then $H^p(M;R)\xrightarrow{\cap [M]}H_{n-p}(M;R)$ is an isomorphism.
 \end{corollary}
 \begin{proof}
@@ -60,4 +60,4 @@ That's the most beautiful form of all. If you do have an $L$, you have this ladd
 	\cdots\ar[r] & H_q(L)\ar[r]& H_q(M)\ar[r] & H_q(M,M-L)\ar[r]^\partial & H_{q-1}(L)\ar[r] & \cdots
 }
 \end{equation*}
-This is a consistency statement for Poincare duality. On Wednesday, we'll specialize even further, and prove the Jordan curve theorem as well as study the cohomology rings of things we haven't worked through before.
+This is a consistency statement for Poincar\'e duality. On Wednesday, we'll specialize even further, and prove the Jordan curve theorem as well as study the cohomology rings of things we haven't worked through before.
