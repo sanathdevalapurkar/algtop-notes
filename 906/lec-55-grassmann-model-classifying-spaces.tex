@@ -1,80 +1,129 @@
-\section{Classifying spaces: the Grassmann model}
-Office hours:Hood from 12 in 2-390, and me from 4-5 on Tuesday in 2-478.
-
-I want to talk about classifying spaces for principal bundles and for vector bundles. I'm going to do this in two ways, one via the Grassmann model and via simplicial methods.
-\begin{lemma}
-    Over a compact Hausdorff space, any $n$-plane bundle embeds in a trivial bundle.
+\section{Classifying spaces: the Grassmann model}\label{grassmannmodel}
+We will now shift our focus somewhat and talk about classifying spaces for
+principal bundles and for vector bundles. We will do this in two ways: the
+first will be via the Grassmann model and the second via simplicial methods.
+\begin{lemma}\label{embedding}
+    Over a compact Hausdorff space, any $n$-plane bundle embeds in a trivial
+    bundle.
 \end{lemma}
 \begin{proof}
-    Let $\cU$ be a trivializing open cover; since it's compact, we might as well assume that it's finite with $k$ elements.
-    There's no numerability issue, so there's a subordinate partition of unity $\phi_i$.
-    My bundle is $E\to X$. By trivialization, there is a fiberwise isomorphism $p^{-1}(U_i)\xrightarrow{f_i}\RR^n$.
-    Note that a map to a trivial bundle is the same thing as a bundle map:
+    Let $\cU$ be a trivializing open cover of the base $B$; since $B$ is
+    compact, we may assume that $\cU$ is finite with $k$ elements. There is no
+    issue with numerability, so there is a subordinate partition of unity $\phi_i$.
+    Consider an $n$-plane bundle $E\to B$. By trivialization, there is a
+    fiberwise isomorphism $p^{-1}(U_i)\xrightarrow{f_i}\RR^n$ where the $U_i\in
+    \cU$. A map to a trivial bundle is the same thing as a bundle map in the
+    following diagram:
     \begin{equation*}
 	\xymatrix{
-	    E\ar[r]\ar[d] & \RR^?\ar[d]\\
+	    E\ar[r]\ar[d] & \RR^N\ar[d]\\
 	    B\ar[r] & \ast
 	    }
     \end{equation*}
-    Define $E\to (\RR^n)^k$ via $e\mapsto (\phi_i(p(e))f_i(e))_{i=1,\cdots,k}$. This is a fiberwise linear embedding, generally called a ``Gauss map''.
-    You have to observe that this thing has no kernel on every fiber, so this is an embedding.
+    We therefore define $E\to (\RR^n)^k$ via
+    $$e\mapsto (\phi_i(p(e))f_i(e))_{i=1,\cdots,k}.$$
+    This is a fiberwise linear embedding, generally called a ``Gauss map''.
+    Indeed, observe that this map has no kernel on every fiber, so it is an
+    embedding.
 \end{proof}
+The trivial bundle has a metric on it, so choosing the orthogonal complement of
+the embedding of Lemma \ref{embedding}, we obtain:
 \begin{corollary}
-    Over a compact Hausdorff space, any $n$-plane bundle has a complement (i.e. a $\xi^\perp$ such that $\xi\oplus\xi^\perp = \mathrm{trivial}$), because the trivial bundle has a metric on it, so I just choose the orthogonal complement of the embedding.
+    Over a compact Hausdorff space, any $n$-plane bundle has a complement (i.e.
+    a $\xi^\perp$ such that $\xi\oplus\xi^\perp$ is trivial).
 \end{corollary}
-Another way to say this is that if $X$ is compact Hausdorff (henceforth called CHS) with an $n$-plane bundle $\xi$, I've constructed a map $f:X\to\Gra_n(\RR^{kn})$; this is exactly the Gauss map.
-It has the property that I can take the pullback $f^\ast\gamma^n$ of the tautologous bundle over $\Gra_n(\RR^{kn})$, then I get back $\xi$.
-I don't have control over $k$, but in fact I can just consider $\gamma^n$ over $\Gra_n(\RR^\infty)$, topologized as the union of $\Gra_n(\RR^m)$, where $\RR^\infty = \bigoplus^\infty\RR$. This is a CW-complex of finite type (i.e. finitely many cells in each dimension)! Note that $\Gra_n(\RR^m)$ are not the $m$-skeleta of $\Gra_n(\RR^\infty)$.
-It's more universal -- any $n$-plane bundle $\xi$ over $X$ can be obtained as the pull back $f^\ast\gamma^n$ for the Gauss map $f:X\to\Gra_n(\RR^{kn})\to\Gra_n(\RR^\infty)$.
+Another way to say this is that if $B$ is a compact Hausdorff space with an
+$n$-plane bundle $\xi$, there is a map $f:X\to\Gra_n(\RR^{kn})$; this is
+exactly the Gauss map. It has the property that taking the pullback
+$f^\ast\gamma^n$ of the tautologous bundle over $\Gra_n(\RR^{kn})$ gives back
+$\xi$. 
+
+In general, we do not have control over the number $k$. There is an easy fix to
+this problem: consider the tautologous bundle $\gamma^n$ over
+$\Gra_n(\RR^\infty)$, defined as the union of $\Gra_n(\RR^m)$ and given the
+limit topology. This is a CW-complex of finite type (i.e. finitely many cells
+in each dimension). Note that $\Gra_n(\RR^m)$ are not the $m$-skeleta of
+$\Gra_n(\RR^\infty)$!
+
+The space $\Gra_n(\RR^\infty)$ is ``more universal'':
 \begin{lemma}\label{universal}
-    Any (numerable) $n$-plane bundle is pulled back from $\gamma^n\downarrow \Gra_n(\RR^\infty)$.
+    Any (numerable) $n$-plane bundle is pulled back from $\gamma^n\downarrow
+    \Gra_n(\RR^\infty)$ via the Gauss map.
 \end{lemma}
-This is a little bit tricky, since the covering can be wildly uncountable. To show this, let's use:
+Lemma \ref{universal} is a little bit tricky, since the covering can be wildly
+uncountable; but this is remedied by the following bit of point-set topology.
 \begin{lemma}\label{sublemma}
-    Let $\cU$ be a numerable cover of $X$. Then there's another numerable cover $\cU^\prime$ such that:
+    Let $\cU$ be a numerable cover of $X$. Then there's another numerable cover
+    $\cU^\prime$ such that:
     \begin{enumerate}
-	\item the number of open sets in $\cU^\prime$ is countable.
-	\item Each element of $\cU^\prime$ is a disjoint union of elements of $\cU$.
+	\item the number of open sets in $\cU^\prime$ is countable, and
+	\item each element of $\cU^\prime$ is a disjoint union of elements of
+	    $\cU$.
     \end{enumerate}
 \end{lemma}
-If $\cU$ is a trivializing cover, then $\cU^\prime$ is also a trivializing cover.
+If $\cU$ is a trivializing cover, then $\cU^\prime$ is also a trivializing
+cover.
 \begin{proof}
-    If you don't want to work it out you can refer to Husemoller's book, p.28. I'll put a link on the website.
+    See \cite[Proposition 3.5.4]{husemoller}.
 \end{proof}
-I think that basically proves Lemma \ref{universal}. Don't be deceived! Beware that you can't necessarily expect a complementary bundle.
+It is now an exercise to deduce Lemma \ref{universal}. The main result of this
+section is the following.
 \begin{theorem}
-    The map $[X,\Gra_n(\RR^\infty)]\to \Vect_n(X)$ via $[f]\mapsto [f^\ast\gamma^n]$ is bijective, where $[f]$ is the homotopy class and $[f^\ast\gamma^n]$ is the iso class.
+    The map $[X,\Gra_n(\RR^\infty)]\to \Vect_n(X)$ defined by $[f]\mapsto
+    [f^\ast\gamma^n]$ is bijective, where $[f]$ is the homotopy class of $f$
+    and $[f^\ast\gamma^n]$ is the isomorphism class of the bundle
+    $f^\ast\gamma^n$.
 \end{theorem}
-That's why $\Gra_n(\RR^\infty)$ is called the \emph{classifying space} for $n$-plane bundles.
-
-This is a very explicit geometric description of classifying spaces. There's an abstract way to produce a classifying space for principal $G$-bundles, which we'll talk about on Wednesday. This is the special case of $\GL_n(\RR)$.
+This is why $\Gra_n(\RR^\infty)$ is also called the \emph{classifying space}
+for $n$-plane bundles. The Grassmannian provides a very explicit geometric
+description for the classifying space of $n$-plane bundles. There is a more
+abstract way to produce a classifying space for principal $G$-bundles, which
+we will describe in the next section; the Grassmannian is the special case when
+$G = \GL_n(\RR)$.
 \begin{proof}
-    I've already shown surjectivity; we need to show injectivity. Suppose $f_0,f_1:X\to \Gra_n(\RR^\infty)$ such that $f_0^\ast\gamma^n\simeq f_1^\ast\gamma^n$ over $X$.
-    I'd like to see that $f_0\simeq f_1$.
-    I might as well identify $f_0^\ast\gamma^n$ and $f_1^\ast\gamma_n$ with each other; call it $\xi:E\downarrow X$. What do I have?
+    We have already shown surjectivity, so it remains to prove injectivity.
+    Suppose $f_0,f_1:X\to \Gra_n(\RR^\infty)$ such that $f_0^\ast\gamma^n$ and
+    $f_1^\ast\gamma^n$ are isomorphic over $X$. We need to construct a homotopy
+    $f_0\simeq f_1$. For ease of notation, let us identify $f_0^\ast\gamma^n$
+    and $f_1^\ast\gamma_n$ with each other; call it $\xi:E\downarrow X$.
 
-    Giving $f_i$ is the same thing as giving a map $g_i:E\to\RR^\infty$ that's a fiberwise linear embedding.
-    The $g$ is for Gauss.
-    This homotopy $f_0\simeq f_1$ is created by saying that we have a homotopy from $g_0$ to $g_1$ through Gauss maps, i.e., through other fiberwise linear embeddings.
-    I'm going to do this without any reference from where $g_0$ came from. I'm saying that \emph{any two} Gauss maps are homotopic through Gauss maps -- that's what I'm claiming! I mean, from this given vector bundle $E$.
-    This is very far from true if I didn't have a $\RR^\infty$ on the RHS there.
+    The maps $f_i$ are the same thing as Gauss maps $g_i:E\to\RR^\infty$, i.e.,
+    maps which are fiberwise linear embeddings. The homotopy $f_0\simeq f_1$ is
+    created by saying that we have a homotopy from $g_0$ to $g_1$ through Gauss
+    maps, i.e., through other fiberwise linear embeddings.
+    
+    In fact, we will prove a much stronger statement: \emph{any two} Gauss maps
+    $g_0,g_1:E\to \RR^\infty$ are homotopic through Gauss maps. This is very far from
+    true if I didn't have a $\RR^\infty$ on the RHS there.
 
-    In fact, let's try for an affine homotopy. Think about $tg_0 + (1-t)g_1$ for $0\leq t\leq 1$. Now, wouldn't it be great if that works? I guess it can't.
-    We need that for all $t$, if $tg_0(v) + (1-t)g_1(v) = 0\in\RR^\infty$, then $v=0$ (where $v\in E$). I.e., on each fiber, this map is injective, i.e., has zero kernel. Of course, I can't guarantee that just from $g_0$ and $g_1$ are injective!
-    So we fail.
+    Let us attempt (and fail!) to construct an affine homotopy between $g_0$
+    and $g_1$. Consider the map $tg_0 + (1-t)g_1$ for $0\leq t\leq 1$. In order
+    for these maps to define a homotopy via Gauss maps, we need the following
+    statement to be true: for all $t$, if $tg_0(v) + (1-t)g_1(v) =
+    0\in\RR^\infty$, then $v=0$.  In other words, we need $tg_0+(1-t)g_1$ to be
+    injective. Of course, this is not guaranteed from the injectivity of $g_0$
+    and $g_1$!
 
-    We should use the fact that this is an infinite-dimensional Euclidean space. I'll give you two linear isometries:
+    Instead, we will construct a composite of affine homotopies between $g_0$
+    and $g_1$ using the fact that $\RR^\infty$ is an infinite-dimensional
+    Euclidean space. Consider the following two linear isometries:
     \begin{equation*}
 	\xymatrix{
-	    & \RR^\infty = \langle e_0,e_1,\cdots\rangle\ar[dl]^\alpha_{e_i\mapsto e_{2i}}\ar[dr]_\beta^{e_i\mapsto e_{2i+1}} & \\
+	    & \RR^\infty = \langle
+	    e_0,e_1,\cdots\rangle\ar[dl]^\alpha_{e_i\mapsto
+	    e_{2i}}\ar[dr]_\beta^{e_i\mapsto e_{2i+1}} & \\
 	    \RR^\infty & & \RR^\infty
 	    }
     \end{equation*}
-    We have four Gauss maps: $g_0$, $\alpha\circ g_0$, $\beta\circ g_1$, and $g_1$.
-    I claim that each of these are homotopic, i.e., $g_0\simeq \alpha \circ g_0\simeq \beta\circ g_1\simeq g_1$ via affine homotopies through Gauss maps.
-
-    Shall we do just one case of that? I'll do the middle case. In the middle case, you'll never have cancellation.
-
-    Let's try $g_0\simeq\alpha\circ g_0$. Suppose $t,v$ are such that $tg_0(v) + (1-t)\alpha g_0(v) = 0$. What's the argument I'll make here? So $\alpha g_0(v)$ has only even coordinates. So I might as well suppose that $0<t<1$. Anyway, since $\alpha g_0(v)$ has only even coordinates, $g_0(v)$ itself must have only even coordinates. But then that means that the nonzero coordinates only for $0\mod 4$. But this equation says that $g_0(v)\neq 0$ only for $i\equiv 0\mod 4$. So I repeat this and find that the coordinates are zero for powers of two.
+    Then, we have four Gauss maps: $g_0$, $\alpha\circ g_0$, $\beta\circ g_1$,
+    and $g_1$. There are affine homotopies through Gauss maps:
+    $$g_0\simeq \alpha \circ g_0\simeq \beta\circ g_1\simeq g_1.$$
+    We will only show that there is an affine homotopy through Gauss maps $g_0
+    \simeq \alpha \circ g_0$; the others are left as an exercise. Let $t$ and
+    $v$ be such that $tg_0(v) + (1-t)\alpha g_0(v) = 0$. Since $g_0$ and
+    $\alpha g_0$ are Gauss maps, we may suppose that $0<t<1$. Since $\alpha
+    g_0(v)_i$ has only even coordinates, it follows by definition of the map
+    $\alpha$ that $g_0(v)$ only had nonzero coordinates only in dimensions
+    congruent to $0$ mod $4$. Repeating this argument proves the desired
+    result.
 \end{proof}
-Maybe that's all I want to say today. I'll just stop today unless people have questions.

@@ -1,97 +1,187 @@
 \section{Principal bundles, associated bundles}
-Since Tuesday didn't exist, I'll have office hours on Thursday from 4 to 5 in 2-478.
-\begin{definition}
-    Suppose $E,E^\prime\to B$ are vector bundles over $B$. An \emph{isomorphism} is a map $\alpha:E\to E^\prime$ over $b$ that's a linear isomorphism on each fiber.
-\end{definition}
-This implies it's invertible.
-\begin{notation}
-    Denote by $\Vect(B)$ the set of isomorphism classes of vector bundles over $B$.
-\end{notation}
-Why's that a set? I'll let you think about that.
+\subsection{$I$-invariance}
+We will denote by $\Vect(B)$ the set of isomorphism classes of vector bundles
+over $B$. (Justify the use of the word ``set''!)
 
-Suppose $\xi\downarrow B$. If $f:B^\prime\to B$, taking the pullback gives a vector bundle denoted $f^\ast\xi$. This operation descends to a map $f^\ast:\Vect(B)\to \Vect(B^\prime)$. This operation certainly is functorial, and we get $\Vect:\Top^{op}\to \Set$.
-\begin{warning}
-In order to say anything meaningful about vector bundles, you've to assume that the vector bundles are numerable. If $B$ is paracompact (eg a CW-complex), this is automatic.
-\end{warning}
-We'd like to understand this functor $\Vect$.
-\begin{theorem}
-    $\Vect$ is $I$-invariant (here $I = \Delta^1$), i.e. the projection $X\times I\to X$ induces an isomorphism $\Vect(X)\to \Vect(X\times I)$.
+Consider a vector bundle $\xi\downarrow B$. If $f:B^\prime\to B$, taking the
+pullback gives a vector bundle denoted $f^\ast\xi$. This operation descends to
+a map $f^\ast:\Vect(B)\to \Vect(B^\prime)$; we therefore obtain a functor
+$\Vect:\Top^{op}\to \Set$. One might expect this functor to give some
+interesting invariants of topological spaces.
+%\begin{warning}
+%    In order to say anything meaningful about vector bundles, you've to assume
+%    that the vector bundles are numerable. If $B$ is paracompact (eg a
+%    CW-complex), this is automatic.
+%\end{warning}
+\begin{theorem}\label{Iinvariance}
+    Let $I = \Delta^1$. Then $\Vect$ is $I$-invariant. In other words, the
+    projection $X\times I\to X$ induces an isomorphism $\Vect(X)\to
+    \Vect(X\times I)$.
 \end{theorem}
-This is a basic theorem, and we'll prove this. Let me point out a corollary of this.
+One important corollary of this result is:
 \begin{corollary}
     $\Vect$ is a homotopy functor.
 \end{corollary}
 \begin{proof}
-    Suppose $f,g:B\to B^\prime$ with $f\simeq g$. Then I have $H:B^\prime\times I\to B$. If $\xi\downarrow B$, I'd like to see that $f^\ast_0\xi\simeq f_1^\ast\xi$. This is far from obvious. Well, we have:
+    Consider two homotopic maps $f,g:B\to B^\prime$, so there exists a homotopy
+    $H:B^\prime\times I\to B$. If $\xi\downarrow B$, we need to prove that
+    $f^\ast_0\xi\simeq f_1^\ast\xi$. This is far from obvious.
+
+    Consider the following diagram.
     \begin{equation*}
 	\xymatrix{
-	    B^\prime\times I\ar[r]\ar[d]_{pr} & B\\
+	    B^\prime\times I\ar[r]^H\ar[d]_{\pr} & B\\
 	    B^\prime & 
 	    }
     \end{equation*}
-    The left map is an isomorphism under $\Vect$. Suppose $\eta\downarrow B$ such that $pr^\ast\eta \simeq f^\ast\xi$.
-    For any $t\in I$, we know that:
-    $$f_t^\ast\xi \simeq in_t^\ast f^\ast\xi \simeq in_t^\ast pr^\ast\eta \simeq (pr\circ in_t)^\ast\eta \simeq \eta$$
-    where $in_t:B^\prime\to B^\prime\times I$ sends $x\mapsto(x,t)$. That's the proof.
+    The leftmost map is an isomorphism under $\Vect$, by Theorem
+    \ref{Iinvariance}. Let $\eta\downarrow B$ be a vector bundle such that
+    $\pr^\ast\eta \simeq f^\ast\xi$. For any $t\in I$, define a map
+    $\in_t:B^\prime\to B^\prime\times I$ sends $x\mapsto(x,t)$. We then have
+    isomorphisms:
+    $$f_t^\ast\xi \simeq \in_t^\ast f^\ast\xi \simeq \in_t^\ast \pr^\ast\eta
+    \simeq (\pr\circ \in_t)^\ast\eta \simeq \eta,$$
+    as desired.
 \end{proof}
-OK, note that $\Vect(X)\to \Vect(X\times I)$ being injective is obvious. I'll prove surjectivity on Friday. I'll prove something more general, in fact.
+It is easy to see that $\Vect(X)\to \Vect(X\times I)$ is injective. In the next
+lecture, we will prove surjectivity, allowing us to conclude Theorem
+\ref{Iinvariance}.
 \subsection{Principal bundles}
-There's a famous video of J.-P.~Serre talking about mathematics. He says you have to know the difference between ``principle'' and ``principal''. He contemplated ``bundles of principles'' (like politics, or society, or something).
-\begin{definition}
-    Let $G$ be a topological group\footnote{Really, I only care about discrete groups and Lie groups.}. A \emph{principal $G$-bundle} is a right action of $G$ on $P$ such that:
+%There's a famous video of J.-P.~Serre talking about mathematics. He says you have to know the difference between ``principle'' and ``principal''. He contemplated ``bundles of principles'' (like politics, or society, or something).
+\begin{definition}\label{principaldefn}
+    Let $G$ be a topological group\footnote{We will only care about discrete
+    groups and Lie groups.}. A \emph{principal $G$-bundle} is a right action of
+    $G$ on $P$ such that:
     \begin{itemize}
 	\item $G$ acts freely.
 	\item The orbit projection $P\to P/G$ is a fiber bundle.
     \end{itemize}
 \end{definition}
-\begin{example}
-    Suppose $G$ is discrete. The fibers are discrete, so the condition that $P\to P/G$ is a fiber bundle \emph{is} that it's a covering projection, i.e., the action is ``properly discontinuous''.
-    As a special case, suppose $X$ is a space with universal cover $\widetilde{X}\downarrow X$. Then $\pi_1(X)$ acts freely on $\widetilde{X}$, and $\widetilde{X}\downarrow X$ is the orbit projection.
-    So this is a principal bundle; for instance, $S^{n-1}\downarrow\RP^{n-1}$ is a principal $\Z/2\Z$-bundle. The Hopf fibration $S^{2n-1}\downarrow \CP^{n-1}$ is a principle $S^1$-bundle.
-\end{example}
-So this is \emph{not} an unfamiliar object.
+These are not unfamiliar objects, as the next example shows.
+\begin{example}\label{principalcovering}
+    Suppose $G$ is discrete. Then the fibers of the orbit projection $P\to P/G$
+    are all discrete. Therefore, the condition that $P\to P/G$ is a fiber
+    bundle is simply that it's a covering projection (the action is ``properly
+    discontinuous'').
 
-By looking at the universal cover, we can classify covering spaces of $X$. Remember how that goes: let $F$ be a set with left $\pi_1(X)$-action. Then you have the dotted map, which is the desired covering space:
+    As a special case, let $X$ be a space with universal cover
+    $\widetilde{X}\downarrow X$. Then $\pi_1(X)$ acts freely on
+    $\widetilde{X}$, and $\widetilde{X}\downarrow X$ is the orbit projection.
+    It follows from our discussion above that this is a principal bundle.
+    Explicit examples include the principal $\Z/2$-bundle
+    $S^{n-1}\downarrow\RP^{n-1}$, and the Hopf fibration $S^{2n-1}\downarrow
+    \CP^{n-1}$, whcih is a principle $S^1$-bundle.
+\end{example}
+By looking at the universal cover, we can classify covering spaces of $X$.
+Remember how that goes: if $F$ is a set with left $\pi_1(X)$-action, the dotted
+map in the diagram below is the desired covering space.
 \begin{equation*}
     \xymatrix{
-	\widetilde{X}\times F\ar[r]\ar[d]_{p\circ pr_1} & \widetilde{X}\times F/\sim\ar[dl]^q\\
+	\widetilde{X}\times F\ar[r]\ar[d]_{p\circ \pr_1} & \widetilde{X}\times
+	F/\sim\ar[dl]^q\\
 	X & 
     }
 \end{equation*}
-where $(y,gz)\sim (yg,z)$ where $y\in\widetilde{X}$, $z\in F$, and $g\in\pi_1(X)$.
+Here, we say that $(y,gz)\sim (yg,z)$, for elements $y\in\widetilde{X}$, $z\in
+F$, and $g\in\pi_1(X)$.
 
-Fix $y_0\in\widetilde{X}$ over $\ast\in X$, I claim that $F\xrightarrow{\simeq}q^{-1}(\ast)$ via $z\mapsto (y_0,z)$.
-I'll let you check that that's a bijection -- that's supposed to be clear.
-\begin{theorem}[Covering spaces]
-    There's an equivalence of categories:
-    $$\{\text{Left $\pi_1(X)$-sets}\}\xrightarrow{\simeq}\{\text{Covering spaces of }X\}$$
-    with inverse functor given by taking the fiber over the basepoint and lifting a loop in $X$ to get a map from the fiber to itself.
+Fix $y_0\in\widetilde{X}$ over $\ast\in X$. Then it is easy to see that
+$F\xrightarrow{\sim}q^{-1}(\ast)$, via the map $z\mapsto (y_0,z)$. This is all
+neatly summarized in the following theorem from point-set topology.
+\begin{theorem}[Covering space theory]
+    There is an equivalence of categories:
+    $$\{\text{Left $\pi_1(X)$-sets}\}\xrightarrow{\simeq}\{\text{Covering
+    spaces of }X\},$$
+    with inverse functor given by taking the fiber over the basepoint and
+    lifting a loop in $X$ to get a map from the fiber to itself.
 \end{theorem}
-How about a more general picture?
+Example \ref{principalcovering} shows that covering spaces are special examples
+of principal bundles. The above theorem therefore motivates finding a more
+general picture.
 \begin{construction}
-If $P\downarrow B$ is a principal $G$-bundle, and $F$ is a left $G$-space, we get a new fiber bundle via:
-\begin{equation*}
-    \xymatrix{
-	P\times F\ar[r]\ar[d] & P\times F/\sim\ar[dl]^q\\
-	B & 
-    }
-\end{equation*}
-    This gives a new fiber bundle with fiber $F$, for the following reason. Let $x\in B$, and let $y\in P$ over $x$. We get $F\xrightarrow{\simeq} q^{-1}(\ast)$ via $z\mapsto[y,z]$. Define $q^{-1}(\ast)\to F$ via $[y^\prime,z^\prime]=[y,gz^\prime]\mapsto gz^\prime$ where $y^\prime = yg$ for some unique $g$. You can check that these two maps are inverse homeomorphisms.
-    This is called an ``associated bundle'', and it's denoted $P\times_G F$.
+    Let $P\downarrow B$ is a principal $G$-bundle. If $F$ is a left $G$-space,
+    we can define a new fiber bundle, exactly as above:
+    \begin{equation*}
+	\xymatrix{
+	    P\times F\ar[r]\ar[d] & P\times F/\sim\ar[dl]^q\\
+	    B & 
+	    }
+    \end{equation*}
+    This is called an \emph{associated bundle}, and is denoted $P\times_G F$.
 \end{construction}
-Let $\xi\downarrow B$ be an $n$-plane bundle (all the fiber dimensions are the same, say $n$). We can construct a principal $\GL_n(\RR)$-bundle $P(\xi)$. Define $P(\xi)_b = \text{set of bases for }E(\xi)_b = \mathrm{Iso}(\RR^n, E(\xi)_b)$. What's the topology?
-Well, $P(B\times \RR^n) = B\times \mathrm{Iso}(\RR^n,\RR^n)$, topologically, where $\mathrm{Iso}(\RR^n,\RR^n) = \GL_n(\RR)$ is given the usual topology as a subspace of $\RR^{n^2}$.
-There's an obvious right action of $\GL_n(\RR)$ on $P(\xi)\downarrow B$, given by precomposition. Obviously the action is free, and it's simply transitive, so you actually have a \emph{principal action} of $\GL_n(\RR)$ on $P(\xi)$. This is called the \emph{principalization} of $\xi$. 
+We must still justify that the resulting space over $B$ is indeed a new fiber
+bundle with fiber $F$. Let $x\in B$, and let $y\in P$ over $x$. As above, we
+have a map $F\to q^{-1}(\ast)$ via the map $z\mapsto[y,z]$. We claim that this
+is a homeomorphism. Indeed, define a map $q^{-1}(\ast)\to F$ via
+$$[y^\prime,z^\prime]=[y,gz^\prime]\mapsto gz^\prime,$$
+where $y^\prime = yg$ for some $g$ (which is necessarily unique).
+\begin{exercise}
+    Check that these two maps are inverse homeomorphisms.
+\end{exercise}
+\begin{definition}
+    A vector bundle $\xi\downarrow B$ is said to be an $n$-plane bundle if the
+    dimensions of all the fibers are $n$.
+\end{definition}
+Let $\xi\downarrow B$ be an $n$-plane bundle. Construct a principal
+$\GL_n(\RR)$-bundle $P(\xi)$ by defining
+$$P(\xi)_b = \{\text{bases for }E(\xi)_b = \mathrm{Iso}(\RR^n, E(\xi)_b)\}.$$
+To define the topology, note that (topologically) we have
+$$P(B\times \RR^n) = B\times \mathrm{Iso}(\RR^n,\RR^n),$$
+where $\mathrm{Iso}(\RR^n,\RR^n) = \GL_n(\RR)$ is given the usual topology as a
+subspace of $\RR^{n^2}$.
 
-Look at the associated bundle with fiber $F = \RR^n$, where $\GL_n(\RR)$ acts on $\RR^n$ from the left, as it usually does. So I can form $P(\xi)\times_{\GL_n(\RR)}\RR^n$. Because this is a linear action, it's a vector bundle, and $P(\xi)\times_{\GL_n(\RR)}\RR^n\simeq E(\xi)$.
+There is a right action of $\GL_n(\RR)$ on $P(\xi)\downarrow B$, given by
+precomposition. It is easy to see that this action is free and simply
+transitive. One therefore has a {principal action} of $\GL_n(\RR)$ on $P(\xi)$.
+The bundle $P(\xi)$ is called the \emph{principalization} of $\xi$. 
 
-Fix a topological group $G$. Define $\Bun_G(B)$ as the set of isomorphism classes of $G$-bundles over $B$. An isomorphism is a $G$-equivariant homeomorphism over the base.
-We've established that there's a natural isomorphism of functors:
-$$\Bun_{\GL_n(\RR)}(B) \simeq \Vect(B)$$
-The $I$-invariance theorem will follow immediately from:
+Given the principalization $P(\xi)$, we can recover the total space $E(\xi)$.
+Consider the associated bundle $P(\xi)\times_{\GL_n(\RR)}\RR^n$ with fiber $F =
+\RR^n$, with $\GL_n(\RR)$ acting on $\RR^n$ from the left. Because this is a
+linear action, $P(\xi)\times_{\GL_n(\RR)}\RR^n$ is a vector bundle. One can
+show that
+$$P(\xi)\times_{\GL_n(\RR)}\RR^n\simeq E(\xi).$$
+
+Fix a topological group $G$. Define $\Bun_G(B)$ as the set of isomorphism
+classes of $G$-bundles over $B$. An isomorphism is a $G$-equivariant
+homeomorphism over the base. Again, arguing as above, this begets a functor
+$\Bun_G:\Top\to\Set$. The above discussion gives a natural isomorphism of
+functors:
+$$\Bun_{\GL_n(\RR)}(B) \simeq \Vect(B).$$
+The $I$-invariance theorem will therefore follow immediately from:
 \begin{theorem}
     $\Bun_G$ is $I$-invariant.
 \end{theorem}
-There's a lot more that I wanted to say, but let me say one additional thing.
-
-Principal bundles allow a description of geometric structures on $\xi$. By that I mean: suppose for instance that I have a metric on $\xi$. Then instead of all ordered bases, I can look at all ordered orthonormal bases in each fiber. This give the \emph{frame bundle} $\mathrm{Fr}(B) = \text{ordered orthonormal bases of }E(\xi)_b$, i.e., isometric isomorphisms $\RR^n\to E(\xi)_b$. Again, I have an action of the orthogonal group on $\mathrm{Fr}(B)$, so you have a principal $O(n)$-bundle. More examples: consistent orientations give an $SO(n)$-bundle. Trivializations give principal bundles as well. This is called ``reduction of the structure group''.
+\begin{remark}
+    Principal bundles allow a description of ``geometric structures on $\xi$''.
+    Suppose, for instance, that we have a metric on $\xi$. Instead of looking
+    at all ordered bases, we can attempt to understand all ordered orthonormal
+    bases in each fiber. This give the \emph{frame bundle}
+    $$\mathrm{Fr}(B) = \{\text{ordered orthonormal bases of }E(\xi)_b\};$$
+    these are isometric isomorphisms $\RR^n\to E(\xi)_b$. Again, there is an
+    action of the orthogonal group on $\mathrm{Fr}(B)$: in fact, this begets a
+    principal $O(n)$-bundle. Such examples are in abundance: consistent
+    orientations give an $SO(n)$-bundle. Trivializations of the vector bundle
+    also give principal bundles. This is called ``reduction of the structure
+    group''.
+\end{remark}
+% This wasn't proven in the lectures, but is extremely important.
+One useful fact about principal $G$-bundles (which should not be too
+surprising) is the following statement.
+\begin{theorem}\label{morphismiso}
+    Every morphism of principal $G$-bundles is an isomorphism.
+\end{theorem}
+\begin{proof}
+    Let $p:P\to B$ and $p^\prime:P^\prime\to B$ be two principal $G$-bundles
+    over $B$, and let $f:P\to P^\prime$ be a morphism of principal $G$-bundles.
+    For surjectivity of $f$, let $y\in P^\prime$. Consider $x\in P$ such that
+    $p(x) = p^\prime(y)$. Since $p(x) = p^\prime f(x)$ we conclude that $y =
+    f(x)g$ for some $g\in G$. But $f(x)g = f(xg)$, so $xg$ maps to $y$, as
+    desired.  To see that $f$ is injective, suppose $f(x) = f(y)$. Now $p(x) =
+    p^\prime f(x) = p(y)$, so there is some $g\in G$ such that $xg = y$. But
+    $f(y) = f(xg) = f(x)g$, so $g=1$, as desired.  We will leave the continuity
+    of $f^{-1}$ as an exercise to the reader.
+\end{proof}
+Theorem \ref{morphismiso} says that if we view $\Bun_G(B)$ as a category where
+the morphisms are given by morphisms of principal $G$-bundles, then it is a
+groupoid.

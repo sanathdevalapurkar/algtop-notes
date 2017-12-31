@@ -1,126 +1,137 @@
-\section{Bundles, classifying spaces, simplicial objects}
-pset 4 is complete; it's due April 12.
-
-I learned this attitude towards classifying spaces from Segal.
-An article is on the website.
-
-A bizarre thing we tried to do was look at the category of categories.
-Among these are groups.
-We took the nerve of a category, and got a simplicial set.
-Then we took the geometric realization.
-All in all, we have:
+\section{Classifying spaces of groups}
+%I learned this attitude towards classifying spaces from Segal.
+%An article is on the website.
+%
+The constructions of the previous sections can be summarized in a single
+diagram:
 \begin{equation*}
     \xymatrix{
 	\Cat\ar[r]^{\text{nerve}} & s\Set\ar[d]^{|-|}\\
-	\mathbf{Gp}\ar[u]\ar[u]_{B} & \Top
+	\mathbf{Gp}\ar@{^(->}[u]\ar[r]_{B} & \Top
     }
 \end{equation*}
-$BG$ for a group $G$ is called the classifying space, although it isn't clear what it's classifying at this point.
+The bottom functor is defined as the composite along the outer edge of the
+diagram. The space $BG$ for a group $G$ is called the \emph{classifying space
+of $G$}. At this point, it is far from clear what $BG$ is classifying. The goal
+of the next few sections is to demystify this definitino.
 
-Another example of a category is given by $[n]$.
-The classifying space of $[n]$ is canonically isomorphic to $\Delta^n$, as we observed.
-You will discover for homework that $B$ takes products to products.
-This leads to the fact that the classifying space construction sends natural transformations to homotopies.
-This is a sort of 2-categorical thing.
 \begin{lemma}
-    Let $G$ be a group, and $g\in G$.
-    Let $c_g:G\to G$ via $x\mapsto gxg^{-1}$.
-    This gives a self map $Bc_g:BG\to BG$.
-    This map is homotopic to the identity.
+    Let $G$ be a group, and $g\in G$.  Let $c_g:G\to G$ via $x\mapsto
+    gxg^{-1}$.  Then the map $Bc_g:BG\to BG$ is homotopic to the identity.
 \end{lemma}
 \begin{proof}
-    The homomorphism $c_g$ is a functor from $G$ to itself.
-    The claim is that there is a natural transformation from the identity to that functor.
-    What is this natural transformation, call it $\theta:1\to c_g$?
-    It sends the only object to the only object.
-    Define $\ast\to \ast$ via $\ast\xrightarrow{g}\ast$.
-    We then need the following diagram to commute, which it obviously does:
+    The homomorphism $c_g$ is a functor from $G$ to itself. It suffices to
+    prove that there is a natural transformation $\theta$ from the identity to
+    $c_g$. This is rather easy to define: it sends the only object to the only
+    object: we define $\theta_\ast:\ast\to \ast$ to be the map given by
+    $\ast\xrightarrow{g}\ast$ specified by $g\in \Hom_G(\ast,\ast) = G$. In
+    order for $\theta$ to be a natural transformation, we need the following
+    diagram to commute, which it obviously does:
     \begin{equation*}
 	\xymatrix{
 	    \ast\ar[d]_1\ar[r]^g & \ast\ar[d]^{gxg^{-1}}\\
-	    \ast\ar[r]_{g} & \ast
+	    \ast\ar[r]_{g} & \ast.
 	    }
     \end{equation*}
-    This is one of my favorite proofs.
 \end{proof}
-Groups are born to act.
-Let's let $G$ act on some set $X$.
-More generally, define an action of a category $\cc$ as a functor $\cc\xrightarrow{X}\Set$.
+Groups are famous for acting on objects. Viewing groups as categories allows
+for an abstract definition a group action on a set: it is a functor $G\to
+\Set$. More generally, if $\cc$ is a category, an action of $\cc$ is a functor
+$\cc\xrightarrow{X}\Set$. We write $X_c = X(c)$ for an object $c$ of $\cc$.
 \begin{definition}
-    The ``translation'' category $X\cc$ has $\mathrm{ob}(X\cc) = \coprod_{c\in \cc}X_c$, and morphisms defined via $X\cc(x\in X_c, y\in X_d) = \{f:c\to d:f_\ast(x) = y\}$.
+    The ``translation'' category $X\cc$ has objects given by
+    $$\mathrm{ob}(X\cc) = \coprod_{c\in \cc}X_c,$$
+    and morphisms defined via $\Hom_{X\cc}(x\in X_c, y\in X_d) = \{f:c\to
+    d:f_\ast(x) = y\}$.
 \end{definition}
-There is a projection $X\cc\to \cc$.
-This is a special case of the Grothendieck construction.
+There is a projection $X\cc\to \cc$. (For those in the know: this is a special
+case of the Grothendieck construction.)
 \begin{example}
-    Suppose $G$ acts on itself by left translation.
-    Let $\widetilde{G}$ for this $G$-set.
-    Then $\widetilde{G}G$ has objects as $G$, and maps $x\to y$ are elements $yx^{-1}$.
-    This category is ``unicursal''.
-    There's exactly one map from one object to another object.
-    Every object is therefore initial and terminal, so the classifying space of this category is trivial!
-    I.e., $B(\widetilde{G}G)\simeq\ast$.
-    This is denoted $EG$.
-    It comes equipped with a map down to $BG$, because we have a map $\widetilde{G}G\to G$.
+    The group $G$ acts on itself by left translation. We will write
+    $\widetilde{G}$ for this $G$-set. The translation category $\widetilde{G}G$
+    has objects as $G$, and maps $x\to y$ are elements $yx^{-1}$. This category
+    is ``unicursal'', in the sense that there is exactly one map from one
+    object to another object. Every object is therefore initial and terminal,
+    so the classifying space of this category is trivial by the discussion at
+    the end of \S \ref{classifying-space-properties}. We will denote by $EG$
+    the classifying space $B(\widetilde{G}G)$. The map $\widetilde{G}G\to G$
+    begets a canonical map $EG\to BG$.
 \end{example}
-You could also have $G$ acting by right translation.
-The right and left action commute with each other, by associativity.
-Thus the right action is equivariant with respect to the left action.
-Consequently, we get a right action of $G$ on $EG$.
-
-Here's the claim: this action is a principal action, and the orbit projection is $EG\to BG$.
-I've produced a topologically interesting thing.
-Note that $EG$ is a CW-complex -- the classifying space is always a CW-complex!
-
-Let's think about $N(\widetilde{G}G)_n$.
-An element is a chain of composable morphisms -- it's actually just a sequence of $n+1$ elements in the group.
-I.e., $N(\widetilde{G}G)_n = G^{n+1}$.
-The right action of the group on this is the diagonal action.
-\begin{lemma}
-    This is a free action.
-    More precisely, if $G$ is a group and $X$ is a $G$-set, and if $X\times^\Delta G$ has the diagonal $G$-action and $X\times G$ has $G$ acting on the second factor by right translation, then $X\times^\Delta G\simeq X\times G$ as $G$-sets.
+The $G$ also acts on itself by right translation. Because of associativity, the
+right and left actions commute with each other. It follows that the right
+action is equivariant with respect to the left action, so we get a right action
+of $G$ on $EG$.
+\begin{claim}
+    This action of $G$ on $EG$ is a principal action, and the orbit projection
+    is $EG\to BG$.
+\end{claim}
+To prove this, let us contemplate the set $N(\widetilde{G}G)_n$. An element is
+a chain of composable morphisms. In this case, it is actually just a sequence
+of $n+1$ elements in $G$, i.e., $N(\widetilde{G}G)_n = G^{n+1}$. The right
+action of $G$ is simply the diagonal action. We claim that this is a free
+action. More precisely:
+\begin{lemma}[Shearing]
+    If $G$ is a group and $X$ is a $G$-set, and if $X\times^\Delta G$ has the
+    diagonal $G$-action and $X\times G$ has $G$ acting on the second factor by
+    right translation, then $X\times^\Delta G\simeq X\times G$ as $G$-sets.
 \end{lemma}
-The word for this is ``shearing''.
 \begin{proof}
-    Define $X\times^\Delta G\mapsto X\times G$ via $(x,g)\mapsto (xg^{-1},g)$.
-    It's clearly bijective.
-    Is this equivariant?
-    Well, $(x,g)\cdot h = (xh, gh)$, while $(xg^{-1}, g) \cdot h = (xg^{-1}, gh)$.
-    The element $(xh, gh)$ is sent to $(xh(gh)^{-1}, gh)$, and so we're done.
-    
-    For good measure, define $X\times G\to X\times^\Delta G$ via $(x,g)\mapsto (xg, g)$.
+    Define a bijection $X\times^\Delta G\mapsto X\times G$ via $(x,g)\mapsto
+    (xg^{-1},g)$. This map is equivariant since $(x,g)\cdot h = (xh, gh)$,
+    while $(xg^{-1}, g) \cdot h = (xg^{-1}, gh)$. The element $(xh, gh)$ is
+    sent to $(xh(gh)^{-1}, gh)$, as desired.
+    The inverse map $X\times G\to X\times^\Delta G$ is given by $(x,g)\mapsto
+    (xg, g)$.
 \end{proof}
-Isn't that cool?
+We know that $G$ acts freely on $N(\widetilde{G}G)_n$, soo a nonidentity group
+element is always going to send a simplex to another simplex. It follows that
+$G$ acts freely on $EG$.
 
-OK, so $G$ acts freely on $N(\widetilde{G}G)_n$.
-So a nonidentity group element is always going to send a simplex to another simplex.
-I.e., $G$ acts freely on $EG$.
+To prove the claim, we need to understand the orbit space. The shearing lemma
+shows that quotienting out by the action of $G$ simply cancels out one copy of
+$G$ from the product $N(\widetilde{G}G) = G^n$. In symbols:
+$$N(\widetilde{G} G)/G\simeq G^n\simeq (NG)_n.$$
+Of course, it remains to check the compatibility with the face and degeneracy
+maps. We will not do this here; but one can verify that everything works out:
+the realization is just $BG$!
 
-What's the orbit space?
-If I take that diagonal $G$-action, when I divide by $G$, according to the shear isomorphism, I'm just canceling out one copy of $G$.
-I.e., $N(\widetilde{G} G)/G\simeq G^n\simeq (NG)_n$.
-Of course, you still have to check degeneracies and face maps to see if they work out.
-But they do, and the realization is $BG$.
+We need to be careful: the arguments above establish that $EG/G \simeq BG$ when
+$G$ is a finite group. The case when $G$ is a topological group is more
+complicated. To describe this generalization, we need a preliminary categorical
+definition.
 
-Everything I said here works just as well if we were to consider functors $X:\cc\to \Top$ instead of $X:\cc\to \Set$.
-I want to study $G$ when it's a topological group, like Lie groups.
-Define $\widetilde{G}$ to be a category in $\Top$.
-What do I mean by this?
-Let $\cc$ be a category, with objects $\cc_0$ and morphisms $\cc_1$.
-Then we have maps $\cc_1\times_{\cc_0}\cc_1\xrightarrow{\text{compose}}\cc_1$ and two maps (source and target) $\cc_1\to \cc_0$, and the identity $\cc_0\to\cc_1$.
-You can give the exact same data in any category with pullbacks.
+Let $\cc$ be a category, with objects $\cc_0$ and morphisms $\cc_1$. Then we
+have maps $\cc_1\times_{\cc_0}\cc_1\xrightarrow{\text{compose}}\cc_1$ and two
+maps (source and target) $\cc_1\to \cc_0$, and the identity $\cc_0\to\cc_1$.
+One can specify the same data in any category $\cd$ with pullbacks. Our
+interest will be in the case $\cd = \Top$; in this case, we call $\cc$ a
+``category in $\Top$''.
 
-An example is a topological group -- that's a category in $\Top$.
-So, if a topological group acts on a space $X$, then we have $XG$, which is a category in $\Top$.
-Then $(XG)_0 = X$ as a space, and $(XG)_1 = G\times X$ as a space.
-
-Well, I could go on.
-The nerve of a topological category gives me a simplicial space.
-In general, you'll have $(N\cc)_n = \cc_1\times_{\cc_0}\cc_1\times\cdots\times_{\cc_0}\cc_1$.
-The geometric realization works exactly the same way, so you get a topological space when you realize a simplicial space.
-
-You need to put some mild topological conditions on the group for the theorem we proved above to be true.
-Again, we have $\widetilde{G}$ with $G$ acting on it.
-Again, we let $EG = B\widetilde{G}G$.
+%The story described above works just as well if we were to consider functors
+%$X:\cc\to \Top$ instead of $X:\cc\to \Set$. Let $G$ be a topological group. Define $\widetilde{G}$ to be a category in $\Top$.
+%
+%An example is a topological group -- that's a category in $\Top$.
+Let $G$ be a topological group acting on a space $X$. We can again define $XG$,
+although it is now a category in $\Top$. Explicitly, $(XG)_0 = X$ and $(XG)_1 =
+G\times X$ as spaces. The nerve of a topological category begets a simplicial
+space. In general, we will have
+$$(N\cc)_n = \cc_1\times_{\cc_0}\cc_1\times\cdots\times_{\cc_0}\cc_1.$$
+The geometric realization functor works in exactly the same way, so the
+realization of a simplicial space gets a topological space.
+%
+%You need to put some mild topological conditions on the group for the theorem we proved above to be true.
+%Again, we have $\widetilde{G}$ with $G$ acting on it.
+%Again, we let $EG = B\widetilde{G}G$.
+The above discussion passes through with some mild topological conditions on
+$G$ (namely, if $G$ is an absolute neighborhood retract of a Lie group); we
+conclude:
 \begin{theorem}
-    $EG$ is contractible, and $G$ acts from the right principally (at least if $G$ is a Lie group -- more generally, absolute neighborhood retract)\footnote{If you want to work with the $p$-adics or something, there's a different construction you have to use.}, with orbit projection $EG\to BG$.
+    Let $G$ be an absolute neighborhood retract of a Lie group. Then $EG$ is
+    contractible, and $G$ acts from the right principally. Moreover, the map
+    $EG\to BG$ is the orbit projection.
 \end{theorem}
+A generalization of this result is:
+\begin{exercise}
+    Let $X$ be a $G$-set. Show that
+    $$EG\times_G X \simeq B(XG).$$
+\end{exercise}

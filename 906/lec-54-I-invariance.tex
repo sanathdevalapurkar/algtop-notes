@@ -1,90 +1,142 @@
-\section{$I$-invariant of $\Bun_G$, and $G$-CW-complexes}
-Everybody happy with principal bundles now?
-Let $G$ be a topological group. Then $\Bun_G:\Top^{op}\to\Set$.
-I want to show that this is $I$-invariant, i.e., given $X\xrightarrow{pr}X\times I$, we have $\Bun_G(X)\xrightarrow{\simeq}\Bun_G(X\times I)$.
-This map is injective, for sure, because the composite $X\xrightarrow{in_0} X\times I\xrightarrow{pr}X$ gives you a splitting $\Bun_G(X)\xrightarrow{pr_\ast}\Bun_G(X\times I)\xrightarrow{in_0}\Bun_G(X)$ whose composite is the identity.
+\section{$I$-invariance of $\Bun_G$, and $G$-CW-complexes}
+Let $G$ be a topological group. We need to show that the functor
+$\Bun_G:\Top^{op}\to\Set$ is $I$-invariant, i.e., the projection
+$X\times I\xrightarrow{\pr}X$ induces an isomorphism
+$\Bun_G(X)\xrightarrow{\simeq}\Bun_G(X\times I)$.
+Injectivity is easy: the composite $X\xrightarrow{\inc_0} X\times
+I\xrightarrow{\pr}X$ gives you a splitting
+$\Bun_G(X)\xrightarrow{\pr_\ast}\Bun_G(X\times I)\xrightarrow{\inc_0}\Bun_G(X)$
+whose composite is the identity.
 
-Suppose I have principal $G$-bundles $P\to X$ and $Q\to Y$, with a map $f:X\to Y$. Then I want to think about maps $P\to f^\ast Q$ over $X$. Equivalently, I want to think of $G$-equivariant dotted maps that make the following diagram commute.
-\begin{equation*}
-    \xymatrix{
-	P\ar@{-->}[r]^g\ar[d] & Q\ar[d]\\
-	X\ar[r]_f & Y
-    }
-\end{equation*}
-Suppose I have $P\to X\times I$; then we get $in_0^\ast P\to X$. This has to be what you get when you ---. All we have to do is construct a map $P\to in_0^\ast P$ like in the diagram above.
-
-We'll do this for $X$ a CW-complex. I'll refer you to Husemoller for a different argument -- he does the general case.
+The rest of this lecture is devoted to proving surjectivity. We will prove this
+when $X$ is a CW-complex (Husemoller does the general case; see \cite[\S
+4.9]{husemoller}). We begin with a small digression.
+%Consider two principal $G$-bundles $P\to X$ and $Q\to Y$, with a map $f:X\to
+%Y$. We would like to understand maps $P\to f^\ast Q$ over $X$, i.e.,
+%$G$-equivariant dotted maps that make the following diagram commute.
+%\begin{equation*}
+%    \xymatrix{
+%	P\ar@{-->}[r]^g\ar[d] & Q\ar[d]\\
+%	X\ar[r]_f & Y
+%    }
+%\end{equation*}
+%Suppose I have $P\to X\times I$; then we get $in_0^\ast P\to X$. This has to
+%be what you get when you ---. All we have to do is construct a map $P\to
+%in_0^\ast P$ like in the diagram above.
 \subsection{$G$-CW-complexes}
-What's a ``$G$-cell''? The answer is $D^n\times H\backslash G$, for closed subgroups $H<G$. The space $H\backslash G$ is a right $G$-space. It's an orbit.
-The boundary of $D^n\times H\backslash G$ is just $\partial D^n\times H\backslash G$. We can build up $G$-CW-complexes exactly as we build up CW-complexes.
+We would like to define CW-complexes with an action of the group $G$. The
+na\"ive definition (of a space with an action of the group $G$) will not be
+sufficient; rather, we will require that each cell have an action of $G$.
+
+In other words, we will build $G$-CW-complexes out of ``$G$-cells''. This is
+supposed to be something of the form $D^n\times H\backslash G$, where $H$ is a
+closed subgroup of $G$. Here, the space $H\backslash G$ is the orbit space,
+viewed as a right $G$-space. The boundary of the $G$-cell $D^n\times
+H\backslash G$ is just $\partial D^n\times H\backslash G$. More precisely:
 \begin{definition}
-    A $G$-CW-complex is a (right) $G$-space $X$ with a filtration $0=X_{-1}\subseteq X_0\subseteq \cdots\subseteq X$ such that for all $n$, there exists a pushout square:
+    A $G$-CW-complex is a (right) $G$-space $X$ with a filtration
+    $0=X_{-1}\subseteq X_0\subseteq \cdots\subseteq X$ such that for all $n$,
+    there exists a pushout square:
     \begin{equation*}
 	\xymatrix{
-	    \coprod\partial D^n_\alpha\times H_\alpha\backslash G\ar[r]\ar[d] & \coprod D^n_\alpha\times H_\alpha\backslash G\ar[d]\\
-	    X_{n-1}\ar[r] & X_n
+	    \coprod\partial D^n_\alpha\times H_\alpha\backslash G\ar[r]\ar[d] &
+	    \coprod D^n_\alpha\times H_\alpha\backslash G\ar[d]\\
+	    X_{n-1}\ar[r] & X_n,
 	    }
     \end{equation*}
     and $X$ has the direct limit topology.
 \end{definition}
-So a CW-complex is a $G$-CW-complex for the trivial group $G$.
+Notice that a CW-complex is a $G$-CW-complex for the trivial group $G$.
 \begin{theorem}
-    If $G$ is a compact Lie group and $M$ a compact smooth $G$-manifold. Then $M$ admits a $G$-CW-structure.
+    If $G$ is a compact Lie group and $M$ a compact smooth $G$-manifold, then
+    $M$ admits a $G$-CW-structure.
 \end{theorem}
-This is a hard theorem.
-Note that if $G$ acts principally\footnote{The action that you have when you say you have a principal $G$-bundle.} on $P$, then every $G$-CW-structure on $P$ is ``free'', i.e., $H_\alpha = 0$.
+This is the analogue of the classical result that a compact smooth manifold is
+homotopy equivalent to a CW-complex, but it is much harder to prove the
+equivariant statement.
+
+Note that if $G$ acts principally (Definition \ref{principaldefn}) on $P$, then
+every $G$-CW-structure on $P$ is ``free'', i.e., $H_\alpha = 0$.
 \begin{enumerate}
-    \item If $X$ is a $G$-CW-complex, then $X/G$ inherits a CW-structure where $(X/G)_n = X_n/G$.
-    \item If $P\to X$ is principal, then a CW-structure on $X$ lifts to a $G$-CW-structure on $P$.
+    \item If $X$ is a $G$-CW-complex, then $X/G$ inherits a CW-structure whose
+	$n$-skeleton is given by $(X/G)_n = X_n/G$.
+    \item If $P\to X$ is a principal $G$-bundle, then a CW-structure on $X$
+	lifts to a $G$-CW-structure on $P$.
 \end{enumerate}
-This equivariant stuff is very popular these days.
 \subsection{Proof of $I$-invariance}
-First thing to notice is that if $X\simeq\ast$, then any principal $G$-bundle over $X$ is trivial, i.e., $P\simeq X\times G$ as a $G$-bundle. That iso isn't unique. How do we prove this? This is a case of the general theorem.
-Here's the thing to notice. If $P\downarrow X$ has a section, then it's trivial. That's worth contemplating. Why is that?
-Suppose I have a section $s:X\to P$. This $P$ has an action of the group on it, so I can extend this to $X\times G\to P$ via $(x,g)\mapsto gs(x)$.
-This is a map of $G$-bundles over $X$, so it's an isomorphism.
-So, to show the general result, we have to construct a section. Let's take any map $X\to P$. Say the constant map!
-Then the following diagram commutes up to homotopy, and hence there's an \emph{actual} section of $P\to X$, as desired.
+Recall that our goal is to prove that every $G$-bundle over $X\times I$ is
+pulled back from some vector bundle over $X$.
+
+As a baby case of Theorem \ref{Iinvariance} we will prove that if
+$X$ is contractible, then any principal $G$-bundle over $X$ is trivial, i.e.,
+$P\simeq X\times G$ as $G$-bundles.
+
+Let us first prove the following: if $P\downarrow X$ has a section, then it's
+trivial. Indeed, suppose we have a section $s:X\to P$. Since $P$ has an action
+of the group on it, we may extend this to a map $X\times G\to P$ by sending
+$(x,g)\mapsto gs(x)$. As this is a map of $G$-bundles over $X$, it is an
+isomorphism by Theorem \ref{morphismiso}, as desired.
+
+To prove the statement about triviality of any principal $G$-bundle over a
+contractible space, it therefore suffices to construct a section for any
+principal $G$-bundle. Consider the constant map $X\to P$. Then the following
+diagram commutes up to homotopy, and hence (by Exercise
+\ref{sectionuptohomotopy}(1)) there is an \emph{actual} section of $P\to X$, as
+desired.
 \begin{equation*}
     \xymatrix{
 	& P\ar[d]\\
-	X\ar[ur]^{const}\ar[r] & X
+	X\ar[ur]^{\mathrm{const}}\ar[r] & X
     }
 \end{equation*}
-OK, for the general case, let's assume $X$ is a CW-complex. For notational convenience, let's write $Y=X\times I$.
-Filter $Y$ by subcomplexes: define $Y_0 = X\times 0$.
-In general, define $Y_n = X\times 0\cup X_{n-1}\times I$.
-Thus, I can construct $Y_n$ out of $Y_{n-1}$ via a pushout:
+For the general case, we will assume $X$ is a CW-complex. For notational
+convenience, let us write $Y=X\times I$. We will use descending induction to
+construct the desired principal $G$-bundle over $X$.
+
+To do this, we will filter $Y$ by subcomplexes. Let $Y_0 = X\times 0$; in
+general, we define
+$$Y_n = X\times 0\cup X_{n-1}\times I.$$
+It follows that we may construct $Y_n$ out of $Y_{n-1}$ via a pushout:
 \begin{equation*}
     \xymatrix{
-	\coprod_{\alpha\in\Sigma_{n-1}}(\partial D^{n-1}\times I \cup D^{n-1}_\alpha\times 0) \ar[r]\ar[d]_{\coprod_{\alpha\in\Sigma_{n-1}} f_\alpha\times 1_I\cup\phi_\alpha\times 0} & \coprod_\alpha(D^{n-1}_\alpha\times I) \ar[d]\\
-	Y_{n-1}\ar[r] & Y_n
+	\coprod_{\alpha\in\Sigma_{n-1}}(\partial D^{n-1}\times I \cup
+	D^{n-1}_\alpha\times 0) \ar[r]\ar[d]_{\coprod_{\alpha\in\Sigma_{n-1}}
+	f_\alpha\times 1_I\cup\phi_\alpha\times 0} &
+	\coprod_\alpha(D^{n-1}_\alpha\times I) \ar[d]\\
+	Y_{n-1}\ar[r] & Y_n,
     }
 \end{equation*}
-where the maps $f_\alpha$ and $\psi_\alpha$ are defined as:
+where the maps $f_\alpha$ and $\phi_\alpha$ are defined as:
 \begin{equation*}
     \xymatrix{
 	\partial D^{n-1}_\alpha\ar[r]^{f_\alpha}\ar[d] & X_{n-2}\ar[d]\\
 	D^{n-1}_\alpha\ar[r]_{\phi_\alpha} & X_{n-1}
     }
 \end{equation*}
-Remember I have $P\xrightarrow{p}Y = X\times I$. Define $P_n = p^{-1}(Y_n)$.
-We can build $P_n$ from $P_{n-1}$ in a similar way:
+In other words, the $f_\alpha$ are the attaching maps and the $\phi_\alpha$ are
+the characteristic maps.
+
+Consider a principal $G$-bundle $P\xrightarrow{p}Y = X\times I$. Define $P_n =
+p^{-1}(Y_n)$; then we can build $P_n$ from $P_{n-1}$ in a similar way:
 \begin{equation*}
     \xymatrix{
-	\coprod_\alpha(\partial D^{n-1}_\alpha\times I\cup D^{n-1}_\alpha\times 0)\times G\ar[r]\ar[d] & \coprod_\alpha (D^{n-1}_\alpha\times I)\times G\ar[d]\\
+	\coprod_\alpha(\partial D^{n-1}_\alpha\times I\cup D^{n-1}_\alpha\times
+	0)\times G\ar[r]\ar[d] & \coprod_\alpha (D^{n-1}_\alpha\times I)\times
+	G\ar[d]\\
 	P_{n-1}\ar[r] & P_n
     }
 \end{equation*}
-This makes sense since $D^n_\alpha\times I$ is a contractible space, and same thing for the other factor.
-Note that this isn't \emph{quite} a $G$-CW-structure.
-Remember that what I'm trying to do is fill in a dotted map:
+%This makes sense since $D^n_\alpha\times I$ is a contractible space, and same
+%thing for the other factor.
+Note that this isn't \emph{quite} a $G$-CW-structure. Recall that we are
+attempting to fill in a dotted map:
 \begin{equation*}
     \xymatrix{
-	P\ar[r]\ar[d] & P_0\ar[d]\\
-	Y\ar[r]_{pr} & P_0
+	P\ar@{-->}[r]\ar[d] & P_0\ar[d]\\
+	Y\ar[r]_{\pr} & Y_0 = X
     }
 \end{equation*}
+\todo{finish this...}
 I'm constructing this inductively-- we have $P_{n-1}\to P_0$. So I want to define $\coprod_\alpha(D^{n-1}_\alpha\times I)\times G\to P_0$ that's equivariant. That's the same thing as a map $\coprod_\alpha (D^{n-1}_\alpha\times I)\to P_0$ that's compatible with the map from $\coprod(\partial D^{n-1}_\alpha\times I\cup D^{n-1}_\alpha\times 0)$. Namely, I want to fill in:
 \begin{equation}\label{finally}
     \xymatrix{

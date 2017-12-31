@@ -1,19 +1,19 @@
-\usepackage[protrusion=true,expansion=true]{microtype}
+%\usepackage[protrusion=true,expansion=true]{microtype}
 
 %\usepackage[center]{titlesec}
 
 \usepackage[pdftex,
-            pdfauthor={Sanath Devalapurkar},
 	    pdftitle={Algebraic topology}]{hyperref}
 \usepackage{sseqpages}
 
+\usepackage{mathtools}
 %\usepackage{listings}
 
 \usepackage[T1]{fontenc}
 
-%\usepackage[urw-garamond]{mathdesign}
+\usepackage[urw-garamond]{mathdesign}
 %\usepackage[left=2in,right=2in,top=2in,bottom=2.5in]{geometry}
-\usepackage[margin=1.25in]{geometry}
+%\usepackage[margin=1.25in]{geometry}
 %\pagestyle{plain}
 %\usepackage{fullpage}
 
@@ -24,7 +24,7 @@
 
 \usepackage{amsmath}
 %\usepackage{amsfonts}
-\usepackage{amssymb}
+%\usepackage{amssymb}
 \usepackage{float}
 \usepackage{amsthm}
 \usepackage{comment}
@@ -42,6 +42,14 @@
 \usepackage[mathscr]{eucal}
 \usepackage{graphicx}
 \usepackage{tikz-cd}
+
+\tikzset{%
+    symbol/.style={%
+        draw=none,
+        every to/.append style={%
+            edge node={node [sloped, allow upside down, auto=false]{$#1$}}}
+    }
+}
 
 \theoremstyle{theorem}
 \newtheorem{theorem}{Theorem}[section]
@@ -158,6 +166,7 @@
 \newcommand{\xar}[1]{\xrightarrow{{#1}}}
 \newcommand{\pr}{\mathrm{pr}}
 \newcommand{\ev}{\mathrm{ev}}
+\newcommand{\inc}{\mathrm{in}}
 
 % for pullback and pushout squares
 \usepackage{pigpen}

@@ -1,79 +1,98 @@
-\section{Remember what we have}
-We spent the first 25 minutes discussing one of the problems in the pset.
+\section{Properties of the classifying
+space}\label{classifying-space-properties}
+%A great reference for simplicial sets is Goerss-Jardine, but it's about 500 pages long.
+%Another reference is Weibel's homological algebra.
+%And also May's simplicial objects book.
 
-A great reference for simplicial sets is Goerss-Jardine, but it's about 500 pages long.
-Another reference is Weibel's homological algebra.
-And also May's simplicial objects book.
-
-Remember that $\Deltab\ni[n]$ for $n\geq 0$ where $[n] = \{0,\cdots,n\}$.
-A simplicial object is a functor $X:\Deltab^{op}\to\cc$.
-Remember that:
-$$
-|X| = \coprod_{n\geq 0}\Delta^n\times X_n/\sim
-$$
-Remember that $s^i:[n]\to [n+1]$ repeats $i$. Part of this relation $\sim$ is that $(v,s_i x)\sim (s^i v,x)$.
-That means that $x\in X_{n-1}$ and $v\in\Deltab^n$.
-This tells us that $\img(s_i:X_{n-1}\to X_{n})$ indexes cells that lie in the $(n-1)$-skeleton $\mathrm{sk}_{n-1}|X| = \coprod_{k\leq n-1}\Delta^k\times X_k/\sim$.
-
-This gives two functors
-$$
-|-|:s\Set\stackrel{\rightarrow}{\leftarrow} \Top:\Sin
-$$
-and I defined the unit and counit last time.
+%Remember that $\Deltab\ni[n]$ for $n\geq 0$ where $[n] = \{0,\cdots,n\}$.
+%A simplicial object is a functor $X:\Deltab^{op}\to\cc$.
+%Remember that:
+%$$
+%|X| = \coprod_{n\geq 0}\Delta^n\times X_n/\sim
+%$$
+%Remember that $s^i:[n]\to [n+1]$ repeats $i$. Part of this relation $\sim$ is that $(v,s_i x)\sim (s^i v,x)$.
+%That means that $x\in X_{n-1}$ and $v\in\Deltab^n$.
+%This tells us that $\img(s_i:X_{n-1}\to X_{n})$ indexes cells that lie in the $(n-1)$-skeleton $\mathrm{sk}_{n-1}|X| = \coprod_{k\leq n-1}\Delta^k\times X_k/\sim$.
+%
+%This gives two functors
+%$$
+%|-|:s\Set\stackrel{\rightarrow}{\leftarrow} \Top:\Sin
+%$$
+%and I defined the unit and counit last time.
+One important result in the story of geometric realization introduced in the
+last section is the following theorem of Milnor's.
 \begin{theorem}[Milnor]
-    The map $|\Sin(X)|\to X$ is a weak equivalence.
+    Let $X$ be a space. The map $|\Sin(X)|\to X$ is a weak equivalence.
 \end{theorem}
-This is a functorial CW-approximation, but it's rather large.
-It's not at all minimal.
-It's some uncountable CW-complex.
-\begin{theorem}[You did this]
-    There is a homeomorphism $|X\times Y|\xrightarrow{\simeq} |X|\times |Y|$ (product in $k$-spaces).
-    The product of two simplicial sets is defined as $(X\times Y)_n:=X_n\times Y_n$.
+As a consequence, this begets a functorial CW-approximation to $X$.
+Unforunately, it's rather large.
+
+In the last section, we saw that $|-|$ was a left adjoint. Therefore, it
+preserves colimits (Theorem \ref{adjointslimits}). Surprisingly, it also
+preserves products:
+\begin{exercise}[Hard]\label{realization-product}
+    Let $X$ and $Y$ be simplicial sets. Their product $X\times Y$ is defined to
+    be the simplicial set such that $(X\times Y)_n = X_n\times Y_n$. Under this
+    notion of product, there is a homeomorphism
+    $$|X\times Y|\xrightarrow{\simeq} |X|\times |Y|.$$
+    It is important that this product is taken in the category of $k$-spaces.
+\end{exercise}
+
+Last time, we defined the classifying space $B\cc$ of $\cc$ to be $|N\cc|$.
+\begin{theorem}\label{classifying-product}
+    The natural map $B(\cc\times\cd)\xrightarrow{\simeq}B\cc\times B\cd$ is a
+    homeomorphism\footnote{Recall that if $\cc$ and $\cd$ are categories, the
+    product $\cc\times\cd$ is the category whose objects are pairs of objects
+    of $\cc$ and $\cd$, and whose morphisms are pairs of morphisms in $\cc$ and
+    $\cd$.}.
 \end{theorem}
-Let $\Cat$ be the category of small categories and functors. The nerve gives a functor:
-$$
-\Cat\xrightarrow{N}s\Set
-$$
-\begin{definition}
-    In $\Cat$, define $C\times D$ as the category whose objects are pairs of object of $C$ and $D$ and morphisms are pairs of morphisms.
-\end{definition}
-Then $N(\cc\times\cd) = N\cc\times N\cd$.
-This is pretty clear.
-Then, I defined $B\cc:=|N\cc|$.
-\begin{theorem}
-    The natural map $B(\cc\times\cd)\xrightarrow{\simeq}B\cc\times B\cd$ is a homeomorphism.
-\end{theorem}
-I remember trying to explain to you that there's a simplicial simplex $\Deltab^n = \Deltab(-,[n])$, and trying to convince you that $|\Deltab^n| = \Delta^n$.
+\begin{proof}
+    It is clear that $N(\cc\times\cd) \simeq N\cc\times N\cd$. Since $B\cc =
+    |N\cc|$, the desired result follows from Exercise
+    \ref{realization-product}.
+\end{proof}
+In light of Theorem \ref{classifying-product}, it is natural to ask how natural
+transformations behave under the classifying space functor. To discuss this, we
+need some categorical preliminaries.
 
-Here's another observation about $\Cat$: it's Cartesian closed. There's that word again. I mean, it's got products, and it's got ``function objects'' as well.
-If I have $\cd^\cc$, this is a category, and it's the category of functors $\Fun(\cc,\cd)$ and natural transformations.
-I leave it to you to verify that this is really the right adjoint of the product.
+The category $\Cat$ is Cartesian closed (Definition \ref{cartesian-closed}).
+Indeed, the right adjoint to the product is given by the functor
+$\cd\mapsto\Fun(\cc,\cd)$, as can be directly verified.
 
-For instance, here's a category: $[1]$. A functor $[1]\to\cc$ is just an arrow in $\cc$.
-So, a functor $[1]\to\cd^\cc$ is a natural transformation between two functors $f_0$ and $f_1$.
-This is the same thing as a functor $\cc\times[1]\to\cd$, and in the product category $\cc\times[1]$ is a pair of objects of $\cc$ and a map between them.
-So, we're good.
+Consider the category $[1]$. This is particularly simple: a functor $[1]\to\cc$
+is just an arrow in $\cc$. It follows that a functor $[1]\to\cd^\cc$ is a
+natural transformation between two functors $f_0$ and $f_1$ from $\cc$ to
+$\cd$. By our discussion above, this is the same as a functor
+$\cc\times[1]\to\cd$.
 
-Now, $B([1]\times \cc)\simeq B[1]\times B\cc\to B\cd$. But $B[1] = \Delta^1$.
-In other words, this is a homotopy of maps $Bf_0,Bf_1:B\cc\to B\cd$!
-\begin{lemma}
-    A natural transformation $\theta:f_0\to f_1$ where $f_0,f_1:\cc\to\cd$ induces a homotopy $Bf_0\sim Bf_1:B\cc\to B\cd$.
+By Theorem \ref{cartesian-closed}, we have a homeomorphism $B([1]\times
+\cc)\simeq B[1]\times B\cc$. One can show that $B[1] = \Delta^1$, so a natural
+transformation between $f_0$ and $f_1$ begets a map $\Delta^1\times B\cc\to
+B\cd$ between $Bf_0$ and $Bf_1$. Concretely:
+\begin{lemma}\label{nat-trans-htpy}
+    A natural transformation $\theta:f_0\to f_1$ where $f_0,f_1:\cc\to\cd$
+    induces a homotopy $Bf_0\sim Bf_1:B\cc\to B\cd$.
 \end{lemma}
-There's something interesting about this.
-This notion of a homotopy is \emph{reversible}, but that's not at all true about natural transformations.
-One of the conclusions is, therefore, that $B$ forgets the ``polarity'' in $\Cat$.
+An interesting comment is in order. The notion of a homotopy is ``reversible'',
+but that is definitely not true for natural transformations! The functor $B$
+therefore ``forgets the polarity in $\Cat$''.
 
-For example, suppose $L\dashv R$ where $L:\cc\to \cd$; then we have a unit $1_\cc\to RL$ and a counit $LR\to 1_\cd$.
-When I apply classifying spaces, I get induced maps $B\cc\to B\cd$ and $B\cd\to B\cc$.
-Thus, $B$ of the unit and counit are homotopy equivalences that are inverse up to homotopy.
-So if you have two categories that are related by any adjoint pair, then they're homotopy equivalence.
+Lemma \ref{nat-trans-htpy} is quite powerful: consider an adjunction $L\dashv
+R$ where $L:\cc\to \cd$; then we have natural transformations given by the unit
+$1_\cc\to RL$ and the counit $LR\to 1_\cd$. By Lemma \ref{nat-trans-htpy} we
+get a homotopy equivalence between $B\cc$ and $B\cd$. In other words, two
+categories that are related by any adjoint pair are homotopy equivalent.
 
-Here's another example. We have the category $[0]$. What is an adjoint pair $L\dashv R$ where $L:[0]\to \cd$? Well $L$ determines an object $\ast$ of $\cd$. But the composition $LR(d)\to d$.
-But $L$ of anything is just $\ast$. So this is a unique morphism $\ast\to X$.
-It's unique since $\cd(\ast,X) = \cc(0,0) = 0$.
-An adjoint pair like that therefore specifies an initial object of $\cd$.
+A special case of the above discussion yields a rather surprising result.
+Consider the category $[0]$. Let $\cd$ be another category such that there is
+an adjoint pair $L\dashv R$ where $L:[0]\to \cd$. Then $L$ determines an object
+$\ast$ of $\cd$. Let $d$ be any object of $\cd$. We have the counit $LR(d)\to
+d$; but $LR(d) = \ast$, so there is a unique morphism $\ast\to X$. (To see
+uniqueness, note that the adjunction $L\dashv R$ gives an identification
+$\cd(\ast,X) = \cc(0,0) = 0$.) In other words, such a category $\cd$ is simply
+a category with an initial object.
 
-The same way, if I had $L\dashv R$ where $L:\cd\to [0]$, we get a terminal object of $\cd$.
-But look, if $\cd$ is any category with a terminal (or initial) object, then $B\cd$ is contractible!
-
-Oh my god, look what time it is! I was just getting warmed up.
+Arguing similarly, any category $\cd$ with adjunction $L\dashv R$ where
+$L:\cd\to [0]$ is simply a category with a terminal object. From our discussion
+above, we conclude that if $\cd$ is any category with a terminal (or initial)
+object, then $B\cd$ is contractible.

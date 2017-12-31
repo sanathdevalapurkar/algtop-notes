@@ -1,170 +1,183 @@
-\section{Classifying spaces}
-Let $\cU$ be a cover of $X$.
-Let $\cCC\cU$ denote the ...
-Let $p:P\to X$ be a principal $G$-bundle.
-Say that $\cU$ trivializes $P$ if there are homeomorphisms $p^{-1}(U)\xrightarrow{\simeq} U\times G$ over $U$.
-Equivalently, it's a trivialization of the pullback bundle $\epsilon^\ast P$:
-\begin{equation*}
-    \xymatrix{
-	\epsilon^\ast P\ar[r]\ar[d] & P\ar[d]\\
-	\coprod_{U\in\cU} U\ar[r]_{\epsilon} & X
-    }
-\end{equation*}
-This is the same thing as a functor $\cCC(\cU)\xrightarrow{\gamma} G$.
-On classifying spaces, we therefore get a map $X\xleftarrow{\simeq} \cCC(\cU)\xrightarrow{\gamma} BG$, with the left map given by $\epsilon$.
-How unique is $\theta$?
+\section{Classifying spaces and bundles}
+Let $\pi:Y\to X$ be a map of spaces. This defines a ``descent category''
+$\cCC(\pi)$ whose objects are the points of $Y$, whose morphisms are points of
+$Y\times_X Y$, and whose structure morphisms are the obvious maps. Let $cX$
+denote the category whose objects and morphisms are both given by points of
+$X$, so that the nerve $NcX$ is the constant simplicial object with value $X$.
+There is a functor $\cCC(\pi)\to cX$ specified by the map $\pi$. 
 
-Suppose I have two principal $G$-bundles over $X$:
-\begin{equation*}
-    \xymatrix{
-	P\ar[r]^{\simeq} \ar[dr] & Q\ar[d]\\
-	& X
-    }
-\end{equation*}
-Let me put this off for a minute.
+Let $\cU$ be a cover of $X$. Let $\cCC(\cU)$ denote the descent category
+associated to the obvious map $\epsilon:\coprod_{U\in \cU} U\to X$. It is easy
+to see that $\epsilon:B\cCC(\cU) \simeq X$ if $\cU$ is numerable. The morphism
+determined by $x\in U\cap V$ is denoted $x_{U,V}$. Suppose $p:P\to X$ is a
+principal $G$-bundle.  Then $\cU$ trivializes $p$ if there are homeomorphisms
+$t_U:p^{-1}(U)\xrightarrow{\simeq} U\times G$ over $U$. Specifying such
+homeomorphisms is the same as a trivialization of the pullback bundle
+$\epsilon^\ast P$.
 
-We want to vary the open cover.
-Say that $\cV$ refines $\cU$ if for any $V\in \cU$, there exists $U\in\cU$ such that $V\subseteq U$.
-A \emph{refinement} is a function $p:\cV\to\cU$ such that $V\subseteq p(V)$.
-A refinement defines a map $\coprod_{V\in \cV} V\to \coprod_{U\in\cU} U$, also denoted $\rho$.
-Both cover $X$.
-So I get a map $\cCC(\cV)\to \cCC(\cU)$ that covers $cX$ (constant with only identity morphisms) that commutes strictly.
-When I take classifying spaces, I get a diagram:
+This, in turn, is the same as a functor $\theta_P:\cCC(\cU)\to G$. To
+see this, we note that the $G$-equivariant composite $t_V\circ t_U^{-1}:(U\cap
+V)\times G\to (U\cap V)\times G$ is determined by the value of $(x,1)\in (U\cap
+V)\times G$. The map $U\cap V\to G$ is denoted $f_{U,V}$. Then, the functor
+$\theta_P:\cCC(\cU)\to G$ sends every object of $\cCC(\cU)$ to the point, and
+$x_{U,V}$ to $f_{U,V}(x)$.
+
+On classifying spaces, we therefore get a map $X\xleftarrow{\simeq}
+B\cCC(\cU)\xrightarrow{\theta_P} BG$, where the map on the left is given by
+$\epsilon$.
+\begin{exercise}
+    Prove that $\theta_P^\ast EG \simeq \epsilon^\ast P$.
+\end{exercise}
+This suggests that $BG$ is a classifying space for principal $G$-bundles (in
+the sense of \S \ref{grassmannmodel}). To make this precise, we need to prove
+that two principal $G$-bundles are isomorphic if and only if the associated
+maps $X\to BG$ are homotopic.
+
+To prove this, we will need to vary the open cover. Say that $\cV$
+\emph{refines} $\cU$ if for any $V\in \cU$, there exists $U\in\cU$ such that
+$V\subseteq U$. A \emph{refinement} is a function $p:\cV\to\cU$ such that
+$V\subseteq p(V)$. A refinement $p$ defines a map $\coprod_{V\in \cV} V\to
+\coprod_{U\in\cU} U$, denoted $\rho$.
+
+As both $\coprod_{V\in \cV} V$ and $\coprod_{U\in\cU} U$ cover $X$, we get a
+map $\cCC(\cV)\to \cCC(\cU)$ over $cX$. Taking classifying spaces begets a
+diagram:
 $$
 \xymatrix{
     B\cCC(\cV)\ar[r]\ar[dr] & B\cCC(\cU)\ar[d]\\
     & X
 }
 $$
-Suppose $t$ trivialization of $P$ for $\cU$.
-Well, I have a functor $B\cCC(\cU)\to BG$, so I get a trivialization $s$ for $\cV$.
-This is a map $s_V:p^{-1}(V)\to V\times G$ that works as:
+Let $t$ be trivialization of $P$ for the open cover $\cU$. The construction
+described above begets a functor $B\cCC(\cU)\to BG$, so we get a trivialization
+$s$ for $\cV$. This is a homeomorphism $s_V:p^{-1}(V)\to V\times G$ which fits
+into the following diagram:
 \begin{equation*}
     \xymatrix{
-	p^{-1}(V)\ar[r]^p\ar[d] & V\times G\ar[d]\\
-	p^{-1}(\rho(V))\ar[r]_{t_{\rho(V)}} & \rho(V)\times G
+	p^{-1}(V)\ar[r]^{s_V}_\sim\ar[d] & V\times G\ar[d]\\
+	p^{-1}(\rho(V))\ar[r]_{t_{\rho(V)}}^\sim & \rho(V)\times G
     }
 \end{equation*}
-Just by construction, we have a larger commutative diagram:
+By construction, there is a large commutative diagram:
 \begin{equation*}
 \xymatrix{
-    B\cCC(\cV)\ar[r]\ar[dr]\ar@/^/[rr] & B\cCC(\cU)\ar[d]\ar[r] & BG\\
-    & X
+    B\cCC(\cV)\ar[r]\ar[dr]^\sim\ar@/^0.135in/[rr] &
+    B\cCC(\cU)\ar[d]^\sim\ar[r] & BG\\
+    & X.
 }
 \end{equation*}
-Suppose I have trivializations $\cU, t$ of $P$ and $\cV, s$ of $Q$.
-Let $\cW$ be a common refinement.
-I have a diagram:
+This justifies dropping the symbol $\cU$ in the notation for the map
+$\theta_P$.
+
+Consider two principal $G$-bundles over $X$:
 \begin{equation*}
     \xymatrix{
-	& \cCC(\cU)\ar[dr]^{\gamma^\cU_{P}} & \\
-	\cCC(\cW)\ar[ur]\ar[dr]\ar@/^/[rr]^{\gamma^\cW_P}\ar@/_/[rr]_{\gamma^\cW_Q} & & G\\
-	& \cCC(\cV)\ar[ur]_{\gamma^\cV_Q}
+	P\ar[r]^{\simeq} \ar[dr] & Q\ar[d]\\
+	& X,
     }
 \end{equation*}
-I claim that there is a natural transformation $\beta:\gamma^\cW_P\to \gamma^\cW_Q$.
-Then, the two maps $\theta_P,\theta_Q:B\cCC(\cW)\simeq X\to BG$ are homotopic.
-
-OK, so what is $\beta$? It assigns to each object in $\cCC(\cW)$ some $x_W$.
-At this point I didn't follow what was being said.
-
-Ta-da!
-This completes the story that $G$-bundles are represented by $BG$.
-Let's see some examples then.
-\subsection{Two general principles}
-Let $G$ be some topological group.
-Here is a summary of what we have done.
-I constructed $EG$, which is contractible with $G$ acting freely on the right.
-There is an orbit projection $EG\to BG$, and it's a principal $G$-bundle provided $G$ is, like, a Lie group.
-For instance a discrete group.
-And, it's universal, so that $\Bun_G(X)\xleftarrow{\simeq} [X, BG]$ given by $f\mapsto [f^\ast EG]$.
-
-Suppose $G$ acts on $E$, say from the left.
-Then let $E^{op}$ be $E$ as a space, but with $G$ acting on the left.
-So $g\cdot e = e\cdot g^{-1}$.
-I claim that we then have a fiber bundle:
-\begin{equation*}
-    E\to EG\times_G E\to BG
-\end{equation*}
-Note that I have to choose a point in $EG$ to get a map $E\to EG\times_G E$.
-
-I could collapse $EG$ to a point instead, and I have a map $G\backslash E$.
-The fiber of the map $EG\times_G E\to G\backslash E$, and the fiber over $G_x$ is $BG_x$, where $G_x = \{g: gx = x\}$.
-
-What I want to say is that if $G$ acts principally on $E$, then $E\to E/G$ is a principal $G$-bundle.
-We have a fiber bundle $EG\to EG\times_G E\to G\backslash E$.
-Since $EG$ is contractible, then $EG\times_G E$ is weakly equivalent to $G\backslash E$.
-If $E\simeq \ast$, then $p$ is also a weak equivalence.
-Thus $BG\simeq G\backslash E$.
-So if you come up with another principal action on a contractible space, then $BG$ is weakly equivalent to $G\backslash E$.
-The construction with simplicial sets was a very concrete way of constructing $BG$, but you could have chosen any principal action on a contractible space.
-
-Here's the second comment.
-Suppose $X$ is a pointed path connected.
-Remember that $X$ has a path space $PX = X^I_\ast$.
-This is contractible by the spaghetti move.
-The map $PX\to X$ is a fibration, with fiber $\Omega X$.
-
-For instance, suppose $X = BG$.
-Then, I have:
+and suppose I have trivializations $(\cU, t)$ of $P$ and $(\cW, s)$ of $Q$.
+Let $\cV$ be a common refinement, so that there is a diagram:
 \begin{equation*}
     \xymatrix{
-	G\ar[rr] & & \Omega BG\ar[d]\\
-	EG\ast\ar[dr]\ar[rr] & & PBG\simeq \ast \ar[dl]\\
-	& BG &
+	& \cCC(\cU)\ar[dr]^{\theta^\cU_{P}} & \\
+	\cCC(\cV)\ar[ur]\ar[dr] \ar@/^/[rr]^{\theta^\cV_P}
+	\ar@/_/[rr]_{\theta^\cV_Q} & & G\\
+	& \cCC(\cW)\ar[ur]_{\theta^\cW_Q}
     }
 \end{equation*}
-A nullhomotopy of $EG\to BG$ (it is nullhomotopic) is exactly a lift into the path space, so I have the map $EG\to PBG$ in the diagram above.
-As $EG$ and $PBG$ are both contractible, we find that $\Omega BG$ is weakly equivalent to $G$.
-This weak equivalence is a $H$-map (it commutes up to homotopy with the multiplication on both sides).
+Included in the diagram is a mysterious natural transformation
+$\beta:\theta^\cV_P\to \theta^\cV_Q$, whose construction is left as an exercise
+to the reader\todo{Should we describe this? It's rather technical...}. Its
+existence combined with Lemma \ref{nat-trans-htpy} implies that the two maps
+$\theta_P,\theta_Q:B\cCC(\cV)\simeq X\to BG$ are homotopic, as desired.
+
+\subsection{Topological properties of $BG$}
+Before proceeding, let us summarize the constructions discussed so far. Let $G$
+be some topological group (assumed to be an absolute neighborhood retract of a
+Lie group). We constructed $EG$, which is a contractible space with $G$ acting
+freely on the right (this works for any topological group). There is an orbit
+projection $EG\to BG$, which is a principal $G$-bundle under our assumption on
+$G$. The space $BG$ is universal, in the sense that there is a bijection
+$$\Bun_G(X)\xleftarrow{\simeq} [X, BG]$$
+given by $f\mapsto [f^\ast EG]$.
+
+Let $E$ be a space such that $G$ acts on $E$ from the left. If $P\to B$ is any
+principal $G$-bundle, then $P\times E\to P\times_G E$ is another principal
+$G$-bundle. In the case $P = EG$, it follows that if $E$ is a contractible
+space on which $G$ acts, then the quotient $EG\times_G E$ is a model for $BG$.
+Recall that $EG$ is contractible. Therefore, if $E$ is a contractible space on
+which $G$ acts freely, then the quotient $G\backslash E$ is a model for $BG$.
+Of course, one can run the same argument in the case that $G$ acts on $E$ from
+the right. Although the construction with simplicial sets provided us with a
+very concrete description of the classifying space of a group $G$, we could
+have chosen any principal action on a contractible space in order to obtain a
+model for $BG$.
+
+Suppose $X$ is a pointed path connected space. Remember that $X$ has a
+contractible path space $PX = X^I_\ast$. The canonical map $PX\to X$ is a
+fibration, with fiber $\Omega X$.
+
+Consider the case when $X = BG$. Then, we can compare the above fibration with
+the fiber bundle $EG\to BG$:
+\begin{equation*}
+    \xymatrix{
+	G\ar[r]\ar[d] & \Omega BG\ar[d]\\
+	\ast \simeq EG\ar[d]\ar@{-->}[r] & PBG\simeq \ast \ar[d]\\
+	BG\ar@{=}[r] & BG
+    }
+\end{equation*}
+The map $EG\to BG$ is nullhomotopic; a choice of a nullhomotopy is exactly a
+lift into the path space. Therefore, the dotted map $EG\to PBG$ exists in the
+above diagram. As $EG$ and $PBG$ are both contractible, we conclude that
+$\Omega BG$ is weakly equivalent to $G$. In fact, this weak equivalence is a
+$H$-map, i.e., it commutes up to homotopy with the multiplication on both
+sides.
 \begin{remark}[Milnor]
-    If $X$ is a countable CW-complex, then $\Omega X$ is homotopy equivalent to a CW-complex.
-    It's not a CW-complex (any space is weakly equivalent to a CW-complex, but these are homotopy equivalent to a CW-complex).
-\end{remark}
-\begin{remark}[another Milnor remark]
-    $\Omega X$ is weakly equivalent to a topological group $GX$ such that $BGX\simeq X$.
+    If $X$ is a countable CW-complex, then $\Omega X$ is not a CW-complex, but
+    it is \emph{homotopy} equivalent (not just weakly equivalent) to one.
+    Moreover, $\Omega X$ is weakly equivalent to a topological group $GX$ such
+    that $BGX\simeq X$.
 \end{remark}
 \subsection{Examples}
-I want to say that $BU(n)\simeq \Gra_n(\cc^\infty)$.
-The reason is:
-\begin{equation*}
-    \xymatrix{
-	U(n)\ar[d] & U(n)\ar[d]\\
-	EU(n) \ar[d] \ar[r]^{\simeq} & V_n(\cc^\infty)\simeq \ast\ar[d]\\
-	BU(n) \ar[r]_{\simeq} & \Gra_n(\cc^\infty)
-    }
-\end{equation*}
-Here $V_n(\cc^\infty)$ is the contractible space of complex $n$-frames in $\cc^\infty$.
-It's the same as isometric embeddings of $\cc^n$ into $\cc^\infty$.
-$U(n)$ acts by precomposition.
+We claim that $BU(n)\simeq \Gra_n(\cC^\infty)$. To see this, let
+$V_n(\cC^\infty)$ is the contractible space of complex $n$-frames in
+$\cC^\infty$, i.e., isometric embeddings of $\cc^n$ into $\cc^\infty$. The
+Lie group $U(n)$ acts principally on $V_n(\cC^\infty)$ by precomposition, and the
+quotient $V_n(\cC^\infty)/U(n)$ is exactly the Grassmannian
+$\Gra_n(\cC^\infty)$. As $\Gra_n(\cC^\infty)$ is the quotient of a principal action
+of $U(n)$ on a contractible space, our discussion in the previous section
+implies the desired claim.
 
 Let $G$ be a compact Lie group (eg finite).
 \begin{theorem}[Peter-Weyl]
     There exists an embedding $G\hookrightarrow U(n)$ for some $n$.
 \end{theorem}
-Thus, $G$ acts principally on $V_n(\cc^\infty)$, since $U(n)$ does.
-Thus $V_n(\cc^\infty)/G$ is a model for $BG$!
+Since $U(n)$ acts principally on $V_n(\cC^\infty)$, it follows $G$ also acts
+principally on $V_n(\cc^\infty)$. Therefore $V_n(\cc^\infty)/G$ is a model for
+$BG$. It is not necessarily that this the most economic description of $BG$.
 
-For instance, what about $\Sigma_n$, acting on $n$-points?
-I can imitate that linear model like this.
-Let $\mathrm{Conf}_n(\RR^k)$ denote embeddings of $\{1,\cdots,n\}\to \RR^k$ (ordered distinct $n$-tuples).
-These things are definitely not contractible.
-The low-dimensional homotopy groups are zero, though.
-So, $\mathrm{Conf}_n(\RR^\infty)\simeq \ast$.
-The symmetric group obviously acts freely on this (same as principally for finite groups).
-Thus, $B\Sigma_n$ is th space of unordered configurations of $n$ distinct points in $\RR^\infty$.
-But, you know, any group acts freely on itself, and it embeds into a symmetric group.
-So, like above, if $G$ is finite, a model for $BG$ is $\mathrm{Conf}_n(\RR^\infty)/G$.
+For instance, in the case of the symmetric group $\Sigma_n$, we have a much
+nicer geometric description of the classifying space. Let
+$\mathrm{Conf}_n(\RR^k)$ denote embeddings of $\{1,\cdots,n\}\to \RR^k$
+(ordered distinct $n$-tuples). This space is definitely \emph{not}
+contractible! However, the classifying space $\mathrm{Conf}_n(\RR^\infty)$ is
+contractible. The symmetric group obviously acts freely on this (for finite
+groups, a principal action is the same as a free action). It follows that
+$B\Sigma_n$ is the space of \emph{un}ordered configurations of $n$ distinct
+points in $\RR^\infty$. Using Cayley's theorem from classical group theory, we
+find that if $G$ is finite, a model for $BG$ is the quotient
+$\mathrm{Conf}_n(\RR^\infty)/G$.
 
-One more thing.
-If $A$ is a topological abelian group, then $\mu:A\times A\to A$ is a homomorphism.
-So, I get a map $BA\times BA\to BA$ which is another abelian group structure.
-We know what it is!
-$BA = K(A, 1)$.
-Its universal cover is contractible (it's $EA$).
-I have a topological abelian group model for $K(A, 1)$.
-Well, $B^2 A$ sits in a fibration $BA \to EBA\simeq \ast \to B^2 A$.
-So the homotopy groups of $B^2 A$ are the same as that of $BA$, but shifted.
-Doing this multiple times gives us a model:
-$$B^n A = K(A, n)$$
-It's one of the coolest things to do with the classifying space construction.
+We conclude this chapter with a construction of Eilenberg-Maclane spaces via
+classifying spaces. If $A$ is a topological abelian group, then the
+multiplication $\mu:A\times A\to A$ is a homomorphism. Applying the classifying
+space functor begets a map $m:BA\times BA\to BA$. If $G$ is a finite group, then
+$BA = K(A, 1)$. The map $m$ above gives a topological abelian group model for
+$K(A, 1)$. There is nothing preventing us from iterating this construction: the
+space $B^2 A$ sits in a fibration
+$$BA \to EBA\simeq \ast \to B^2 A.$$
+It follows from the long exact sequence in homotopy that the homotopy groups of
+$B^2 A$ are the same as that of $BA$, but shifted up by one. Repeating this
+procedure multiple times gives us an explicit model for $K(A,n)$:
+$$B^n A = K(A, n).$$

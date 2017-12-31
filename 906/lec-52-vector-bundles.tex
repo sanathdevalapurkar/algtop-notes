@@ -1,92 +1,186 @@
 \section{Vector bundles, principle bundles}
-I was late because there was a fire at my dorm. From what I gather, a point is a map from the terminal object; this is also known as the cross section. A vector space over $B$ is a space $E\to B$ over $B$ with the following structures:
-\begin{equation*}
-    \xymatrix{
-	E\times_B E\ar[d]\ar[r]^\mu & E\ar[dl] & B\ar[l]_{zero}\ar[dll]\\
-	B
-    }
-\end{equation*}
-And an inverse:
-\begin{equation*}
-    \xymatrix{
-	E\ar[d]\ar[r]^\chi & E\ar[dl]\\
-	B &
-    }
-\end{equation*}
-And an action of $\RR$:
-\begin{equation*}
-    \xymatrix{
-	\RR\times E\ar[dr]^{p\circ pr_2}\ar@{=}[r] & (B\times\RR)\times_B E\ar[r]\ar[d] & E\ar[dl]^p\\
-	& B &
-    }
-\end{equation*}
-Because $\RR$ is a field, we know that $p^{-1}(b)$ is a $\RR$-vector space over $b\in B$.
-
-A stupid example is the projection $B\times V\to B$ where $V$ is a (always finite-dimensional) vector space.
-\begin{example}
-    The map $\RR\times\RR\xrightarrow{(s,t)\mapsto(s,st)}\RR\times\RR$ over $\RR$ (with projection onto the first factor) is an isomorphism on all fibers, but is zero everywhere else. Taking the kernel only has $0$ everywhere except for over $0\in\RR$. I guess you can call this the ``skyscraper'' vector bundle over $B$.
-\end{example}
-There's a subject called sheaf theory to accommodate examples like this. Anyway, there's only so far you can go with this ``vector space'' over $B$. So we can refine this:
-\begin{definition}
-    A \emph{vector bundle} over $B$ is a vector space over $B$ that is locally trivial. (We'll always assume numerable as well, and that the fiber dimensions are always finite.)
-\end{definition}
-If $p:E\to B$ is a vector bundle, then $E$ is called the \emph{total space}, $p$ is called the projection, and $B$ is called a base space. We denote $\xi$ or $\zeta$ or something for a vector bundle, and we write $E(\xi)\to B(\xi)$ for the actual map.
-\begin{example}
-\begin{enumerate}
-    \item The trivial bundle $B\times\RR^n\to B$. We denote this by $n\epsilon$. That's a pretty stupid example.
-    \item The most interesting possible example come from the Grassmannians $\Gra_K(\RR^n)$, $\Gra_k(\cc^n)$, and $\Gra_k(\HH^n)$. Over this Grassmannian is the \emph{tautological bundle} $\gamma$. This is a sub-bundle of $n\epsilon$. (I'll just define it for $\Gra_K(\RR^n)$, you can do it for the others.) The total space of $\gamma$ is defined as:
+Let $X$ be a topological space. A point in $X$ can be viewed as a map $\ast\to
+X$; this is a cross section of the canonical map $X\to \ast$. Motivated by
+this, we will define a vector space over $B$ to be a space $E\to B$ over $B$
+with the following extra data:
+\begin{itemize}
+    \item a multiplication $\mu:E\times_B E\to E$, compatible with the maps
+	down to $B$;
+    \item a ``zero'' section $s:B\to E$ such that the composite $B\xar{s}E\to
+	B$ is the identity;
+    \item an inverse $\chi:E\to E$, compatible with the map down to $B$; and
+    \item an action of $\RR$:
 	\begin{equation*}
-	    E(\gamma) = \{(V,x)\in\Gra_k(\RR^n)\times\RR^n:x\in V\}
+	    \xymatrix{
+		\RR\times E\ar[dr]_{p\circ \pr_2}\ar@{=}[r] &
+		(B\times\RR)\times_B E\ar[r]\ar[d] & E\ar[dl]^p\\
+		& B &
+	    }
 	\end{equation*}
-	This maps down to the Grassmannian via $(V,x)\mapsto V$. I'll leave it to you to determine why this is locally trivial.
+\end{itemize}
+Because $\RR$ is a field, the last piece of data shows that $p^{-1}(b)$ is a
+$\RR$-vector space for any point $b\in B$.
+\begin{example}\label{trivialvectorbundle}
+    A rather silly example of a vector space over $B$ is the projection
+    $B\times V\to B$ where $V$ is a (real) vector space, which we will always
+    assume to be finite-dimensional.
+\end{example}
+\begin{example}
+    Consider the map
+    $$\RR\times\RR\xrightarrow{(s,t)\mapsto(s,st)}\RR\times\RR,$$
+    over $\RR$ (the structure maps are given by projecting onto the first
+    factor). It is an isomorphism on all fibers, but is zero everywhere else.
+    The kernel is therefore $0$ everywhere, except over the point $0\in\RR$.
+    This the ``skyscraper'' vector bundle over $B$.
+\end{example}
+Sheaf theory accommodates examples like this.
 
-	\begin{example}
-	    When $k=1$, we have $\Gra_1(\RR^n) = \RP^{n-1}$. Then $\gamma$ is one-dimensional, and it's called a line bundle. It's the canonical line bundle over $\RP^{n-1}$.
-	\end{example}
-    \item $M$ is a smooth manifold, then $\tau_M$ is the tangent bundle $TM\to M$ over $M$. This is a super important and useful vector bundle. I'll give some examples in a minute. Let's do one example right now! $S^{n-1}$ for example; I can identify $TS^{n-1} = \{(x,v)\in S^{n-1}\times\RR^n:v\cdot x = 0\}$.
+One can only go so far you can go with this simplistic notion of a ``vector
+space'' over $B$. Most interesting and naturally arising examples have a little
+more structure, which is exemplified in the following definition.
+\begin{definition}
+    A \emph{vector bundle} over $B$ is a vector space over $B$ that is locally
+    trivial (in the sense of Definition \ref{fiberbundle}).
+\end{definition}
+\begin{remark}
+    We will always assume that the space $B$ admits a numerable open cover (see
+    Definition \ref{numerable}) which trivializes the vector bundle. Moreover,
+    the dimension of the fiber will always be finite.
+\end{remark}
+If $p:E\to B$ is a vector bundle, then $E$ is called the \emph{total space},
+$p$ is called the \emph{projection map}, and $B$ is called the \emph{base
+space}. We will always use a Greek letter like $\xi$ or $\zeta$ to denote a
+vector bundle, and $E(\xi)\to B(\xi)$ denotes the actual projection map from
+the total space to the base space. The phrase ``$\xi$ is a vector bundle over
+$B$'' will also be shortened to $\xi\downarrow B$.
+\begin{example}\label{grassmannianvb}
+\begin{enumerate}
+    \item Following Example \ref{trivialvectorbundle}, one example of a vector
+	bundle is the trivial bundle $B\times\RR^n\to B$, denoted by
+	$n\epsilon$.
+    \item In contrast to this silly example, one gets extremely interesting
+	examples from the Grassmannians $\Gra_k(\RR^n)$, $\Gra_k(\cC^n)$, and
+	$\Gra_k(\HH^n)$. For simplicity, let $K$ denote $\RR,\cC$, or $\HH$.
+	Over $\Gra_k(K^n)$ lies the \emph{tautological bundle} $\gamma$. This
+	is a sub-bundle of $n\epsilon$ (i.e., the fiber over any point $x\in
+	\Gra_k(K^n)$ is a subspace of the fiber of $n\epsilon$ over $x$). The
+	total space of $\gamma$ is defined as:
+	\begin{equation*}
+	    E(\gamma) = \{(V,x)\in\Gra_k(K^n)\times K^n:x\in V\}
+	\end{equation*}
+	This projection map down to $\Gra_k(K^n)$ is the literal projection map
+	$$(V,x)\mapsto V.$$
+	\begin{exercise}
+	    Prove that $\gamma$, as defined above, is locally trivial; so
+	    $\gamma$ defines a vector bundle over $\Gra_k(K^n)$.
+	\end{exercise}
+	    For instance, when $k=1$, we have $\Gra_1(\RR^n) = \RP^{n-1}$. In
+	    this case, $\gamma$ is one-dimensional (i.e., the fibers are all of
+	    dimension $1$); this is called a \emph{line bundle}. In fact, it is
+	    the ``canonical line bundle'' over $\RP^{n-1}$.
+    \item Let $M$ be a smooth manifold. Define $\tau_M$ to be the tangent
+	bundle $TM\to M$ over $M$. For example, if $M = S^{n-1}$, then
+	$$TS^{n-1} = \{(x,v)\in S^{n-1}\times\RR^n:v\cdot x = 0\}.$$
 \end{enumerate}
 \end{example}
-\subsection{Constructions}
-You can't take kernels of maps of vector bundles, but just about anything you can do for vector spaces you can do for bundles.
+\subsection{Constructions with vector bundles}
+One cannot take the kernels of a maps of vector bundles; but just about
+anything which can be done for vector spaces can also be done for vector
+bundles:
 \begin{enumerate}
-    \item You can take pullbacks: if $p^\prime:E^\prime\to B^\prime$, then the leftmost map in the diagram below is a vector bundle also.
+    \item Pullbacks are legal: if $p^\prime:E^\prime\to B^\prime$, then the
+	leftmost map in the diagram below is also a vector bundle.
 	\begin{equation*}
 	    \xymatrix{
 		E\ar[r]\ar[d] & E^\prime\ar[d]^{p^\prime}\\
 		B\ar[r]_f & B^\prime
 		}
 	\end{equation*}
-	For instance, if $B=\ast$, you're just looking at the fiber over that point. If $\xi$ is the bundle $E^\prime\to B^\prime$, we denote $E\to B$ as $f^\ast \xi$.
-    \item If $p:E\to B$ and $p^\prime:E^\prime\to B^\prime$, then I can take the product $E\times E^\prime\xrightarrow{p\times p^\prime}B\times B^\prime$. 
-    \item If I take $B=B^\prime$, I can take the pullback:
+	For instance, if $B=\ast$, the pullback is just the fiber of $E^\prime$
+	over the point $\ast\to B^\prime$. If $\xi$ is the bundle $E^\prime\to
+	B^\prime$, we denote the pullback $E\to B$ as $f^\ast \xi$.
+    \item If $p:E\to B$ and $p^\prime:E^\prime\to B^\prime$, then we can take
+	the product $E\times E^\prime\xrightarrow{p\times p^\prime}B\times
+	B^\prime$.
+    \item If $B=B^\prime$, we can form the pullback:
 	\begin{equation*}
 	    \xymatrix{
 		E\oplus E^\prime\ar[r]\ar[d] & E\times E^\prime\ar[d]\\
 		B\ar[r]_{\Delta} & B\times B
 		}
 	\end{equation*}
-	This $E\oplus E^\prime$ thing is called the \emph{Whitney sum}. For instance, $n\epsilon = \epsilon\oplus\cdots\oplus\epsilon$.
-    \item If $E,E^\prime\to B$, I can form another vector bundle $E\otimes_\RR E^\prime\to B$ (fiberwise tensor product). I can also take the fiberwise Hom to get $\Hom_\RR(E,E^\prime)\to B$.
+	The bundle $E\oplus E^\prime$ is called the \emph{Whitney sum}. For
+	instance, it is an easy exercise to see that
+	$$n\epsilon = \epsilon\oplus\cdots\oplus\epsilon.$$
+    \item If $E,E^\prime\to B$ are two vector bundles over $B$, we can form
+	another vector bundle $E\otimes_\RR E^\prime\to B$ by taking the
+	fiberwise tensor product. Likewise, taking the fiberwise Hom begets a
+	vector bundle $\Hom_\RR(E,E^\prime)\to B$.
 \end{enumerate}
 \begin{example}
-    We know that there's the tautologous bundle $\gamma$ over $\RP^{n-1}$, denoted $L\to\RP^{n-1}$. This is the canonical line bundle. That's one bundle I have, but I also have the tangent bundle $T(\RP^{n-1})\to \RP^{n-1}$, denoted $\tau$. What's the relationship between these things? The map from $S^{n-1}\to\RP^{n-1}$ is a covering map, so locally it's a diffeomorphism. Thus I can identify the map on the tangent spaces as an isomorphism.
+    Recall from Example \ref{grassmannianvb}(2) that the tautological bundle
+    $\gamma$ lives over $\RP^{n-1}$; we will write $L = E(\gamma)$. The tangent
+    bundle $\tau_{\RP^{n-1}}$ also lives over $\RP^{n-1}$. As this is the first
+    explicit pair of vector bundles over the same space, it is natural to
+    wonder what is the relationship between these two bundles.
     
-    It looks like $T_{\pm x}\RP^{n-1}=\{(x,v)\in S^{n-1}\times\RR^n: x\cdot v = 0\}/(x,v)\sim-(x,v)$. I'm saying that $T\RP^{n-1} = L^\perp$. Do you buy that? I don't. Because look, a point in $L^\perp$ is a point in that orthogonal complement, because I can't tell if I take $v$ or $-v$. That isn't what $L^\perp$ is!
-
-    Instead, what I think is that $T\RP^{n-1} = \Hom(L,L^\perp)$. This is because a tangent line to a point is given by a map from a line through $x\to -x$ to some nearby line, also through the origin. The closer I am to the origin, the less I have to move along the tangent line to get to the nearby line, and the farther I am from the origin, the more I have to move to get to the nearby line. Thus we find:
-    $$\boxed{T\RP^{n-1} = \Hom(L,L^\perp)}$$
+    At first glance, one might guess that $\tau_{\RP^{n-1}} = \gamma^\perp$;
+    but this is false! Instead,
+    $$\tau_{\RP^{n-1}} = \Hom(\gamma,\gamma^\perp).$$
+    To see this, note that we have a $2$-fold covering map $S^{n-1}\to
+    \RP^{n-1}$; therefore, $T_x(\RP^{n-1})$ is a quotient of $T(S^n)$ by the
+    map sending $(x,v)\mapsto (-x,-v)$, where $v\in T_x(S^n)$. Therefore,
+    $$T_x\RP^{n-1} = \{(x,v)\in S^{n-1}\times\RR^n:v\cdot x =
+    0\}/((x,v)\sim(-x,-v)).$$
+    This is exactly the fiber of $\Hom(\gamma,\gamma^\perp)$ over $x\in
+    \RP^{n-1}$, since the line through $x$ can be mapped to the line through
+    $\pm v$.
 \end{example}
-\subsection{Metrics}
-A \emph{metric} on a vector bundle is a continuous choice of inner products on fibers.
+\begin{exercise}
+    Prove that if $\gamma$ is the tautological vector bundle over
+    $\Gra_k(K^n)$, for $K=\RR,\cC,\HH$, then
+    $$\tau_{\Gra_k(K^n)} = \Hom(\gamma,\gamma^\perp).$$
+\end{exercise}
+\subsection{Metrics and splitting exact sequences}
+A \emph{metric} on a vector bundle is a continuous choice of inner products on
+fibers.
 \begin{lemma}
-    Any vector bundle admits a metric.
+    Any vector bundle $\xi$ over $X$ admits a metric.
 \end{lemma}
-Why is this true? If $g,g^\prime$ are both inner products on $V$, then $tg+(1-t)g^\prime$ is another. The space of metrics forms a real affine space. 
+Intuitively speaking, this is true because if $g,g^\prime$ are both inner
+products on $V$, then $tg+(1-t)g^\prime$ is another. Said differently, the
+space of metrics forms a real affine space.
 \begin{proof}
-    Pick a trivializing open cover, and a subordinate partition of unity. So $\phi_U:U\to [0,1)$ so that the preimage of the complement of $0$ is $U$, and they're locally finite, and they sum to $1$. Over each one of these trivial pieces, pick a $g_U$ on $E|_{U}$. Using the principle mentioned above, just take $\sum_{U}\phi_U g_U=:g$.
+    Pick a trivializing open cover of $X$, and a subordinate partition of
+    unity. This means that we have a map $\phi_U:U\to [0,1]$, such that the
+    preimage of the complement of $0$ is $U$. Moreover,
+    $$\sum_{x\in U} \phi_U(x) = 1.$$
+    Over each one of these trivial pieces, pick a metric $g_U$ on $E|_{U}$.
+    Let
+    $$g \coloneqq \sum_{U}\phi_U g_U;$$
+    this is the desired metric on $\xi$.
 \end{proof}
-The word vector bundle occurs all over mathematics, but you can't pick metrics in, e.g., algebraic geometry.
+We remark that, in general, one cannot pick metrics for vector bundles. For
+instance, this is the case for vector bundles which arise in algebraic
+geometry.
+\begin{definition}
+    Suppose $E,E^\prime\to B$ are vector bundles over $B$. An
+    \emph{isomorphism} is a map $\alpha:E\to E^\prime$ over $B$ that is a
+    linear isomorphism on each fiber.
+\end{definition}
+In particular, the map $\alpha$ admits an inverse (over $B$).
 \begin{corollary}
-    If $0\to E^\prime\to E\to E^{\prime\prime}\to 0$ is an exact sequence of vector bundles (over the same base), then it splits.
+    Any exact\footnote{This is the obvious definition.} sequence $0\to
+    E^\prime\to E\to E^{\prime\prime}\to 0$ of vector bundles (over the same
+    base) splits.
 \end{corollary}
-This is because I can pick a metric for $E$, and then look at ${E^\prime}^\perp\subseteq E\to E^{\prime\prime}$, which is an isomorphism; the dimensions are the same. Thus $E\cong E^\prime\oplus {E^\prime}^{\perp}\cong E^\prime\oplus E^{\prime\prime}$. Note that this splitting isn't natural!
+\begin{proof}[Proof sketch]
+    Pick a metric for $E$. Consider the composite
+    $${E^\prime}^\perp\subseteq E\to E^{\prime\prime}.$$
+    This is an isomorphism: the dimensions of the fibers are the same. It
+    follows that
+    $$E\cong E^\prime\oplus {E^\prime}^{\perp}\cong E^\prime\oplus
+    E^{\prime\prime},$$
+    as desired.
+\end{proof}
+Note that this splitting is not natural.

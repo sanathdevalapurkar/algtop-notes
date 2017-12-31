@@ -55,13 +55,47 @@ We use this homomorphism to obtain something more tractable than the entirety of
 \begin{definition}
 An \emph{$n$-cycle} in $X$ is an $n$-chain $c$ with $\partial c = 0$. Denote $Z_n(X) = \ker(S_n(X)\xrightarrow{\partial}S_{n-1}(X))$.
 \end{definition}
-For example, with $\sigma$ on the torus described before, $\sigma\in Z_1(X)$ since $\partial \sigma = d_0\sigma - d_1\sigma = 0$.
+For example, with $\sigma$ on the torus described before, $\sigma\in Z_1(X)$
+since $\partial \sigma = d_0\sigma - d_1\sigma = 0$.
 \begin{theorem}
-Any boundary is a cycle, i.e., $B_n(X) := \mathrm{Im}(\partial:S_{n+1}(X)\to S_n(X))\subseteq Z_n(X)$.
+    Any boundary is a cycle, i.e., $B_n(X) :=
+    \mathrm{Im}(\partial:S_{n+1}(X)\to S_n(X))\subseteq Z_n(X)$.
 \end{theorem}
-\begin{proof}
-    Homework!
-\end{proof}
+\begin{exercise}\label{simplicialidentities}
+    Deduce the above theorem by proving the following statements.
+    \begin{enumerate}
+	\item An order-preserving map $\phi:[n]\to[m]$ extends to an affine map
+	    $\phi^\ast:\Delta^n\to \Delta^m$. Give an explicit formula for
+	    $\phi^\ast$.
+	\item Prove that any order-preserving map factors uniquely as the
+	    composite of an order-preserving surjection followed by an
+	    order-preserving injection.
+	\item Let $d^j:[n-1]\to [n]$ be the order-preserving injection omitting
+	    $j$ as a value. Prove that an order-preserving injection
+	    $\phi:[n-k]\to[n]$ is uniquely a composition of the form $d^{j_k}
+	    d^{j_{k-1}}\cdots d^{j_1}$ with $0\leq j_1<j_2<\cdots<j_k\leq n$.
+	    Define the $j_i$'s in terms of $\phi$. Verify the straightening
+	    rule
+	    $$d^id^j = d^{j+1} d^i \text{ if }i\leq j.$$
+	\item Let $s^i:[n+1]\to [n]$ be the order-preserving surjection
+	    repeating the value $i$. Show that any order-preserving surjection
+	    $\phi:[m]\to [n]$ is uniquely a composition of the form
+	    $(s^n)^{i_n}(s^{n-1})^{i_{n-1}}\cdots(s^0)^{i_0}$ by describing the
+	    $i_j$'s in terms of $\phi$. Verify a straightening rule for the
+	    composite $s^i s^j$.
+	\item Verify a straightening rule for $s^i d^j$.
+	\item Write down the straightening rules for the induced maps $d_i =
+	    (d^i)^\ast:\Sin_n(X)\to \Sin_{n-1}(X)$ and $s_i =
+	    (s^i)^\ast:\Sin_m(X)\to \Sin_{m+1}(X)$. Use these to verify that
+	    $\partial^2 = 0:S_n(X)\to S_{n-2}(X)$.
+	\item Let $f:X\to Y$ be a continuous map. This induces a map
+	    $f_\ast:\Sin_n(X)\to \Sin_n(Y)$. Show that the $f_\ast$ assemble to
+	    give a map of simplicial sets, i.e., show that the maps $f_\ast$
+	    commute with the maps induced by order-preserving maps $\phi:[m]\to
+	    [n]$.
+    \end{enumerate}
+\end{exercise}
+
 With the preceding, we are prepared to define singular homology.
 \begin{definition}
 The \emph{$n$th singular homology group} of $X$ is:
