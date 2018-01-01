@@ -1,118 +1,186 @@
-\section{Serre spectral sequence}
-Spectral sequences are one of these things for which anybody who is anybody must suffer through.
-Once you've done that, it's like linear algebra.
-You stop thinking so much about the ``inner workings'' later.
-Today will be the surface story, and we'll get into the innards later.
+\begin{quote}
+    Spectral sequences are one of those things for which anybody who is
+    anybody must suffer through. Once you've done that, it's like linear
+    algebra. You stop thinking so much about the `inner workings' later.
 
-On Monday I was talking about the example of a filtered space.
-That gives rise to a filtered complex.
-That's a chain complex $C$, with an increasing sequence $F_\ast C$ of subchain complexes.
+    -- Haynes Miller
+\end{quote}
+\section{The spectral sequence of a filtered complex}
+Our goal will be to describe a method for computing the homology of a chain
+complex. We will approach this problem by assuming that our chain complex is
+equipped with a filtration; then we will discuss how to compute the associated
+graded of an induced filtration on the homology, given the homology of the
+associated graded of the filtration on our chain complex.
 
-We saw various things: we've got
-\begin{equation*}
-    \xymatrix{
-	F_{s-1} C \ar[r] & F_s C \ar[d] \ar[r] & F_{s+1} C\ar[d]\\
-	& \gr_s C & \gr_{s+1} C
-    }
-\end{equation*}
-We then let $E^0_{st} = \gr_s C_{s+t}$, and we have a differential $d^0:E^0_{st} \to E^0_{s, t-1}$.
-We can go even further: I'll define $E^1_{st} = H_{s,t}(E^0_{s,t}, d^0)$.
-\begin{equation*}
-    \xymatrix{
-	HF_{s-1}\ar[r] & HF_s \ar[r] \ar[d] & HF_{s+1}\\
-	E^1_{s-1,\ast} & E^1_{s,t}\ar[l]^{d^1} & 
-    }
-\end{equation*}
-We saw this already in cellular chains, where the $E^1$ were the cellular chains.
-Now, $d^1:E^1_{s,t} \to E^1_{s-1,t}$ since the differentials decrease total degree by $1$.
-I could draw out the spectral sequence like this\todo{use sseq package to redraw this!!}:
-\begin{equation*}
-    \xymatrix{
-	\ast & & \\
-	& \ast & \ast\ar[d]^{d^0}\ar[l]_{d^1}\ar[ull]_{d^2} \\
-	& & \ast
-    }
-\end{equation*}
-the vertical thing is $t$, called the complementary degree, and the horizontal indexing is the filtration degree $s$.
-\begin{theorem}
-    Let $F_\ast C$ be a filtered complex.
-    There exists natural:
+We will start off with a definition.
+\begin{definition}
+    A \emph{filtered chain complex} is a chain complex $C_\ast$ along with a
+    sequence of subcomplexes $F_s C_\ast$ such that the group $C_n$ has a
+    filtration by
+    $$F_0 C_n\subset F_1 C_n\subseteq \cdots,$$
+    such that $\bigcup F_s C_n = C_n$.
+\end{definition}
+The differential on $C_\ast$ begets the structure of a chain
+complex on the associated graded $\gr_s C_n = F_s C_n/F_{s-1} C_n$; in other
+words, the differential on $C_\ast$ respects the filtration, hence begets a
+differential $d:\gr_s C_n\to \gr_s C_{n-1}$.
+
+The canonical example of a filtered chain complex to keep in mind is the
+homology of a filtered space (such as a CW-complex). Let $X$ be a filtered
+space, i.e., a space equipped with a filtration $X_0\subseteq X_1\subseteq
+\cdots$ such that $\bigcup X_n = X$. We then have a filtration of the chain
+complex $C_\ast(X)$ by the subcomplexes $C_\ast(X_n)$.
+
+For ease of notation, let us write
+$$E^0_{s,t} = \gr_s C_{s+t} = F_s C_{s+t}/F_{s-1} C_{s+t},$$
+so the differential on $C_\ast$ gives a differential $d^0:E^0_{s,t}\to
+E^0_{s,t-1}$. A first approximation to the homology of $C_\ast$ might therefore
+be the homology $H_{s+t}(\gr_s C_\ast)$. We will denote this group by
+$E^1_{s,t}$. This is the homology of the associated graded of the filtration
+$F_\ast C_\ast$.
+
+We can get an even better approximation to $H_\ast C_\ast$ by noticing that
+there is a differential even on $E^1_{s,t}$. By construction, there is a short
+exact sequence of chain complexes
+$$0\to F_{s-1} C_\ast\to F_s C_\ast\to \gr_s C_\ast\to 0,$$
+so we get a long exact sequence in homology. The differential on $E^1_{s,t}$ is
+the composite of the boundary map in this long exact sequence with the natural
+map $H_\ast(F_{s-1} C_\ast)\to H_\ast(\gr_{s-1} C_\ast)$; more precisely, it is
+the composite
+$$d^1:E^1_{s,t} = H_{s+t}(\gr_s C_\ast)\xar{\partial} H_{s+t-1}(F_{s-1}
+C_\ast)\to H_{s+t-1}(\gr_{s-1}C_\ast) = E^1_{s-1,t}.$$
+It is easy to check that $(d^1)^2 = 0$.
+
+This construction is already familiar from cellular chains: in this case,
+$E^1_{s,t}$ is exactly $H_{s+t}(X_{s},X_{s-1})$, which is exactly the cellular
+$s$-chains when $t=0$ (and is $0$ if $t\neq 0$). The $d^1$ differential is
+constructed in exactly the same way as the differential on cellular chains.
+
+In light of this, we define $E^2_{s,t}$ to be the homology of the chain complex
+$(E^1_{\ast,\ast}, d^1)$; explicitly, we let
+$$E^2_{s,t} = \ker(d^1:E^1_{s,t}\to E^1_{s-1,t})/\img(d^1:E^1_{s+1,t}\to
+E^1_{s,t}).$$
+Does this also have a differential $d^2$? The answer is yes. We will
+inductively define $E^r_{s,t}$ via a similar formula: if $E^{r-1}_{\ast,\ast}$
+and the differential $d^{r-1}:E^{r-1}_{s,t}\to E^{r-1}_{s-r+1,t+r-2}$ are both
+defined, we set
+$$E^{r}_{s,t} = \ker(d^{r-1}:E^{r-1}_{s,t}\to
+E^{r-1}_{s-r+1,t+r-2})/\img(d^{r-1}:E^{r-1}_{s+r-1,t-r+2}\to E^{r-1}_{s,t}).$$
+The differential $d^{r}:E^{r}_{s,t}\to E^{r}_{s-r,t+r-1}$ is defined as
+follows. Let $[x]\in E^r_{s,t}$ be represented by an element of $x\in
+E^1_{s,t}$, i.e., an element of $H_{s+t}(\gr_s C_\ast)$. As above, the boundary
+map induces natural maps $\partial:H_{s+t}(\gr_s C_\ast)\to H_{s+t-1}(F_{s-1}
+C_\ast)$ and $\partial:H_{s+t-1}(F_{s-r} C_\ast)\to H_{s+t-1}(\gr_{s-r}
+C_\ast)$. The element $\partial x\in H_{s+t-1}(F_{s-1} C_\ast)$ in fact lifts
+to an element of $H_{s+t-1}(F_{s-r} C_\ast)$. The image of this element under
+$\partial$ inside $H_{s+t-1}(\gr_{s-r} C_\ast) = E^1_{s-r,t+r-1}$ begets a
+class in $E^r_{s-r,t+r-1}$; this is the desired differential.
+\begin{exercise}
+    Fill in the missing details in this construction of $d^r$, and show that
+    $(d^r)^2 = 0$.
+\end{exercise}
+We have proven most of the statements in the following theorem.
+\begin{theorem}\label{filtered-sseq}
+    Let $F_\ast C$ be a filtered complex. Then there exist natural
     \begin{enumerate}
-	\item for any $r\geq 0$, a bigraded group $(E^r_{s,t})_{s\geq 0, t\in\Z}$.
-	\item for any $r\geq 0$, a differential $d^r:E^r_{s,t} \to E^r_{s-r,t+r - 1}$.
-	\item $H_{s,t}(E^r_{\ast,\ast}, d^r) = E^{r+1}_{s,t}$.
+	\item bigraded groups $(E^r_{s,t})_{s\geq 0, t\in\Z}$ for any $r\geq
+	    0$, and
+	\item differentials $d^r:E^r_{s,t} \to E^r_{s-r,t+r - 1}$ for any
+	    $r\geq 0$.
     \end{enumerate}
-    and $(E^0, d^0)$ and $(E^1, d^1)$ are as above.
-    Then under certain hypotheses (see below) ($F_\ast C$ is bounded below), there is an isomorphism:
-    $$
-    E^\infty_{s,t} \simeq \gr_s H_{s+t}(C)
-    $$
-    See below for what $E^\infty$ means.
+    such that $E^{r+1}_{s,t}$ is the homology of $(E^r_{\ast,\ast},d^r)$, and
+    $(E^0, d^0)$ and $(E^1, d^1)$ are as above. If $F_\ast C$ is bounded
+    below, there is an isomorphism:
+    \begin{equation}\label{convergence}
+	E^\infty_{s,t} \simeq \gr_s H_{s+t}(C).
+    \end{equation}
 \end{theorem}
-It's supposed to help us compute the homology of the thing we started with.
-This is called a \emph{homology spectral sequence}.
+This is called a \emph{homology spectral sequence}. One should think of each
+$E^r_{\ast,\ast}$ as a ``page'', with lattice points $E^r_{s,t}$. We still need
+to describe the symbols used in the formula \eqref{convergence}.
 
-There's a filtration $F_s H_n(C):=\img(H_n(F_s C) \to H_n(C))$.
-What the spectral sequence will tell you is information about the associated graded.
-This isn't so bad if you're over, like, vector spaces.
+There is a filtration $F_s H_n(C):=\img(H_n(F_s C) \to H_n(C))$, and $\gr_s
+H_\ast(C)$ is the associated graded of this filtration. Taking formula
+\eqref{convergence} literally, we only obtain information about the associated
+graded of the homology of $C_\ast$. Over vector spaces, this is sufficient to
+determine the homology of $C_\ast$, but in general, one needs to solve an
+extension problem.
 
-Let's assume that the filtration $F_\ast C$ is bounded below (so $F_{-1} C = 0$).
-Then $E^0_{s,t} = F_s C_{s+t}/F_{s-1} C_{s+t} = 0$ for $s<0$.
-It's a ``right half plane'' spectral sequence.
-Thus, in our example, the differentials from the group at $(s,t)$ must have $d^{s+1} = 0$.
-This tells us that there's a surjection $E^{s+1}_{s,t} \to E^{s+2}_{s,t}$.
-And that continues: we get surjections all the way, and take the direct limit of $E^{r}_{s,t}$, which is defined to be $E^\infty_{s,t}$.
+To define the notation $E^\infty$ used above, let us assume that the filtration
+$F_\ast C$ is bounded below (so $F_{-1} C = 0$). It follows that $E^0_{s,t} =
+F_s C_{s+t}/F_{s-1} C_{s+t} = 0$ for $s<0$, so the spectral sequence of Theorem
+\ref{filtered-sseq} is a ``right half plane'' spectral sequence. It follows
+that in our example, the differentials from the group in position $(s,t)$ must
+have vanishing $d^{s+1}$ differential.
 
-OK, so for our theorem, we have the following picture of $E^\infty_{\ast,\ast}$:
-\begin{equation*}
-    \xymatrix{
-	\gr_0 H_n(C) \simeq E^\infty_{0,n} & & & \\
-	& \gr_1 H_n(C) \simeq E^\infty_{1,n-1} & & \\
-	& & \gr_2 H_n(C) \simeq E^\infty_{2,n-2} & & \\
-	& & & \ddots
-    }
-\end{equation*}
-Note that $\gr_0 H_n(C) = F_0 H_n(C) = \img(H_n(F_0 C) \to H_n(C))$.
+In turn, this implies that there is a surjection $E^{s+1}_{s,t} \to
+E^{s+2}_{s,t}$. This continues: we get surjections
+$$E^{s+1}_{s,t}\to E^{s+2}_{s,t}\to E^{s+3}_{s,t}\to\cdots,$$
+and the direct limit of this directed system is defined to be $E^\infty_{s,t}$.
 
-Maybe you still don't get the homology of $n$ (like if $F_\ast$ is $0$).
-But if $F_\ast C$ is exhaustive, then $F_\ast H_\ast C$ is also exhaustive (I said this on Monday).
-With this assumption, then we get all the associated graded pieces.
+For instance, in the case of cellular chains, we argued above that $E^1_{s,t} =
+H_{s+t}(X_s, X_{s-1})$, so that $E^1_{s,t} = 0$ if $t\neq 0$, and the $d^1$
+differential is just the differential in the cellular chain complex. It follows
+that $E^2_{s,t} = H_s^{cell}(X)$ if $t=0$, and is $0$ if $t\neq 0$. All higher
+differentials are therefore zero (because either the target or the source is
+zero!), so $E^r_{s,t} = E^2_{s,t}$ for every $r\geq 2$. In particular
+$E^\infty_{s,t} = H_s^{cell}(X)$ when $t=0$, and is $0$ if $t\neq 0$. There are
+no extension problems either: the filtration on $X$ is bounded below, so
+Theorem \ref{filtered-sseq} implies that $\gr_s H_{s+0}(X) = H_s(X) \simeq
+H_s^{cell}(X) = E^\infty_{s,t}$.
+
+%OK, so for our theorem, we have the following picture of $E^\infty_{\ast,\ast}$:
+%\begin{equation*}
+%    \xymatrix{
+%	\gr_0 H_n(C) \simeq E^\infty_{0,n} & & & \\
+%	& \gr_1 H_n(C) \simeq E^\infty_{1,n-1} & & \\
+%	& & \gr_2 H_n(C) \simeq E^\infty_{2,n-2} & & \\
+%	& & & \ddots
+%    }
+%\end{equation*}
+%Note that $\gr_0 H_n(C) = F_0 H_n(C) = \img(H_n(F_0 C) \to H_n(C))$.
+%
+%Maybe you still don't get the homology of $n$ (like if $F_\ast$ is $0$).
+%But if $F_\ast C$ is exhaustive, then $F_\ast H_\ast C$ is also exhaustive (I said this on Monday).
+%With this assumption, then we get all the associated graded pieces.
+In a very precise sense, the datum of the spectral sequence of a filtered
+complex $F_\ast C_\ast$ determines the homology of $C_\ast$:
 \begin{corollary}
     Let $C\xrightarrow{f} D$ be a map of filtered complexes.
     Assume that the filtration on $C$ and $D$ are bounded below and exhaustive.
     Assume also that $E^r(f)$ is an isomorphism for some $r$.
-    Then $f_\ast : H(C) \to H(D)$ is an isomorphism.
+    Then $f_\ast : H_\ast(C) \to H_\ast(D)$ is an isomorphism.
 \end{corollary}
-You're completely recovering the homology of $C$ in this sense.
 \begin{proof}
-    $E^r(f)$ is an isomorphism, and it's also a chain map (it's compatible with the differential $d^r$).
-    Thus $E^{r+1}(f)$ is an isomorphism.
-    And so on.
-    Thus, $E^\infty_{s,t}(f)$ is an isomorphism for all $s,t$.
-    Thus the associated graded map $\gr_s(f_\ast):\gr_s H_\ast(C) \to \gr_s H(D)$ is an isomorphism.
-    I have a short exact sequence:
+    The map $E^r(f)$ is an isomorphism which is also also a chain map, i.e., it
+    is compatible with the differential $d^r$. It follows that $E^{r+1}(f)$ is
+    an isomorphism. By induction, we conclude that $E^\infty_{s,t}(f)$ is an
+    isomorphism for all $s,t$. Theorem \ref{filtered-sseq} implies that the map
+    $\gr_s(f_\ast):\gr_s H_\ast(C) \to \gr_s H(D)$ is an isomorphism.
+    
+    We argue by induction using the short exact sequence:
     $$
-    0 \to F_0 H_\ast \to F_1 H_\ast \to \gr_1 H_\ast \to 0
+    0 \to F_s H_\ast(C) \to F_{s+1} H_\ast(C) \to \gr_{s+1} H_\ast(C) \to 0.
     $$
-    We have an isomorphism on the left and right nontrivial groups, so by the five lemma and induction, $F_s f_\ast$ is an isomorphism.
-    The filtration was exhaustive, so $f_\ast$ is an isomorphism.
+    We have $\gr_0 H_n(C) = F_0 H_n(C) = \img(H_n(F_0 C) \to H_n(C))$, so the
+    base case follows from the five lemma. In general, $f$ induces an
+    isomorphism an isomorphism on the groups on the left (by the inductive
+    hypothesis) and right (by the above discussion), so it follows that $F_s
+    f_\ast$ is an isomorphism by the five lemma. Since the filtration $F_\ast
+    C_\ast$ was exhaustive, it follows that $f_\ast$ is an isomorphism.
 \end{proof}
-This is convergence following Eilenberg-Moore.
-
-Wow, OK.
-Let's talk about the Serre spectral sequence.
 \subsection{Serre spectral sequence}
-I'll give two constructions.
-I have a fibration $E\xrightarrow{p} B$, with $B$ a CW-complex.
-I can define a filtration on $E$ by taking preimages.
-So, I get a filtration $F_s S_\ast (E) = \img(S_\ast(p^{-1} \sk_s(B)) \to S_\ast E)$.
-I'll let $E_s = p^{-1} \sk_s B$.
-This is bounded below and exhaustive.
-And that's the Serre spectral sequence.
-The low terms might depend on the CW-structure, but higher terms won't.
+In this book, we will give two constructions of the Serre spectral sequence.
+The second will appear later. Fix a fibration $E\xrightarrow{p} B$, with $B$ a
+CW-complex. We obtain a filtration on $E$ by taking the preimage of the
+$s$-skeleton of $B$, i.e., $E_s = p^{-1} \sk_s B$. It follows that there is a
+filtration on $S_\ast(E)$ given by
+$$F_s S_\ast (E) = \img(S_\ast(p^{-1} \sk_s(B)) \to S_\ast E).$$
+This filtration is bounded below and exhaustive. The resulting spectral
+sequence of Theorem \ref{filtered-sseq} is the Serre spectral sequence.
+%The low terms might depend on the CW-structure, but higher terms won't.
 
-Let's think about how you build $E_{s-1}$.
-You have a pushout:
+Let us be more explicit. We have a pushout square:
 \begin{equation*}
     \xymatrix{
 	E_{s-1}\ar[r]\ar[d] & E_s\ar[d]\\
@@ -120,49 +188,58 @@ You have a pushout:
 	\coprod_{\alpha\in\Sigma_s}S^{s-1}_\alpha\ar[r]\ar[u] & \coprod_{\alpha\in\Sigma_s} D^s_\alpha\ar[u]
     }
 \end{equation*}
-I can pullback $E_s$ via:
-\begin{equation*}
-    \xymatrix{
-	\coprod_{\alpha\in \Sigma_s} D^s_\alpha\times F_\alpha\ar[r]\ar[d] & E_s\ar[d]\\
-	\coprod_{\alpha\in \Sigma_s} D^s_\alpha\ar[r] & B_s
-    }
-\end{equation*}
-where $F_\alpha$ is $p^{-1}$ of the center of $\alpha$ cell.
-In particular, I have a pushout:
+%I can pullback $E_s$ via:
+%\begin{equation*}
+%    \xymatrix{
+%	\coprod_{\alpha\in \Sigma_s} D^s_\alpha\times F_\alpha\ar[r]\ar[d] & E_s\ar[d]\\
+%	\coprod_{\alpha\in \Sigma_s} D^s_\alpha\ar[r] & B_s
+%    }
+%\end{equation*}
+Let $F_\alpha$ be the preimage of the center of $\alpha$ cell. In particular,
+we have a pushout:
 \begin{equation*}
     \xymatrix{
 	E_{s-1}\ar[r] & E_s\\
 	\coprod_{\alpha\in\Sigma_s} S^{s-1}_\alpha\times F_\alpha\ar[r]\ar[u] & \coprod_{\alpha\in\Sigma_s} D^s_\alpha \times F_\alpha\ar[u]
     }
 \end{equation*}
-This fits inside a cube that I didn't have time to \TeX.
-Now, we know that $E^1_{s,t} = H_{s+t}(E_s,E_{s-1})$.
-The same argument shows that $E^1_{s,t} = \bigoplus_{\alpha\in \Sigma_s} H_{s+t}(D^s_\alpha\times F_\alpha, S^{s-1}_\alpha\times F_\alpha)$.
-I can write this differently as $\bigoplus_{\alpha\in\Sigma_s} H_{s+1}((D^s_\alpha, S^{s-1}_\alpha)\times F_\alpha)$, which is, by K\"unneth, exactly $\bigoplus_{\alpha\in\Sigma_s} H_t(F_\alpha)$.
-I guess I can write this as ``$C_s(B;H_t(F_\alpha))$''.
-There's some things wrong with writing it like that.
+We know that
+$$E^1_{s,t} = H_{s+t}(E_s,E_{s-1}) = \bigoplus_{\alpha\in \Sigma_s}
+H_{s+t}(D^s_\alpha\times F_\alpha, S^{s-1}_\alpha\times F_\alpha).$$
+We can suggestively view this as $\bigoplus_{\alpha\in\Sigma_s}
+H_{s+1}((D^s_\alpha, S^{s-1}_\alpha)\times F_\alpha)$. By the K\"unneth
+formula (at least, if we are over a field), this is exactly
+$\bigoplus_{\alpha\in\Sigma_s} H_t(F_\alpha)$. In analogy with our discussion
+above regarding the spectral sequence coming from the cellular chain complex,
+one would like to think of this as ``$C_s(B;H_t(F_\alpha))$''. Sadly, there are
+many things wrong with writing this.
 
-I mean, suppose $B$ isn't connected.
-Then the $F_\alpha$ could have completely different homotopy types.
-That symbol $C_s(B;H_t(F_\alpha))$ doesn't make any sense then.
-Even if you're path-connected, there's still no canonical way to identify the fiber over one point to the fiber over another point.
-What you get is that $H_t(p^{-1}(-)):\Pi_1(B) \to \mathbf{Ab}$.
-This is the same thing as a ``local coefficient system'' on $B$.
-So, the right thing to say is:
-$$
-E^2_{s,t} = H_s(B;\underline{H_t(\mathrm{fiber})})
-$$
-Pick a basepoint in $B$, and build the universal cover $\widetilde{B}\to B$, with an action of $\pi_1(B,\ast)$.
-Look at $S_\ast(\widetilde{B})$.
-There is an action of $\pi_1(B,\ast)$ on this chain complex.
-So $S_\ast(\widetilde{B})$ is a chain complex of right modules over $\Z[\pi_1(B)]$.
-If $B$ is connected, then giving a local coefficient system on $B$ is the same thing as giving an action of $\pi_1(B)$ on $H_t(p^{-1}(\ast))$.
-This is now a left action.
-You know what you want to do then:
-$$
-S_\ast(B;\underline{H_t(p^{-1}(\ast))}) = S_\ast(\widetilde{B}) \otimes_{\Z[\pi_1(B)]} H_t(p^{-1}(\ast))
-$$
-The homology of this chain complex is the $E^2$-page.
-On Friday, I'll try to show you some applications of this.
+For instance, suppose $B$ isn't connected. The fibers $F_\alpha$ could have
+completely different homotopy types, so the symbol $C_s(B;H_t(F_\alpha))$
+does not make any sense. Even if $B$ was path-connected, there would still be
+no canonical way to identify the fibers over different points. Instead, we
+obtain a functor $H_t(p^{-1}(-)):\Pi_1(B) \to \mathbf{Ab}$, i.e., ``local
+coefficient system'' on $B$. So, the right thing to say is ``$E^2_{s,t} =
+H_s(B;\underline{H_t(\mathrm{fiber})})$''.
 
-We'll always be in the case where that local system is trivially (eg if $\pi_1$ acts trivially, like if $B$ is simply connected).
+To define precisely what $H_s(B;\underline{H_t(\mathrm{fiber})})$ means, let us
+pick a basepoint in $B$, and build the universal cover $\widetilde{B}\to B$.
+This has an action of $\pi_1(B,\ast)$, so we obtain an action of
+$\pi_1(B,\ast)$ on the chain complex $S_\ast(\widetilde{B})$. Said differently,
+$S_\ast(\widetilde{B})$ is a chain complex of right modules over
+$\Z[\pi_1(B)]$. If $B$ is connected, a local coefficient system on $B$ is the
+same thing as a (left) action of $\pi_1(B)$ on $H_t(p^{-1}(\ast))$. Then, we
+define a chain complex:
+$$
+S_\ast(B;\underline{H_t(p^{-1}(\ast))}) = S_\ast(\widetilde{B})
+\otimes_{\Z[\pi_1(B)]} H_t(p^{-1}(\ast));
+$$
+the differential is induced by the $\Z[\pi_1(B)]$-equivariant differential on
+$S_\ast(\widetilde{B})$. Our discussion above implies that the homology of this
+chain complex is the $E^2$-page.
+
+We will always be in the case where that local system is trivial, so that
+$H_\ast(B;\underline{H_\ast(p^{-1}(\ast))})$ is just
+$H_\ast(B;H_\ast(p^{-1}(\ast)))$. For instance, this is the case if $\pi_1(B)$
+acts trivially on the fiber. In particular, this is the case if $B$ is simply
+connected. 
