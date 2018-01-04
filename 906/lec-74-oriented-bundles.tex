@@ -1,161 +1,194 @@
 \section{Oriented bundles, Pontryagin classes, Signature theorem}
-Missed the first part.
-
-\todo{stuff that I missed}
-A map $\xi:X\to BO(n)$ is orientable iff $w_1(\xi) = 0$, i.e., the map $X\xar{\xi} BO(n)\to B\{\pm 1\}$ is nullhomotopic, since the map $BO(n) \to B\Z/2\Z\simeq\RP^\infty$ is an element of $H^1(BO(n);\FF_2)$.
-This means that it factors as
+We have a pullback diagram
 $$
 \xymatrix{
-    & BSO(n)\ar[r]\ar[d]^{\text{double cover}} & S^\infty\ar[d]\\
+    BSO(n)\ar[r]\ar[d]^{\text{double cover}} & S^\infty\ar[d]\\
+    BO(n)\ar[r]_{w_1} & B\Z/2\Z
+}
+$$
+The bottom map is exactly the element $w_1\in H^1(BO(n);\FF_2)$. It follows
+that a vector bundle $\xi\downarrow X$ represented by a map $f:X\to BO(n)$ is
+orientable iff $w_1(\xi) = f^\ast(w_1) = 0$, since this is equivalent to the
+existence of a factorization:
+$$
+\xymatrix{
+    & BSO(n)\ar[r]\ar[d] & S^\infty\ar[d]\\
     X\ar@{-->}[ur]\ar[r]_{\xi} & BO(n)\ar[r]_{w_1} & B\Z/2\Z
 }
 $$
-Well, we have a story on the Lie group side, where we have $SO(n)\to O(n)\to\Z/2\Z$, which gives our $BSO(n)\to BO(n)\to \RP^\infty$ on the topological side.
-For $n\geq 3$, I can kill the $\pi_1$ of $BSO(n)$ to get $Spin(n)$, which gives a double cover $Spin(n)\to SO(n)$.
-I can take its classifying space to get $BSpin(n)$, and, well, we have a cofiber sequence $BSO(n)\xar{w_2} K(\Z/2\Z,2)$.
-So, if $w_2(\xi) = 0$, I get a further lift, called a \emph{spin structure}.
+The fiber sequence $BSO(n)\to BO(n)\to \RP^\infty$ comes from a fiber sequence
+$SO(n)\to O(n)\to\Z/2\Z$ of groups. For $n\geq 3$, we can kill $\pi_1(SO(n)) =
+\Z/2\Z$,
+to get a double cover $\Spin(n)\to SO(n)$. The group $\Spin(n)$ is called the
+\emph{spin group}. We have a cofiber sequence
+$$B\Spin(n)\to BSO(n)\xar{w_2} K(\Z/2\Z,2).$$
+If $w_2(\xi) = 0$, we get a further lift in the above diagram, begetting a
+\emph{spin structure} on $\xi$.
 
-I can do this again.
-This gives you the \emph{string group}.
-Note that this is just the Whitehead tower.
+Bott computed that $\pi_2(\Spin(n)) = 0$. However, $\pi_3(\Spin(n)) = \Z$;
+killing this gives the \emph{string group} $\String(n)$. Unlike $\Spin(n)$,
+$SO(n)$, and $O(n)$, this is not a finite-dimensional Lie group (since we have
+an infinite dimensional summand $K(\Z,2)$). However, it can be realized as a
+topological group. The resulting maps $$\String(n)\to \Spin(n)\to SO(n)\to
+O(n)$$ are just the maps in the Whitehead tower for $O(n)$. Taking classifying
+spaces, we get
 $$
 \xymatrix{
-    & BString(n)\ar[d] & \\
-    & BSpin(n)\ar[d] \ar[r]^{p_1/2} & K(\Z,4)\\
-    & BSO(n)\ar[r]\ar[d]^{\text{double cover}} & K(\Z/2\Z,2)\\
-    X\ar@{-->}[ur]^{\text{orientation}}\ar@{-->}[uur]^{\text{spin structure}}\ar@{-->}[uuur]^{\text{string structure}}\ar[r]_{\xi} & BO(n)\ar[r]_{w_1} & B\Z/2\Z
+    & B\String(n)\ar[d] & \\
+    & B\Spin(n)\ar[d] \ar[r]^{p_1/2} & K(\Z,4)\\
+    & BSO(n)\ar[r]\ar[d] & K(\Z/2\Z,2)\\
+    X\ar@{-->}[ur]\ar@{-->}[uur]\ar@{-->}[uuur]\ar[r]_{\xi} & BO(n)\ar[r]_{w_1}
+    & B\Z/2\Z
 }
 $$
-Note that $String(n)$ is no longer a Lie group since you have an infinite dimensional summand $K(\Z,2)$.
 
-Let's compute the cohomology of $BSO(n)$.
-Like I said, $BSO(n)\to BO(n)$ is a double cover, with fiber $S^0$.
-It therefore has a Gysin sequence:
+Computing the (mod $2$) cohomology of $BSO(n)$ is easy. We have a double cover
+$BSO(n)\to BO(n)$ with fiber $S^0$. Consequently, there is a Gysin sequence:
 $$
 0\to H^q(BO(n)) \xar{w_1} H^{q+1}(BO(n)) \xar{\pi^\ast} H^{q+1}(BSO(n)) \to 0
 $$
-since $w_1$ is a nonzero divisor.
-This means that
+since $w_1$ is a nonzero divisor. The standard argument shows that
 $$
-H^\ast(BSO(n)) = \FF_2[w_2,\cdots,w_n]
+H^\ast(BSO(n)) = \FF_2[w_2,\cdots,w_n].
 $$
-That was easy.
-But it's not easy to compute $H^\ast(BSpin(n))$ and $H^\ast(BString(n))$.
+However, it is \emph{not} easy to compute $H^\ast(B\Spin(n))$ and
+$H^\ast(B\String(n))$; these are extremely complicated (and only become more
+complicated for higher connective covers of $BO(n)$). However, we will remark
+that they are concentrated in even degrees.
 
-We want to try to understand integral characteristic classes for oriented bundles.
-The trick is to use Chern classes.
-Suppose $C_X$ is a complex vector space.
-I can get an oriented real vector space, with choice of ordered basis given by $e_1,ie_1,\cdots,e_2,ie_2$.
-This has an involution $-$, given by the opposite orientation.
-I can also tensor up to $\cc$ to get a complex vector space from a real vector space.
-
-How does $\overline{V}_\RR$ relate to $V_\RR$?
-The orientation has changed, although it's the same vector space.
-In fact, you have $\overline{V}_\RR = (-1)^{\dim V} V_\RR$.
-
-I can also consider $(V\otimes_\RR\cc)_\RR$.
-This is just $V\oplus V$, and we get that $(V\otimes_\RR\cc)_\RR = (-1)^{\dim V\cdot(\dim V - 1)/2} V\oplus V$.
-
-Another one.
-We know that $\overline{(V\otimes_\RR\cc)}\simeq V\otimes_\RR\cc$.
-
-We're going to use those identities.
-
-Let $\xi$ be a complex $n$-plane bundle.
-What is $c(\overline{\xi})$?
-They occur as coefficients in this identity $\sum c_i(\overline{\xi}) e(\lambda_{\overline{\xi}})^{n-i} = 0$, where $\lambda_{\overline{\xi}}\downarrow \PP(\overline{\xi}) = \PP(\xi)$.
-Now, well, $\lambda_{\overline{\xi}} = \overline{\lambda_\xi}$.
-In particular, we get that $e(\lambda_{\overline{\xi}})^{n-i} = (-1)^{n-i}e(\lambda_\xi)^{n-i}$, because $\lambda_\xi$ is one-dimensional.
+To define integral characteristic classes for oriented bundles, we will need to
+study Chern classes a little more.
+%Suppose $V$ is a complex vector space.  We can then get an
+%oriented real vector space $V_\RR$, with a choice of ordered basis given by
+%$e_1,ie_1,\cdots,e_2,ie_2$. This space has an involution $-$, given by the opposite
+%orientation. 
+%
+%The vector spaces $\overline{V}_\RR$ and $V_\RR$ are the same, but they have
+%different orientations.
+%%In fact, you have $\overline{V}_\RR = (-1)^{\dim V} V_\RR$.
+%I can also consider $(V\otimes_\RR\cc)_\RR$.
+%This is just $V\oplus V$, and we get that $(V\otimes_\RR\cc)_\RR = (-1)^{\dim V\cdot(\dim V - 1)/2} V\oplus V$.
+%
+%Another one.
+%We know that $\overline{(V\otimes_\RR\cc)}\simeq V\otimes_\RR\cc$.
+%
+%We're going to use those identities.
+Let $\xi$ be a complex $n$-plane bundle, and let $\overline{\xi}$ denote the
+conjugate bundle. What is the total Chern class $c(\overline{\xi})$? Recall
+that the Chern classes $c_k(\overline{\xi})$ occur as coefficients in the
+identity
+$$\sum c_i(\overline{\xi}) e(\lambda_{\overline{\xi}})^{n-i} = 0,$$
+where $\lambda_{\overline{\xi}}\downarrow \PP(\overline{\xi})$. Note that
+$\PP(\overline{\xi}) = \PP(\xi)$. By construction, $\lambda_{\overline{\xi}} =
+\overline{\lambda_\xi}$. In particular, we find that
+$$e(\lambda_{\overline{\xi}}) = -e(\lambda_\xi).$$
 It follows that
 $$
-0 = \sum^n_{i=0}c_i(\overline{\xi})e(\overline{\lambda_\xi})^{n-i} = \sum^n_{i=0}c_i(\overline{\xi}) (-1)^{n-i}e(\lambda_\xi)^{n-i} = (-1)^n e(\lambda_\xi)^n + \cdots
+0 = \sum^n_{i=0}c_i(\overline{\xi})e(\overline{\lambda_\xi})^{n-i} =
+\sum^n_{i=0}c_i(\overline{\xi}) (-1)^{n-i}e(\lambda_\xi)^{n-i} = (-1)^n
+e(\lambda_\xi)^n + \cdots
 $$
-This is \emph{not} monic, and hence doesn't define the Chern classes of $\overline{\xi}$.
-The monic identity is going to be (multiply that identity by $(-1)^n$)
+This is \emph{not} monic, and hence doesn't define the Chern classes of
+$\overline{\xi}$. We do, however, get a monic polynomial by multiplying this
+identity by $(-1)^n$:
 $$
-\sum^n_{i=0}(-1)^ic_i(\overline{\xi})e(\lambda_\xi)^{n-i} = 0
+\sum^n_{i=0}(-1)^ic_i(\overline{\xi})e(\lambda_\xi)^{n-i} = 0.
 $$
-This means that
+It follows that
 $$
-\boxed{c_i(\overline{\xi}) = (-1)^ic_i(\xi)}
+\boxed{c_i(\overline{\xi}) = (-1)^ic_i(\xi).}
 $$
-Now, the idea is, that I don't know what to do for characteristic classes real bundles.
-We can always tensor it up with $\cc$, though, i.e., I can look at $c_i(\xi\otimes\cc)$.
-Let's do an experiment.
-We know that $c_i(V\otimes\cc) = c_i(\overline{V\otimes\cc}) = (-1)^ic_i(V\otimes\cc)$, by the identities above.
-So, we have a problem if $i$ is odd, namely that $2c_{odd}(V\otimes\cc) = 0$.
-That's fine, but I want integral classes.
-So the thing to do is to just ignore the prime $2$.
-
-We know what the cohomology of $BSO(n)$ is in $\FF_2$, and now I'm going to tell you what $H^\ast(BSO(n))$ is with coefficients in a $\Z[1/2]$-algebra (so $1/2$ exists).
-Then those odd Chern classes are just zero.
-\begin{definition}[Pontryagin classes]
-    Let $\xi$ be a real $n$-plane vector bundle.
-    Then $p_k(\xi) = (-1)^kc_{2k}(\xi\otimes\cc)\in H^{4k}(X;R)$.
+If $\xi$ is a real vector bundle, then
+$$c_i(\xi\otimes\cC) = c_i(\overline{\xi\otimes\cC}) =
+(-1)^ic_i(\xi\otimes\cC).$$
+If $i$ is odd, then $2c_{i}(\xi\otimes\cC) = 0$. If $R$ is a $\Z[1/2]$-algebra,
+we therefore define:
+%We know what the cohomology of $BSO(n)$ is in $\FF_2$, and now I'm going to
+%tell you what $H^\ast(BSO(n))$ is with coefficients in a $\Z[1/2]$-algebra (so
+%$1/2$ exists). Then those odd Chern classes are just zero.
+\begin{definition}
+    Let $\xi$ be a real $n$-plane vector bundle. Then the $k$th Pontryagin
+    class of $\xi$ is defined to be 
+    $$p_k(\xi) = (-1)^kc_{2k}(\xi\otimes\cc)\in H^{4k}(X;R).$$
 \end{definition}
-Notice that this is $0$ if $2k>n$, since $\xi\otimes\cc$ is of complex dimension $n$.
-The Whitney sum formula now says that:
+Notice that this is $0$ if $2k>n$, since $\xi\otimes\cc$ is of complex
+dimension $n$. The Whitney sum formula now says that:
 $$
-(-1)^k p_k(\xi\oplus\eta) = \sum_{i+j = k}(-1)^i p_i(\xi) (-1)^j p_j(\eta) = (-1)^k\sum_{i+j=k}p_i(\xi)p_j(\eta)
+(-1)^k p_k(\xi\oplus\eta) = \sum_{i+j = k}(-1)^i p_i(\xi) (-1)^j p_j(\eta) =
+(-1)^k\sum_{i+j=k}p_i(\xi)p_j(\eta).
 $$
-So I can cross out the $(-1)^k$.
-
-If $\xi$ is an oriented real $2k$-plane bundle, then you can calculate that
+If $\xi$ is an oriented real $2k$-plane bundle, one can calculate that
 $$
-p_k(\xi) = e(\xi)^2\in H^{4k}(X;R)
+p_k(\xi) = e(\xi)^2\in H^{4k}(X;R).
 $$
-
-Here's the table:
+We can therefore write down the cohomology of $BSO(n)$ with coefficients in a
+$\Z[1/2]$-algebra:
 \begin{center}
     \begin{tabular}{ c|c c c c c c} 
 	\hline
 	$\ast = $ & 2 & 4 & 6 & 8 & 10 & 12\\
 	\hline
 	$H^\ast(BSO(2))$ & $e_2$ & $(e_2^2)$ & & & &\\
-	$H^\ast(BSO(3))$ & & $p_1\uparrow$ & & & &\\
+	$H^\ast(BSO(3))$ & & $p_1$ & & & &\\
 	$H^\ast(BSO(4))$ & & $p_1,e_4$ & & $(e_4^2)$ & &\\
-	$H^\ast(BSO(5))$ & & $p_1$ & & $p_2\uparrow$ & &\\
+	$H^\ast(BSO(5))$ & & $p_1$ & & $p_2$ & &\\
 	$H^\ast(BSO(6))$ & & $p_1$ & $e_6$ & $p_2$ & & $(e_6^2)$\\
-	$H^\ast(BSO(7))$ & & $p_1$ & & $p_2$ & & $p_3\uparrow$
+	$H^\ast(BSO(7))$ & & $p_1$ & & $p_2$ & & $p_3$
     \end{tabular}
 \end{center}
-In the limiting case, you get a polynomial algebra.
+Here, $p_k \mapsto e_{2k}^2$. In the limiting case (i.e., for $BSO =
+BSO(\infty)$), we get a polynomial algebra on the $p_i$.
 \subsection{Applications}
+We will not prove any of the statements in this section; it only serves as an
+outlook. The first application is the following analogue of Theorem
+\ref{thom-sw}:
 \begin{theorem}[Wall]
-    Let $M^n,N^n$ be oriented manifolds.
-    Then I can ask for \emph{oriented cobordisms}, i.e., $\partial W = M\sqcup -N$.
-    If all Stiefel-Whitney numbers and Pontryagin numbers coincide, then $M$ is oriented cobordant to $N$.
+    Let $M^n,N^n$ be oriented manifolds. If all Stiefel-Whitney numbers and
+    Pontryagin numbers coincide, then $M$ is oriented cobordant to $N$, i.e.,
+    there is an $(n+1)$-manifold $W^{n+1}$ such that
+    $$\partial W^{n+1} = M\sqcup -N.$$
 \end{theorem}
-The real excitement comes from the Signature theorem.
-Let $M^{4k}$ be an oriented $4k$-manifold.
-I have a pairing $H^{2k}(M)/\mathrm{torsion}\otimes H^{2k}(M)/\mathrm{tors}\to \Z$ given by $x\otimes y\mapsto\langle x\cup y,[M]\rangle$.
-Poincar\'e duality says that this is a perfect pairing.
-This, I have a nonsingular symmetric bilinear form.
-Well, this is some large-dimensional free abelian group, which I can tensor with the reals to get a nonsingular symmetric bilinear form on a real vector space.
-All you need to know is that you can diagonalize this, so that the diagonal entries are $\pm 1$.
-The number of $1$s minus the number of $-1$s is called the \emph{signature} of that bilinear form.
-That is called the signature of the manifold, if the form comes from the perfect pairing.
+The most exciting application of Pontryagin classes is to Hirzebruch's
+``signature theorem''. Let $M^{4k}$ be an oriented $4k$-manifold. Then, the
+formula
+$$x\otimes y\mapsto\langle x\cup y,[M]\rangle$$
+defines a pairing
+$$H^{2k}(M)/\mathrm{torsion}\otimes H^{2k}(M)/\mathrm{tors}\to \Z.$$
+Poincar\'e duality implies that this is a perfect pairing, i.e., there is a
+nonsingular symmetric bilinear form on $H^{2k}(M)/\mathrm{torsion}\otimes \RR$.
+Every symmetric bilinear form on a real vector space can be diagonalized, so
+that the associated matrix is diagonal, and the only nonzero entries are $\pm
+1$. The number of $1$s minus the number of $-1$s is called the \emph{signature}
+of the bilinear form. When the bilinear form comes from a $4k$-manifold as
+above, this is called the signature of the manifold.
 \begin{lemma}[Thom]
     The signature is an oriented bordism invariant.
 \end{lemma}
-This is an easy thing to prove using Lefschetz duality, which is a deep theorem.
-On general principles, it follows that it's given by some ... of characteristic numbers.
-\begin{theorem}[Signature theorem, due to Hirzebruch]
-    There exists a rational polynomial $L_k(p_1,\cdots,p_k)$ of degree $4k$ such that $\langle L(p_1(\tau_M),\cdots,p_1(\tau_M)),[M]\rangle = \mathrm{signature}(M)$.
+This is an easy thing to prove using Lefschetz duality, which is a deep
+theorem. Hirzebruch's signature theorem says:
+\begin{theorem}[Hirzebruch signature theorem]
+    There exists an explicit rational polynomial $L_k(p_1,\cdots,p_k)$ of
+    degree $4k$ such that
+    $$\langle L(p_1(\tau_M),\cdots,p_1(\tau_M)),[M]\rangle =
+    \mathrm{signature}(M).$$
 \end{theorem}
-The $L(p_1(\tau_M),\cdots,p_1(\tau_M))$ is defined in terms of the tangent bundle of the manifold, while the signature relates purely to the topology of the manifold.
-This is the main relationship between the manifold and the tangent bundle.
+The reason the signature theorem is so interesting is that the polynomial
+$L(p_1(\tau_M),\cdots,p_1(\tau_M))$ is defined only in terms of the tangent
+bundle of the manifold, while the signature is defined only in terms of the
+topology of the manifold. This result was vastly generalized by Atiyah and
+Singer to the Atiyah-Singer index theorem.
 \begin{example}
-    $L_1(p_1) = p_1/3$.
-    So, what this means is that $\langle p_1(\tau),[M^4]\rangle$ is divisible by $3$.
-    This is very cool.
+    One can show that 
+    $$L_1(p_1) = p_1/3.$$
+    The Hirzebruch signature theorem implies that $\langle
+    p_1(\tau),[M^4]\rangle$ is divisible by $3$.
 \end{example}
 \begin{example}
-    $L_2(p_1,p_2) = (7p_2 - p_1^2)/45$.
-    That puts very cool divisibility constraints on these char. classes of a tangent bundle of an $8$-manifold.
-    This example was used by Milnor to produce manifolds that are homeomorphic to $S^7$ but not diffeomorphic to it.
-    These are the \emph{exotic spheres}.
+    From Hirzebruch's characterization of the $L$-polynomial, we have
+    $$L_2(p_1,p_2) = (7p_2 - p_1^2)/45.$$
+    This imposes very interesting divisibility constraints on the
+    characteristic classes of a tangent bundle of an $8$-manifold. This
+    particular polynomial was used by Milnor to produce ``exotic spheres'',
+    i.e., manifolds which are homeomorphic to $S^7$ but not diffeomorphic to
+    it.
 \end{example}
-That's an ad for 18.919, by the way, in the fall.
-That's the Kan seminar.
-You guys are all prepared to take it now.

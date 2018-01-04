@@ -1,182 +1,210 @@
 \section{Stiefel-Whitney classes, immersions, cobordisms}
+There is a result analogous to Theorem \ref{chern-classes} for all vector
+bundles (not necessarily oriented):
 \begin{theorem}
-    There exist a unique family of characteristic classes $w_i:\Vect_n(X) \to H^n(X;\FF_2)$ such that for $0\leq i$ and $i>n$, we have $w_i=0$, and:
+    There exist a unique family of characteristic classes $w_i:\Vect_n(X) \to
+    H^n(X;\FF_2)$ such that for $0\leq i$ and $i>n$, we have $w_i=0$, and:
     \begin{enumerate}
-	\item $w_0 = 1$
-	\item $w_1(\lambda) = e(\lambda)$.
-	\item Whitney sum:
+	\item $w_0 = 1$;
+	\item $w_1(\lambda) = e(\lambda)$; and
+	\item the Whitney sum formula holds:
 	    \begin{equation*}
 		w_k(\xi\oplus\eta) = \sum_{i+j=k} w_i(\xi)\cup w_j(\eta)
 	    \end{equation*}
     \end{enumerate}
     Moreover:
     $$
-    H^\ast(BO(n);\FF_2) = \FF_2[w_1,\cdots,w_n]
+    H^\ast(BO(n);\FF_2) = \FF_2[w_1,\cdots,w_n],
     $$
-    where $w_n = e_2$, and $H^\ast(BO(n-1);\FF_2) = \FF_2[w_1,\cdots,w_{n-1}]$ with $w_i\mapsto w_i$ for $i<n$ and $0$ for $i=n$
+    where $w_n = e_2$.
 \end{theorem}
 \begin{remark}
-    You can express the Whitney sum formula simply by defining the \emph{total Steifel-Whitney class} $1 + w_1 + w_2 + \cdots=:w$ (this is an inhomogeneous cohomology class).
+    We can express the Whitney sum formula simply by defining the \emph{total
+    Steifel-Whitney class}
+    $$1 + w_1 + w_2 + \cdots=:w.$$
     Then the Whitney sum formula is just
     $$
-    w(\xi\oplus\eta) = w(\xi)\cdot w(\eta)
+    w(\xi\oplus\eta) = w(\xi)\cdot w(\eta).
     $$
-    That's kind of how you prove it, actually, with the splitting principle.
+    Likewise, the Whitney sum formula can be stated by defining the total Chern
+    class.
 \end{remark}
-Here, Grothendieck's definition works.
-The splitting principle also holds, so $H^\ast(BO(n))\hookrightarrow H^\ast(B(\Z/2\Z)^n)$.
-We can't do what we did before, when considering $S^{n-1} \to EO(n)\times_{O(n)} O(n)/O(n-1)\to BO(n)$, because the $n-1$ can be even or odd; there's no restriction for it to be even like it was before.
-We still have a Gysin sequence, though:
+\begin{remark}\label{sw-stability}
+    Again, the Steifel-Whitney classes are stable:
+    $$w(\xi\oplus k\epsilon) = w(\xi).$$
+\end{remark}
+Again, Grothendieck's definition works since the splitting principle holds.
+There is an injection $H^\ast(BO(n))\hookrightarrow H^\ast(B(\Z/2\Z)^n)$. To
+compute $H^\ast(BO(n))$, our argument for computing $H^\ast(BU(n))$ does not
+immediately go through, although there is a fiber sequence
+$$S^{n-1} \to EO(n)\times_{O(n)} O(n)/O(n-1)\to BO(n);$$
+the problem is that $n-1$ can be even or odd. We still have a Gysin sequence,
+though:
 $$
 \cdots\to H^{q-n}(BO(n))\xar{e\cdot} H^q(BO(n)) \xar{\pi^\ast} H^q(BO(n-1)) \to H^{q-n+1}(BO(n))\to\cdots
 $$
-We want that $e$ is a nonzero divisor.
-But we have a splitting principle!
-
-We know that $H^\ast(BO(n)) \hookrightarrow H^\ast((\RP^\infty)^n)$, and $e_2=w_n\mapsto e_2(\lambda_1\oplus\cdots\oplus\lambda_n) = t_1\cdots t_n$, which \emph{is} a nonzero divisor, as $H^\ast((\RP^\infty)^n)$ is an integral domain.
-\todo{this was not written well, because I came late.}
-\subsection{Application I: immersions}
-I'm going to think about immersions into Euclidean space.
-That means that I have some manifold $M^n$, that is some closed smooth manifold.
-An immersion is a smooth map $f:M^n\looparrowright \RR^{n+k}$ (that's how it's denoted) such that $(\tau_{M^n})_x \hookrightarrow (\tau_{\RR^{n+k}})_{f(x)}$ for $x\in M$.
-So you can have crossings, but no cusps.
-It's a big problem in topology to try to eliminate the crossings.
-
-By the way, if you haven't seen it, there's a beautiful immersion $\RP^2 \looparrowright \RR^3$ that's known as \emph{Boys' surface}.
-
-That's a question; when can I immerse a manifold into an Euclidean space?
-Assume I had an immersion $i:M^n\looparrowright \RR^{n+k}$.
-Then I have $f:\tau_M \to i^\ast \tau_{\RR^{n+k}}$.
-The right hand thing is a trivial bundle over $M$, and the property of being an immersion says that $f$ is an embedding.
-Thus, $\tau_M$ has a $k$-dimensional complement, called $\xi$.
-This $\tau_M\oplus\xi = (n+k)\epsilon$.
-When I apply the total Steifel-Whitney class, we have (since there's no higher Steifel-Whitney class of a trivial bundle):
+In order to apply our argument for computing $H^\ast(BU(n))$ to this case, we
+only need to know that $e$ is a nonzero divisor. The splitting principle gave a
+monomorphism $H^\ast(BO(n)) \hookrightarrow H^\ast((\RP^\infty)^n)$. The fact
+that $e$ is a nonzero divisor follows from the observation that under this map,
+$$e_2=w_n\mapsto e_2(\lambda_1\oplus\cdots\oplus\lambda_n) = t_1\cdots t_n,$$
+using the same argument as in \S \ref{euler-multiplicativity}; however,
+$t_1\cdots t_n$ {is} a nonzero divisor, since $H^\ast((\RP^\infty)^n)$ is an
+integral domain.
+\subsection{Immersions of manifolds}
+The theory developed above has some interesting applications to differential
+geometry.
+\begin{definition}
+    Let $M^n$ be a smooth closed manifold. An \emph{immersion} is a smooth map
+    from $M^n$ to $\RR^{n+k}$, denoted $f:M^n\looparrowright \RR^{n+k}$, such
+    that $(\tau_{M^n})_x \hookrightarrow (\tau_{\RR^{n+k}})_{f(x)}$ for $x\in
+    M$.
+\end{definition}
+Informally: crossings are allows, but not cusps.
+%It's a big problem in topology to try to eliminate the crossings.
+\begin{example}
+    There is an immersion $\RP^2 \looparrowright \RR^3$, known as \emph{Boy's
+    surface}.
+\end{example}
+\begin{question}
+    When can a manifold admit an immersion into an Euclidean space?
+\end{question}
+Assume we had an immersion $i:M^n\looparrowright \RR^{n+k}$.
+Then we have an embedding $f:\tau_M \to i^\ast \tau_{\RR^{n+k}}$ into a trivial
+bundle over $M$, so $\tau_M$ has a $k$-dimensional complement, called $\xi$
+such that
+$$\tau_M\oplus\xi = (n+k)\epsilon.$$
+Apply the total Steifel-Whitney class, we have
+$$w(\tau)w(\xi) = 1,$$
+since there's no higher Steifel-Whitney class of a trivial bundle. In
+particular,
 $$
-w(\tau)w(\xi) = 1
-$$
-Which means that
-$$
-w(\xi) = w(\tau)^{-1}
+w(\xi) = w(\tau)^{-1}.
 $$
 \begin{example}
-    Let $M = \RP^n\looparrowright \RR^{n+k}$.
-    I picked this since we know what $\tau_{\RP^n}$ is.
-    In particular, we know that
+    Let $M = \RP^n\looparrowright \RR^{n+k}$. Then, we know that
+    $$\tau_{\RP^n}\oplus\epsilon\simeq (n+1)\lambda^\ast \simeq (n+1)\lambda,$$
+    where $\lambda\downarrow \RP^n$ is the canonical line bundle. By Remark
+    \ref{sw-stability}, we have
+    $$w(\tau_{\RP^n}) = w(\tau_{\RP^n}\oplus\eta) = w((n+1)\lambda) =
+    w(\lambda)^{n+1}.$$
+    It remains to compute $w(\lambda)$. Only the first Steifel-Whitney class is
+    nonzero. Writing $H^\ast(\RP^n) = \FF_2[x]/x^{n+1}$, we therefore have
+    $w(\lambda) = x$. In particular,
+    $$w(\tau_{\RP^n}) = (1+x)^{n+1} = \sum^n_{i=0}\binom{n+1}{i}x^i.$$
+    It follows that
+    $$w_i(\tau_{\RP^n}) = \binom{n+1}{i}x^i.$$
+    The total Steifel-Whitney class of the complement of the tangent bundle is:
+    $$w(\xi) = (1+x)^{-n-1}.$$
+    The most interesting case is when $n$ is a power of $2$, i.e., $n=2^s$ for
+    some integer $s$. In this case, since taking powers of $2$ is linear in
+    characteristic $2$, we have
+    $$w(\xi) = (1+x)^{-1-2^s} = (1+x)^{-1}(1+x)^{-2^s} =
+    (1+x)^{-1}(1+x^{2^s})^{-1}.
+    %= (1+x+x^2+\cdots)(1+x^{2^s}+\cdots)
     $$
-    \tau_{\RP^n}\oplus\epsilon\simeq (n+1)\lambda^\ast \simeq (n+1)\lambda
-    $$
-    where $\lambda\downarrow \RP^n$ is the canonical line bundle.
-    Now, I can compute the total Steifel-Whitney class of this.
-    By the way, because of that Whitney sum formula, we get that $w(\xi\oplus k\epsilon) = w(\xi)$ -- these are \emph{stable} characteristic classes.
-    So, I have:
-    $$
-    w(\tau_{\RP^n}) = w(\tau_{\RP^n}\oplus\eta) = w((n+1)\lambda) = w(\lambda)^{n+1}
-    $$
-    What's $w(\lambda)$?
-    It only has a $w_1$, and thus $w(\lambda) = x$ if we write $H^\ast(\RP^n) = \FF_2[x]/(x^{n+1})$; everything is with $\FF_2$-coefficients.
-    Thus, we have
-    $$
-    w(\tau_{\RP^n}) = (1+x)^{n+1} = \sum^n_{i=0}\binom{n+1}{i}x^i
-    $$
-    and thus it follows that
-    $$
-    w_i(\tau_{\RP^n}) = \binom{n+1}{i}x^i
-    $$
-    If we're talking about immersions, we should talk about the SW class of the complement of the tangent bundle, and it's:
-    $$
-    w(\xi) = (1+x)^{-n-1}
-    $$
-    We could write down a formula, but the most interesting case is what happens when $n=2^s$ for some integer $s$.
-    Then we'd have
-    $$
-    w(\xi) = (1+x)^{-1-2^s} = (1+x)^{-1}(1+x)^{-2^s} = (1+x)^{-1}(1+x^{2^s})^{-1} = (1+x+x^2+\cdots)(1+x^{2^s}+\cdots)
-    $$
-    Because taking powers of $2$ is linear in char. $2$.
-    Since we're in $\FF_2[x]/x^{2^s+1}$, I don't care about higher terms.
+    As all terms of degree greater than $2^s$ are zero, we conclude that
     So
-    $$
-    w(\xi) = 1+x+x^2+\cdots+x^{2^s-1}+2x^s = 1+x+x^2+\cdots+x^{2^s-1}
-    $$
-    This means that $k = \dim\xi \geq 2^s-1$, as $x^{2^s-1}\neq 0$.
-    The conclusion is:
+    $$w(\xi) = 1+x+x^2+\cdots+x^{2^s-1}+2x^s = 1+x+x^2+\cdots+x^{2^s-1}.$$
+    As $x^{2^s-1}\neq 0$, this means that $k = \dim\xi \geq 2^s-1$. We
+    conclude:
     \begin{theorem}
-	$\RP^{2^s}\not \looparrowright \RR^{2\cdot 2^{s}-2}$.
+	There is no immersion $\RP^{2^s}\looparrowright \RR^{2\cdot 2^{s}-2}$.
     \end{theorem}
-    This is sharp\footnote{This means that I can't reduce the dimension of the Euclidean space into which I'm embedding.}, because of the following theorem:
+    The following result applied to $\RP^{2^s}$ shows that the above result is
+    sharp:
     \begin{theorem}[Whitney]
 	Any smooth compact closed manifold $M^n \looparrowright \RR^{2n-1}$.
-	This result is \emph{not} sharp.
     \end{theorem}
-    The sharp theorem, though, is this:
-    \begin{theorem}[Brown, Peterson, Cohen, in 1980?]
-	A closed compact smooth $n$-manifold $M^n \looparrowright \RR^{2n-\alpha(n)}$, where $\alpha(n)$ is the number of $1$s in the dyadic expansion of $n$.
-	This is sharp, since if $n=\sum 2^{d_i}$ for the dyadic expansion, then $M = \prod_i \RP^{2^{d_i}} \not \looparrowright \RR^{2n-\alpha(n)-1}$, using Steifel-Whitney classes.
+    However, Whitney's result is \emph{not} sharp for a general smooth compact
+    closed manifold. Rather, we have:
+    \begin{theorem}[Brown--Peterson, Cohen]
+	A closed compact smooth $n$-manifold $M^n \looparrowright
+	\RR^{2n-\alpha(n)}$, where $\alpha(n)$ is the number of $1$s in the
+	dyadic expansion of $n$.
     \end{theorem}
+    This result is sharp, since if $n=\sum 2^{d_i}$ for the dyadic expansion,
+    then $M = \prod_i \RP^{2^{d_i}} \not \looparrowright \RR^{2n-\alpha(n)-1}$.
 \end{example}
-There was a period of time in the late '60s, etc. when a lot of effort was put in to stronger and stronger immersion results.
+%There was a period of time in the late '60s, etc. when a lot of effort was put
+%in to stronger and stronger immersion results.
 \subsection{Cobordism, characteristic numbers}
-If I have an $n$-manifold (smooth closed compact), one thing that's always true is that it embeds in $\RR^{n+k}$ for some $k>>0$.
-So, you have a normal bundle: $\tau_M^n\oplus \nu_M^k = (n+k)\epsilon$.
-A piece of differential topology tells you that if $k$ is large, then $\nu_M\oplus ?\epsilon$ is independent of the bundle, where $?$ is some number.
+If we have a smooth closed compact $n$-manifold, then it embeds in $\RR^{n+k}$
+for some $k\gg 0$. The normal bundle then satisfies
+$$\tau_M\oplus \nu_M = (n+k)\epsilon.$$
+A piece of differential topology tells us that if $k$ is large, then
+$\nu_M\oplus N\epsilon$ is independent of the bundle for some $N$.
 
-It makes sense to talk about the Steifel-Whitney class for $w\in H^\ast(BO) = \FF_2[w_1,w_2,\cdots]$, where $BO = \varinjlim BO(n)$.
-That's where we should be talking about things that are well-defined but only up to some trivial bundle.
-I can consider $w(\nu_M)$ -- that makes sense.
-The $w$ is to remind you that this is related to the Steifel-Whitney class.
-I can now consider $\langle w(\nu_M),[M]\rangle$.
-This is called the characteristic number.
-We saw an example of this already, for instance in the Euler characteristic (this is slightly different since I'm using the normal bundle here).
-Note that $[M]$ exists since we're working with coeffs in $\FF_2$.
+This example, combined with Remark \ref{stability}, shows that $w(\nu_M)$ is
+independent of $k$. We are therefore motivated to think of Stiefel-Whitney
+classes as coming from $H^\ast(BO;\FF_2) = \FF_2[w_1,w_2,\cdots]$, where $BO =
+\varinjlim BO(n)$. Similarly, Chern classes should be thought of as coming from
+$H^\ast(BU;\Z) = \Z[c_1,c_2,\cdots]$. This exa
+\begin{definition}
+    The characteristic number of a smooth closed compact $n$-manifold
+    $M$ is defined to be $\langle w(\nu_M),[M]\rangle$.
+\end{definition}
+Note that the fundamental class $[M]$ exists, since our coefficients are in
+$\FF_2$, where everything is orientable.
 
-That's a useful thing you can do.
-This relates to the notion of a cobordism.
+This definition is very useful when thinking about cobordisms. 
+\begin{definition}\label{cobordism}
+    Two (smooth closed compact) $n$-manifolds $M, N$ are \emph{(co)bordant} if
+    there is an $(n+1)$-dimensional manifold $W^{n+1}$ with boundary such that
+    $$\partial W\simeq M\sqcup N.$$
+\end{definition}
+For instance, when $n=0$, the manifold $\ast\sqcup \ast$ is \emph{not}
+cobordant to $\ast$, but it is cobordant to the empty set. However,
+$\ast\sqcup\ast\sqcup\ast$ is cobordant to $\ast$. Any manifold is cobordant
+to itself, since $\partial(M\times I) = M\sqcup M$. In fact, cobordism forms
+an equivalence relation on manifolds.
 
-Let me say that two $n$-manifolds $M, N$ are \emph{(co)bordant} if there's an $(n+1)$-dimensional manifold $W^{n+1}$ with boundary such that $\partial W\simeq M\sqcup N$.
-What if $n=0$, for example?
-We know that the manifold $\ast\sqcup \ast$ is \emph{not} cobordant to $\ast$, but it is cobordant to the empty set.
-But $\ast\sqcup\ast\sqcup\ast$ is cobordant to $\ast$.
-Any manifold is cobordant to itself, since $\partial(M\times I) = M\sqcup M$.
-Cobordism is an equivalence relation.
-
-Note that all my manifolds are compact and smooth.
-But $M$ and $N$ are closed.
+\begin{example}
+    A classic example of a cobordism is the ``pair of pants''; this is the
+    following cobordism between $S^1$ and $S^1\sqcup S^1$:
+    \todo{add image}
+\end{example}
 
 Let us define
 $$
-\Omega^O_n = \{\text{cobordism classes of $n$-manifolds}\}
+\Omega^O_n = \{\text{cobordism classes of $n$-manifolds}\}.
 $$
-We computed that $\Omega^O_n = \FF_2$.
-I wrote this as a group, because I can add cobordism classes, by taking disjoint unions.
-Every element is its own inverse.
-In fact, when I put this together, I get a graded \emph{cobordism ring}, denoted $\Omega^O_\ast$.
-
-Let me show you something here.
-This is due to Rene Thom.
-He made the following observation, that's pretty cool.
-Suppose my manifold is embedded into Euclidean space.
-Then suppose $M$ is nullbordant via some $W$.
-When you set it up like that, you find that $\nu_W|_{M} = \nu_M$; there's no change in dimension.
-
-Look what I can do.
-I can consider $\langle w(\nu_M),[M]\rangle = \langle w(\nu_W)|_{M},[M]\rangle$.
-On the other hand, $H_n(M) \leftarrow H_{n+1}(W,M)$ given by $[W,M]\mapsto[M]$, where that's a relative fundamental class.
-Thus $\langle w(\nu_M),[M]\rangle = \langle w(\nu_M),\partial[W,M]\rangle = \langle \delta w(\nu_M),[W,M]\rangle$.
-But, let's see, we have an exact sequence $H^n(W)\xar{i^\ast} H^n(M) \xar{\delta} H^{n+1}(W,M)$.
-Since $w(\nu_M)$ is $i^\ast$ of something, it follows that $\delta w(\nu_M) = 0$.
-Thus, we find that:
+This forms a group: the addition is given by disjoint union. Note that every
+element is its own inverse. Moreover, $\bigoplus_n \Omega^O_n = \Omega^O_\ast$
+forms a graded ring, where the product is given by the Cartesian product of
+manifolds. Our discussion following Definition \ref{cobordism} shows that
+$\Omega^O_0 = \FF_2$.
+\begin{exercise}\label{nullbordant}
+    Every $1$-manifold is nullbordant, i.e., cobordant to the point.
+\end{exercise}
+Thom made the following observation. Suppose an $n$-manifold $M$ is embedded
+into Euclidean space, and that $M$ is nullbordant via some $(n+1)$-manifold
+$W$, so that $\nu_W|_{M} = \nu_M$. In particular,
+$$\langle w(\nu_M),[M]\rangle = \langle w(\nu_W)|_{M},[M]\rangle.$$
+On the other hand, the boundary map $H_{n+1}(W,M) \xar{\partial} H_n(M)$ sends
+the relative fundamental class $[W,M]$ to $[M]$. Thus
+$$\langle w(\nu_M),[M]\rangle = \langle w(\nu_M),\partial[W,M]\rangle = \langle
+\delta w(\nu_M),[W,M]\rangle.$$
+However, we have an exact sequence
+$$H^n(W)\xar{i^\ast} H^n(M) \xar{\delta} H^{n+1}(W,M).$$
+Since $w(\nu_M)$ is in the image of $i^\ast$, it follows that $\delta w(\nu_M)
+= 0$. In particular, the characteristic number of a nullbordant manifold is
+zero. Thus, we find that ``Stiefel-Whitney numbers tell all'':
 \begin{prop}
-    Characteristic numbers are cobordism invariants.
-    That is to say, they give a map $\Omega^O_n \to \Hom(H^n(BO),\FF_2)\simeq H_n(BO)$, by UCT.
+    Characteristic numbers are cobordism invariants. In other words,
+    characteristic numbers give a map
+    $$\Omega^O_n \to \Hom(H^n(BO),\FF_2)\simeq H_n(BO).$$
 \end{prop}
-Thus Stiefel-Whitney numbers tell all.
-\begin{theorem}[Thom, 1954]
-    This map of graded rings is an embedding, i.e., $\Omega^O_\ast \hookrightarrow H_\ast(BO)$.
-    In other words, if $w(M^n) = w(N^n)$ for all $w\in H^n(BO)$, then $M^n \sim N^n$.
+More is true:
+\begin{theorem}[Thom, 1954]\label{thom-sw}
+    The map of graded rings $\Omega^O_\ast\to H_\ast(BO)$ defined by the
+    characteristic number is an inclusion. Concretely, if $w(M^n) = w(N^n)$ for
+    all $w\in H^n(BO)$, then $M^n$ and $N^n$ are cobordant.
 \end{theorem}
-The way that he did this was by expressing $\Omega^O_\ast = \pi_\ast(\text{space})$, and he showed that that space i the product of mod $2$ Eilenberg-MacLane spaces.
-Along the way, he also gave a computation:
+The way that Thom proved this was by expressing $\Omega^O_\ast$ is the graded
+homotopy ring of some space, which he showed is the product of mod $2$
+Eilenberg-MacLane spaces. Along the way, he also showed that:
 $$
 \Omega^O_\ast = \FF_2[x_i:i\neq 2^s-1] = \FF_2[x_2,x_4,x_5,x_6,x_8,\cdots]
 $$
-(It's a nice exercise to see that every $1$-manifold is nullbordant.)
-On Wednesday we'll talk about Pontryagin classes and the signature theorem.
+This recovers the result of Exercise \ref{nullbordant} (and so much more!).

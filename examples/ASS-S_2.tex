@@ -1,0 +1,397 @@
+%%
+%% Description: Adams Novikov Spectral Sequence for $S_2$
+%%
+%%
+%%    Draws the Adams Spectral Sequence at the prime 2 through the 45 stem.
+%%    See pages 146 - 147 of Green book
+%%    https://mathoverflow.net/questions/102316/differentials-in-the-adams-spectral-sequence-for-spheres-at-the-prime-p-2
+%%    https://en.wikipedia.org/wiki/Homotopy_groups_of_spheres#Table_of_stable_homotopy_groups
+%%
+
+
+\documentclass[tooltips]{spectralsequence-example}
+
+
+\begin{document}
+\sseqset{imJ/.sseq style={purple}}
+
+
+\NewSseqCommand\twoclass{O{}d()}{
+    \IfNoValueF{#2}{\pushstack(#2)}
+    \class[#1](\lastx,\lasty+1)
+    \structline(\lastclass1)(\lastclass)
+}
+
+\NewSseqCommand\divtwoclass{O{}d()}{
+    \IfNoValueF{#2}{\pushstack(#2)}
+    \class[#1](\lastx,\lasty-1)
+    \structline(\lastclass1)(\lastclass)
+}
+
+
+\NewSseqCommand\etaclass{O{}d()}{
+    \IfNoValueF{#2}{\pushstack(#2)}
+    \class[#1](\lastx+1,\lasty+1)
+    \structline(\lastclass1)(\lastclass)
+}
+\NewSseqCommand\divetaclass{O{}d()}{
+    \IfNoValueF{#2}{\pushstack(#2)}
+    \class[#1](\lastx-1,\lasty-1)
+    \structline(\lastclass1)(\lastclass)
+}
+\NewSseqCommand\etastruct{d()}{
+    \IfNoValueF{#1}{\pushstack(#1)}
+    \structline(\lastx-1,\lasty-1,-1)(\lastclass)
+}
+
+
+\NewSseqCommand\nuclass{O{}d()}{
+    \IfNoValueF{#2}{\pushstack(#2)}
+    \class[#1](\lastx+3,\lasty+1)
+    \structline(\lastclass1)(\lastclass)
+}
+
+\NewSseqCommand\nustruct{d()}{
+    \IfNoValueF{#1}{\pushstack(#1)}
+    \structline(\lastx-3,\lasty-1,-1)(\lastclass)
+}
+
+\NewSseqCommand\hznudiamond{d()}{
+    \IfNoValueF{#1}{\pushstack(#1)}
+    \savestack
+    \class(\lastx,\lasty+1)
+    \structline(\lastclass1)(\lastclass)
+    \nustruct
+    \restorestack
+}
+
+\NewSseqCommand\etanudiamond{d()}{
+    \IfNoValueF{#1}{\pushstack(#1)}
+    \savestack
+    \class(\lastx+1,\lasty+1)
+    \structline(\lastclass1)(\lastclass)
+    \nustruct
+    \restorestack
+}
+
+\NewSseqCommand \czero {O{} r() }{
+    \savestack
+    \class[#1](#2)
+    \etaclass
+    \restorestack
+}
+
+\NewSseqCommand\tower {O{}d()mO{}} {
+    \begin{scope}[#4]
+    \IfNoValueF{#2}{\class[#1](#2)}
+    \savestack
+    \Do{#3-1}{
+        \class(\lastx, \lasty+1)
+        \structline(\lastclass)(\lastclass1)
+    }
+    \restorestack
+    \end{scope}
+}
+
+
+\NewSseqCommand \towergroup {o r() m O{}} {
+    \tower(#2){#3}[#4]
+    \IfNoValueF{#1}{\classoptions[#1](#2)}
+    \etaclass\etaclass\etaclass
+    \nustruct\divtwoclass\nustruct\divtwoclass
+    \nustruct\nuclass
+}
+
+
+\protected\def\Psqvphant{\vphantom{P^2}}
+\NewSseqGroup \Phone { mm } {
+    \class["#1h_1#2"](0,0)
+    \etaclass\etaclass
+    \divtwoclass\divtwoclass["\Psqvphant#1h_2#2" {below=-4pt}]
+}
+
+\NewSseqGroup \Phonegroup {G{}}{
+    \sseqset{class label handler = \SseqNormalizeMonomial }
+    \czero["#1c_0" above](-1,-2)
+    \Phone[imJ]{P#1}{}
+    \nuclass[imJ]\divtwoclass[imJ]\divtwoclass["#1d_0" left,name=d0]
+    \etaclass\etaclass\etaclass
+    \nustruct\divtwoclass\nustruct\divtwoclass\nustruct\divtwoclass["#1e_0" left,name=e0]
+    \nuclass\hznudiamond
+    \divtwoclass
+    \classoptions["#1g" {below=0.3em},page=0-3](\lastclass)
+    %\etanudiamond
+
+    % Have to go back and draw path e0 to g
+    \savestack
+    \d2(e0,-1)
+    \etaclass(e0)\d2(\lastclass,-1)
+    \divtwoclass[name=f0]\d2(\lastclass,-1)
+    \nuclass[name=nuf0]
+    \etastruct % Now we're back at g
+    \restorestack
+    \nuclass[name=nug]\hznudiamond\nuclass[name=nu2g]
+}
+
+
+\NewSseqGroup \Phonegroupb {G{}}{
+    \Phonegroup{P#1}
+
+    \divtwoclass["\Psqvphant#1j" {below left=-1pt,yshift=2pt}](f0) \d2(\lastclass,-1)
+    \divtwoclass(nuf0) \d2(\lastclass,-1)
+    \nustruct\divtwoclass["\Psqvphant#1k" {below=-1pt}] \d2(\lastclass,-1)
+    \nuclass\d2(\lastclass,-1)
+    \hznudiamond
+    \divtwoclass["\Psqvphant#1l" {below left=-1pt,yshift=2pt}]\d2(\lastclass,-1)
+    \nuclass\d2(\lastclass,-1)\hznudiamond
+    \divtwoclass["\Psqvphant#1m" {below left=-3pt},name=m]
+
+    \divtwoclass(nug)\structline(\lastclass)(\lastx+1,\lasty+1)
+    \divtwoclass(nu2g)\nustruct
+    \divtwoclass\structline(\lastclass)(\lastx+1,\lasty+1)
+    \d2(m,-1)
+}
+
+
+
+\begin{sseqdata}[
+    name = ASS-S_2,
+    Adams grading,
+    classes=fill,
+    class labels={above left=0.2em,black},
+    x range={0}{46},
+    y range={0}{23},
+    differentials = blue,
+    classes = { tooltip = { (\xcoord,\ycoord) } },
+    grid = go,
+    run off = -
+]
+\towergroup(0,0){\ymax-\ymin+2}
+\classoptions["h_2" below](3,1)
+\nuclass
+\divetaclass\divetaclass["h_3" below]
+\tower{4}
+
+
+\Phonegroup(9,5)
+\classoptions["f_0"](f0)
+
+\Phonegroupb(17,9)
+\pushstack(d0)
+\tower["i" {below left,yshift=2pt}](23,7){6}[imJ]
+\structline(\lastclass)(\lastx+3,\lasty+1,-1)
+\structline(\lastx,\lasty+1)(\lastx+3,\lasty+2,-1)
+\d2(23,7)
+\d2(23,8)
+
+\Phonegroupb(25,13){P}
+\Phonegroupb(33,17){P^2}
+\tower["P^2i" {below left,yshift=2pt}](39,15){6}[imJ]
+\structline(\lastclass)(\lastx+3,\lasty+1,-1)
+\structline(\lastx,\lasty+1)(\lastx+3,\lasty+2,-1)
+\d2(39,15)
+\d2(39,16)
+\d4(39,12)
+\d4(40,13,,1)
+
+\Phonegroup(41,21){P^4}
+\tower["P^2i" {below left,yshift=2pt}](47,19){6}[imJ]
+\d2(47,19)
+\d2(47,20)
+
+\towergroup["h_4" below](15,1){8}[imJ]
+\classoptions["h_3^3" below](\lastclass)
+
+\tower["h_3^2" left](14,2){2}
+\d2(15,1) % d2(h_4) = h_0h_3^2
+\d3(15,2)\d3(15,3) % d2(h_0h_4) = h_0d_0
+
+\class["c_1"](19,3)\nuclass
+\czero["h_4c_0"](23,4)
+
+
+
+\towergroup["h_5" below](31,1){16}[imJ]
+\nuclass
+\divetaclass\divetaclass["h_3h_5" {below=-2pt}]
+\tower{4}
+
+\class["n"{above=-0.5pt}](31,5)
+\nuclass\nuclass
+\divetaclass["t"]
+\nuclass["c_1g"]
+
+\class["q" {below right=-0.7pt}](32,6)
+\etaclass
+
+\class["p"](33,4)
+\twoclass\divetaclass["d_1"]
+\nuclass\nuclass
+\divetaclass["x" below]\tower{6}
+
+\d[bend left=15]4(38,3,,2)
+\d[bend left=30]4(38,2)
+
+
+\tower["h_4^2" below](30,2){4}
+\etaclass
+\tower["r" left](30,6){6}
+\d3(\lastclass)
+
+\d2(31,1)\d2(31,2)\d2(31,3)
+\d3(31,4)\d3(31,5)\d3(31,6)\d3(31,7)\d3(31,8,-1)
+\d4(31,8,1)\d4(32,9,,1)
+\d4(31,9,-1,-1)\d4(31,10,-1,-1)
+
+\d3(34,2)
+
+
+\class(38,6)\d2(\lastclass,-1)
+\twoclass\d2(\lastclass,-1)
+\twoclass\nustruct\d2(\lastclass,-1)
+\twoclass\nustruct\d4(\lastclass,-1)
+\divetaclass["e_0g"]\d4(\lastclass,-1)
+
+\czero[pin distance=3em,pin=below right:h_5c_0"](39,4)
+
+\class["e_1" {below=-1pt}](38,4)
+\d3(\lastclass,1)
+\etaclass\etaclass\divtwoclass\divtwoclass["f_1" below]
+\etaclass
+\divtwoclass\d2(\lastclass)
+\divtwoclass\d2(\lastclass,-1)
+
+
+\Phone(40,6){P}{h_5}
+
+\class["u"](39,9)\etaclass\etaclass\divtwoclass
+
+\class["g^2"](40,8)
+\class["v"](42,9)
+\d2(\lastclass)
+
+\tower["P^2r" {below=-4pt}](46,14){6}
+\d3(\lastclass)
+
+\class["Pe_0g" right](45,12)
+\d4(\lastclass)
+
+\class["w"](45,9)
+
+\class["d_0r" right](44,10)
+\d3(\lastclass)
+
+
+\class["h_4^3" below](45,3)\twoclass
+
+\tower["h_5d_0" {below right=-2pt}](45,5){3}
+\etaclass\etaclass
+\nuclass(45,5)\hznudiamond
+\nustruct(45,7)
+
+\tower["g_2" below](44,4){3}
+\etaclass
+
+\class["N"](46,8)
+\class["gj"](46,11)
+
+\tower(47,13){12}
+\foreach \y in {13,...,18} { \d2(47,\y)}
+\end{sseqdata}
+\centering
+
+\begin{sseqpage}[
+    page=7,
+    name=ASS-S_2, Adams grading,
+    class labels={below},
+    %label distance=-1pt,
+    below label distance=0pt,
+    differentials=blue,
+    x range={0}{40},
+    y range={0}{10},
+    xscale=0.7,
+    yscale=1.7,
+    grid=go,
+    right clip padding=2em
+]
+\structline[dashed,bend right=20](15,4)(16,7,1)
+\structline[dashed,bend right=20](23,9,2)(24,11)
+\structline[dashed,bend right=20](31,11)(32,15)
+\structline[dashed,bend right=20](39,17,2)(40,19)
+
+\structline[dashed](14,2)(15,5,1)
+\structline[dashed](21,5)(22,8)
+\structline[dashed,bend right=20](20,6)(23,9,1)
+\structline[dashed](23,6)(23,9,1)
+\structline[dashed,bend right=20](30,2)(33,4)
+\structline[dashed,bend left=20](32,6)(35,9)
+
+\structline[dashed](38,4)(39,7)
+
+\structline[dashed](40,8)(40,10)
+\structline[dashed](40,8)(41,10)
+\structline[dashed,bend left=40](39,9)(42,12)
+\structline[dashed](41,10)(42,12)
+
+\classoptions["h_0^2i" right=1pt](23,9)
+\classoptions["h_0^{10}h_5" left](31,11)
+\classoptions["h_1h_5" below](32,2)
+\classoptions["h_0h_2h_5" below](34,3)
+\classoptions["h_2^2h_5" below](37,3)
+\classoptions["h_0^2h_3h_5" {left=-0.1em}](38,4,1)
+\classoptions["h_1h_3h_5" {below=-.4em}](39,3,1)
+
+\classoptions["Ph_3"   left](15,5,1)
+\classoptions["P^2h_3" left](23,9,1)
+%\classoptions["P^3h_3" left](31,13,1)
+%\classoptions["P^4h_3" left](39,17,1)
+\end{sseqpage}
+%\end{document}
+
+\newgeometry{margin = 0.1cm}
+\printpage[name=ASS-S_2,page=2,xscale=0.7,yscale=0.8,keep changes]
+
+%\printpage[name=ASS-S_2,page=2]
+
+\printpage[name=ASS-S_2,page=3]
+
+\printpage[name=ASS-S_2,page=4]
+
+\begin{sseqpage}[name=ASS-S_2,page=5]
+\structline[dashed,bend right=20](15,4)(16,7,1)
+\structline[dashed,bend right=20](23,9,2)(24,11)
+\structline[dashed,bend right=20](31,11)(32,15)
+\structline[dashed,bend right=20](39,17,2)(40,19)
+
+\structline[dashed](14,2)(15,5,1)
+\structline[dashed](21,5)(22,8)
+\structline[dashed,bend right=20](20,6)(23,9,1)
+\structline[dashed](23,6)(23,9,1)
+\structline[dashed,bend right=20](30,2)(33,4)
+\structline[dashed,bend left=20](32,6)(35,9)
+
+\structline[dashed](38,4)(39,7)
+
+\structline[dashed](40,8)(40,10)
+\structline[dashed](40,8)(41,10)
+\structline[dashed,bend left=40](39,9)(42,12)
+\structline[dashed](41,10)(42,12)
+
+\classoptions["g" {below=0.3em}](20,4)
+\classoptions["{d_0^2=Pg=c_0g}" {xshift=5pt, below=-2.15em}](28,8)
+
+
+\classoptions["h_0^2i" right=1pt](23,9)
+\classoptions["h_0^{10}h_5" left](31,11)
+\classoptions["h_1h_5" below](32,2)
+\classoptions["h_0h_2h_5" below](34,3)
+\classoptions["h_2^2h_5" below](37,3)
+\classoptions["h_0^2h_3h_5" {left=-0.1em}](38,4,1)
+\classoptions["h_1h_3h_5" {below=-.4em}](39,3,1)
+
+\classoptions["Ph_3"   left](15,5,1)
+\classoptions["P^2h_3" left](23,9,1)
+%\classoptions["P^3h_3" left](31,13,1)
+%\classoptions["P^4h_3" left](39,17,1)
+\end{sseqpage}
+\end{document} 

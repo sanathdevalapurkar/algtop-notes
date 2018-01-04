@@ -1,142 +1,147 @@
-\section{$H^\ast(BU(n))$, splitting principle}
-I wanted to share some ideas about the question on the first nonzero homology group of an Eilenberg-MacLane space.
-One idea was to use this extension $0\to \Z\xar{p^k}\Z\to \Z/p^k\to 0$.
-This gives rise to a fiber sequence $K(\Z,n)\to K(\Z,n)\to K(\Z/p^k,n)\to 0$.
-You could maybe use the Serre spectral sequence here?
-Another idea that came up was that this is embedded in a long sequence of fibrations, so that you have $K(\Z,n)\to K(\Z,n)\to K(\Z/p^k, n) \to K(\Z,n+1)\to\cdots$.
+\section{$H^\ast(BU(n))$, splitting principle}\label{homology-bun}
+%I wanted to share some ideas about the question on the first nonzero homology group of an Eilenberg-MacLane space.
+%One idea was to use this extension $0\to \Z\xar{p^k}\Z\to \Z/p^k\to 0$.
+%This gives rise to a fiber sequence $K(\Z,n)\to K(\Z,n)\to K(\Z/p^k,n)\to 0$.
+%You could maybe use the Serre spectral sequence here?
+%Another idea that came up was that this is embedded in a long sequence of fibrations, so that you have $K(\Z,n)\to K(\Z,n)\to K(\Z/p^k, n) \to K(\Z,n+1)\to\cdots$.
+%
+%I'm really excited today -- it's more characteristic classes!
+%Last week, I gave you Grothendieck's construction of Chern classes:
+%if you have a complex $n$-plane bundle $\xi\downarrow X$, I described $\PP(\xi)$, which has a canonical tautologous line bundle $\lambda_\xi\downarrow \PP(\xi)$.
+%This has an Euler class $e=e(\lambda_\xi)\in H^2(\PP(\xi))$, and this satisfies the following unique relation:
+%$$
+%e^n+c_1e^{n-1} + \cdots + c_n = 0
+%$$
+%Then $c_k\in H^{2k}(X)$ are called the Chern classes.
+%
+%This doesn't give you much insight as to how to compute them.
+Theorem \ref{chern-classes} claimed that the Chern classes, which we
+constructed in the previous section, generate the cohomology of $BU$ as a
+polynomial algebra. Our goal in this section is to prove this result.
+\subsection{The cohomology of $BU(n)$}
+Recall that $BU(n)$ supports the universal principal $U(n)$-bundle $EU(n)\to
+BU(n)$. Given any left action of $U(n)$ on some space, we can form the
+associated fiber bundle. For instance, the associated bundle of the
+$U(n)$-action on $\cC^n$ yields the universal line bundle $\xi_n$.
 
-I'm really excited today -- it's more characteristic classes!
-Last week, I gave you Grothendieck's construction of Chern classes:
-if you have a complex $n$-plane bundle $\xi\downarrow X$, I described $\PP(\xi)$, which has a canonical tautologous line bundle $\lambda_\xi\downarrow \PP(\xi)$.
-This has an Euler class $e=e(\lambda_\xi)\in H^2(\PP(\xi))$, and this satisfies the following unique relation:
-$$
-e^n+c_1e^{n-1} + \cdots + c_n = 0
-$$
-Then $c_k\in H^{2k}(X)$ are called the Chern classes.
+Likewise, the associated bundle of the action of $U(n)$ on $S^{2n-1}\subseteq
+\cc^n$ is the unit sphere bundle $S(\xi_n)$, the unit sphere bundle. By
+construction, the fiber of the map $EU(n)\times_{U(n)}S^{2n-1}\to BU(n)$ is
+$S^{2n-1}$. Since
+$$S^{2n-1} = U(n)/(1\times U(n-1)),$$
+we can write
+$$EU(n)\times_{U(n)}S^{2n-1} \simeq EU(n)\times_{U(n)} (U(n)/U(n-1)) \simeq
+EU(n)/U(n-1) = BU(n-1).$$
+In other words, $BU(n-1)$ is the unit sphere bundle of the tautologous line
+bundle over $BU(n)$. This begets a fiber bundle:
+$$S^{2n-1}\to BU(n-1)\to BU(n),$$
+which provides an inductive tool (via the Serre spectral sequence) for
+computing the homology of $BU(n)$. In \S \ref{gysin-sequence}, we observed that
+the Serre spectral sequence for a spherical fibration was completely described
+bythe Gysin sequence.
 
-This doesn't give you much insight as to how to compute them.
-I also claimed that these Chern classes generate the cohomology of $BU$ as a polynomial algebra.
-I'll talk about that today.
-\subsection{$H^\ast(BU(n))$ -- how to compute it}
-Over $BU(n)$, I have the universal principal $U(n)$-bundle $EU(n)\to BU(n)$.
-And then, given any left action of $U(n)$ on some space, I can form the associated fiber bundle.
-Suppose we consider the $U(n)$-action on $\cc^n$; then $EU(n)\times_{U(n)}\cc^n\to BU(n)$ is the universal line bundle $\xi_n$.
-I could also consider the action on $S^{2n-1}\subseteq \cc^n$.
-Then I'd get $S(\xi)$, the unit sphere bundle; the fiber of $EU(n)\times_{U(n)}S^{2n-1}\to BU(n)$ is $S^{2n-1}$.
-Now, we also know that $S^{2n-1} = U(n)/(1\times U(n-1))$.
-Thus, I can write
-$$EU(n)\times_{U(n)}S^{2n-1} = EU(n)\times_{U(n)} (U(n)/U(n-1)) = EU(n)/U(n-1) = BU(n-1)$$
-which shows that $BU(n-1)$ is the sphere bundle of the tautologous line bundle over $BU(n)$.
-Thus we get a fiber bundle:
-$$
-S^{2n-1}\to BU(n-1)\to BU(n)
-$$
-We can use this as an inductive tool, via the Serre spectral sequence.
-We've already talked about the Serre spectral sequence for a spherical fibration, and we found that all the information was contained in the Gysin sequence.
-
-Recall the Gysin sequence of a $S^{2n-1}$-fiber bundle.
-Suppose $S^{2n-1}\to E\xar{\pi} B$ is our fiber bundle, with $B$ oriented.
-How does the Gysin sequence go?
+Recall that if $B$ is oriented and $S^{2n-1}\to E\xar{\pi} B$ is a spherical
+bundle over $B$, then the Gysin sequence was a long exact sequence
 $$
 \cdots\to H^{q-1}(E) \xar{\pi_\ast} H^{q-2n}(B) \xar{e\cdot} H^q(B) \xar{\pi^\ast} H^q(E) \xar{\pi_\ast} \cdots
 $$
-Note that there are no twisted coefficients, because in our scenario, $\pi_1 BU(n) = \pi_0 U(n) = 0$.
+Let us assume that the cohomology ring of $E$ is polynomial and concentrated in
+even dimensions. For the base case of the induction, both these assumptions are
+satisfied (since $BU(0) = \ast$ and $BU(1) = \CP^\infty$).
 
-Let's make two inductive assumptions:
-\begin{enumerate}
-    \item $H^\mathrm{odd}(E) = 0$ -- this works whether we start the induction at $n=1$ or $n=2$ (respectively, you have $\ast = BU(0)$ and $\CP^\infty = BU(1)$).
+These assumptions imply that if $q$ is even, then the map $\pi_\ast$ is zero.
+In particular, multiplication by $e|_{H^\mathrm{even}(B)}$ (which we will also
+denote by $e$) is injective, i.e., $e$ is a nonzero divisor.  Similarly, if $q$
+is odd, then $e\cdot H^{q-2n}(B) = H^q(B)$. But if $q=1$, then $H^{q-2n}(B) =
+0$; by induction on $q$, we find that $H^\mathrm{odd}(B) = 0$. Therefore, if
+$q$ is even, then $H^{q-2n+1}(B) = 0$. This implies that there is a short exact
+sequence
+\begin{equation}\label{inductive-step-cohomology}
+    0\to H^\ast(B) \xar{e\cdot} H^\ast(B) \to H^\ast(E) \to 0.
+\end{equation}
+In particular, the cohomology of $E$ is the cohomology of $B$ quotiented by the
+ideal generated by the nonzero divisor $e$.
 
-	This implies that if $q$ is even, then $\pi_\ast = 0$, which implies that $e|_{H^\mathrm{even}(B)}$ is monic.
-	If $q$ is odd, then $e\cdot H^{q-2n}(B) = H^q(B)$.
-	In the latter case, what if $q=1$?
-	Then $H^{q-2n}(B) = 0$, so by induction on $q$, you find that $H^\mathrm{odd}(B) = 0$.
-	If $q$ is even, then $H^{q-2n+1}(B) = 0$, and so we get a sexseq
-	$$
-	0\to H^\ast(B) \xar{e\cdot} H^\ast(B) \to H^\ast(E) \to 0
-	$$
-	I.e., the cohomology of $E$ is the cohomology of $B$ quotiented by the ideal generated by $e$.
-	We've also discovered that $e\in H^{2n}(B)$ is a nonzero divisor.
+For instance, when $n=1$, then $B=\CP^\infty$ and $E\simeq \ast$. We have the
+canonical generator $e\in H^2(\CP^\infty)$; these deductions tell us the
+well-known fact that $H^\ast(\CP^\infty) \simeq \Z[e]$.
 
-	\begin{example}
-	    $n=1$, $B=\CP^\infty$, $E\simeq \ast$.
-	    I have $e\in H^2(\CP^\infty)$.
-	    What these deductions mean is that $H^\ast(\CP^\infty) \simeq \Z[e]$.
-	    This is good.
-	\end{example}
-    \item The cohomology $H^\ast(E)$ is polynomial.
-	Well, now I have this surjection $H^\ast(B) \xar{\pi^\ast} H^\ast(E)$.
-	Since $H^\ast(E)$ is polynomial, we can lift the generators to something in $H^\ast(B)$.
-	That'll give a splitting $s:H^\ast(E) \to H^\ast(B)$.
-	I also have this extra element in the cohomology of $B$, namely, the Euler class.
-	Thus, we get a map $H^\ast(E)[e] \xar{\overline{s}} H^\ast(B)$.
-	This is going to be an isomorphism -- why?
+Consider the surjection $H^\ast(B) \xar{\pi^\ast} H^\ast(E)$. Since $H^\ast(E)$
+is polynomial, we can lift the generators of $H^\ast(E)$ to elements of
+$H^\ast(B)$. This begets a splitting $s:H^\ast(E) \to H^\ast(B)$. The existence
+of the Euler class $e\in H^\ast(B)$ therefore gives a map $H^\ast(E)[e]
+\xar{\overline{s}} H^\ast(B)$. We claim that this map is an isomorphism.
 
-	This is a standard argument.
-	Filter both sides by powers of $e$, i.e., take the $e$-adic filtration.
-	On the associated graded of $H^\ast(E)[e]$, we get the cohomology of $E$ everytime.
-	On $H^\ast(B)$, we get the same thing, because $H^\ast(B)/eH^\ast(B) \simeq H^\ast(E)$.
-	Thus the associated graded $\gr^\ast(\overline{s})$ is an isomorphism.
-	In this particular case (but not in general), you conclude that $\overline{s}$ is an isomorphism, because in any single dimension, the filtration is finite.
-	Thus you can use the five lemma over and over again to see that you have an isomorphism on each filtered piece, which tells us that $\overline{s}$ is an isomorphism.
-\end{enumerate}
-Following that induction, we get that
-$$
-H^\ast(BU(n-1)) = \Z[c_1,\cdots,c_{n-1}]
-$$
-Note that I haven't checked the axioms for the $c_i$ yet.
-Notice that there's a map $\pi^\ast:H^\ast(BU(n)) \to H^\ast(BU(n))$ that's an isomorphism in dimensions $<2n$.
-Thus these classes have \emph{unique} lifts (so $s$ is unique) to $H^\ast(BU(n))$.
-We therefore get:
+This is a standard algebraic argument. Filter both sides by powers of $e$,
+i.e., take the $e$-adic filtration on $H^\ast(E)[e]$ and $H^\ast(B)$. Clearly,
+the associated graded of $H^\ast(E)[e]$ just consists of an infinite direct sum
+of the cohomology of $E$. The associated graded of $H^\ast(B)$ is the same,
+thanks to the short exact sequence \eqref{inductive-step-cohomology}. Thus the
+induced map on the associated graded $\gr^\ast(\overline{s})$ is an
+isomorphism. In this particular case (but not in general), we can conclude that
+$\overline{s}$ is an isomorphism: in any single dimension, the filtration is
+finite. Thus, using the five lemma over and over again, we see that the map
+$\overline{s}$ an isomorphism on each filtered piece. This implies that
+$\overline{s}$ itself is an isomorphism, as desired.
+	
+This argument proves that
+$$H^\ast(BU(n-1)) = \Z[c_1,\cdots,c_{n-1}].$$
+In particular, there is a map $\pi^\ast:H^\ast(BU(n)) \to H^\ast(BU(n-1))$
+which an isomorphism in dimensions at most $2n$. Thus, the generators $c_i$
+have \emph{unique} lifts to $H^\ast(BU(n))$. We therefore get:
 \begin{theorem}
     There exist classes $c_i\in H^{2i}(BU(n))$ for $1\leq i\leq n$ such that:
     \begin{itemize}
-	\item $H^\ast(BU(n)) \xar{\pi_\ast} H^\ast(BU(n-1))$ sends
+	\item the canonical map $H^\ast(BU(n)) \xar{\pi_\ast} H^\ast(BU(n-1))$
+	    sends
 	    $$
 	    c_i \mapsto \begin{cases}
 		c_i & i<n\\
-		0 & i=n
+		0 & i=n,\text{ and }
 	    \end{cases}
 	    $$
-	\item $c_n := (-1)^n e\in H^{2n}(BU(n))$, to make the theorem work out properly -- this is still a generator.
+	\item $c_n := (-1)^n e\in H^{2n}(BU(n))$.
     \end{itemize}
-    And
-    $$
-    \boxed{H^\ast(BU(n)) \simeq \Z[c_1,\cdots,c_n]}
-    $$
+    Moreover,
+    $$\boxed{H^\ast(BU(n)) \simeq \Z[c_1,\cdots,c_n]}.$$
 \end{theorem}
-It says that complex vector bundles are pretty complicated.
-There might be mod $p$ implications among them, but these are the characteristic classes.
-I want to go a little further.
-\subsection{Whitney sum formula}
-The tool is the splitting principle.
-We've already proved it.
-\begin{theorem}
-    Let $\xi^n\downarrow X$.
-    Then there exists a space $\Fl(\xi) \xar{\pi} X$ such that:
+\subsection{The splitting principle}
+\begin{theorem}\label{splitting-principle}
+    Let $\xi\downarrow X$ be an $n$-plane bundle. Then there exists a space
+    $\Fl(\xi) \xar{\pi} X$ such that:
     \begin{enumerate}
-	\item $\pi^\ast \xi = \lambda_1\oplus\cdots\lambda_n$, where the $\lambda_i$ are line bundles.
+	\item $\pi^\ast \xi = \lambda_1\oplus\cdots\lambda_n$, where the
+	    $\lambda_i$ are line bundles on $Y$, and
 	\item the map $\pi^\ast: H^\ast(X) \to H^\ast(\Fl(\xi))$ is monic.
     \end{enumerate}
 \end{theorem}
-We already have this -- that's what the projective bundle does for you!
-We've computed that
-$$
-H^\ast(\PP(\xi)) = H^\ast(X)\langle 1,e,\cdots,e^{n-1}\rangle
-$$
-Iterate.
-And we're done.
+\begin{proof}
+    We have already (somewhat) studied this space. Recall that there is a
+    vector bundle $\pi:\PP(\xi)\to X$ such that
+    $$H^\ast(\PP(\xi)) = H^\ast(X)\langle 1,e,\cdots,e^{n-1}\rangle.$$
+    Moreover, in \S \ref{grothendieck-chern}, we proved that there is a complex
+    line bundle over $\PP(\xi)$ which is a subbundle of $\pi^\ast\xi$. In other
+    words, $\pi^\ast\xi$ splits as a sum of a line bundle and some other bundle
+    (by Corollary \ref{split}). Iterating this construction proves the
+    existence of $\Fl(\xi)$.
+\end{proof}
+This proof does not give much insight into the structure of $\Fl(\xi)$.
+Remember that the \emph{frame bundle} $\Fr(\xi)$ of $\xi$: an element of
+$\Fr(\xi)$ is a linear, inner-product preserving map $\cC^n\to E(\xi)$.
+This satisfies various properties; for instance:
+$$E(\xi) = \Fr(\xi)\times_{U(n)}\cC^n.$$
+Moreover,
+$$\PP(\xi) = \Fr(\xi)\times_{U(n)} U(n)/(1\times U(n-1)).$$
 
-That's no fun -- let's be a little more explicit about $\Fl(\xi)$, and why I call it $\Fl$.
-Remember the \emph{frame bundle} of $\xi$, which is $Fr(\xi)$, and element of which is a map $\cc^n\xar{\text{linear, inner-product-preserving}}E(\xi)$.
-There are various constructions I can make with this; for instance, $E(\xi) = Fr(\xi)\times_{U(n)}\cc^n$, where $\xi$ is the principal $U(n)$-bundle.
-In addition, $\PP(\xi) = Fr(\xi)\times_{U(n)} U(n)/(1\times U(n-1))$.
-
-The \emph{flag bundle} is
-$$\Fl(\xi) = Fr(\xi)\times_{U(n)} U(n)/(U(1)\times\cdots\times U(1))$$
-This thing $U(1)\times\cdots\times U(1)$ is called $T^n$; it's the maximal torus in $U(n)$.
-In the universal case, this frame bundle is $EU(n)$, and so $\Fl(\xi_n)$ is $BT^n\to BU(n)$, whose fiber is $U(n)/T^n$.
-The spaces $EU(n)$ and $\PP(\xi)$ are obtained by splitting off line bundles, and so we find that $\pi:\Fl(\xi)\to X$ is a monomorphism in cohomology.
-That's very cool, because we now find that $H^\ast(BU(n)) \hookrightarrow H^\ast(BT^n)$.
-The cohomology of $BT^n$ is extremely simple -- it's the cohomology of a product of $\CP^\infty$s.
-In fact, $H^\ast(BT^n) \simeq \Z[t_1,\cdots,t_n]$, where $|t_k| = 2$.
-These $t_i$s are the Euler classes of $\lambda_i$, under $\pi_i:BT^n\to\CP^\infty$.
+The \emph{flag bundle} $\Fl(\xi)$ is defined to be
+$$\Fl(\xi) = \Fr(\xi)\times_{U(n)} U(n)/(U(1)\times\cdots\times U(1)).$$
+The product $U(1)\times\cdots\times U(1)$ is usually denoted $T^n$, since it is
+the maximal torus in $U(n)$. For the universal bundle $\xi_n\downarrow BU(n)$,
+the frame bundle is exactly $EU(n)$; therefore, $\Fl(\xi_n)$ is just the bundle
+given by $BT^n\to BU(n)$. By construction, the fiber of this bundle is
+$U(n)/T^n$. In particular, there is a monomorphism $H^\ast(BU(n))
+\hookrightarrow H^\ast(BT^n)$. The cohomology of $BT^n$ is extremely simple ---
+it is the cohomology of a product of $\CP^\infty$'s, so
+$$H^\ast(BT^n) \simeq \Z[t_1,\cdots,t_n],$$
+where $|t_k| = 2$. The $t_i$ are the Euler classes of $\pi_i^\ast\lambda_i$,
+under the projection map $\pi_i:BT^n\to\CP^\infty$.

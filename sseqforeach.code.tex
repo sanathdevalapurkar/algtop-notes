@@ -1,0 +1,266 @@
+%%
+%% Package: spectralsequences v1.2.0 2017-09-16 2017-09-16
+%% Author: Hood Chatham
+%% Email: hood@mit.edu
+%% Date: 2017-12-10
+%% License: Latex Project Public License
+%%
+%% File: sseqforeach.code.tex
+%%
+%%    Patches the \foreach command to obtain better error reporting
+%%    Also defines some of my own looping commands, \Do, \DoUntilOutOfBounds, \DoUntilOutOfBoundsThenNMore
+%%    All of the \foreach stuff we are modifying is defined by tikz in the file /pgf/utilities/pgffor.code.tex
+%%
+
+\def\sseq@for@vars{}
+\def\sseq@for@savemacro#1{\sseq@d@addto@macro\sseq@for@vars{\sseq@for@vars@do#1}}
+\def\sseq@for@savemacro@noslash#1{\sseq@d@addto@macro\sseq@for@vars{\sseq@for@vars@do@noslash#1}}
+\def\sseq@for@vars@do#1{; \string#1 = #1}
+\def\sseq@for@vars@do@noslash#1{; \sseq@macroname#1 = #1}
+
+\ExplSyntaxOn
+\def\sseq@for@printvars{\ifx\sseq@for@vars\pgfutil@empty\else\exp_last_unbraced:Nf\@gobble\sseq@for@vars\fi}
+
+\newcount\sseq@Do@depth
+
+\def\sseq@save@Do@var{
+    \sseq@atbeginforeach@msgsetup
+    \advance\sseq@Do@depth\@ne
+    \exp_args:Nc \sseq@for@savemacro@noslash { iteration ~ \the \sseq@Do@depth }
+    \def\iteration{0}
+}
+
+\def\sseq@stepiteration{
+    \edef\iteration{\the\numexpr\iteration+1}
+    \cs_set_eq:cN { iteration ~ \the \sseq@Do@depth } \iteration
+}
+
+\protected\def\sseq@Do{
+    \begingroup
+    \edef\sseq@inputline{\the\inputlineno}
+    \sseq@callas{\Do}
+    \sseq@call{\sseq@Do@}
+}
+
+\def\sseq@Do@#1#2{
+    \sseq@esetthiscall{\string\Do\unexpanded{#1}}
+    \sseq@opushstacktrace{\string\Do{#1}}
+    \sseq@ifintexpr{#1}{
+        \sseq@savestack
+        \sseq@save@Do@var
+        \prg_replicate:nn {#1} {
+            \sseq@stepiteration
+            #2
+            \relax
+        }
+        \sseq@restorestack
+    }{\sseq@error@xx{Do-invalid-int-expr}{\string\Do}{\unexpanded{#1}}}
+    \endgroup
+}
+
+\protected\def\sseq@DoUntilOutOfBounds{
+    \begingroup
+    \edef\sseq@inputline{\the\inputlineno}
+    \sseq@callas{\DoUntilOutOfBounds}
+    \sseq@call{\sseq@DoUntilOutOfBounds@}
+}
+
+\def\sseq@DoUntilOutOfBounds@ #1 {
+    \sseq@esetthiscall{\string\DoUntilOutOfBoundsThenNMore}
+    \sseq@opushstacktrace{\string\DoUntilOutOfBounds}
+    \ifx\sseq@xminmax\@gobbletwo\else\ifx\sseq@yminmax\@gobbletwo\else
+        \sseq@error@x{DoUntil-no-bound}{\string\DoUntilOutOfBounds}
+        \sseq@breakfifi
+    \fi\fi
+    \def\sseq@commandname{\string\DoUntilOutOfBounds}
+    \sseq@savestack % so we can nest these
+    \sseq@DoUntilOutOfBounds@body{#1}
+    \sseq@restorestack
+    \sseq@breakpoint
+    \endgroup
+}
+
+\protected\def\sseq@DoUntilOutOfBoundsThenNMore{
+    \begingroup
+    \edef\sseq@inputline{\the\inputlineno}
+    \sseq@callas{\DoUntilOutOfBoundsThenNMore}
+    \sseq@call{\sseq@DoUntilOutOfBoundsThenNMore@}
+}
+
+\def\sseq@DoUntilOutOfBoundsThenNMore@ #1#2 {
+    \sseq@esetthiscall{\string\DoUntilOutOfBoundsThenNMore\unexpanded{#1}}
+    \sseq@opushstacktrace{\string\DoUntilOutOfBoundsThenNMore{#1}}
+    \ifx\sseq@xminmax\@gobbletwo\else\ifx\sseq@yminmax\@gobbletwo\else
+        \sseq@error@n{DoUntil-no-bound}{\DoUntilOutOfBoundsThenNMore}
+        \sseq@breakfifi
+    \fi\fi
+    \sseq@ifintexpr{#1}{}{
+        \sseq@error@xx{Do-invalid-int-expr}{\string\DoUntilOutOfBoundsThenNMore}{\unexpanded{#1}}
+        \sseq@break
+    }
+    \def\sseq@commandname{\string\DoUntilOutOfBoundsThenNMore}
+    \sseq@savestack
+    \sseq@DoUntilOutOfBounds@body{#2}
+    \prg_replicate:nn {#1} {
+        \sseq@stepiteration
+        #2
+        \relax
+    }
+    \sseq@restorestack
+    \sseq@breakpoint
+    \endgroup
+}
+
+\def\sseq@DoUntilOutOfBounds@body#1{
+    \sseq@save@Do@var % Set iteration so that \DoUntilOutOfBoundsThenNMore doesn't get upset if we're already out of bounds
+    % If we're already out of bounds, we'll just do nothing.
+    \sseq_if_out_of_bounds_noparse:nnTF{\lastx{0}}{\lasty{0}}{
+        \bool_set_true:N \l_tmpa_bool
+    }{
+        \bool_set_false:N \l_tmpa_bool
+        % Now we need to set up the loop descent condition.
+        \sseq@tempxb=\lastx{0}\relax % Record current x and y values
+        \sseq@tempyb=\lasty{0}\relax
+        \sseq@stepiteration
+        #1 % run loop body once
+        \relax % protect from \d page grabber
+        \sseq_if_out_of_bounds_noparse:nnTF{\lastx{0}}{\lasty{0}}{ % If we're out of bounds now, we can quit
+            \bool_set_true:N \l_tmpa_bool
+        }{ % Otherwise, determine descent check
+            \sseq@tempx=\lastx{0}\relax % store new last value for comparison
+            \sseq@tempy=\lasty{0}\relax
+            \bool_set_false:N \l_tmpb_bool % This is to record whether there is a defined x range or y range. If neither, we'll throw an error.
+%            \def\sseq@checkbound{\bool_set_false:N \l_tmpb_bool}
+            \ifx\sseq@xminmax\@gobbletwo
+                \ifnum\sseq@tempx>\sseq@tempxb
+                    \bool_set_true:N \l_tmpb_bool % We have a descent condition
+%                    \sseq@d@addto@macro\sseq@checkbound{
+%                        \ifnum\sseq@tempx>\sseq@tempxb % Any stage of the loop is okay as long as it increases x
+%                            \bool_set_true:N \l_tmpb_bool
+%                        \fi
+%                    }
+                \else
+                    \ifnum\sseq@tempx<\sseq@tempxb
+                        \bool_set_true:N \l_tmpb_bool
+%                        \sseq@d@addto@macro\sseq@checkbound{ % Any stage of the loop is okay as long as it decreases x
+%                            \ifnum\sseq@tempx<\sseq@tempxb
+%                                \bool_set_true:N \l_tmpb_bool
+%                            \fi
+%                        }
+                    \fi
+                \fi
+            \fi
+            \ifx\sseq@yminmax\@gobbletwo
+                \ifnum\sseq@tempy>\sseq@tempyb
+                    \bool_set_true:N \l_tmpb_bool
+%                    \sseq@d@addto@macro\sseq@checkbound{
+%                        \ifnum\sseq@tempy>\sseq@tempyb
+%                            \bool_set_true:N \l_tmpb_bool
+%                        \fi
+%                    }
+                \else
+                    \ifnum\sseq@tempy<\sseq@tempyb
+                        \bool_set_true:N \l_tmpb_bool
+%                        \sseq@d@addto@macro\sseq@checkbound{
+%                            \ifnum\sseq@tempy<\sseq@tempyb
+%                                \bool_set_true:N \l_tmpb_bool
+%                            \fi
+%                        }
+                    \fi
+                \fi
+            \fi
+            \if_bool:N \l_tmpb_bool\else:
+                \sseq@error@x{DoUntil-no-progress}{\sseq@commandname}
+            \fi:
+        }
+    }
+    \bool_until_do:Nn \l_tmpa_bool {
+        \sseq@stepiteration
+        #1
+        \relax
+        \sseq_if_out_of_bounds_noparse:nnTF{\lastx{0}}{\lasty{0}}{% we're done
+            \bool_set_true:N \l_tmpa_bool
+        }{% Check descent condition
+%            \ifnum\iteration/10*10-\iteration=\z@
+%                \sseq@tempx=\lastx{0}\relax % store new last value for comparison
+%                \sseq@tempy=\lasty{0}\relax
+%                \bool_set_false:N \l_tmpb_bool
+%                \sseq@checkbound
+%                \if_bool:N \l_tmpb_bool\else:
+%                    \sseq@error{DoUntilOutOfBounds-descent-failed}
+%                \fi:
+%                \sseq@tempxb=\sseq@tempx
+%                \sseq@tempyb=\sseq@tempx
+%            \fi
+        }
+    }
+}
+
+
+
+\ExplSyntaxOff
+
+
+\def\sseq@for@nopatch{\sseq@error{foreach-patch-failed}\def\sseq@patchfor{}\endinput}
+
+\newtoks\sseq@foreachcall
+
+\def\sseq@pgffor@atbeginforeach{%
+    \begingroup %
+    \sseq@atbeginforeach@msgsetup
+    % \pgffor@macro@list calls \pgffor@normal@list, so we need to mark that the list has already been added to foreachcall.
+    \sseq@tempiftrue
+}
+
+
+\def\sseq@patchfor{%
+    \let\pgffor@atbeginforeach\sseq@pgffor@atbeginforeach
+    \let\pgffor@@vars@opt\sseq@pgffor@@vars@opt
+}
+\def\sseq@pgffor@modify#1{%
+    \@xp\let\csname sseq@\sseq@macroname#1\endcsname #1%
+    \eappto\sseq@patchfor{\let\@nx#1 \@xp\@nx\csname sseq@\sseq@macroname#1\endcsname}%
+}
+
+
+
+\def\sseq@pgffor@recordarg#1#2{
+    \sseq@pgffor@modify#1
+    \@xp\pretocmd\csname sseq@\sseq@macroname#1\endcsname{\sseq@foreachcall\@xp{\the\sseq@foreachcall#2}}{}{\sseq@for@nopatch}
+}
+\def\sseq@pgffor@erecordarg#1#2{
+    \sseq@pgffor@modify#1
+    \@xp\pretocmd\csname sseq@\sseq@macroname#1\endcsname{\sseq@eval{\sseq@foreachcall{\the\sseq@foreachcall#2}}}{}{\sseq@for@nopatch}
+}
+
+
+\bgroup\lccode`\*=`\#\lowercase{\egroup
+
+% Modify the foreach argument parser commands to put the call into \sseq@foreachcall and to tell us what the variables are
+\def\sseq@pgffor@@vars@opt[#1]{\sseq@foreachcall\@xp{\the\sseq@foreachcall#1}\pgfkeys{/sseqpages/foreach/.cd,#1}\pgffor@vars}
+
+\sseq@pgffor@recordarg\pgffor@@vars{*1}
+\pretocmd\sseq@pgffor@@vars{\sseq@for@savemacro*1}{}{\sseq@for@nopatch}
+
+\sseq@pgffor@recordarg\pgffor@@vars@slash@gobble{/}
+\sseq@pgffor@recordarg\pgffor@macro@list{in *1}
+\pretocmd\sseq@pgffor@macro@list{\sseq@tempiffalse}{}{\sseq@for@nopatch}% Don't add this again in  \pgffor@normal@lis
+
+\sseq@pgffor@modify\pgffor@normal@list
+% Add list to argument if it wasn't a macro
+\pretocmd\sseq@pgffor@normal@list{\ifsseq@tempif\sseq@foreachcall\@xp{\the\sseq@foreachcall in {*1}}\fi\sseq@tempiftrue}{}{\sseq@for@nopatch}
+
+\sseq@pgffor@recordarg\pgffor@collectforeach@macro{\foreach}
+\sseq@pgffor@recordarg\pgffor@collectforeach@normal{\foreach}
+
+\sseq@pgffor@modify\pgffor@iterate
+\pretocmd\sseq@pgffor@iterate{\sseq@opushstacktrace{\the\sseq@foreachcall}\sseq@thiscalltoks\@xp{\the\sseq@foreachcall}}{}{\sseq@for@nopatch}
+
+\sseq@pgffor@modify\pgffor@doloop
+\sseq@pgffor@modify\pgffor@invokebody
+\patchcmd\sseq@pgffor@doloop{\pgffor@begingroup}{\pgffor@begingroup\sseq@xsetlastcall{\the\sseq@foreachcall}}{}{\sseq@for@nopatch}
+\patchcmd\sseq@pgffor@invokebody{\pgffor@begingroup}{\pgffor@begingroup\sseq@xsetlastcall{\the\sseq@foreachcall}}{}{\sseq@for@nopatch}
+}
+
+%TODO: also hook \pgffor@assign@parse, \pgffor@remember@parse, \pgffor@count@parse.
+

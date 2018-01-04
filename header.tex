@@ -4,14 +4,14 @@
 
 \usepackage[pdftex,
 	    pdftitle={Algebraic topology}]{hyperref}
-\usepackage{sseqpages}
+\usepackage{spectralsequences}
 
 \usepackage{mathtools}
 %\usepackage{listings}
 
 \usepackage[T1]{fontenc}
 
-\usepackage[urw-garamond]{mathdesign}
+%\usepackage[urw-garamond]{mathdesign}
 %\usepackage[left=2in,right=2in,top=2in,bottom=2.5in]{geometry}
 %\usepackage[margin=1.25in]{geometry}
 %\pagestyle{plain}
@@ -24,7 +24,7 @@
 
 \usepackage{amsmath}
 %\usepackage{amsfonts}
-%\usepackage{amssymb}
+\usepackage{amssymb}
 \usepackage{float}
 \usepackage{amsthm}
 \usepackage{comment}
@@ -53,6 +53,7 @@
 
 \theoremstyle{theorem}
 \newtheorem{theorem}{Theorem}[section]
+\newtheorem{thm-defn}[theorem]{Theorem-Definition}
 \newtheorem{prop}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{corollary}[theorem]{Corollary}
@@ -65,6 +66,7 @@
 \newtheorem{note}[theorem]{Note}
 \newtheorem{claim}[theorem]{Claim}
 \newtheorem{exercise}[theorem]{Exercise}
+\newtheorem{terminology}[theorem]{Terminology}
 \newtheorem{construction}[theorem]{Construction}
 %\theoremstyle{remark}
 \newtheorem{remark}[theorem]{Remark}
@@ -142,14 +144,15 @@
 %\newcommand{\fib}{\to}
 
 \newcommand\cHH{\check{H}}
-\newcommand{\Fl}{F\ell}
-\newcommand{\Fr}{Fr}
+\newcommand{\Fl}{\mathrm{Fl}}
+\newcommand{\Fr}{\mathrm{Fr}}
 \newcommand\cCC{\check{C}}
 \newcommand{\MFGL}{\mathcal M_{\mathit{FGL}}}
 \newcommand{\calO}{{\mathcal O}}
 \newcommand{\calC}{{\mathcal C}}
 \newcommand{\set}{{\mathrm{Set}}}
-\newcommand{\Deltab}{{\Delta}} %change this to bold Delta. This is like this here because garamond fucks up bold things.
+\newcommand{\Deltab}{{\Delta}} %change this to bold Delta. This is like this
+%here because garamond messes up bold things.
 \newcommand{\spec}{\mathrm{Spec}}
 \newcommand{\Z}{\mathbf Z}
 \newcommand{\Sin}{\mathrm{Sin}}
@@ -163,10 +166,13 @@
 \newcommand{\gr}{\mathrm{gr}}
 \newcommand{\sk}{\mathrm{sk}}
 \newcommand{\Cat}{\mathbf{Cat}}
+\newcommand{\wt}[1]{\widetilde{{#1}}}
 \newcommand{\xar}[1]{\xrightarrow{{#1}}}
 \newcommand{\pr}{\mathrm{pr}}
 \newcommand{\ev}{\mathrm{ev}}
 \newcommand{\inc}{\mathrm{in}}
+\newcommand{\Spin}{\mathrm{Spin}}
+\newcommand{\String}{\mathrm{String}}
 
 % for pullback and pushout squares
 \usepackage{pigpen}
@@ -184,7 +190,7 @@
 %    18.905
 %    \fi
 %}
-
+%
 %\pagestyle{fancy}
 %\fancyhf{}
 %\fancyhead[LE]{Notes by Sanath Devalapurkar}

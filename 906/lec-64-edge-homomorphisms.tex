@@ -1,26 +1,44 @@
 \section{Edge homomorphisms, transgression}
-Recall the Serre spectral sequence for a fibration $F\to E\to B$ has $E^2$-page given by
+Recall the Serre spectral sequence for a fibration $F\to E\to B$ has $E^2$-page
+given by
 $$
-E^2_{s,t} = H_s(B;H_t(F)) \Rightarrow H_{s+t}(E)
+E^2_{s,t} = H_s(B;H_t(F)) \Rightarrow H_{s+t}(E).
 $$
-In our situation as before, we get a lexseq from the spectral sequence if $B$ is path-connected, $\widetilde{H}_t(F) = 0$ for $t<q$, $\widetilde{H}_s(B) = 0$ for $s<p$, and $\pi_1(B)$ acts trivially on $H_\ast(F)$:
-$$
-H_{p+q-1}(F)\xrightarrow{\bullet} H_{p+q-1}(E)\to H_{p+q-1}(B)\to H_{p+q-2}(F)\to\cdots
-$$
-I'll describe the $\bullet$ arrow.
-Recall that $H_t(F) = H_0(B;H_t(F)) = E^2_{0,t}$ surjects onto $E^3_{0,t}$, and this surjects onto $E^4_{0,t}$.
-(I think here $t > q$.)
-Eventually, from $E^{t+1}_{0,t}$ onwards, it stabilizes.
-In particular, $E^{t+1}_{0,t} \simeq E^\infty_{0,t} \simeq \gr_0 H_t(E) \simeq F_0 H_t(E)$, which embeds into $H_t(E)$.
-\emph{That's the map $\bullet$!}
-This is what's known as an ``edge homomorphism'', which relates the edge to the thing you're converging to.
+If $B$ is path-connected, $\widetilde{H}_t(F) = 0$ for $t<q$,
+$\widetilde{H}_s(B) = 0$ for $s<p$, and $\pi_1(B)$ acts trivially on
+$H_\ast(F)$, we showed that there is a long exact sequence (the Serre exact
+sequence)
+\begin{equation}\label{serre-exact}
+    H_{p+q-1}(F)\xrightarrow{\bullet} H_{p+q-1}(E)\to H_{p+q-1}(B)\to
+    H_{p+q-2}(F)\to\cdots
+\end{equation}
+Let us attempt to describe the arrow marked by $\bullet$. %If $t>q$, we know
 
-We have a map $i:F\to E$, and I claim that this induces the same map $\bullet$.
-We almost saw this in the construction of a sseq for a filtered complex.
-Recall that $F_0H_t(C) = \img(H_t(F_0 C) \to H_t(C))$.
-For us, filtration zero is the preimage of the zero skeleton, and since $B$ is simply connected, we find that filtration zero is exactly the fiber $F$.
-This doesn't exactly prove what we want.
-You can think of this in terms of the following diagram:
+Let $(E^r_{p,q},d^r)$ be any spectral sequence such that $E^r_{p,q} = 0$ if
+$p<0$ or $q<0$; such a spectral sequence is called a \emph{first quadrant}
+spectral sequence. The Serre spectral sequence is a first quadrant spectral
+sequence. In a first quadrant spectral sequence, the $d^2$-differential
+$d^2:E^2_{0,t}\to E^2_{-2,t+1}$ is zero, since $E^2_{s,t}$ vanishes for $s<0$.
+This means that $H_t(F) = H_0(B;H_t(F)) = E^2_{0,t}$ surjects onto $E^3_{0,t}$.
+Arguing similarly, this surjects onto $E^4_{0,t}$. Eventually, we find that
+$E^{r}_{0,t} \simeq E^{t+2}_{0,t}$ for $r\geq t+2$.
+In particular,
+$$E^{t+2}_{0,t} \simeq E^\infty_{0,t} \simeq \gr_0 H_t(E) \simeq F_0 H_t(E),$$
+which sits inside $H_t(E)$. The composite
+$$E^2_{0,t} = H_t(F) \to E^3_{0,t}\to \cdots\to E^{t+2}_{0,t} \subseteq F_0
+H_t(E)\to H_t(E)$$
+is precisely the map $\bullet$! Such a map is known as an \emph{edge
+homomorphism}.
+
+The map $F\to E$ is the inclusion of the fiber; it induces a map $H_t(F)\to
+H_t(E)$ on homology. We claim that this agrees with $\bullet$.
+%We almost saw this in the construction of a sseq for a filtered complex.
+Recall that $F_0H_t(E)$ is defined to be $\img(H_t(F_0 E) \to H_t(E))$. In the
+construction of the Serre spectral sequence, we declared that $F_0 E$ is
+exactly the preimage of the zero skeleton. Since $B$ is simply connected, we
+find that $F_0 E$ is exactly the fiber $F$.
+
+To conclude the proof of the claim, consider the following diagram:
 \begin{equation*}
     \xymatrix{
 	F\ar[r]\ar[d] & F\ar[d]\\
@@ -28,18 +46,26 @@ You can think of this in terms of the following diagram:
 	\ast\ar@{^(->}[r] & B
     }
 \end{equation*}
-which induces a map of spectral sequences and proves the desired result.
+The naturality of the Serre spectral sequence implies that there is an induced
+map of spectral sequences. Tracing through the symbols, we find that this
+observation proves our claim.
 
+The long exact sequence \eqref{serre-exact} also contains a map $H_s(E)\to
+H_s(B)$. The group $F_s H_s(E) = H_s(E)$ maps onto $\gr_s H_s(E) \simeq
+E^\infty_{s,0}$. If $F$ is connected, then $H_s(B) = H_s(B;H_0(F)) =
+E^2_{s,0}$. Again, the $d^2$-differential $d^2:E^2_{s+2,-1}\to E^2_{s,0}$ is
+trivial (since the source is zero). Since $E^3 = \ker d^2$, we have an
+injection $E^3_{s,0} \to E^2_{s,0}$. Repeating the same argument, we get
+injections
+$$E^\infty_{s,0} = E^{s+1}_{s,0}\to \cdots\to E^2_{s,0}\to E^2_{s,0} =
+H_s(B).$$
+Composing with the map $H_s(E)\to E^\infty_{s,0}$ gives the desired map $H_s(E)
+\to H_s(B)$ in the Serre exact sequence. This composite is also known as an
+edge homomorphism.
 
-What about the map $H_s(E)\to H_s(B)$?
-Let's see.
-The group $F_s H_s(E) = H_s(E)$ maps onto $\gr_s H_s(E) \simeq E^\infty_{s,0}$.
-Let's assume that $F$ is connected.
-Then $H_s(B) = H_s(B;H_0(F)) = E^2_{s,0}$.
-Since $E^3 = \ker d^2$, and so on, we have injections $E^\infty_{s,0} \simeq E^{s+1}_{s,0} \to E^s_{s,0} \to \cdots \to E^3_{s,0} \to E^2_{s,0}$.
-This is the desired map $H_s(E) \to H_s(B)$ in the Serre exact sequence.
-This is another edge homomorphism.
-In fact, this is the map induced by $E\to B$, which can be proved by looking at this equally stupid fibration.
+As above, this edge homomorphism is the map induced by $E\to B$. This can be
+proved by looking at the induced map of spectral sequences coming from the
+following map of fiber sequences:
 \begin{equation*}
     \xymatrix{
 	F\ar[r]\ar[d] & \ast\ar[d]\\
@@ -47,110 +73,114 @@ In fact, this is the map induced by $E\to B$, which can be proved by looking at 
 	B\ar[r] & B
     }
 \end{equation*}
-We're slowly identifying the maps.
 
-What about this boundary map $\partial:H_{p+q-1}(B)\to H_{p+q-2}(F)$ that appears?
-This is called a \emph{transgression}.
-This is actually the map $d^s$.
-Transgressions can be set up in general, but not on the whole of the $E^2$-term, though.
-For us, $E^2_{n,0} = H_n(B)$, where we're again assuming that $F$ is connected.
-Now, we have $E^3_{n,0} \to E^2_{n,0}$ that's an injection, and so on, so you have an injection $E^n_{n,0}\to H_n(B)$.
-But I have $d^n:E^n_{n,0}\to E^n_{0,n-1}$, and $E^n_{0,n-1}$ is a quotient of $E^{n-1}_{0,n-1}$, and so on, so that $E^2_{0,n-1} = H_{n-1}(F)$ is a quotient of $E^n_{0,n-1}$.
-We are assuming again that $B$ is connected and $\pi_1(B)$ acts trivially on $H_\ast(F)$.
-The transgression is only defined on the subset of $E^2_{n,0}$ that survive to $E^n$.
-Thus, this is a ``linear relation''.
-The transgression in general is not a function in general!
-In our case, it is a function, since everything survives to $E^n_{n,0}$ as nothing maps into $E^2_{n,0}$.
-(Through all of this, $n\geq 2$).
+The topologically mysterious map is the boundary map $\partial:H_{p+q-1}(B)\to
+H_{p+q-2}(F)$. Such a map is called a \emph{transgression}. Again, let
+$(E^r_{s,t},d^r)$ be a first quadrant spectral sequence. In our case,
+$E^2_{n,0} = H_n(B)$, at least $F$ is connected. As above, we have injections
+$$i:E^n_{n,0} \to \cdots\to E^3_{n,0} \to E^2_{n,0} = H_n(B).$$
+Similarly, we have surjections
+$$s:E^2_{0,n-1}\to E^3_{0,n-1}\to \cdots\to E^n_{0,n-1}.$$
+There is a differential $d^n:E^n_{n,0}\to E^n_{0,n-1}$. The transgression is
+defined as the \emph{linear relation} (not a function!) $E^2_{n,0}\to
+E^2_{0,n-1}$ given by
+$$x\mapsto i^{-1} d^n s^{-1}(x).$$
+However, the reader should check that in our case, the transgression is indeed
+a well-defined function.
 
-We can try to identify what this relation is.
-We have a map $H_n(E,F)\xrightarrow{\pi_\ast} H_n(B,\ast)$.
-We also have a map $\partial : H_n(E,F) \to H_{n-1}(F)$.
-My claim is that:
-$$
-\img \pi_\ast = \img(E^n_{n,0}\to H_n(B) = E^2_{n,0}),\quad \partial\ker\pi_\ast = \ker(H_{n-1}(F) = E^2_{0,n-1} \to E^n_{0,n-1})
-$$
-The first statement is that the domains agree, and the second is saying that the indeterminacies agree.
-Actually, though this looks technical, it's almost obvious.
-\begin{proof}[``Proof''.]
-    Let $x\in H_n(B)$.
-    First thing is to represent this by a cycle, so that $x = [c]$ with $c\in Z_n(B)$.
-    Then I take that cycle and lift it to a chain in the total space.
-    Now, that chain won't be a cycle (we saw this for $\eta$, the Hopf fibration); it'll have a boundary.
-    Recording this boundary is what the differentials do.
-    Saying that this class $x = [c]$ survives to $E^n$ is the same as saying that you can find a lift to a chain $\sigma$ in $E$ with $d\sigma\in S_{n-1}(F)$, and $d^n x$ is represented by $[dc]\in H_{n-1}(F)$.
-    That's how we computed the $n$th differential.
+Topologically, what is the origin of the transgression? There is a map
+$H_n(E,F)\xrightarrow{\pi_\ast} H_n(B,\ast)$, as well as a boundary map
+$\partial : H_n(E,F) \to H_{n-1}(F)$. We claim that:
+$$\img \pi_\ast = \img(E^n_{n,0}\to H_n(B) = E^2_{n,0}),\quad
+\partial\ker\pi_\ast = \ker(H_{n-1}(F) = E^2_{0,n-1} \to E^n_{0,n-1}).$$
+\begin{proof}[Proof sketch]
+    Let $x\in H_n(B)$. Represent it by a cycle $c\in Z_n(B)$. Lift it to a
+    chain in the total space $E$. In general, this chain will not be a cycle
+    (consider the Hopf fibration). The differentials record this boundary; let
+    us recall the geometric construction of the differential. Saying that the
+    class $x$ survives to the $E^n$-page is the same as saying that we can find
+    a lift to a chain $\sigma$ in $E$, with $d\sigma\in S_{n-1}(F)$. Then
+    $d^n(x)$ is represented by the class $[dc]\in H_{n-1}(F)$. This is
+    precisely the trangression.
 
-    That's what the two statements are saying: I lift something from $H_n(B,\ast)$, but this is well-defined up to $F$, so I get something in $H_n(E,F)$.
-    But now I just send it to $H_{n-1}(F)$.
-    Thus the two statements follow.
+    Informally, we lift something from $H_n(B)$ to $S_n(E)$; this is
+    well-defined up to something in $F$. In particular, we get an element in
+    $H_n(E,F)$. We send it, via $\partial$, to an element of $H_{n-1}(F)$ ---
+    and this is precisely the transgression.
 \end{proof}
-We now have a geometric viewpoint on edge homomorphisms and transgressions.
 \subsection{An example}
-Suppose we have $\Omega X\to PX \to X$, where we pick $\ast\in X$, a connected space.
-What does the sseq look like here?
-How do I want to approach this?
-
-Ah, before I get there -- and I will get there -- here's something I want to say first.
-I have this Serre exact sequence:
-$$
-H_{p+q-1}(F)\xrightarrow{\bullet} H_{p+q-1}(E)\to H_{p+q-1}(B)\to H_{p+q-2}(F)\to\cdots
-$$
-and we also have the homotopy exact sequence:
-$$
-\ast\to \pi_{p+q-1}(F)\to \pi_{p+q-1}(E)\to \pi_{p+q-1}(B)\to \pi_{p+q-2}(F)\to \cdots
-$$
-We have Hurewicz maps $\pi_{p+q-1}(X)\to H_{p+q-1}(X)$, and I claim that I have a map of exact sequences between these two.
-The diagram commutes by naturality of Hurewicz; we know this immediately for everything except for $\partial : H_{p+q-1}(B)\to H_{p+q-2}(F)$.
-I have a diagram:
+We would like to compare the Serre exact sequence \eqref{serre-exact} with the
+homotopy exact sequence:
+$$\ast\to \pi_{p+q-1}(F)\to \pi_{p+q-1}(E)\to \pi_{p+q-1}(B)\xar{\partial}
+\pi_{p+q-2}(F)\to \cdots$$
+There are Hurewicz maps $\pi_{p+q-1}(X)\to H_{p+q-1}(X)$. We claim that there
+is a map of exact sequences between these two long exact sequences.
+\begin{equation*}
+    \xymatrix{
+	H_{p+q-1}(E) \ar[r]^{\pi_\ast} & H_{p+q-1}(B)\ar[r]_\partial &
+	H_{p+q-2}(F)\ar[r] & \cdots\\
+	\pi_{p+q-1}(E)\ar[r]_{\pi_\ast}\ar[u]_{h} &
+	\pi_{p+q-1}(B)\ar[u]^h\ar[r] & \pi_{p+q-2}(F)\ar[r]\ar[u]^h &
+	\cdots\\
+    }
+\end{equation*}
+The leftmost square commutes by naturality of Hurewicz. The commutativity of
+the righmost square is not immediately obvious. For this, let us draw in the
+explicit maps in the above diagram:
 \begin{equation*}
     \xymatrix{
 	& & H_{p+q-1}(E,F)\ar[dl]\ar[dr] & &\\
-	H_{p+q-1}(E) \ar[r]^{\pi_\ast} & H_{p+q-1}(B)\ar[rr]_\partial & & H_{p+q-2}(F)\ar[r] & \cdots\\
-	\pi_{p+q-1}(E)\ar[r]_{\pi_\ast}\ar[dr]\ar[u]_{h} & \pi_{p+q-1}(B)\ar[u]^h\ar[rr] & & \pi_{p+q-2}(F)\ar[r]\ar[u]^h & \cdots\\
-	& \pi_{p+q-1}(E,F)\ar[uuur]\ar[urr]\ar[u]^\cong_{\pi_\ast} & &
+	H_{p+q-1}(E) \ar[r]^{\pi_\ast} & H_{p+q-1}(B)\ar[rr]_\partial & &
+	H_{p+q-2}(F)\ar[r] & \cdots\\
+	\pi_{p+q-1}(E)\ar[r]_{\pi_\ast}\ar[dr]\ar[u]_{h} &
+	\pi_{p+q-1}(B)\ar[u]^h\ar[rr] & & \pi_{p+q-2}(F)\ar[r]\ar[u]^h &
+	\cdots\\
+	& \pi_{p+q-1}(E,F)\ar[uuur]\ar[urr]\ar[u]^\cong_{s} & &
     }
 \end{equation*}
-We also have:
+The map marked $s$ is an isomorphism (and provides the long arrow in the above
+diagram, which makes the square commute), since
 $$
-\pi_n(E,F) = \pi_{n-1}(\mathrm{hofib}(F\to E)) = \pi_{n-1}(\Omega B) = \pi_n(B)
+\pi_n(E,F) = \pi_{n-1}(\mathrm{hofib}(F\to E)) = \pi_{n-1}(\Omega B) =
+\pi_n(B).
 $$
-In particular we get the long arrow in the diagram that makes the square commute.
-
-OK, let's go back to our example.
-Suppose $\ast \in X$ and $X$ is simply connected.
-Let $p\geq 2$ and suppose that $\widetilde{H}_s(X) = 0$ for $s<p$.
-By the Serre spectral sequence we know that the homology of $\Omega X$ begins in dimension $p-1$ since $PX\simeq \ast$, so $q = p-1$.
-So, $d^{p-1}:H_n(X) \to H_{n-1}(\Omega X)$ is an isomorphism for $2\leq n\leq 2p-2$ (I think).
-\begin{remark}
-    If we knew $\widetilde{H}_n(\Omega X) = 0$ for $n<p-1$, then the same argument show that $\widetilde{H}_n(X) = 0$ for $n<p$.
-\end{remark}
-Now I can reveal a proof of our surprise guest, the Hurewicz theorem!
-\subsection*{Hurewicz theorem}
-What's the Hurewicz theorem say?
+Let us now specialize to the case of the fibration
+$$\Omega X\to PX\to X.$$
+Assume that $X$ is connected, and $\ast \in X$ is a chosen basepoint. Let
+$p\geq 2$, and suppose that $\widetilde{H}_s(X) = 0$ for $s<p$. Arguing as in
+\S \ref{loops-sn}, we learn that the Serre spectral sequence we know that the
+homology of $\Omega X$ begins in dimension $p-1$ since $PX\simeq \ast$, so $q =
+p-1$. Likewise, if we knew $\widetilde{H}_n(\Omega X) = 0$ for $n<p-1$, then
+the same argument shows that $\widetilde{H}_n(X) = 0$ for $n<p$.
+\subsection*{A surprise gust: the Hurewicz theorem}
+The discussion above gives a proof of the Hurewicz theorem; this argument is
+due to Serre.
 \begin{theorem}[Hurewicz, Serre's proof]
-    Let $p\geq 1$.
-    Suppose $X$ is a pointed space with $\pi_i(X) = 0$ for $i<p$.
-    Then $\widetilde{H}_i(X) = 0$ for $i<p$ and $\pi_p(X)^{ab}\to H_p(X)$ is an isomorphism.
+    Let $p\geq 1$. Suppose $X$ is a pointed space with $\pi_i(X) = 0$ for
+    $i<p$. Then $\widetilde{H}_i(X) = 0$ for $i<p$ and $\pi_p(X)^{ab}\to
+    H_p(X)$ is an isomorphism.
 \end{theorem}
 \begin{proof}
-    Our proof will be assuming Poincar\'{e}'s theorem, assuming that $\pi_1(X)^{ab}\xrightarrow{\simeq} H_1(X)$.
-    I'm only going to use this when $X$ is a loop space where $\pi_1$ is already abelian.
+    Let us assume the case $p=1$. This is classical: it is Poincar\'{e}'s
+    theorem. We will only use this result when $X$ is a loop space, in which
+    case the fundamental group is already abelian.
 
-    Let's prove this by induction.
-    Assume it's true for $p-1$.
-    Let's use the loop space fibration.
-    We know that $\pi_i(\Omega X) = 0$ for $i<p-1$ by our assumptions.
-    By induction, $\widetilde{H}_i(\Omega X) = 0$ for $i<p-1$, and $\pi_{p-1}(\Omega X) \xrightarrow{\simeq} H_{p-1}(\Omega X)$.
-    We discover, by our comments above, that $\widetilde{H}_i(X) = 0$ for $i<p$, and $\pi_p(X)\xrightarrow{h}H_p(X)$. We have:
+    Let us prove this by induction, using the loop space fibration. By
+    assumption, $\pi_i(\Omega X) = 0$ for $i<p-1$. By our inductive hypothesis,
+    $\widetilde{H}_i(\Omega X) = 0$ for $i<p-1$, and $\pi_{p-1}(\Omega X)
+    \xrightarrow{\simeq} H_{p-1}(\Omega X)$. By our discussion above, we learn
+    that $\widetilde{H}_i(X) = 0$ for $i<p$. The Hurewicz map
+    $\pi_p(X)\xrightarrow{h}H_p(X)$ fits into a commutative diagram:
     \begin{equation*}
 	\xymatrix{
 	    \pi_{p-1}(\Omega X)\ar[r]^\simeq & H_{p-1}(\Omega X)\\
-	    \pi_p(X)\ar[u]^\simeq \ar[r]_h & H_p(X)\ar[u]^{\simeq}_{\text{transgression}}
+	    \pi_p(X)\ar[u]^\simeq \ar[r]_h &
+	    H_p(X)\ar[u]^{\simeq}_{\text{transgression}}
 	    }
     \end{equation*}
-    And the result follows.
+    It follows from the Serre exact sequence that the transgression is an
+    isomorphism.
 \end{proof}
-This proof has an enormous advantage, since you can make modifications that modify all primes except for a single prime, or get rational information.
-In other words, it's amenable to localizations.
-On Monday we'll talk about Serre classes and get information about homotopy groups way beyond conductivity of the space, if you do it right.
+%This proof has an enormous advantage, since you can make modifications that modify all primes except for a single prime, or get rational information.
+%In other words, it's amenable to localizations.
+%On Monday we'll talk about Serre classes and get information about homotopy groups way beyond conductivity of the space, if you do it right.

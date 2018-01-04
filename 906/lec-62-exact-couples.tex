@@ -1,149 +1,185 @@
 \section{Exact couples}
-Monday and Tuesday are holidays.
-
-Our starting point is that you have a chain complex $F_\ast C$.
-We have a short exact sequence $0\to F_{s-1} C\to F_s C \to \gr_s C \to 0$, giving a lexseq in homology:
-$$
-\cdots\to H_{s+t}(F_{s-1}) \to H_{s+t}(F_s) \to H_{s+t}(\gr_s) \to H_{s+t-1}(F_{s-1}) \to \cdots
-$$
-We let $A^1_{s,t} = H_{s+t}(F_{s})$ and $E^1_{s,t} = H_{s+t}(\gr_s)$.
-\textbf{Note: }Weibel uses this notation for something else.
-His $D$ is my $A$, but with different indexing.
-
-Anyway, our diagram can now be rewritten as:
-$$
-\cdots\to A^1_{s-1,t+1} \xar{i} A^1_{s,t} \xar{j} E^1_{s,t} \xar{k} A_{s-1, t} \to \cdots
-$$
-Define:
-$$
-A^r_{s,t} := \img(A^1_{s,t} \xar{i^{r-1}} A^1_{s+r - 1, t-r + 1}) = A^1_{s,t}/\ker(i^{r-1})
-$$
-One thing you can do is look at:
-$$
-\cdots \xar{i} \to A_{s-1} \xar{i} A_s \xar{i} A_{s+1} \xar{i} A_{s+2} \xar{i} \cdots
-$$
-We also have a surjection $\img(i^{r-1}) \to \img(i^r)$ and an injection $i:\img(i^r) \to \img(i^{r-1})$, giving a map $\img(i^{r-1}) \to \img(i^{r-1})$, given by $i$.
-There's another thing you can do: you also have a map $\img(i^r) \to \img(i^{r-1}) \to \img(i^r)$, whose composite is $i$ itself.
-Explicitly, we can write:
-\begin{equation*}
-    \xymatrix{
-	& A^r_{s,t} \ar@{->>}[dr]\ar[rr]^i & & A^r_{s+1,t-1}\ar@{->>}[dr] & \\
-	A^{r+1}_{s-1,t+1}\ar@{>->}[ur]\ar[rr]_i & & A^{r+1}_{s,t}\ar@{>->}[ur]\ar[rr]_i & & A^{r+1}_{s+1,t-1}
-    }
-\end{equation*}
-Great, so in our lexseq, we now have:
-\begin{equation*}
-    \xymatrix{
-	\cdots\ar[r] & A^1_{s-1,t+1}\ar@{->>}[d] \ar[r]^i & A^1_{s,t} \ar@{->>}[d] \ar[r]^j & E^1_{s,t} \ar[r]^k & A^1_{s-1,t}\ar[r]^i & A^1_{s,t-1} \ar[r] & \cdots\\
-	& A^2_{s-1,t+1}\ar@{->>}[d]\ar[r]^i & A^2_{s,t}\ar@{->>}[d] & & A^2_{s-2,t+1}\ar[r]^i \ar@{>->}[u] & A^2_{s-1,t}\ar@{>->}[u] & \\
-	& A^3_{s-1,t+1}\ar[r]^i\ar@{->>}[d] & A^3_{s,t}\ar@{->>}[d] & & A^3_{s-3,t+2}\ar@{>->}[u]\ar[r]^i & A^3_{s-2,t+1}\ar@{>->}[u] &\\
-	& \vdots & \vdots & & \vdots \ar@{>->}[u] & \vdots\ar@{>->}[u] &
-    }
-\end{equation*}
-Recall that for a filtered complex, we really have a surjection:
-$$
-A^r_{s,t} = \img(H_{s+t}(F_s) \to H_{s+t}(F_{s+r-1}) \to \img(H_{s+t}(F_s) \to H_{s+1}(C)) = F_s H_{s+t}(C)
-$$
-In particular, all the vertical surjections in our big diagram maps down surjectively to the filtration.
-More precisely:
-\begin{equation*}
-    \xymatrix{
-	\cdots\ar[r] & A^1_{s-1,t+1}\ar@{->>}[d] \ar[r]^i & A^1_{s,t} \ar@{->>}[d] \ar[r]^j & E^1_{s,t} \ar[r]^k & A^1_{s-1,t}\ar[r]^i & A^1_{s,t-1} \ar[r] & \cdots\\
-	& A^2_{s-1,t+1}\ar@{->>}[d]\ar[r]^i & A^2_{s,t}\ar@{->>}[d] & & A^2_{s-2,t+1}\ar[r]^i \ar@{>->}[u] & A^2_{s-1,t}\ar@{>->}[u] & \\
-	& A^3_{s-1,t+1}\ar[r]^i\ar@{->>}[d] & A^3_{s,t}\ar@{->>}[d] & & A^3_{s-3,t+2}\ar@{>->}[u]\ar[r]^i & A^3_{s-2,t+1}\ar@{>->}[u] &\\
-	& \vdots\ar@{->>}[d] & \vdots\ar@{->>}[d] & & \vdots \ar@{>->}[u] & \vdots\ar@{>->}[u] &\\
-	0\ar[r] & F_{s-1} H_{s+t}(C) \ar[r]^i & F_s H_{s+t}(C) \ar[r] & \gr_s H_{s+t}(C)\ar[r] & 0 & & &
-    }
-\end{equation*}
-Note that if $F_\ast C$ is exhaustive, then this filtration on homology is exhaustive, and, well, what it says is that $F_s H_{s+t}(C) = \colim A^r_{s,t}$.
-Also, if $F_\ast C$ is bounded below ($F_{-1}(C) = 0$), then $A^1_{s,t} = 0$ for $s\leq -1$.
-Eventually, the groups in the vertical injections will be $0$, so that's good.
-So, see, all I need to do now is fill in the missing column beneath $E^1_{s,t}$.
-In particular:
-\begin{equation*}
-    \xymatrix{
-	\cdots\ar[r] & A^1_{s-1,t+1}\ar@{->>}[d] \ar[r]^i & A^1_{s,t} \ar@{->>}[d] \ar[r]^j & E^1_{s,t} \ar[r]^k & A^1_{s-1,t}\ar[r]^i & A^1_{s,t-1} \ar[r] & \cdots\\
-	& A^2_{s-1,t+1}\ar@{->>}[d]\ar[r]^i & A^2_{s,t}\ar@{->>}[d]\ar[r] & E^2_{s,t}\ar[r] & A^2_{s-2,t+1}\ar[r]^i \ar@{>->}[u] & A^2_{s-1,t}\ar@{>->}[u] & \\
-	& A^3_{s-1,t+1}\ar[r]^i\ar@{->>}[d] & A^3_{s,t}\ar@{->>}[d] \ar[r] & E^3_{s,t}\ar[r] & A^3_{s-3,t+2}\ar@{>->}[u]\ar[r]^i & A^3_{s-2,t+1}\ar@{>->}[u] &\\
-	& \vdots\ar@{->>}[d] & \vdots\ar@{->>}[d] & \vdots & \vdots \ar@{>->}[u] & \vdots\ar@{>->}[u] &\\
-	0\ar[r] & F_{s-1} H_{s+t}(C) \ar[r]^i & F_s H_{s+t}(C) \ar[r] & \gr_s H_{s+t}(C)\ar[r] & 0 & 0 & 0 &
-    }
-\end{equation*}
-We want to construct in the $E^r$ groups.
-One way to do this is by exact couples, which is the easiest approach.
-This is what I'll do.
-\begin{definition}[Bill Massey]
-    An \emph{exact couple} is a diagram of abelian groups (possibly (bi)graded):
+Let us begin with a conceptual discussion of exact couples. As a special case,
+we will recover the construction of the spectral sequence associated to a
+filtered chain complex (Theorem-Definition \ref{filtered-sseq}).
+\begin{definition}
+    An \emph{exact couple} is a diagram of (possilby (bi)graded) abelian
+    groups
     \begin{equation*}
 	\xymatrix{
 	    A\ar[rr]^i & & A\ar[dl]_j\\
 	    & E\ar[ul]_k & 
 	    }
     \end{equation*}
-    that is exact at each joint.
+    which is exact at each joint.
 \end{definition}
-An exact couple determines a ``derived couple'':
-\begin{equation*}
+As $jkjk = 0$, the map $E\xar{jk} E$ is a differential, denoted $d$. An exact
+couple determines a ``derived couple'':
+\begin{equation}\label{derived-couple}
     \xymatrix{
-	A^\prime\ar[rr]^{i^\prime = i|_{\img i}} & & A^\prime\ar[dl]_{j^\prime}\\
+	A^\prime\ar[rr]^{i^\prime = i|_{\img i}} & &
+	A^\prime\ar[dl]_{j^\prime}\\
 	& E^\prime\ar[ul]_{k^\prime} & 
         }
+\end{equation}
+where $A^\prime = \img(i)$ and $E^\prime = H_\ast(E,d)$. Iterating this
+procedure, we get exact sequences 
+\begin{equation*}
+    \xymatrix{
+	A^r\ar[rr]^{i_r} & & A^r\ar[dl]_{j_r}\\
+	& E^r\ar[ul]_{k_r} & 
+        }
 \end{equation*}
-where $A^\prime = \img(i)$.
-Because this is exact, we note that $E\xar{jk} E$ is a differential, since $jkjk = 0$.
-Let $d = jk$.
-We let $E^\prime = H(E,d)$.
-That produces a spectral sequence, where each one of $E^r$ has a differential on it, and the differential is the next one.
+where the next exact couple is the derived couple of the preceding exact
+couple.
 
-Define $j^\prime(ia) = ja$.
-Is this well-defined? We need $[ja] \in E^\prime$.
-We need to check that $dja = 0$, but $jkja = 0$ so it is a cycle in $E^\prime$.
-I better see that this is well-defined modulo boundaries.
-The way to see is that is to suppose $ia = 0$.
-Then I better know that $ja$ is a boundary.
-If $ia = 0$, then $a = ke$ for some $e$, so $ja = jke = de$.
+It remains to define the maps in the above diagram. Define $j^\prime(ia) = ja$.
+\emph{A priori}, it is not clear that this well-defined. For one, we need $[ja]
+\in E^\prime$; for this, we must check that $dja = 0$, but $d=jk$, and $jkja =
+0$ so this follows. We also need to check that $j^\prime$ is well-defined
+modulo boundaries. To see this, suppose $ia = 0$. We then need to know that
+$ja$ is a boundary. But if $ia = 0$, then $a = ke$ for some $e$, so $ja = jke =
+de$, as desired.
 
-This is what's so beautiful about this exact couple story.
-It feels like this was made in heaven!
+Define $k^\prime:H(E,d) \to \img i$ via $k^\prime([e])\mapsto ke$. As before,
+we need to check that this is well-defined. For instance, we have to check that
+$ke\in\img i$. Since $de = 0$ and $d = jk$, we learn that $jke = 0$. Thus $ke$
+is killed by $j$, and therefore, by exactness, is in the image of $i$. We also
+need to check that $k^\prime$ is independent of the choice of representative of
+the homology class. Say $e = de^\prime$. Then $kd = kd e^\prime = kjke^\prime =
+0$.
+\begin{exercise}
+    Check that these maps indeed make diagram \eqref{derived-couple} into an
+    exact couple.
+\end{exercise}
+It follows that we obtain a spectral sequence, in the sense of
+Theorem-Definition \ref{filtered-sseq}.
+\begin{exercise}\label{explicit-er}
+    By construction,
+    $$A^r = \img(i^{r}|_{A}) = i^{r} A.$$
+    Show, by induction, that
+    $$E^r = \frac{k^{-1}(i^{r}A)}{j(\ker i^{r})}$$
+    and that
+    \begin{equation*}
+	i_r(a) = ia,\ j_r(i^r a) = [ja],\ k_r(e) = ke.
+    \end{equation*}
+\end{exercise}
+Intuitively: an element of $E^1$ will survive to $E^r$ if its image in $A^1$
+can be pulled back under $i^{r-1}$. The differential $d^r$ is obtained by
+the homology class of the pushforward of this preimage via $j$ to $E^1$.
+\begin{remark}\label{bigraded}
+    In general, the groups in consideration will be bigraded. It is clear by
+    construction that $\deg(i') = \deg(i)$, $\deg(k') = \deg(k)$, and $\deg(j')
+    = \deg(j)-\deg(i)$. It follows by an easy inductive argument that
+    $$\deg(d^r) = \deg(j)+\deg(k)-(r-1)\deg(i).$$
+\end{remark}
+The canonical example of an exact couple is that of a filtered complex; the
+resulting spectral sequence is precisely the spectral sequence of
+Theorem-Definition \ref{filtered-sseq}. If $C_\ast$ is a filtered chain
+complex, we let $A_{s,t} = H_{s+t}(F_s C_\ast)$, and $E^1_{s,t} = E_{s,t} =
+H_{s+t}(\gr_s C_\ast)$. The exact couple is precisely that which arises from
+the long exact sequence in homology associated to the short exact sequence of
+chain complexes
+$$0\to F_{s-1} C_\ast\to F_s C_\ast \to \gr_s C_\ast\to 0.$$
+Note that in this case, the exact couple is one of bigraded groups, so Remark
+\ref{bigraded} dictates the bidegrees of the differentials.
 
-Now, we need $k^\prime:H(E) \to \img i$.
-I'll define $k^\prime:[e]\mapsto ke$.
-I have to check some things.
-I have to check that $ke\in\img i$.
-Well, $de = 0$, but $d = jk$, so $jke = 0$.
-Thus $ke$ is killed by $j$, and therefore is in the image of $i$.
-Isn't that great?
-I better check that it's well-defined, since I picked a representative of the homology class.
-Say $e = de^\prime$.
-Then $kd = kd e^\prime = kjke^\prime = 0$.
+We will conclude this section with a brief discussion of the convergence of the
+spectral sequence constructed above.  Assume that $i:A\to A$ satisfies the
+property that
+$$\ker(i)\cap\bigcap i^r A = 0.$$
+Let $\wt{A}$ be the colimit of the directed system
+$$A\xar{i} A\xar{i} A\to\cdots$$
+There is a natural filtration on $\wt{A}$. Let $I$ denote the image of the map
+$A\to \wt{A}$; the kernel of this map is $\bigcup \ker(i^r)$. The groups $i^r
+I$ give an exhaustive filtration of $\wt{A}$, and the quotients $i^r I/i^{r+1}
+I$ are all isomorphic to $I/i I$ (since $i$ is an isomorphism on $\wt{A}$).
+Then we have an isomorphism
+\begin{equation}\label{einfty}
+    E^\infty \simeq I/iI.
+\end{equation}
+Indeed, we know from Exercise \ref{explicit-er} that
+$$E^\infty \simeq \frac{k^{-1}\left(\bigcap i^r A\right)}{j\left(\bigcup \ker
+i^{r}\right)};$$
+by our assumption on $i$, this is
+$$\frac{\ker(k)}{j\left(\bigcup \ker i^{r}\right)} \simeq
+\frac{j(A)}{j\left(\bigcup \ker i^r\right)}.$$
+But there is an isomorphism $A/iA\to j(A)$ which clearly sends $iA + \bigcup
+\ker i^r$ to $j\left(\bigcup \ker i^r\right)$. By our discussion above,
+$A/\bigcup \ker i^r \simeq I$, and $iA/\bigcup \ker i^r \simeq iI$. Modding out
+by $iI$ on both sides, we get \eqref{einfty}.
 
-So, I've defined a new exact couple.
-It might be an exact couple, but I haven't checked everything yet.
-I'll leave that to you.
-
-That's it!
-I've really completed the story now.
-I've constructed the $E^r$ groups, whose limit gives the associated graded of the homology of the chain complex.
-I guess I should say something about the grading as well.
-
-If all the groups are bigraded, then we say that the exact couple is of ``type $r$'' if:
-$$
-||i|| = (1,-1)\quad ||j|| = (0,0) \quad ||k|| = (-r,r-1)
-$$
-Some people could say ``homology type $r$'', since the notation will be a little different when talking about cohomology.
-
-\subsection{A summary of what's happening here}
-I've defined this inductively.
-The exact couple story is inductive.
-
-We know that $A^r = \img(i^{r-1}|_{A^1}) = i^{r-1} A^1$.
-You can actually write:
-$$
-E^r = \frac{k^{-1}(i^{r-1}A^1)}{j(\ker i^{r-1})}
-$$
-In these terms, what's $d^r$?
-An element of $E^1$ will survive to $E^r$ if its image in $A^1$ can be pulled back under $i^{r-1}$.
-Then the differential is what you get when this preimage is pushed forward via $j$ to $E^1$.
-
-On Wednesday, we'll do examples.
-Today was the guts, and the applications will come next week.
+%Our starting point is that you have a chain complex $F_\ast C$.
+%We have a short exact sequence $0\to F_{s-1} C\to F_s C \to \gr_s C \to 0$, giving a lexseq in homology:
+%$$
+%\cdots\to H_{s+t}(F_{s-1}) \to H_{s+t}(F_s) \to H_{s+t}(\gr_s) \to H_{s+t-1}(F_{s-1}) \to \cdots
+%$$
+%We let $A^1_{s,t} = H_{s+t}(F_{s})$ and $E^1_{s,t} = H_{s+t}(\gr_s)$.
+%\textbf{Note: }Weibel uses this notation for something else.
+%His $D$ is my $A$, but with different indexing.
+%
+%Anyway, our diagram can now be rewritten as:
+%$$
+%\cdots\to A^1_{s-1,t+1} \xar{i} A^1_{s,t} \xar{j} E^1_{s,t} \xar{k} A_{s-1, t} \to \cdots
+%$$
+%Define:
+%$$
+%A^r_{s,t} := \img(A^1_{s,t} \xar{i^{r-1}} A^1_{s+r - 1, t-r + 1}) = A^1_{s,t}/\ker(i^{r-1})
+%$$
+%One thing you can do is look at:
+%$$
+%\cdots \xar{i} \to A_{s-1} \xar{i} A_s \xar{i} A_{s+1} \xar{i} A_{s+2} \xar{i} \cdots
+%$$
+%We also have a surjection $\img(i^{r-1}) \to \img(i^r)$ and an injection $i:\img(i^r) \to \img(i^{r-1})$, giving a map $\img(i^{r-1}) \to \img(i^{r-1})$, given by $i$.
+%There's another thing you can do: you also have a map $\img(i^r) \to \img(i^{r-1}) \to \img(i^r)$, whose composite is $i$ itself.
+%Explicitly, we can write:
+%\begin{equation*}
+%    \xymatrix{
+%	& A^r_{s,t} \ar@{->>}[dr]\ar[rr]^i & & A^r_{s+1,t-1}\ar@{->>}[dr] & \\
+%	A^{r+1}_{s-1,t+1}\ar@{>->}[ur]\ar[rr]_i & & A^{r+1}_{s,t}\ar@{>->}[ur]\ar[rr]_i & & A^{r+1}_{s+1,t-1}
+%    }
+%\end{equation*}
+%Great, so in our lexseq, we now have:
+%\begin{equation*}
+%    \xymatrix{
+%	\cdots\ar[r] & A^1_{s-1,t+1}\ar@{->>}[d] \ar[r]^i & A^1_{s,t} \ar@{->>}[d] \ar[r]^j & E^1_{s,t} \ar[r]^k & A^1_{s-1,t}\ar[r]^i & A^1_{s,t-1} \ar[r] & \cdots\\
+%	& A^2_{s-1,t+1}\ar@{->>}[d]\ar[r]^i & A^2_{s,t}\ar@{->>}[d] & & A^2_{s-2,t+1}\ar[r]^i \ar@{>->}[u] & A^2_{s-1,t}\ar@{>->}[u] & \\
+%	& A^3_{s-1,t+1}\ar[r]^i\ar@{->>}[d] & A^3_{s,t}\ar@{->>}[d] & & A^3_{s-3,t+2}\ar@{>->}[u]\ar[r]^i & A^3_{s-2,t+1}\ar@{>->}[u] &\\
+%	& \vdots & \vdots & & \vdots \ar@{>->}[u] & \vdots\ar@{>->}[u] &
+%    }
+%\end{equation*}
+%Recall that for a filtered complex, we really have a surjection:
+%$$
+%A^r_{s,t} = \img(H_{s+t}(F_s) \to H_{s+t}(F_{s+r-1}) \to \img(H_{s+t}(F_s) \to H_{s+1}(C)) = F_s H_{s+t}(C)
+%$$
+%In particular, all the vertical surjections in our big diagram maps down surjectively to the filtration.
+%More precisely:
+%\begin{equation*}
+%    \xymatrix{
+%	\cdots\ar[r] & A^1_{s-1,t+1}\ar@{->>}[d] \ar[r]^i & A^1_{s,t} \ar@{->>}[d] \ar[r]^j & E^1_{s,t} \ar[r]^k & A^1_{s-1,t}\ar[r]^i & A^1_{s,t-1} \ar[r] & \cdots\\
+%	& A^2_{s-1,t+1}\ar@{->>}[d]\ar[r]^i & A^2_{s,t}\ar@{->>}[d] & & A^2_{s-2,t+1}\ar[r]^i \ar@{>->}[u] & A^2_{s-1,t}\ar@{>->}[u] & \\
+%	& A^3_{s-1,t+1}\ar[r]^i\ar@{->>}[d] & A^3_{s,t}\ar@{->>}[d] & & A^3_{s-3,t+2}\ar@{>->}[u]\ar[r]^i & A^3_{s-2,t+1}\ar@{>->}[u] &\\
+%	& \vdots\ar@{->>}[d] & \vdots\ar@{->>}[d] & & \vdots \ar@{>->}[u] & \vdots\ar@{>->}[u] &\\
+%	0\ar[r] & F_{s-1} H_{s+t}(C) \ar[r]^i & F_s H_{s+t}(C) \ar[r] & \gr_s H_{s+t}(C)\ar[r] & 0 & & &
+%    }
+%\end{equation*}
+%Note that if $F_\ast C$ is exhaustive, then this filtration on homology is exhaustive, and, well, what it says is that $F_s H_{s+t}(C) = \colim A^r_{s,t}$.
+%Also, if $F_\ast C$ is bounded below ($F_{-1}(C) = 0$), then $A^1_{s,t} = 0$ for $s\leq -1$.
+%Eventually, the groups in the vertical injections will be $0$, so that's good.
+%So, see, all I need to do now is fill in the missing column beneath $E^1_{s,t}$.
+%In particular:
+%\begin{equation*}
+%    \xymatrix{
+%	\cdots\ar[r] & A^1_{s-1,t+1}\ar@{->>}[d] \ar[r]^i & A^1_{s,t} \ar@{->>}[d] \ar[r]^j & E^1_{s,t} \ar[r]^k & A^1_{s-1,t}\ar[r]^i & A^1_{s,t-1} \ar[r] & \cdots\\
+%	& A^2_{s-1,t+1}\ar@{->>}[d]\ar[r]^i & A^2_{s,t}\ar@{->>}[d]\ar[r] & E^2_{s,t}\ar[r] & A^2_{s-2,t+1}\ar[r]^i \ar@{>->}[u] & A^2_{s-1,t}\ar@{>->}[u] & \\
+%	& A^3_{s-1,t+1}\ar[r]^i\ar@{->>}[d] & A^3_{s,t}\ar@{->>}[d] \ar[r] & E^3_{s,t}\ar[r] & A^3_{s-3,t+2}\ar@{>->}[u]\ar[r]^i & A^3_{s-2,t+1}\ar@{>->}[u] &\\
+%	& \vdots\ar@{->>}[d] & \vdots\ar@{->>}[d] & \vdots & \vdots \ar@{>->}[u] & \vdots\ar@{>->}[u] &\\
+%	0\ar[r] & F_{s-1} H_{s+t}(C) \ar[r]^i & F_s H_{s+t}(C) \ar[r] & \gr_s H_{s+t}(C)\ar[r] & 0 & 0 & 0 &
+%    }
+%\end{equation*}
+%We want to construct in the $E^r$ groups.
+%One way to do this is by exact couples, which is the easiest approach.
+%This is what I'll do.
+%
+%On Wednesday, we'll do examples.
+%Today was the guts, and the applications will come next week.

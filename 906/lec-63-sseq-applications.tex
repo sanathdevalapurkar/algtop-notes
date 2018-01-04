@@ -1,167 +1,202 @@
-\section{Spectral sequences: applications}
-pset 5 is complete; it's due next Wednesday.
+\section[Applications]{The homology of $\Omega S^n$, and the Serre exact sequence}
+%Leray originally invented his spectral sequences for locally compact things,
+%but $\Omega S^n$ for instance isn't locally compact.
+The goal of this section is to describe a computation of the homology of
+$\Omega S^n$ via the Serre spectral sequence, as well as describe a
+``degenerate'' case of the Serre spectral sequence.
 
-Leray originally invented his spectral sequences for locally compact things, but $\Omega S^n$ for instance isn't locally compact.
-\begin{example}
-    What's $\Omega S^1$?
-    This is the base of a fibration $\Omega S^1 \to PS^1 \to S^1$, so $\Omega S^1 \simeq \Z$ since we have another fibration $\Z\to \RR\to S^1$.
+\subsection*{The homology of $\Omega S^n$}\label{loops-sn}
+Let us first consider the case $n=1$. The space $\Omega S^1$ is the base of a
+fibration $\Omega S^1 \to PS^1 \to S^1$. Comparing this to the fibration $\Z\to
+\RR\to S^1$, we find that $\Omega S^1 \simeq \Z$. Equivalently, this follows
+from the discussion in \S \ref{loops-bg} and the observation that $S^1 \simeq
+K(\Z,1)$.
 
-    For our fibration ($n>1$) $\Omega S^n\to PS^n \to S^n$, we have $S^n$ which has torsion-free homology. Recall the $E^2$-page:
-    $$
-    E^2_{s,t} = H_s(B;H_t(F)) \simeq H_s(B)\otimes H_t(F)
-    $$
-    The second isomorphism follows since the homology of the base is torsion-free via universal coefficients.
+Having settled that case, let us now consider the case $n>1$. Again, there is a
+fibration $\Omega S^n\to PS^n \to S^n$. In general, if $F\to E\to B$ is a
+fibration and the space $F$ has torsion-free homology, we can (via the
+universal coefficients theorem) rewrite the $E^2$-page:
+$$E^2_{s,t} = H_s(B;H_t(F)) \simeq H_s(B)\otimes H_t(F).$$
+Since $S^n$ has torsion-free homology, the Serre spectral sequence (see \S
+\ref{serre-sseq}) runs:
+$$E^2_{s,t} = H_s(S^n) \otimes H_t(\Omega S^n) \Rightarrow H_{\ast}(PS^n) =
+\Z.$$
+Since $H_s(S^n)$ is concentrated in degrees $0$ and $n$, we learn that
+$E^2$-page is concentrated in columns $s=0,n$. For instance, if $n=4$, then the
+$E^2$-page (without the differentials drawn in) looks like:
+\sseqset{classes={draw=none}}
+\begin{sseqdata}[name = {loops-Sn}, x range={0}{5}, y range={0}{5},
+    homological Serre grading, differentials={->}, y axis gap=0.8cm, x label =
+    {$H_\ast(S^4)$}, y label = {$H_\ast(\Omega S^4)$}]
+    \foreach \y in {0,...,6} {\class["H_{\y}(\Omega S^n)"](0,\y)}
+    \foreach \y in {0,...,6} {\class["H_{\y}(\Omega S^n)"](4,\y)}
+    \foreach \y in {0,...,2} {\d["d^4"]4(4,\y)}
+\end{sseqdata}
+\begin{center}
+    \printpage[name={loops-Sn},page=0,no differentials]
+\end{center}
+We know that $H_0(\Omega S^n) = \Z$. Since the target has homology concentrated
+in degree $0$, we know that $E^2_{n,0}$ has to be killed. The only possibility
+is that it is hit by a differential, or that it supports a nonzero
+differential.
 
-    Our spectral sequence runs:
-    $$E^2_{s,t} = H_s(S^n) \otimes H_t(\Omega S^n) \Rightarrow H_{\ast}(PS^n) = \Z$$
-    According to this formula, the $E^2$-page is concentrated in columns $s=0,n$.
-    Now, we know that $H_0(\Omega S^n) = \Z$.
-    We know that $E^2_{n,0}$ has to be killed.
-    It has to die somewhere by being hit by a differential or supporting a nonzero differential.
+There are not very many possibilities for differentials in this spectral
+sequence. In fact, up until the $E^n$-page, there are no differentials (either
+the target or source of the differential is zero), so $E^2\simeq E^3 \simeq
+\cdots \simeq E^n$. On the $E^n$-page, there is only one possibility for a
+differential: $d^n:E^2_{n,0} \to E^n_{0,n-1}$. This differential has to be a
+monomorphism because if it had anything in its kernel, that will be left over
+in the position. In our example above (with $n=4$), we have
+\begin{center}
+    \printpage[name={loops-Sn},page=4]
+\end{center}
 
-    There's not very many possibilities for differentials in this spectral sequence.
-    There's only one thing that can possibly happen: you have a nonzero $d^n:E^2_{n,0} \to E^n_{0,n-1}$.
-    Note that $E^2\simeq E^3 \simeq \cdots \simeq E^n$.
-    The differential has to be a monomorphism because if it has some kernel, that's going to be left over!
+However, we still do not know the group $E^n_{0,n-1}$. If it is bigger than
+$\Z$, then $d^n$ is not surjective. There can be no other differentials on the
+$E^r$-page for $r\geq n+1$ (because of sparsity), so the $d^n$ differential is
+our last hope in killing everything in degree $(0,n-1)$.  This means that $d^n$
+is an epimorphism. We find that $E^n_{0,n-1} = H_{n-1}(\Omega S^n) \simeq \Z$,
+and that $d^n$ is an isomorphism.
 
-    We don't know what $E^n_{0,n-1}$ is, yet.
-    If this is bigger than $\Z$, then $d^n$ isn't surjective, so that this is the last chance to kill everything in $(0,n-1)$.
-    Thus, $d^n$ has to be an epimorphism.
-    (If it's not, there'll be cycles that aren't boundaries, and there'll be something left over in $E^{n+1}$ since that stuff'll be left over all the way up to $E^\infty$.)
-    We find that $E^n_{0,n-1} \simeq \Z$ and $d^n$ is an isomorphism.
-    This $\Z$ is not a big surprise.
-
-    We've now discovered that $H_{n-1}(\Omega S^n) \simeq \Z$.
-    That says that I'm not done!
-    We still have a $\Z$ in $E^n_{n,n-1}$.
-    That also has to die!
-    I'm in exactly the same situation as before, so $d^n:E^n_{n,n-1}\to E^n_{0,2(n-1)}$ has to be an isomorphism again.
-    In particular, we obtain:
-    \begin{equation*}
-	H_q(\Omega S^n) \simeq \begin{cases}
-	    \Z & \text{if }(n-1)|q\geq 0\\
-	    0 & \text{else}
-	\end{cases}
-    \end{equation*}
-\end{example}
-That process is an essential part about spectral sequences.
-It is a great example of how useful they can be, but misses a few key points.
+We have now discovered that $H_{n-1}(\Omega S^n) \simeq \Z$ --- but there is a
+lot more left in the $E^2$-page! For instance, we still have a $\Z$ in
+$E^n_{n,n-1}$. Because $H^\ast(PS^n)$ is concentrated in degree $0$, this, too,
+must die! We are in exactly the same situation as before, so the same arguments
+show that the differential $d^n:E^n_{n,n-1}\to E^n_{0,2(n-1)}$ has to be an
+isomorphism. Iterating this argument, we find:
+\begin{equation*}
+    H_q(\Omega S^n) \simeq \begin{cases}
+        \Z & \text{if }(n-1)|q\geq 0\\
+        0 & \text{else}
+    \end{cases}
+\end{equation*}
+This is a great example of how useful spectral sequences can be.
 \begin{remark}
-    The loops $\Omega X$ is an associative $H$-space.
-    Thus, $H_\ast(\Omega X; R)$ is a graded associative algebra (this is true for any $H$-space).
-    We have an adjunction with $\Sigma$ as the left adjoint and $\Omega$ the right adjoint.
-    We have the unit $A\to \Omega \Sigma A$.
-    Thus, we have a map $\widetilde{H}_\ast(A)\to H_\ast(\Omega \Sigma A)$.
-    We do have the universal tensor algebra $\mathrm{Tens}(\widetilde{H}_\ast(A))$ -- it's the free associative algebra on $\widetilde{H}_\ast(A)$, so that it's
-    $$
-    \bigoplus_{n\geq 0}\widetilde{H}_\ast(A)^{\otimes n}
-    $$
-    In particular we get a map $\alpha:\mathrm{Tens}(\widetilde{H}_\ast(A))\to H_\ast(\Omega \Sigma A)$.
-    \begin{theorem}[Bott-Samelson]
-	The map $\alpha$ is an isomorphism if $R$ is a PID and $H_\ast(A)$ is torsion-free.
+    The loops $\Omega X$ is an associative $H$-space. Thus, as is the case for
+    any $H$-space, the homology $H_\ast(\Omega X; R)$ is a graded associative
+    algebra. Recall that the suspension functor $\Sigma$ is the left adjoint to
+    the loops functor $\Omega$, so there is a unit map $A\to \Omega \Sigma A$.
+    This in turn begets a map $\widetilde{H}_\ast(A)\to H_\ast(\Omega \Sigma A)$.
+    
+    Recall that the universal tensor algebra
+    $\mathrm{Tens}(\widetilde{H}_\ast(A))$ is the free associative algebra on
+    $\widetilde{H}_\ast(A)$. Explicitly:
+    $$\mathrm{Tens}(\widetilde{H}_\ast(A)) = \bigoplus_{n\geq
+    0}\widetilde{H}_\ast(A)^{\otimes n}.$$
+    In particular, by the universal property of
+    $\mathrm{Tens}(\widetilde{H}_\ast(A))$, we get a map
+    $\alpha:\mathrm{Tens}(\widetilde{H}_\ast(A))\to H_\ast(\Omega \Sigma A)$.
+    \begin{theorem}[Bott-Samelson]\label{bott-samelson}
+	The map $\alpha$ is an isomorphism if $R$ is a PID and $H_\ast(A)$ is
+	torsion-free.
     \end{theorem}
-    \begin{proof}
-	See George Whitehead's book.
-    \end{proof}
-    For instance, if $A = S^{n-1}$ then $\Omega S^n = \Omega \Sigma A$.
-    We then have:
+    For instance, if $A = S^{n-1}$ then $\Omega S^n = \Omega \Sigma A$. Theorem
+    \ref{bott-samelson} then shows that
     $$
-    H_\ast(\Omega S^n) = \mathrm{Tens}(\widetilde{H}_\ast(S^{n-1})) = \langle 1, x, x^2, x^3, \cdots\rangle
+    H_\ast(\Omega S^n) = \mathrm{Tens}(\widetilde{H}_\ast(S^{n-1})) = \langle
+    1, x, x^2, x^3, \cdots\rangle,
     $$
-    where $|x| = n-1$.
-    It's a mistake to call this polynomial since if $n$ is even, $x$ is an odd class.
+    where $|x| = n-1$. It is a mistake to call this ``polynomial'', since if
+    $n$ is even, $x$ is an odd class (in particular, $x$ squares to zero by the
+    Koszul sign rule).
 \end{remark}
-Note that $H_\ast(\Omega S^n)$ acts on this spectral sequence.
-Then the $d^r$'s are linear (module homomorphisms).
+%Note that $H_\ast(\Omega S^n)$ acts on this spectral sequence.
+%Then the $d^r$'s are linear (module homomorphisms).
+
+Theorem \ref{bott-samelson} suggests thinking of $\Omega \Sigma A$ as the
+``free associative algebra'' on $A$. Let us make this idea more precise.
 \begin{remark}
-    $\Omega A$ is homotopy equivalent to $\Omega_M A$ where $\Omega_M A$ is a topological monoid.
-    I mean it's got a strict unit and is strictly associative (with no homotopy involved).
-    Let me describe $\Omega_M A$.
-    These are called the Moore loops.
-    This is the space $\{(\ell,\omega):\ell\in\RR_{\geq 0}, \omega:[0,\ell]\to A, \omega(0) = \ast = \omega(\ell)\}$.
-    It's topologized as a subspace of the product.
-    There's an identity class $1\in\Omega_M A$ with $1 = (0,c_\ast)$.
-    When I want to add two loops I'll just concatenate (but the lengths get added).
-    So, it's strictly associative.
-    It's not hard to see that $\Omega A\hookrightarrow \Omega_M A$ is a homotopy equivalence (if the basepoint is nondegenerate).
+    The space $\Omega A$ is homotopy equivalent to a topological monoid
+    $\Omega_M A$, called the \emph{Moore loops} on $A$. This means that
+    $\Omega_M A$ has a \emph{strict} unit and is \emph{strictly} associative
+    (i.e., not just up to homotopy). Concretely,
+    $$\Omega_M A := \{(\ell,\omega):\ell\in\RR_{\geq 0}, \omega:[0,\ell]\to A,
+    \omega(0) = \ast = \omega(\ell)\},$$
+    topologized as a subspace of the product. There is an identity class
+    $1\in\Omega_M A$, given by $1 = (0,c_\ast)$ where $c_\ast$ is the constant
+    loop at the basepoint $\ast$. The addition on this space is just given by
+    concatenatation. In particular, the lengths get added; this overcomes the
+    obstruction to $\Omega A$ not being strictly associative, so the Moore
+    loops $\Omega_M A$ are indeed strictly associative.
+    If the basepoint is nondegenerate, it is not hard to see that the inclusion
+    $\Omega A\hookrightarrow \Omega_M A$ is a homotopy equivalence.
 
-    Now, I can form the free monoid $\mathrm{FreeMon}(A)$.
-    I form a new space whose elements are just formal sequences of elements of $A$, and multiplication is given by juxtaposition (with topology coming from the product topology).
-    I'll adjoin a new element called $1$, namely the constant $1 = \ast$.
-    There's a universal map $A\to\mathrm{FreeMon}(A)$.
-    I have another map $A\to\Omega\Sigma A$ to a monoid.
-    By the universality, we get a monoid map $\beta:\mathrm{FreeMon}(A)\to\Omega\Sigma A$.
-    \begin{theorem}[I. James]
-	This map $\beta$ is a weak equivalence if $A$ is path-connected.
+    Given the space $A$, we can form the free monoid $\mathrm{FreeMon}(A)$. The
+    elements of this space are just formal sequences of elements of $A$
+    (with topology coming from the product topology), and the multiplication is
+    given by juxtaposition. Let us adjoin the element $1 = \ast$. As with all
+    free constructions, there is a map $A\to\mathrm{FreeMon}(A)$ which is
+    universal in the sense that any map $A\to M$ to a monoid factors through
+    $\mathrm{FreeMon}(A)$.
+    
+    The unit $A\to\Omega\Sigma A$ is a map from $A$ to a monoid, so we get a
+    monoid map $\beta:\mathrm{FreeMon}(A)\to\Omega\Sigma A$.
+    \begin{theorem}[James]
+	The map $\beta:\mathrm{FreeMon}(A)\to \Omega\Sigma A$ is a weak
+	equivalence if $A$ is path-connected.
     \end{theorem}
-    The free monoid looks very much like the tensor product.
-    Let me just say one more thing.
-    Let $J(A) = \mathrm{FreeMon}(A)$.
-    \begin{theorem}[James again]
-	There's a splitting:
+    The free monoid looks very much like the tensor product, as the following
+    theorem of James shows.
+    \begin{theorem}[James]\label{james-splitting}
+	Let $J(A) = \mathrm{FreeMon}(A)$. There is a splitting:
 	$$
-	\Sigma J(A) \simeq_w \Sigma \left(\bigvee_{n\geq 0}A^{\wedge n}\right)
+	\Sigma J(A) \simeq_w \Sigma \left(\bigvee_{n\geq 0}A^{\wedge n}\right).
 	$$
     \end{theorem}
-    If I apply homology to this, then (since homology commutes with suspension):
+    Applying homology to the splitting of Theorem \ref{james-splitting} shows
+    that:
     $$
-    H_\ast(J(A)) \simeq \bigoplus_{n\geq 0} H_\ast(A^{\wedge n})
+    \wt{H}_\ast(J(A)) \simeq \bigoplus_{n\geq 0} \wt{H}_\ast(A^{\wedge n}).
     $$
-    If we're over a PID and $H_\ast(A)$ is torsion-free, then this is just $\bigoplus_{n\geq 0}H_\ast(A)^{\otimes n}$.
-    We can get back our computation of $H_\ast(\Omega S^n)$ from this general fact.
+    Assume that our coefficients are in a PID, and that $\wt{H}_\ast(A)$ is
+    torsion-free; then this is just $\bigoplus_{n\geq 0}\wt{H}_\ast(A)^{\otimes
+    n}$. In particular, we recover our computation of $H_\ast(\Omega S^n)$ from
+    these general facts.
 \end{remark}
-\subsection{Another example}
-Suppose $\pi:E\to B$ is a fibration and $\widetilde{H}_s(B) = 0$ for $s<p$ where $p\geq 1$.
-Also suppose that $B$ is path-connected.
-Pick $\ast\in B$.
-Let $F = \pi^{-1}(\ast)$.
-Everything is connected so this is fine.
-Assume $\widetilde{H}_t(F) = 0$ for $t<q$, where $q\geq 1$.
-It's fairly highly connected.
-I want to use the Serre spectral sequence.
-To get rid of local coefficients, we will assume that $\pi_1(B)$ acts trivially on $H_\ast(F)$.
-I have some coefficient ring in mind.
+\subsection{The Serre exact sequence}
+Suppose $\pi:E\to B$ is a fibration over a path-connected base. Assume that
+$\widetilde{H}_s(B) = 0$ for $s<p$ where $p\geq 1$. Let $\ast\in B$ be a chosen
+basepoint. Denote by $F$ the fiber $\pi^{-1}(\ast)$. Assume $\widetilde{H}_t(F)
+= 0$ for $t<q$, where $q\geq 1$.  We would like to use the Serre spectral
+sequence to understand $H_\ast(E)$. As always, we will assume that $\pi_1(B)$
+acts trivially on $H_\ast(F)$. 
 
-In our spectral sequence, we have:
+Recall that the Serre spectral sequence runs
 $$
-E^2_{s,t} = H_s(B;H_t(F)) \Rightarrow H_{s+t}(E)
+E^2_{s,t} = H_s(B;H_t(F)) \Rightarrow H_{s+t}(E).
 $$
-We have $E^2_{0,0}=\Z$, and $E^2_{0,t} = 0$ for $t<q$.
-Also $E^2_{s,0} = 0$ for $s<p$.
-In particular, $E^2i_{0,q+t} = H_{q+t}(F)$ and $E^2_{p+k,0} = H_{p+k}(B)$.
-There are dragons elsewhere.
+Our assumptions imply that $E^2_{0,0}=\Z$, and $E^2_{0,t} = 0$ for $t<q$.
+Moreover, $E^2_{s,0} = 0$ for $s<p$. In particular, $E^2_{0,q+t} = H_{q+t}(F)$
+and $E^2_{p+k,0} = H_{p+k}(B)$ --- the rest of the spectral sequence is
+mysterious.
 
-What can the spectral sequence look like?
-The way I've drawn it, $q<p$.
-So the first possible differential is $d^{p}:H_p(B) \to H_{p-1}(F)$, and $d^{p+q}:H_{p+1}(B)\to H_{p}(F)$.
-We're good, but there are differentials that hit $E^2_{p,q}$ (this is the tooth of the dragon).
+By sparsity, the first possible differential is $d^{p}:H_p(B) \to H_{p-1}(F)$, and
+$d^{p+q}:H_{p+1}(B)\to H_{p}(F)$. In the mysterious zone, there are
+differentials that hit $E^2_{p,q}$.
 
-For $s<p+q-1$, the only differential is $d^s:E^s_{s,0}\to E^s_{0,s-1}$.
-This is called a ``transgression'', although I don't know why.
-It's the last possible differential, possibly nonzero.
-Thus, the cokernel of $d^s$ is $E^\infty_{0,s-1}$.
-And we have $E^\infty_{s,0}\to E^s_{s,0}$.
-We have:
-$$
-0\to E^\infty_{s,0}\to E^s_{s,0} \simeq H_s(B) \xrightarrow{d^s} E^s_{0,s-1}\simeq H_{s-1}(F) \to E^\infty_{0,s-1}\to 0
-$$
-There's a mysterious relationship that appears in this spectral sequence.
+Again by sparsity, the only differential is $d^s:E^s_{s,0}\to E^s_{0,s-1}$ for
+$s<p+q-1$. This is called a \emph{transgression}. It is the last possible
+differential which has a chance at being nonzero. This means that the cokernel
+of $d^s$ is $E^\infty_{0,s-1}$. There is also a map $E^\infty_{s,0}\to
+E^s_{s,0}$. We obtain a mysterious composite 
+\begin{equation}\label{part1-serre-lexseq}
+    0\to E^\infty_{s,0}\to E^s_{s,0} \simeq H_s(B) \xrightarrow{d^s}
+    E^s_{0,s-1}\simeq H_{s-1}(F) \to E^\infty_{0,s-1}\to 0.
+\end{equation}
 
-Something else happens.
-Let $n<p+q-1$.
-We have $F_0 H_n(E) = E^\infty_{0,n}$.
-(Recall that $F_s H_n(E) = \img(H_\ast(\pi^{-1}(\mathrm{sk}_s(B)))\to H_\ast(E))$.
-That's the convergence statement, because $F_{-1} = 0$.
-So, this maps to $H_n(E)$.
-There's only one other potentially nonzero filtration in this range of dimensions.
-We have a short exact sequence:
-$$
-0\to F_0 H_n(E) = E^\infty_{0,n} \to H_n(E) \to E^\infty_{n,0} \to 0
-$$
-You can put our two sexseqs together.
-When you splice them together, you get a lexseq:
+Let $n<p+q-1$. Recall that $F_s H_n(E) =
+\img(H_\ast(\pi^{-1}(\mathrm{sk}_s(B)))\to H_\ast(E))$, so $F_0 H_n(E) =
+E^\infty_{0,n}$. Here, we are using the fact that $F_{-1} H_\ast(E) = 0$. In
+particular, there is a map $E^\infty_{0,n}\to H_n(E)$. By our hypotheses, there
+is only one other potentially nonzero filtration in this range of dimensions,
+so we have a short exact sequence:
+\begin{equation}\label{part2-serre-lexseq}
+    0\to F_0 H_n(E) = E^\infty_{0,n} \to H_n(E) \to E^\infty_{n,0} \to 0
+\end{equation}
+Splicing the short exact sequences \eqref{part1-serre-lexseq} and
+\eqref{part2-serre-lexseq}, we obtain a long exact sequence:
 $$
 H_{p+q-1}(F)\to \cdots\to H_n(F)\to H_n(E)\to H_n(B) \xrightarrow{\text{transgression}} H_{n-1}(F) \to H_{n-1}(E)\to \cdots
 $$
-This is called the \emph{Serre exact sequence}.
-In this range of dimensions, homology behaves like homotopy.
+This is called the \emph{Serre exact sequence}. In this range of dimensions,
+homology behaves like homotopy.

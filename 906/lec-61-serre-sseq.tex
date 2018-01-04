@@ -80,7 +80,7 @@ class in $E^r_{s-r,t+r-1}$; this is the desired differential.
     $(d^r)^2 = 0$.
 \end{exercise}
 We have proven most of the statements in the following theorem.
-\begin{theorem}\label{filtered-sseq}
+\begin{thm-defn}\label{filtered-sseq}
     Let $F_\ast C$ be a filtered complex. Then there exist natural
     \begin{enumerate}
 	\item bigraded groups $(E^r_{s,t})_{s\geq 0, t\in\Z}$ for any $r\geq
@@ -90,11 +90,12 @@ We have proven most of the statements in the following theorem.
     \end{enumerate}
     such that $E^{r+1}_{s,t}$ is the homology of $(E^r_{\ast,\ast},d^r)$, and
     $(E^0, d^0)$ and $(E^1, d^1)$ are as above. If $F_\ast C$ is bounded
-    below, there is an isomorphism:
+    below, then this spectral sequence \emph{converges to $\gr_\ast
+    H_\ast(C)$}, in the sense that there is an isomorphism:
     \begin{equation}\label{convergence}
 	E^\infty_{s,t} \simeq \gr_s H_{s+t}(C).
     \end{equation}
-\end{theorem}
+\end{thm-defn}
 This is called a \emph{homology spectral sequence}. One should think of each
 $E^r_{\ast,\ast}$ as a ``page'', with lattice points $E^r_{s,t}$. We still need
 to describe the symbols used in the formula \eqref{convergence}.
@@ -108,10 +109,10 @@ extension problem.
 
 To define the notation $E^\infty$ used above, let us assume that the filtration
 $F_\ast C$ is bounded below (so $F_{-1} C = 0$). It follows that $E^0_{s,t} =
-F_s C_{s+t}/F_{s-1} C_{s+t} = 0$ for $s<0$, so the spectral sequence of Theorem
-\ref{filtered-sseq} is a ``right half plane'' spectral sequence. It follows
-that in our example, the differentials from the group in position $(s,t)$ must
-have vanishing $d^{s+1}$ differential.
+F_s C_{s+t}/F_{s-1} C_{s+t} = 0$ for $s<0$, so the spectral sequence of
+Theorem-Definition \ref{filtered-sseq} is a ``right half plane'' spectral
+sequence. It follows that in our example, the differentials from the group in
+position $(s,t)$ must have vanishing $d^{s+1}$ differential.
 
 In turn, this implies that there is a surjection $E^{s+1}_{s,t} \to
 E^{s+2}_{s,t}$. This continues: we get surjections
@@ -126,8 +127,8 @@ differentials are therefore zero (because either the target or the source is
 zero!), so $E^r_{s,t} = E^2_{s,t}$ for every $r\geq 2$. In particular
 $E^\infty_{s,t} = H_s^{cell}(X)$ when $t=0$, and is $0$ if $t\neq 0$. There are
 no extension problems either: the filtration on $X$ is bounded below, so
-Theorem \ref{filtered-sseq} implies that $\gr_s H_{s+0}(X) = H_s(X) \simeq
-H_s^{cell}(X) = E^\infty_{s,t}$.
+Theorem-Definition \ref{filtered-sseq} implies that $\gr_s H_{s+0}(X) = H_s(X)
+\simeq H_s^{cell}(X) = E^\infty_{s,t}$.
 
 %OK, so for our theorem, we have the following picture of $E^\infty_{\ast,\ast}$:
 %\begin{equation*}
@@ -155,8 +156,9 @@ complex $F_\ast C_\ast$ determines the homology of $C_\ast$:
     The map $E^r(f)$ is an isomorphism which is also also a chain map, i.e., it
     is compatible with the differential $d^r$. It follows that $E^{r+1}(f)$ is
     an isomorphism. By induction, we conclude that $E^\infty_{s,t}(f)$ is an
-    isomorphism for all $s,t$. Theorem \ref{filtered-sseq} implies that the map
-    $\gr_s(f_\ast):\gr_s H_\ast(C) \to \gr_s H(D)$ is an isomorphism.
+    isomorphism for all $s,t$. Theorem-Definitino \ref{filtered-sseq} implies
+    that the map $\gr_s(f_\ast):\gr_s H_\ast(C) \to \gr_s H(D)$ is an
+    isomorphism.
     
     We argue by induction using the short exact sequence:
     $$
@@ -169,7 +171,7 @@ complex $F_\ast C_\ast$ determines the homology of $C_\ast$:
     f_\ast$ is an isomorphism by the five lemma. Since the filtration $F_\ast
     C_\ast$ was exhaustive, it follows that $f_\ast$ is an isomorphism.
 \end{proof}
-\subsection{Serre spectral sequence}
+\subsection{Serre spectral sequence}\label{serre-sseq}
 In this book, we will give two constructions of the Serre spectral sequence.
 The second will appear later. Fix a fibration $E\xrightarrow{p} B$, with $B$ a
 CW-complex. We obtain a filtration on $E$ by taking the preimage of the
@@ -177,7 +179,8 @@ $s$-skeleton of $B$, i.e., $E_s = p^{-1} \sk_s B$. It follows that there is a
 filtration on $S_\ast(E)$ given by
 $$F_s S_\ast (E) = \img(S_\ast(p^{-1} \sk_s(B)) \to S_\ast E).$$
 This filtration is bounded below and exhaustive. The resulting spectral
-sequence of Theorem \ref{filtered-sseq} is the Serre spectral sequence.
+sequence of Theorem-Definition \ref{filtered-sseq} is the Serre spectral
+sequence.
 %The low terms might depend on the CW-structure, but higher terms won't.
 
 Let us be more explicit. We have a pushout square:
@@ -208,7 +211,7 @@ $$E^1_{s,t} = H_{s+t}(E_s,E_{s-1}) = \bigoplus_{\alpha\in \Sigma_s}
 H_{s+t}(D^s_\alpha\times F_\alpha, S^{s-1}_\alpha\times F_\alpha).$$
 We can suggestively view this as $\bigoplus_{\alpha\in\Sigma_s}
 H_{s+1}((D^s_\alpha, S^{s-1}_\alpha)\times F_\alpha)$. By the K\"unneth
-formula (at least, if we are over a field), this is exactly
+formula (at least, if our coefficients are in a field), this is exactly
 $\bigoplus_{\alpha\in\Sigma_s} H_t(F_\alpha)$. In analogy with our discussion
 above regarding the spectral sequence coming from the cellular chain complex,
 one would like to think of this as ``$C_s(B;H_t(F_\alpha))$''. Sadly, there are
@@ -218,7 +221,7 @@ For instance, suppose $B$ isn't connected. The fibers $F_\alpha$ could have
 completely different homotopy types, so the symbol $C_s(B;H_t(F_\alpha))$
 does not make any sense. Even if $B$ was path-connected, there would still be
 no canonical way to identify the fibers over different points. Instead, we
-obtain a functor $H_t(p^{-1}(-)):\Pi_1(B) \to \mathbf{Ab}$, i.e., ``local
+obtain a functor $H_t(p^{-1}(-)):\Pi_1(B) \to \mathbf{Ab}$, i.e., a ``local
 coefficient system'' on $B$. So, the right thing to say is ``$E^2_{s,t} =
 H_s(B;\underline{H_t(\mathrm{fiber})})$''.
 
