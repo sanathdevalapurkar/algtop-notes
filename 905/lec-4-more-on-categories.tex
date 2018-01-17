@@ -1,51 +1,58 @@
 \section{More about categories, and computing the homology of a star-shaped region}
-Let $\mathrm{Vect}_{\mathbf{C}}$ be the category of vector spaces and linear transformations. Given a $\mathbf{C}$-vector space $V$, you can consider the dual $V^\ast=\Hom(V,\cc)$. Is this a functor? If you have a linear transformation $F:V\to W$, you get a map $F^\ast:W^\ast\to V^\ast$, so this is like a functor, but isn't strictly functor. This preserves composition and identities. Taking the dual therefore gives a functor $\mathrm{Vect}_\cc^{op}\to\mathrm{Vect}_\cc$, which is a \textit{contravariant} functor.
+%moved defn of Fun(C,D) to prev. section
+%moved split epi/mono into single definition
+%the example on splitting changed to an exercise, since it was leaving stuff to the reader anyway
+Let $\mathrm{Vect}_{\mathbf{C}}$ be the category of $\mathbf{C}$-vector spaces with $\mathbf{C}$-linear transformations. Given such a vector space $V$, taking the dual gives another vector space $V^\ast=\Hom(V,\mathbf{C})$, and a linear transformation $f:V\to W$ dualizes to $f^\ast:W^\ast\to V^\ast$. This process resembles a functor $\mathrm{Vect}_{\mathbf{C}} \to \mathrm{Vect}_{\mathbf{C}}$, except that it reverses the direction of morphisms.
 \begin{definition}
-Given $\cc,\cd$. A contravariant functor is a functor from $\cc^{op}\to\cd$ where $\cc^{op}$ has the same objects as the category $\cc$ but with all morphisms reversed. There's a contravariant functor $\cc\to\cc^{op}$ that is the identity on objects and on morphisms.
-\end{definition}
-Let $\cc$ be a category, and let $Y\in\mathrm{ob}(\cc)$. We get a map $\cc^{op}\to\set$ that takes $X\mapsto \cc(X,Y)$, and takes a map $X\to W$ to the map defined by composition $\cc(W,Y)\to \cc(X,Y)$. This is called the functor that is represented by $Y$. It is very important to note that $\cc(-,Y)$ is contravariant, but $\cc(Y,-)$ is covariant.
+Let $\cc$ be a category. Define its \emph{opposite category} $\cc^{op}$ to have the same objects as $\cc$ but with morphisms reversed, so that for all $X,Y\in\mathrm{ob}(\cc)$, we have $\cc^{op}(X,Y) = \cc(Y,X)$. Composition in $\cc^{op}$ is the same as in $\cc$.
 
-Recall that $\Deltab$ has objects $[0],[1],[2],\cdots$ and a functor $\Deltab\to\mathbf{Top}$ that sends $[n]\mapsto\Delta^n$. We get a map $\mathbf{Top}^{op}\to\set$ given by sending $X\mapsto\mathbf{Top}(\Delta^n,X)=:\Sin_n(X)$. The composition gives you a contravariant functor $\Delta^{op}\to\set$, which sends $[n]\mapsto\mathbf{Top}(\Delta^n,X)$. This, along with the description of what happens to the face and degeneracy maps (see psets!) is precisely the singular simplicial set of $X$. In other words:
-\begin{prop}[Really a definition...]
+If $\cd$ is another category, then a \emph{contravariant functor} $\cc\to \cd$ is a ordinary (or \emph{covariant}) functor $\cc^{op}\to\cd$.
+\end{definition}
+Let $\cc$ be a category, and let $Y\in\mathrm{ob}(\cc)$. Consider the functor $\cc^{op}\to\set$ that takes $X\in\mathrm{ob}(\cc)$ to the set $\cc(X,Y)$, and takes a map $f\colon X\to W$ to the map $-\circ f\colon \cc(W,Y)\to \cc(X,Y)$ which is precomposition by $f$. This functor, denoted $\cc(-,Y)$, is called the functor \emph{represented by $Y$}. Similarly, there is a functor $\cc(-,Y)$ which is called the functor \emph{corepresented by $Y$}. Note that $\cc(-,Y)$ is contravariant and $\cc(Y,-)$ is covariant.
+
+Recall that $\Deltab$ has objects $[0],[1],[2],\cdots$ and there is a functor $\Deltab\to\mathbf{Top}$ that sends $[n]\mapsto\Delta^n$ (see Exercise \ref{simplicialidentities}). Let $X$ be a space, and consider the functor $\mathbf{Top}^{op}\to\set$ represented by $X$. Composing these functors gives a functor $\Delta^{op}\to\set$ which sends $[n]\mapsto\mathbf{Top}(\Delta^n,X)=:\Sin_n(X)$. This is precisely the singular simplicial set of $X$.
+\begin{prop}
 Simplicial sets are precisely functors $\Deltab^{op}\to\set$, i.e., $s\set=\mathbf{Fun}(\Deltab^{op},\set)$. More generally, simplicial objects in a category $\cc$ are functors $\Deltab^{op}\to\cc$, i.e., $s\cc=\mathbf{Fun}(\Deltab^{op},\cc)$.
 \end{prop}
-(Note that $\mathbf{Fun}(\cc,\cd)$ is the category whose objects are functors and whose morphisms are natural transformations.) Semi-simplicial sets (only face maps, not necessarily degeneracy maps) in a category $\cc$ are simply $ss\cc=\mathbf{Fun}(\Deltab^{op}_{inj},\cc)$ where $\Deltab_{inj}$ consists of the objects of $\Deltab$ where the morphisms only consist of the injective maps.
+If $\Deltab_{inj}$ is the subcategory of $\Deltab$ whose morphisms are only the injective maps, then $ss\cc:=\mathbf{Fun}(\Deltab^{op}_{inj},\cc)$ is the category of semi-simplicial objects in $\cc$ (which differ from simplicial objects in that they only have face maps).
 \begin{definition}
-Let $f:X\to Y$ be a morphism in a category $\cc$. Say that $f$ is a \textit{split epimorphism} if there exists $g:Y\to X$ (often called a section or a splitting) such that $Y\xrightarrow{g}X\xrightarrow{f}Y$ is the identity.
+Let $X,Y\in \cc$. We say that a morphism $f\colon X\rightarrow Y$ is a \emph{split epimorphism} if there exists $g:Y\to X$ (often called a section or a splitting) such that $Y\xrightarrow{g}X\xrightarrow{f}Y$ is the identity $1_Y$.
+
+We say that a morphism $g\colon Y\rightarrow X$ is a \emph{split monomorphism} if there exists $f\colon X\to Y$ such that $Y\xrightarrow{g}X\xrightarrow{f}Y$ is the identity $1_Y$.
 \end{definition}
 \begin{example}
-Let $\cc=\set$. If $f:X\to Y$ is a map of sets, then this says that for every element of $Y$, there exists some element of $X$ whose image in $Y$ is the original element. This means that $f$ is surjective. Is every surjective map a split epimorphism? This reduces to the axiom of choice because proving that if $y\in Y$, the map $g:Y\to X$ can be constructed by choosing some $x\in f^{-1}(y)$.
-\end{example}
-\begin{definition}
-Say that $g:Y\to X$ is a split monomorphism if there is $f:X\to Y$ such that $f\circ g=1_Y$.
-\end{definition}
-\begin{example}
-Let $\cc=\set$. Claim: it's an injection. If $y,y^\prime\in Y$, and $g(y)=g(y^\prime)$, we want to show that $y=y^\prime$. Apply $f$, to get $f(g(y))=y=f(g(y^\prime))=y^\prime$. If $Y\neq \emptyset$, then every injection $g:Y\to X$ is a split mono.
+Let $\cc=\set$. If $f:X\to Y$ is a split epimorphism with $f\circ g = 1_Y$, then for every $y\in Y$, we have $f(g(y))=y$ and thus $f$ is surjective. Is every surjective map a split epimorphism? Constructing a splitting $g$ amounts to picking $g(y)\in f^{-1}(y)$ for all $y\in Y$, so this reduces to the axiom of choice.
+
+Now assume that $g: X\to Y$ is a split monomorphism. Suppose that $y,y^\prime\in Y$ are such that $g(y)=g(y^\prime)$. Applying $f$ gives $y=y^\prime$, and thus split monomorphisms are injective. Conversely, if $Y$ is nonempty, then every injection $g:Y\to X$ is a split monomorphism.
 \end{example}
 \begin{example}
-An isomorphism is a split epi + split mono.
+A morphism is an isomorphism if and only if it is both a split epi and a split mono.
 \end{example}
 \begin{lemma}
-If $f:X\to Y$ is a split epi or mono in $\cc$, and you have a functor $F:\cc\to \cd$, then so is $F(f)$ in $\cd$.
+If $f:X\to Y$ is a split epi (resp. split mono) in $\cc$, and $F:\cc\to \cd$, then $F(f)$ is a split epi (resp. split mono) in $\cd$.
 \end{lemma}
 \begin{proof}
-Trivial.
+If $g$ splits $f$ in $\cc$, then $F(g)$ splits $F(f)$ in $\cd$.
 \end{proof}
-\begin{example}
-Suppose $\cc=\mathbf{Ab}$, and you have a split epi $f:A\to B$. We have a map $g:B\to A$ so that $fg=1$. Clearly $f$ must be surjective. Consider the kernel of $f$, so we have a composition $\ker f\to A\to B$. We also have a map $B\to A$, so we can add, and get $\ker f\oplus B\xrightarrow{[i,g]} A$ where $i$ is the inclusion $\ker f\to A$. Left for reader: $[i,g]$ is an isomorphism.
+\begin{exercise}\label{ex:split-epi-mono-isomorphism}
+Suppose $A,B\in \cc=\mathbf{Ab}$ and $f:A\to B$ is a split epi, so that $fg=1$ for some $g\colon B\rightarrow A$. Let $i\colon \ker f\to A$ be the inclusion, and consider the sum $\ker f\oplus B\xrightarrow{[i,g]} A$. Show that $[i,g]$ is an isomorphism.
 
-If $g:B\to A$ is a split mono, so there is $f:A\to B$ so that $fg=1$. Clearly $g$ is injective, and we get a map $B\to A\xrightarrow{p}\mathrm{coker}(g)$. We therefore get a map $A\xrightarrow{\begin{pmatrix}
+If $g:B\to A$ is a split mono, there exists $f:A\to B$ so that $fg=1$. Let $p\colon A\rightarrow \mathrm{coker}(g)$ be the quotient map, and consider the map $A\xrightarrow{\begin{pmatrix}
 p \\ f
-\end{pmatrix}}\mathrm{coker}(g)\oplus B$. Left to reader again: this is an isomorphism.
-\end{example}
-We have to get into some topology, since it's on our agenda. Suppose I have a space $X$. There's always a unique map $X\to\ast$, which means categorically that $\ast$ is trivial. We have an induced map $ H_n(X)\to H_n(\ast)=\begin{cases}\mathbf{Z} & n=0\\
-0 & \text{else}\end{cases}$. Consider the equivalence class (also called the \textit{homology class} of the cycle $\sum a_ix_i$) $\left[\sum a_ix_i\right]\in H_0(X)$, where $x_i$ is a point in $X$. Under the induced map, this goes as: $\left[\sum a_ix_i\right]\mapsto \left[\sum a_i\ast\right]=\left(\sum a_i\right)\left[\ast\right]$. This is called the augmentation map. This map is a split epi, because we can always choose a point of $X$ and pull an element of $\mathbf{Z}$ back. This motivates the following definition.
-\begin{definition}
-A pointed space is a pair $(X,\ast)$, with $\ast\in X$ called the \textit{basepoint}.
-\end{definition}
-We have an inclusion $\ast\to X\to\ast$, so we get an induced map $\mathbf{Z}\xrightarrow{\eta} H_\ast(X)\xrightarrow{\epsilon}\mathbf{Z}$, and the composition is the identity. The map $\epsilon$ is the augmentation map we described above. This means, by our above analysis, we see that $ H_\ast(X)\cong \mathbf{Z}\oplus\mathrm{coker}\eta \cong\mathbf{Z}\oplus\ker\epsilon$. The homology $ H_\ast(X,\ast)=\mathrm{coker}\eta$, and this is called the reduced homology of $(X,\ast)$. It's isomorphic to $ H_\ast(X)$ in dimensions greater than $0$, but differs by a factor of $\mathbf{Z}$ in dimension $0$.
+\end{pmatrix}}\mathrm{coker}(g)\oplus B$. Show that this is an isomorphism.
+\end{exercise}
+We have to get into some topology, since it's on our agenda. In the category $\mathbf{Top}$, the one-point space $\ast$ is terminal, meaning that for any space $X$ there is a unique map $X\to\ast$. This induces a map
+\[H_n(X)\to H_n(\ast)=\begin{cases}\mathbf{Z} & n=0\\
+0 & \text{else}\end{cases}\]
+which is called the \emph{augmentation map}.
 
-We spent up a lot of time on categories, and didn't get to star-shaped regions. We'll pick this up on Friday, but we'll begin a little here.
+Take a 0-cycle $\sum a_ix_i$ where the $x_i$ are points in $X$. Consider its homology class $\left[\sum a_ix_i\right]\in H_0(X)$. Under the induced map above, this is sent to $\left[\sum a_i\ast\right]=\left(\sum a_i\right)\left[\ast\right]$. 
+\begin{definition}
+A \emph{pointed space} is a pair $(X,\ast)$, with $\ast\in X$ called the \emph{basepoint}.
+\end{definition}
+Let $\ast\to X\to\ast$ be the inclusion of the basepoint followed by the unique map to $\ast$. In homology we get a map $\mathbf{Z}\xrightarrow{\eta} H_\ast(X)\xrightarrow{\epsilon}\mathbf{Z}$, where the composition is the identity. The map $\epsilon$ is the augmentation map described above, so we see that it is a split epimorphism. This means that, by Exercise \ref{ex:split-epi-mono-isomorphism}, $ H_\ast(X)\cong \mathbf{Z}\oplus\mathrm{coker}\eta \cong\mathbf{Z}\oplus\ker\epsilon$. The \emph{reduced homology} of $(X,\ast)$ is $ H_\ast(X,\ast)=\mathrm{coker}\eta$. It's isomorphic to $ H_\ast(X)$ in dimensions greater than $0$, but differs by a factor of $\mathbf{Z}$ in dimension $0$.
+
+We spent up a lot of time on categories, and didn't get to star-shaped regions.\todo{Should this stuff be moved to the beginning of the next section?} We'll pick this up on Friday, but we'll begin a little here.
 \begin{definition}
 A star-shaped region is a subspace $X$ of $\mathbf{R}^n$ for some $n$ such that $0\in X$, such that for all $x\in X$, and for all $t\in[0,1]$, $tx\in X$. 
 \end{definition}
