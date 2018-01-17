@@ -6,7 +6,7 @@ Let $\mathrm{Vect}_{\mathbf{C}}$ be the category of $\mathbf{C}$-vector spaces w
 \begin{definition}
 Let $\cc$ be a category. Define its \emph{opposite category} $\cc^{op}$ to have the same objects as $\cc$ but with morphisms reversed, so that for all $X,Y\in\mathrm{ob}(\cc)$, we have $\cc^{op}(X,Y) = \cc(Y,X)$. Composition in $\cc^{op}$ is the same as in $\cc$.
 
-If $\cd$ is another category, then a \emph{contravariant functor} $\cc\to \cd$ is a ordinary (or \emph{covariant}) functor $\cc^{op}\to\cd$.
+If $\cd$ is another category, then a \emph{contravariant functor} $\cc\to \cd$ is an ordinary (or \emph{covariant}) functor $\cc^{op}\to\cd$.
 \end{definition}
 Let $\cc$ be a category, and let $Y\in\mathrm{ob}(\cc)$. Consider the functor $\cc^{op}\to\set$ that takes $X\in\mathrm{ob}(\cc)$ to the set $\cc(X,Y)$, and takes a map $f\colon X\to W$ to the map $-\circ f\colon \cc(W,Y)\to \cc(X,Y)$ which is precomposition by $f$. This functor, denoted $\cc(-,Y)$, is called the functor \emph{represented by $Y$}. Similarly, there is a functor $\cc(-,Y)$ which is called the functor \emph{corepresented by $Y$}. Note that $\cc(-,Y)$ is contravariant and $\cc(Y,-)$ is covariant.
 
