@@ -52,15 +52,4 @@ A \emph{pointed space} is a pair $(X,\ast)$, with $\ast\in X$ called the \emph{b
 \end{definition}
 Let $\ast\to X\to\ast$ be the inclusion of the basepoint followed by the unique map to $\ast$. In homology we get a map $\mathbf{Z}\xrightarrow{\eta} H_\ast(X)\xrightarrow{\epsilon}\mathbf{Z}$, where the composition is the identity. The map $\epsilon$ is the augmentation map described above, so we see that it is a split epimorphism. This means that, by Exercise \ref{ex:split-epi-mono-isomorphism}, $ H_\ast(X)\cong \mathbf{Z}\oplus\mathrm{coker}\eta \cong\mathbf{Z}\oplus\ker\epsilon$. The \emph{reduced homology} of $(X,\ast)$ is $ H_\ast(X,\ast)=\mathrm{coker}\eta$. It's isomorphic to $ H_\ast(X)$ in dimensions greater than $0$, but differs by a factor of $\mathbf{Z}$ in dimension $0$.
 
-We spent up a lot of time on categories, and didn't get to star-shaped regions.\todo{Should this stuff be moved to the beginning of the next section?} We'll pick this up on Friday, but we'll begin a little here.
-\begin{definition}
-A star-shaped region is a subspace $X$ of $\mathbf{R}^n$ for some $n$ such that $0\in X$, such that for all $x\in X$, and for all $t\in[0,1]$, $tx\in X$. 
-\end{definition}
-\begin{example}
-Any convex region containing the origin is star shaped.
-\end{example}
-\begin{theorem}
-The augmentation map $\epsilon: H_\ast(X)\to \mathbf{Z}$ is an isomorphism, i.e., $ H_0(X)\cong\mathbf{Z}$ and $ H_i(X)\cong 0$ for $i>0$.
-\end{theorem}
-The strategy of proof is that $\epsilon$ is induced by sending $X\to \ast$. We'll look at the chain map $S_\ast(x)\to\mathbf{Z}\to S_\ast(X)$. We'll show that this composite induces the same map in homology as the identity map, which means that the identity map factors through $\mathbf{Z}$, so we're done.
 
