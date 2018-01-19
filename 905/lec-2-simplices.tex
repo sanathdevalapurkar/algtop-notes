@@ -4,7 +4,7 @@
 \section{Simplices, more about homology}
 Previously we introduced the standard $n$-simplex $\Delta^n\subseteq\mathbf{R}^{n+1}$. Singular simplices in a space $X$ are maps $\sigma\colon\Delta^n\to X$ and constitute the set $\Sin_n(X)$. For example, $\Sin_0(X)$ consists of points of $X$. In addition to the \emph{face maps} $d_i\colon\Sin_n(X)\to\Sin_{n-1}(X)$ we described, there are also \emph{degeneracy maps} $s_i\colon\Sin_n(X)\to\Sin_{n+1}(X)$, and the collection $\{\Sin_n(X),d_i,s_i\}$ forms a \emph{simplicial set}. Simplicial sets are combinatorial models for topological spaces. In the language of category theory, which we will discuss shortly, we have a functor $\mathbf{Top}\to\{\text{simplicial sets}\}$.
 
-To the semi-simplicial set $\{\Sin_n(X),d_i\}$ we then applied the free abelian group functor, obtaining a semi-simplicial abelian group. Using the $d_i$s, we constructed a boundary map $\partial$ which makes $S_\ast(X)$ a \emph{chain complex} because $\partial^2=0$ (see Problem Set 1). We capture this process in a diagram:
+To the semi-simplicial set $\{\Sin_n(X),d_i\}$ we then applied the free abelian group functor, obtaining a semi-simplicial abelian group. Using the $d_i$s, we constructed a boundary map $\partial$ which makes $S_\ast(X)$ a \emph{chain complex} because $\partial^2=0$ (see Exercise \ref{exer:simplicialidentities}). We capture this process in a diagram:
 \begin{equation*}
 \xymatrix{\mathbf{Top}\ar[d]\ar[r] & \{\text{semi-simplicial sets}\}\ar[r] & \{\text{semi-simplicial abelian groups}\}\ar[d]\\
     \{\text{simplicial sets}\}\ar[ur] & & \{\text{chain complexes}\}\ar[d]^{\text{take homology}}\\

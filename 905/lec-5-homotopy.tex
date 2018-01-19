@@ -1,65 +1,65 @@
 \section{Homotopy, star-shaped regions}
-The idea of homotopy is the central concept of all of algebraic topology, to put it bluntly. We have a functor $ H_\ast:\mathbf{Top}\to\mathbf{Ab}$, but it's too crude to distinguish between topological spaces. The virtue of this definition is that it's computable, although it can't completely distinguish between two spaces.
+As homology is a functor $H_\ast:\mathbf{Top}\to\mathbf{Ab}$, it preserves isomorphisms: homeomorphic spaces have isomorphic homology. However, homology is not always able to distinguish between non-homeomorphic spaces. We introduce the looser notion of homotopy, which is a central concept of algebraic topology, and later we will show that homology is a homotopy invariant.
 \begin{definition}
-Let $f_0,f_1:X\to Y$ be two maps. A homotopy from $f_0$ to $f_1$ is a map $h:X\times I\to Y$ such that $h(x,0)=f_0(x)$ and $f(x,1)=f_1(x)$. We say that $f_0$ and $f_1$ are homotopic, and this is written $f_0\sim f_1$ because this is an equivalence relation on maps (transitivity follows from the gluing lemma).
+Let $f_0,f_1:X\to Y$ be two maps. A \emph{homotopy} from $f_0$ to $f_1$ is a map $h:X\times I\to Y$ such that $h(x,0)=f_0(x)$ and $f(x,1)=f_1(x)$. We say that $f_0$ and $f_1$ are \emph{homotopic} and write $f_0\sim f_1$.  This notation is justified because it is indeed an equivalence relation (transitivity follows from the gluing lemma).
 \end{definition}
-We denote by $[X,Y]$ the set $\mathbf{Top}(X,Y)/\sim$. On Monday, we'll prove the following result.
-\begin{theorem}
-If $f_0\sim f_1$, then $ H_\ast(f_0)= H_\ast(f_1)$. In other words, homology cannot distinguish between homotopic things.
-\end{theorem}
-Suppose I have two maps $f_0,f_1:X\to Y$ and a map $g:Y\to Z$, with a homotopy $h:f_0\sim f_1$. Composing $h$ with $g$ gives a homotopy between $g\circ f_0$ and $g\circ f_1$. Precomposing also works. Namely, if $g:W\to X$ is a map and $f_0,f_1:X\to Y$ are homotopic, then $f_0g\sim f_1g$. Does this let us compose homotopy classes? That is, can we complete:
+We denote by $[X,Y]$ the set $\mathbf{Top}(X,Y)/\sim$.
+
+Suppose we have a map $g: Y\to Z$ and homotopic maps $f_0,f_1:X\to Y$, with a homotopy $h:f_0\sim f_1$. Then $g\circ h$ gives a homotopy $g\circ f_0 \sim g\circ f_1$. Similarly, if $g:W\to X$ is a map and $f_0,f_1:X\to Y$ are homotopic, then $f_0\circ g\sim f_1\circ g$.
+
+If $g_0\sim g_1:Y\to Z$ and $f_0\sim f_1: X\to Y$, then $g_0\circ f_0\sim g_0 \circ f_1\sim g_1 \circ f_1$. Hence we are able to compose homotopy classes, giving the dotted arrow below.
 \begin{equation*}
 \xymatrix{\mathbf{Top}(Y,Z)\times\mathbf{Top}(X,Y)\ar[d]\ar[r] & \mathbf{Top}(X,Z)\ar[d]\\
 [Y,Z]\times[X,Y]\ar@{-->}[r] & [X,Z]}
 \end{equation*}
-The answer is yes. If $g_0\sim g_1:Y\to Z$ and $f_0\sim f_1: X\to Y$, then $g_0f_0\sim g_0f_1$, but this is just homotopic to $g_1f_1$. This therefore gives us a new category, called the homotopy category.
-\begin{definition}
-The homotopy category of topological spaces is $\mathrm{Ho}(\mathbf{Top})$ whose objects are topological spaces and $\mathrm{Ho}(\mathbf{Top})(X,Y)=[X,Y]=\mathbf{Top}(X,Y)/\sim$.
-\end{definition}
-This is an interesting category because it has \textit{terrible} categorical properties. The theorem that we'll prove on Monday says that the homology functor $ H_\ast:\mathbf{Top}\to\mathbf{Ab}$ factors as $\mathbf{Top}\to\mathrm{Ho}(\mathbf{Top})\to\mathbf{Ab}$.
-\begin{definition}
-A map $f:X\to Y$ is a homotopy equivalence if $[f]\in[X,Y]$ is an isomorphism in $\htop$. In other words, there is $g:Y\to X$ such that $fg\sim 1_Y$ and $gf\sim 1_X$.
-\end{definition}
-\begin{example}
-Homotopy equivalence doesn't preserve compactness. For example, the inclusion $S^{n-1}\subseteq \mathbf{R}^n-\{0\}$. The homotopy inverse $p:\mathbf{R}^n-\{0\}\to S^{n-1}$ can be obtained by dividing a (always nonzero!) vector by its length. Clearly $p\circ i=1_{S^{n-1}}$. We have to find a homotopy $i\circ p\sim 1_{\mathbf{R}^n-\{0\}}$. Namely, we want a map $(\mathbf{R}^n-\{0\})\times I\to \mathbf{R}^n-\{0\}$; but this is straightforward, namely, take $(v,t)\mapsto tv+(1-t)\frac{v}{||v||}$.
-\end{example}
-Let's set up the stuff about star-shaped region.
-\begin{definition}
-A star-shaped region is a subspace $X$ of $\mathbf{R}^n$ for some $n$ such that $0\in X$, such that for all $x\in X$, and for all $t\in[0,1]$, $tx\in X$. 
-\end{definition}
-\begin{example}
-Any convex region containing the origin is star shaped.
-\end{example}
 
-The first thing to realize is that the inclusion $\{0\}\to X$, where $X$ is a star-shaped region, is a homotopy equivalence, precisely like the above example!
 \begin{definition}
-A space $X$ is contractible if the map $X\to\ast$ is a homotopy equivalence.
+The \emph{homotopy category of topological spaces} is $\mathrm{Ho}(\mathbf{Top})$ whose objects are topological spaces and $\mathrm{Ho}(\mathbf{Top})(X,Y)=[X,Y]=\mathbf{Top}(X,Y)/\sim$.
 \end{definition}
-In other words, the star-shaped region is contractible. The claim is the following.
-\begin{theorem}
-The augmentation map $\epsilon: H_\ast(X)\to \mathbf{Z}$ is an isomorphism, i.e., $ H_0(X)\cong\mathbf{Z}$ and $ H_i(X)\cong 0$ for $i>0$.
+\begin{definition}
+	A map $f:X\to Y$ is a \emph{homotopy equivalence} if $[f]\in[X,Y]$ is an isomorphism in $\htop$. In other words, there is $g:Y\to X$ such that $fg\sim 1_Y$ and $gf\sim 1_X$.
+\end{definition}
+This is an interesting category because it has \textit{terrible} categorical properties\todo{This sentence seems a bit random atm; give examples of why it's terrible? or just remove?}.
+
+In Section \ref{lec:6-homotopy-invariance-of-homology} we will prove:
+\begin{theorem}[Homotopy invariance of homology]
+	If $f_0\sim f_1$, then $ H_\ast(f_0)= H_\ast(f_1)$.
 \end{theorem}
-The strategy of proof is that $\epsilon$ is induced by sending $X\to \ast$. We'll look at the chain map $S_\ast(x)\to\mathbf{Z}\to S_\ast(X)$. We'll show that this composite induces the same map in homology as the identity map, which means that the identity map factors through $\mathbf{Z}$, so we're done.
-
-We want to set up a homotopy in the category of chain complexes.
+This theorem states that the homology functor $H_\ast:\mathbf{Top}\to\mathbf{Ab}$ factors as $\mathbf{Top}\to\mathrm{Ho}(\mathbf{Top})\to\mathbf{Ab}$. In particular, it cannot distinguish between homotopy equivalent spaces. (Caution: spaces with isomorphic homology need not be homotopy equivalent.)
+\begin{example}\label{exa:homotopy-equivalence-sphere}
+The inclusion $S^{n-1}\subseteq \mathbf{R}^n-\{0\}$ is a homotopy equivalence. The homotopy inverse $p:\mathbf{R}^n-\{0\}\to S^{n-1}$ can be obtained by dividing a (always nonzero!) vector by its length. Clearly $p\circ i=1_{S^{n-1}}$. A homotopy $i\circ p\sim 1_{\mathbf{R}^n-\{0\}}$ is given by $(v,t)\mapsto tv+(1-t)\frac{v}{||v||}$. This example shows that homotopy equivalence does not preserve compactness.
+\end{example}
 \begin{definition}
-Let $C_\bullet,D_\bullet$ be chain complexes, and $f_0,f_1:C_\bullet\to D_\bullet$ be chain maps. A chain homotopy $h:f_0\sim f_1$ is a collection of homomorphisms $h:C_n\to D_{n+1}$ such that $\partial h+h\partial=f_1-f_0$.
+A space $X$ is \emph{contractible} if the map $X\to\ast$ is a homotopy equivalence.
 \end{definition}
-It's a really weird relation, but we'll understand why this is a good thing.
-\begin{equation*}
-\xymatrix{C_{n+2}\ar[r]^{f_1-f_0}\ar[d]^\partial & D_{n+2}\ar[d]^\partial\\
-C_{n+1}\ar@{-->}[ur]^h\ar[r]^{f_1-f_0}\ar[d]^\partial & D_{n+2}\ar[d]^\partial\\
-C_n\ar@{-->}[ur]^h\ar[r]_{f_1-f_0} & D_n}
-\end{equation*}
-\begin{lemma}
-If $f_0,f_1:C_\bullet\to D_\bullet$ are chain homotopic, then $f_{0,\ast}=f_{1,\ast}: H(C)\to H(D)$.
-\end{lemma}
-\begin{proof}
-This is the same thing as saying that $(f_1-f_0)_\ast=0$. Let $c\in Z_n(C_\bullet)(C)$, so that $\partial c=0$. Well, $(f_1-f_0)_\ast c=(\partial h+h\partial)c=\partial hc+h\partial c=\partial hc$, so it's a boundary. Therefore, $f_{1,\ast}$ and $f_{0,\ast}$ have the same homology class (because when you take homology classes, you work modulo boundaries), which means we're done.
-\end{proof}
-\begin{proof}
-We have the map $S_\ast(X)\xrightarrow{\epsilon}\mathbf{Z}\xrightarrow{\eta}S_\ast(X)$ where the latter map sends $1$ to the constant map at the origin. The claim is that $\eta\epsilon\sim 1:S_\ast(X)\to S_\ast(X)$. Let's just mention that $\eta\epsilon(\sum a_ix_i)=(\sum a_i)c_0$ where $c_0$ is the zero-simplex that is constant at the origin. We want a homotopy $h:S_q(X)\to S_{q+1}(X)$, but it suffices to construct $\Sin_q(X)\to \Sin_{q+1}(X)$. For $\sigma\in\Sin_q(X)$, define $h:\Sin_q(X)\to\Sin_{q+1}(X)$ as follows:
-$$h\sigma(t_0,\cdots,t_{q+1})=(1-t_0)\sigma\left(\frac{(t_0,\cdots,t_{q+1})}{1-t_0}\right)$$
-I give up livetexing the proof; just read Hatcher.
-\end{proof}
+
+\begin{definition}
+	A \emph{star-shaped region} is a subspace $X$ of $\mathbf{R}^n$ for some $n$ such that $0\in X$, such that for all $x\in X$, and for all $t\in[0,1]$, $tx\in X$. 
+\end{definition}
+For example, any convex region containing the origin is star-shaped. An argument similar to the one in Example \ref{exa:homotopy-equivalence-sphere} shows that the inclusion of $\{0\}$ into a star-shaped region is a homotopy equivalence. Thus star-shaped regions are contractible. Our goal now is to prove the following.
+\begin{theorem}
+	Let $X$ be a star-shaped region. The augmentation map $\epsilon: H_\ast(X)\to \mathbf{Z}$ is an isomorphism, i.e., $ H_0(X)\cong\mathbf{Z}$ and $ H_i(X)\cong 0$ for $i>0$.
+\end{theorem}
+%The strategy of proof is that $\epsilon$ is induced by sending $X\to \ast$. We'll look at the chain map $S_\ast(x)\to\mathbf{Z}\to S_\ast(X)$. We'll show that this composite induces the same map in homology as the identity map, which means that the identity map factors through $\mathbf{Z}$, so we're done. (probably not necessary to include this now that it's been moved to this section, given that the proof follows shortly)
+Before proving this, we will give a notion of homotopy in the category of chain complexes.
+\begin{definition}
+Let $C_\bullet,D_\bullet$ be chain complexes, and $f_0,f_1:C_\bullet\to D_\bullet$ be chain maps. A \emph{chain homotopy} $h:f_0\sim f_1$ is a collection of homomorphisms $h:C_n\to D_{n+1}$ such that $\partial h+h\partial=f_1-f_0$.
+\end{definition}
+			\begin{equation*}
+			\xymatrix{C_{n+2}\ar[r]^{f_1-f_0}\ar[d]^\partial & D_{n+2}\ar[d]^\partial\\
+			C_{n+1}\ar@{-->}[ur]^h\ar[r]^{f_1-f_0}\ar[d]^\partial & D_{n+2}\ar[d]^\partial\\
+			C_n\ar@{-->}[ur]^h\ar[r]_{f_1-f_0} & D_n}
+			\end{equation*}
+The following lemma shows the significance of this condition.
+	\begin{lemma}
+	If $f_0,f_1:C_\bullet\to D_\bullet$ are chain homotopic, then $f_{0,\ast}=f_{1,\ast}: H(C)\to H(D)$.
+	\end{lemma}
+		\begin{proof}
+		We show that $(f_1-f_0)_\ast=0$. Let $c\in Z_n(C_\bullet)(C)$, so that $\partial c=0$. Then $(f_1-f_0)_\ast c=(\partial h+h\partial)c=\partial hc+h\partial c=\partial hc$ is a boundary, which is zero in homology.
+		\end{proof}
+		\begin{proof}
+		We have the map $S_\ast(X)\xrightarrow{\epsilon}\mathbf{Z}\xrightarrow{\eta}S_\ast(X)$ where the latter map sends $1$ to the constant map at the origin. The claim is that $\eta\epsilon\sim 1:S_\ast(X)\to S_\ast(X)$. Let's just mention that $\eta\epsilon(\sum a_ix_i)=(\sum a_i)c_0$ where $c_0$ is the zero-simplex that is constant at the origin. We want a homotopy $h:S_q(X)\to S_{q+1}(X)$, but it suffices to construct $\Sin_q(X)\to \Sin_{q+1}(X)$. For $\sigma\in\Sin_q(X)$, define $h:\Sin_q(X)\to\Sin_{q+1}(X)$ as follows:
+		$$h\sigma(t_0,\cdots,t_{q+1})=(1-t_0)\sigma\left(\frac{(t_0,\cdots,t_{q+1})}{1-t_0}\right)$$
+		I give up livetexing the proof; just read Hatcher.\todo{will return to edit/finish this proof}
+		\end{proof}
 % Continue indenting like this.

@@ -10,7 +10,7 @@ If $\cd$ is another category, then a \emph{contravariant functor} $\cc\to \cd$ i
 \end{definition}
 Let $\cc$ be a category, and let $Y\in\mathrm{ob}(\cc)$. Consider the functor $\cc^{op}\to\set$ that takes $X\in\mathrm{ob}(\cc)$ to the set $\cc(X,Y)$, and takes a map $f\colon X\to W$ to the map $-\circ f\colon \cc(W,Y)\to \cc(X,Y)$ which is precomposition by $f$. This functor, denoted $\cc(-,Y)$, is called the functor \emph{represented by $Y$}. Similarly, there is a functor $\cc(-,Y)$ which is called the functor \emph{corepresented by $Y$}. Note that $\cc(-,Y)$ is contravariant and $\cc(Y,-)$ is covariant.
 
-Recall that $\Deltab$ has objects $[0],[1],[2],\cdots$ and there is a functor $\Deltab\to\mathbf{Top}$ that sends $[n]\mapsto\Delta^n$ (see Exercise \ref{simplicialidentities}). Let $X$ be a space, and consider the functor $\mathbf{Top}^{op}\to\set$ represented by $X$. Composing these functors gives a functor $\Delta^{op}\to\set$ which sends $[n]\mapsto\mathbf{Top}(\Delta^n,X)=:\Sin_n(X)$. This is precisely the singular simplicial set of $X$.
+Recall that $\Deltab$ has objects $[0],[1],[2],\cdots$ and there is a functor $\Deltab\to\mathbf{Top}$ that sends $[n]\mapsto\Delta^n$ (see Exercise \ref{exer:simplicialidentities}). Let $X$ be a space, and consider the functor $\mathbf{Top}^{op}\to\set$ represented by $X$. Composing these functors gives a functor $\Delta^{op}\to\set$ which sends $[n]\mapsto\mathbf{Top}(\Delta^n,X)=:\Sin_n(X)$. This is precisely the singular simplicial set of $X$.
 \begin{prop}
 Simplicial sets are precisely functors $\Deltab^{op}\to\set$, i.e., $s\set=\mathbf{Fun}(\Deltab^{op},\set)$. More generally, simplicial objects in a category $\cc$ are functors $\Deltab^{op}\to\cc$, i.e., $s\cc=\mathbf{Fun}(\Deltab^{op},\cc)$.
 \end{prop}
@@ -52,4 +52,14 @@ A \emph{pointed space} is a pair $(X,\ast)$, with $\ast\in X$ called the \emph{b
 \end{definition}
 Let $\ast\to X\to\ast$ be the inclusion of the basepoint followed by the unique map to $\ast$. In homology we get a map $\mathbf{Z}\xrightarrow{\eta} H_\ast(X)\xrightarrow{\epsilon}\mathbf{Z}$, where the composition is the identity. The map $\epsilon$ is the augmentation map described above, so we see that it is a split epimorphism. This means that, by Exercise \ref{ex:split-epi-mono-isomorphism}, $ H_\ast(X)\cong \mathbf{Z}\oplus\mathrm{coker}\eta \cong\mathbf{Z}\oplus\ker\epsilon$. The \emph{reduced homology} of $(X,\ast)$ is $ H_\ast(X,\ast)=\mathrm{coker}\eta$. It's isomorphic to $ H_\ast(X)$ in dimensions greater than $0$, but differs by a factor of $\mathbf{Z}$ in dimension $0$.
 
+\begin{definition}
+A star-shaped region is a subspace $X$ of $\mathbf{R}^n$ for some $n$ such that $0\in X$, such that for all $x\in X$, and for all $t\in[0,1]$, $tx\in X$. 
+\end{definition}
+\begin{example}
+Any convex region containing the origin is star shaped.
+\end{example}
+\begin{theorem}
+The augmentation map $\epsilon: H_\ast(X)\to \mathbf{Z}$ is an isomorphism, i.e., $ H_0(X)\cong\mathbf{Z}$ and $ H_i(X)\cong 0$ for $i>0$.
+\end{theorem}
+The strategy of proof is that $\epsilon$ is induced by sending $X\to \ast$. We'll look at the chain map $S_\ast(x)\to\mathbf{Z}\to S_\ast(X)$. We'll show that this composite induces the same map in homology as the identity map, which means that the identity map factors through $\mathbf{Z}$, so we're done.
 
