@@ -1,0 +1,54 @@
+\section{More about categories, and computing the homology of a star-shaped region}
+%moved defn of Fun(C,D) to prev. section
+%moved split epi/mono into single definition
+%the example on splitting changed to an exercise, since it was leaving stuff to the reader anyway
+Let $\mathrm{Vect}_{\mathbf{C}}$ be the category of $\mathbf{C}$-vector spaces with $\mathbf{C}$-linear transformations. Given such a vector space $V$, taking the dual gives another vector space $V^\ast=\Hom(V,\mathbf{C})$, and a linear transformation $f:V\to W$ dualizes to $f^\ast:W^\ast\to V^\ast$. This process resembles a functor $\mathrm{Vect}_{\mathbf{C}} \to \mathrm{Vect}_{\mathbf{C}}$, except that it reverses the direction of morphisms.
+\begin{definition}
+Let $\cc$ be a category. Define its \emph{opposite category} $\cc^{op}$ to have the same objects as $\cc$ but with morphisms reversed, so that for all $X,Y\in\mathrm{ob}(\cc)$, we have $\cc^{op}(X,Y) = \cc(Y,X)$. Composition in $\cc^{op}$ is the same as in $\cc$.
+
+If $\cd$ is another category, then a \emph{contravariant functor} $\cc\to \cd$ is an ordinary (or \emph{covariant}) functor $\cc^{op}\to\cd$.
+\end{definition}
+Let $\cc$ be a category, and let $Y\in\mathrm{ob}(\cc)$. Consider the functor $\cc^{op}\to\set$ that takes $X\in\mathrm{ob}(\cc)$ to the set $\cc(X,Y)$, and takes a map $f\colon X\to W$ to the map $-\circ f\colon \cc(W,Y)\to \cc(X,Y)$ which is precomposition by $f$. This functor, denoted $\cc(-,Y)$, is called the functor \emph{represented by $Y$}. Similarly, there is a functor $\cc(-,Y)$ which is called the functor \emph{corepresented by $Y$}. Note that $\cc(-,Y)$ is contravariant and $\cc(Y,-)$ is covariant.
+
+Recall that $\Deltab$ has objects $[0],[1],[2],\cdots$ and there is a functor $\Deltab\to\mathbf{Top}$ that sends $[n]\mapsto\Delta^n$ (see Exercise \ref{exer:simplicialidentities}). Let $X$ be a space, and consider the functor $\mathbf{Top}^{op}\to\set$ represented by $X$. Composing these functors gives a functor $\Delta^{op}\to\set$ which sends $[n]\mapsto\mathbf{Top}(\Delta^n,X)=:\Sin_n(X)$. This is precisely the singular simplicial set of $X$.
+\begin{prop}
+Simplicial sets are precisely functors $\Deltab^{op}\to\set$, i.e., $s\set=\mathbf{Fun}(\Deltab^{op},\set)$. More generally, simplicial objects in a category $\cc$ are functors $\Deltab^{op}\to\cc$, i.e., $s\cc=\mathbf{Fun}(\Deltab^{op},\cc)$.
+\end{prop}
+If $\Deltab_{inj}$ is the subcategory of $\Deltab$ whose morphisms are only the injective maps, then $ss\cc:=\mathbf{Fun}(\Deltab^{op}_{inj},\cc)$ is the category of semi-simplicial objects in $\cc$ (which differ from simplicial objects in that they only have face maps).
+\begin{definition}
+Let $X,Y\in \cc$. We say that a morphism $f\colon X\rightarrow Y$ is a \emph{split epimorphism} if there exists $g:Y\to X$ (often called a section or a splitting) such that $Y\xrightarrow{g}X\xrightarrow{f}Y$ is the identity $1_Y$.
+
+We say that a morphism $g\colon Y\rightarrow X$ is a \emph{split monomorphism} if there exists $f\colon X\to Y$ such that $Y\xrightarrow{g}X\xrightarrow{f}Y$ is the identity $1_Y$.
+\end{definition}
+\begin{example}
+Let $\cc=\set$. If $f:X\to Y$ is a split epimorphism with $f\circ g = 1_Y$, then for every $y\in Y$, we have $f(g(y))=y$ and thus $f$ is surjective. Is every surjective map a split epimorphism? Constructing a splitting $g$ amounts to picking $g(y)\in f^{-1}(y)$ for all $y\in Y$, so this reduces to the axiom of choice.
+
+Now assume that $g: X\to Y$ is a split monomorphism. Suppose that $y,y^\prime\in Y$ are such that $g(y)=g(y^\prime)$. Applying $f$ gives $y=y^\prime$, and thus split monomorphisms are injective. Conversely, if $Y$ is nonempty, then every injection $g:Y\to X$ is a split monomorphism.
+\end{example}
+\begin{example}
+A morphism is an isomorphism if and only if it is both a split epi and a split mono.
+\end{example}
+\begin{lemma}
+If $f:X\to Y$ is a split epi (resp. split mono) in $\cc$, and $F:\cc\to \cd$, then $F(f)$ is a split epi (resp. split mono) in $\cd$.
+\end{lemma}
+\begin{proof}
+If $g$ splits $f$ in $\cc$, then $F(g)$ splits $F(f)$ in $\cd$.
+\end{proof}
+\begin{exercise}\label{ex:split-epi-mono-isomorphism}
+Suppose $A,B\in \cc=\mathbf{Ab}$ and $f:A\to B$ is a split epi, so that $fg=1$ for some $g\colon B\rightarrow A$. Let $i\colon \ker f\to A$ be the inclusion, and consider the sum $\ker f\oplus B\xrightarrow{[i,g]} A$. Show that $[i,g]$ is an isomorphism.
+
+If $g:B\to A$ is a split mono, there exists $f:A\to B$ so that $fg=1$. Let $p\colon A\rightarrow \mathrm{coker}(g)$ be the quotient map, and consider the map $A\xrightarrow{\begin{pmatrix}
+p \\ f
+\end{pmatrix}}\mathrm{coker}(g)\oplus B$. Show that this is an isomorphism.
+\end{exercise}
+We have to get into some topology, since it's on our agenda. In the category $\mathbf{Top}$, the one-point space $\ast$ is terminal, meaning that for any space $X$ there is a unique map $X\to\ast$. This induces a map
+\[H_n(X)\to H_n(\ast)=\begin{cases}\mathbf{Z} & n=0\\
+0 & \text{else}\end{cases}\]
+which is called the \emph{augmentation map}.
+
+Take a 0-cycle $\sum a_ix_i$ where the $x_i$ are points in $X$. Consider its homology class $\left[\sum a_ix_i\right]\in H_0(X)$. Under the induced map above, this is sent to $\left[\sum a_i\ast\right]=\left(\sum a_i\right)\left[\ast\right]$. 
+\begin{definition}
+A \emph{pointed space} is a pair $(X,\ast)$, with $\ast\in X$ called the \emph{basepoint}.
+\end{definition}
+Let $\ast\to X\to\ast$ be the inclusion of the basepoint followed by the unique map to $\ast$. In homology we get a map $\mathbf{Z}\xrightarrow{\eta} H_\ast(X)\xrightarrow{\epsilon}\mathbf{Z}$, where the composition is the identity. The map $\epsilon$ is the augmentation map described above, so we see that it is a split epimorphism. This means that, by Exercise \ref{ex:split-epi-mono-isomorphism}, $ H_\ast(X)\cong \mathbf{Z}\oplus\mathrm{coker}\eta \cong\mathbf{Z}\oplus\ker\epsilon$. The \emph{reduced homology} of $(X,\ast)$ is $ H_\ast(X,\ast)=\mathrm{coker}\eta$. It's isomorphic to $ H_\ast(X)$ in dimensions greater than $0$, but differs by a factor of $\mathbf{Z}$ in dimension $0$.
+
