@@ -3,6 +3,13 @@ As homology is a functor $H_\ast:\mathbf{Top}\to\mathbf{Ab}$, it preserves isomo
 \begin{definition}
 Let $f_0,f_1:X\to Y$ be two maps. A \emph{homotopy} from $f_0$ to $f_1$ is a map $h:X\times I\to Y$ such that $h(x,0)=f_0(x)$ and $f(x,1)=f_1(x)$. We say that $f_0$ and $f_1$ are \emph{homotopic} and write $f_0\sim f_1$.  This notation is justified because it is indeed an equivalence relation (transitivity follows from the gluing lemma).
 \end{definition}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.5\linewidth]{assets/L05/05-homotopy}
+	\caption{A homotopy $h$ between $f_0,f_1:X\to Y$.}
+	\label{fig:05-homotopy}
+\end{figure}
+
 We denote by $[X,Y]$ the set $\mathbf{Top}(X,Y)/\sim$.
 
 Suppose we have a map $g: Y\to Z$ and homotopic maps $f_0,f_1:X\to Y$, with a homotopy $h:f_0\sim f_1$. Then $g\circ h$ gives a homotopy $g\circ f_0 \sim g\circ f_1$. Similarly, if $g:W\to X$ is a map and $f_0,f_1:X\to Y$ are homotopic, then $f_0\circ g\sim f_1\circ g$.
@@ -34,8 +41,15 @@ A space $X$ is \emph{contractible} if the map $X\to\ast$ is a homotopy equivalen
 \end{definition}
 
 \begin{definition}
-	A \emph{star-shaped region} is a subspace $X$ of $\mathbf{R}^n$ for some $n$ such that $0\in X$, such that for all $x\in X$, and for all $t\in[0,1]$, $tx\in X$. 
+	A \emph{star-shaped region} is a subspace $X$ of Euclidean space containing $\{0\}$, such that for all $x\in X$ and $t\in[0,1]$, $tx\in X$. 
 \end{definition}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.4\linewidth]{assets/L05/05-star-shaped-region}
+	\caption{A star-shaped region.}
+	\label{fig:05-star-shaped-region}
+\end{figure}
+
 For example, any convex region containing the origin is star-shaped. An argument similar to the one in Example \ref{exa:homotopy-equivalence-sphere} shows that the inclusion of $\{0\}$ into a star-shaped region is a homotopy equivalence. Thus star-shaped regions are contractible. Our goal now is to prove the following.
 \begin{theorem}\label{thm:star-shaped-homology}
 	Let $X$ be a star-shaped region. The augmentation map $\epsilon: H_\ast(X)\to \mathbf{Z}$ is an isomorphism, i.e., $ H_0(X)\cong\mathbf{Z}$ and $ H_i(X)\cong 0$ for $i>0$.
@@ -59,6 +73,13 @@ The following lemma shows the significance of this condition.
 \end{proof}
 \begin{proof}[Proof of Theorem \ref{thm:star-shaped-homology}]
 	The maps $\{0\}\to X$ and $X\to \{0\}$ induce $\mathbf{Z}\xrightarrow{\eta}S_\ast(X)$ and $S_\ast(X)\xrightarrow{\epsilon}\mathbf{Z}$ respectively. It is clear that $\epsilon\eta = 1:\mathbf{Z}\to\mathbf{Z}$. We now proceed to show that $\eta\epsilon\sim 1:S_\ast(X)\to S_\ast(X)$. Note that the composite $\eta \epsilon$ kills all chains in dimensions greater than zero, and on zero-chains we have $\eta\epsilon(\sum a_ix_i)=(\sum a_i)c_0$ where $c_0$ is the zero-simplex at the origin.
+	
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.8\linewidth]{assets/L05/05-star-shaped-line-homotopy-pf}
+	\caption{The map $h$ illustrated on a 1-simplex.}
+	\label{fig:05-star-shaped-line-homotopy-pf}
+\end{figure}
 	
 	For $\sigma\in\Sin_q(X)$, define $h:\Sin_q(X)\to\Sin_{q+1}(X)$ as follows:
 	$$h\sigma(t_0,\cdots,t_{q+1})=(1-t_0)\sigma\left(\frac{(t_0,\cdots,t_{q+1})}{1-t_0}\right).$$

@@ -16,7 +16,14 @@ Here's an example. Suppose we have $\sigma\colon \Delta^1\to X$. Define $\phi\co
 
 However, we show that $\overline{\sigma}\equiv -\sigma\bmod B_1(X)$, meaning there is a $2$-chain in $X$ whose boundary is $\overline{\sigma}+\sigma$. If $d_0\sigma=d_1\sigma$ so that $\sigma\in Z_1(X)$, then $\overline{\sigma}$ and $-\sigma$ are homologous: $[\overline{\sigma}]=-[\sigma]$ in $ H_1(X)$.
 
-Let $\pi$ denote the projection map from $[0,1,2]$ to $[0,1]$\todo{MUST UPLOAD PICTURE HERE}. Then, $\partial(\sigma\circ\pi)=\sigma\pi d^0-\sigma\pi d^1 +\sigma\pi d^2=\overline{\sigma}-c^1_{\sigma(0)}+\sigma$ where $c^1_{\sigma(0)}$ is the constant $1$-simplex at $\sigma(0)$ (similarly for $c^n_{\sigma(0)}$). We wish to $c^1_{\sigma(0)}$ is an error term. To achieve this, consider the constant $2$-simplex $c^2_{\sigma(0)}$ at $\sigma(0)$; its boundary is $c^1_{\sigma(0)}-c^1_{\sigma(0)}+c^1_{\sigma(0)}=c^1_{\sigma(0)}$. So $\overline{\sigma}+\sigma=\partial(\sigma\circ\pi + c^2_{\sigma(0)})$ and $\overline{\sigma}\equiv -\sigma\bmod B_1(X)$ as claimed.
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\linewidth]{assets/L02/02-pi-then-sigma}
+	\caption{If $\sigma$ is a 1-simplex in $X$, then precomposing by $\pi$ gives a 2-simplex $\sigma \circ \pi$ in $X$.}
+	\label{fig:02-pi-then-sigma}
+\end{figure}
+
+Let $c^n_{x}$ denote the constant $n$-simplex at $x$. Consider the 2-simplex in Figure \ref{fig:02-pi-then-sigma}. Its boundary is $\partial(\sigma\circ\pi)=\sigma\pi d^0-\sigma\pi d^1 +\sigma\pi d^2=\overline{\sigma}-c^1_{\sigma(0)}+\sigma$. To compensate for the unwanted $-c^1_{\sigma(0)}$ term, consider the constant $2$-simplex $c^2_{\sigma(0)}$; its boundary is $c^1_{\sigma(0)}-c^1_{\sigma(0)}+c^1_{\sigma(0)}=c^1_{\sigma(0)}$. So $\overline{\sigma}+\sigma=\partial(\sigma\circ\pi + c^2_{\sigma(0)})$ and $\overline{\sigma}\equiv -\sigma\bmod B_1(X)$ as claimed.
 
 To give the simplest explicit examples, let's compute the homologies of $\emptyset$ and $\ast$. For the former, $\Sin_n(\emptyset)=\emptyset$, so $S_\ast(\emptyset)=0$. Hence $\cdots\to S_2\to S_1\to S_0$ is the zero chain complex. This means that $Z_\ast(\emptyset)=B_\ast(\emptyset)=0$. The homology in all dimensions is therefore $0$.
 
