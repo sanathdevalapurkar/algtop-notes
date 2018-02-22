@@ -1,52 +1,69 @@
 \cleardoublepage
 \section*{Preface}
-These are notes from the 18.905-906 sequence, taught by Haynes Miller in the
-academic year 2016-2017. The goal was to tell the story of classical algebraic
-topology, starting from the basics of homology and cohomology, all the way up
-to the Serre spectral sequence and characteristic classes. I tried to live\TeX
-the entire course. As such, there are multiple typos and mathematical errors,
-which I am terribly ashamed of.
+Over the 2016--2017 academic year, I ran the standard algebraic topology 
+sequence at MIT. The first semester deals with singular homology and 
+cohomology, and Poicar\'e duality; the second builds up basic homotopy theory,
+spectral sequences, and characteristic classes. 
 
-Haynes, a few other students from the class, and I are working to clean (and,
-in extreme cases, rewrite) the exposition in some chapters. Hopefully this
-project will be completed by the first month of 2018, in time for the second
-run of 18.906.
+I was lucky enough to have in the audience a student, Sanath Devalapurkar, 
+who spontaneously decided to live\TeX \ the entire course. This resulted in 
+a remarkably accurate record of what happened in the classroom -- right down
+to random alarms ringing and embarassing mistakes on the blackboard. 
+Sanath's \TeX \ forms the basis of these notes. 
 
-I'd appreciate any input on where these notes can be fixed. The github
-repository for the project is at
-\begin{center}
-    \url{https://github.com/sanathdevalapurkar/algtop-notes}.
-\end{center}
-Any comments can be sent to \verb|sanathd@mit.edu|.
+My goal was to give a standard classical approach to these subjects. 
+In the first semester, I tried to give an honest account of the relative cup
+products needed in the proof of Poincar\'e duality. 
 
---- Sanath
-
-\newpage
-%Here are hyperlinks to the notes from each of the semesters.
-%    \begin{enumerate}
-%        \item The notes for 18.905 start at section \ref{905}.
-%        \item The notes for 18.906 start at section \ref{906}.
-%    \end{enumerate}
-
-%\section*{Stuff to fix}
+%\cleardoublepage
+%\section*{Preface}
+%These are notes from the 18.905-906 sequence, taught by Haynes Miller in the
+%academic year 2016-2017. The goal was to tell the story of classical algebraic
+%topology, starting from the basics of homology and cohomology, all the way up
+%to the Serre spectral sequence and characteristic classes. I tried to live\TeX
+%the entire course. As such, there are multiple typos and mathematical errors,
+%which I am terribly ashamed of.
+%
+%Haynes, a few other students from the class, and I are working to clean (and,
+%in extreme cases, rewrite) the exposition in some chapters. Hopefully this
+%project will be completed by the first month of 2018, in time for the second
+%run of 18.906.
+%
+%I'd appreciate any input on where these notes can be fixed. The github
+%repository for the project is at
+%\begin{center}
+%    \url{https://github.com/sanathdevalapurkar/algtop-notes}.
+%\end{center}
+%Any comments can be sent to \verb|sanathd@mit.edu|.
+%
+%--- Sanath
+%
+%\newpage
+%%Here are hyperlinks to the notes from each of the semesters.
+%%    \begin{enumerate}
+%%        \item The notes for 18.905 start at section \ref{905}.
+%%        \item The notes for 18.906 start at section \ref{906}.
+%%    \end{enumerate}
+%
+%%\section*{Stuff to fix}
+%%\begin{itemize}
+%%    \item The original version of the notes used
+%%	\verb|\cc| to denote both a script C and the complex numbers.
+%%	Now, \verb|\cc| denotes a script C and \verb|\cC| denotes the complex
+%%	numbers.
+%%	Everytime you find this, edit it!
+%%    \item Be consistent about your use of $\Hom_\cc(C,D)$ and $\cc(C,D)$ for hom-sets.
+%%\end{itemize}
+%
+%\section*{Things to fix}
 %\begin{itemize}
-%    \item The original version of the notes used
-%	\verb|\cc| to denote both a script C and the complex numbers.
-%	Now, \verb|\cc| denotes a script C and \verb|\cC| denotes the complex
-%	numbers.
-%	Everytime you find this, edit it!
-%    \item Be consistent about your use of $\Hom_\cc(C,D)$ and $\cc(C,D)$ for hom-sets.
+%    \item As of \today, all of Part II has been edited, with the exception of
+%	\S \ref{basepoints}, \S \ref{section-serre-classes}, \S
+%	\ref{mod-c-hurewicz}, \S \ref{dress-sseq}, \S \ref{leray-hirsch}, and
+%	\S \ref{gysin-sequence}.
+%    \item Part I remains to be edited.
+%    \item The original version of the notes used \verb|\cc| to denote both a
+%	script C and the complex numbers.  Now, \verb|\cc| denotes a script C
+%	and \verb|\cC| denotes the complex numbers. This is a problem that
+%	needs to be fixed everywhere.
 %\end{itemize}
-
-\section*{Things to fix}
-\begin{itemize}
-    \item As of \today, all of Part II has been edited, with the exception of
-	\S \ref{basepoints}, \S \ref{section-serre-classes}, \S
-	\ref{mod-c-hurewicz}, \S \ref{dress-sseq}, \S \ref{leray-hirsch}, and
-	\S \ref{gysin-sequence}.
-    \item Part I remains to be edited.
-    \item The original version of the notes used \verb|\cc| to denote both a
-	script C and the complex numbers.  Now, \verb|\cc| denotes a script C
-	and \verb|\cC| denotes the complex numbers. This is a problem that
-	needs to be fixed everywhere.
-\end{itemize}

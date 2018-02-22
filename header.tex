@@ -43,6 +43,9 @@
 \usepackage[mathscr]{eucal}
 \usepackage{graphicx}
 
+\usepackage{chngcntr} % to number sections consecutively across chapters
+\counterwithout{section}{chapter}
+
 %\usepackage{tikz-cd}
 \usepackage{tikz}
 \usetikzlibrary{cd}
@@ -79,6 +82,7 @@
 \newtheorem{slogan}[theorem]{Slogan}
 \newtheorem{warning}[theorem]{Warning}
 \newtheorem{solution}[theorem]{Solution}
+\newtheorem{property}[theorem]{Property}
 
 \DeclareMathOperator{\Th}{Th}
 \DeclareMathOperator{\Aut}{Aut}
@@ -177,6 +181,9 @@
 \newcommand{\inc}{\mathrm{in}}
 \newcommand{\Spin}{\mathrm{Spin}}
 \newcommand{\String}{\mathrm{String}}
+\newcommand{\Sk}{\mathrm{Sk}}
+
+\newcommand{\downsubseteq}{\mathbin{\rotatebox[origin=c]{-90}{$\subseteq$}}}
 
 % for pullback and pushout squares
 \usepackage{pigpen}
